@@ -319,4 +319,71 @@ myaux acc [x] = [(x,acc)]
 myaux acc (h1:h2:t) | h1 == h2 = myaux (acc+1) (h2:t)
                     | otherwise = (h1, acc) : myaux 1 (h2:t)
 
--- Questão 44
+-- Questão 44 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+partitionEitherss :: [Either a b] -> ([a], [b])
+partitionEitherss [] = ([],[])
+partitionEitherss (h:t) = case h of 
+        Left a -> (a:x , y)
+        Right b -> (x , b:y )
+    where (x,y) = partitionEitherss t
+
+partitionEithers' :: [Either a b] -> ([a],[b])
+partitionEithers' l = (left l, right l)
+                      where left [] = []
+                            left (Left x:xs) = x:left xs
+                            left (Right x:xs) = left xs 
+                            right [] = []
+                            right(Left x:xs) = right xs
+                            right (Right x:xs)= x: right xs
+
+-- Questão 45
+mycatMaybes :: [Maybe a] -> [a]
+mycatMaybes [] = []
+mycatMaybes (h:t) = case h of 
+    Just a -> a : mycatMaybes t
+    Nothing -> mycatMaybes t 
+
+-- Questão 46
+data Movimento = Norte | Sul | Este | Oeste
+                deriving (Show,Eq)
+
+caminho :: (Int,Int) -> (Int,Int) -> [Movimento]
+caminho (x1,y1) (x2,y2) | x1 > x2  = Oeste : caminho (x1,y1) (x2+1,y2)
+                        | x1 < x2 = Este : caminho (x1,y1) (x2-1,y2)
+                        | y1 > y2 = Norte : caminho (x1,y1) (x2, y2+1)
+                        | y1 < y2 = Sul : caminho (x1,y1) (x2, y2-1)
+                        | otherwise = []
+
+-- Questão 47
+myhasLoops :: (Int,Int) -> [Movimento] -> Bool
+myhasLoops (x,y) (h:t) | auxxx (x,y) (h:t) 0 == 0 = True
+                       | otherwise = False
+
+auxxx :: (Int,Int) -> [Movimento] -> Int -> Int
+auxxx (x,y) [] acc = 0
+auxxx (x,y) (h:t) acc | h == Norte = 1 + auxxx (x,y) t (acc+1)
+                      | h == Sul = (-1) + auxxx (x,y) t (acc-1)
+                      | h == Este = 1 + auxxx (x,y) t (acc+1)
+                      | h == Oeste = (-1) + auxxx (x,y) t (acc-1)
+                      | otherwise = acc
+
+-- Questão 48
+type Ponto = (Float,Float)
+data Rectangulo = Rect Ponto Ponto
+
+contaQuadrados :: [Rectangulo] -> Int
+contaQuadrados [] = 0
+contaQuadrados ((Rect (x,y) (x2,y2)):t) = if abs(x-x2) == abs(y-y2) then 1 + contaQuadrados t else contaQuadrados t
+
+-- Questão 49
+areaTotal :: [Rectangulo] -> Float
+areaTotal [] = 0
+areaTotal ((Rect (x,y) (x2,y2)):t) = abs(x - x2) * abs(y - y2) + areaTotal t
+
+-- Questão 50
+data Equipamento = Bom | Razoavel | Avariado
+                   deriving Show
+
+naoReparar :: [Equipamento] -> Int
+naoReparar [] = 0
+naoReparar (h:t) = if h == Avariado then naoReparar t else 1 + naoReparar t 
