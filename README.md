@@ -1,5 +1,5 @@
-<h1 align="center">👨‍🎓 Welcome to my university repository! 👨‍💻</h1>
-<p>Here you will find all of my projects, tests and group works done in the Computer Science course at University of Minho. Furthermore, you can check my worksheets that I did to study for exams/resources. Feel free to use my solutions :)</p>
+<h1 align="center"><samp>👨‍🎓 Welcome to my university repository! 👨‍💻 </samp></h1>
+<samp> &gt; Here you will find all of my projects, tests and group works done in the Computer Science course at University of Minho. Furthermore, you can check my worksheets that I did to study for exams/resources. Feel free to use my solutions :)</samp>
 <hr>
 <p align="center"><code>Table of the files and folders inside this repository</code></p>
 <table align="center">
