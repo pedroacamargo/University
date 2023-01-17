@@ -1,3 +1,6 @@
+import Data.Char
+import Data.List
+
 {- 
 length l: o n´umero de elementos da lista l
 • head l: a cabe¸ca da lista (n˜ao vazia) l
@@ -200,15 +203,17 @@ angulo (Cartesiano x y) | x == 0 && y == 0 = 0
                         | x < 0 && y >= 0 = atan(y/x) + pi
 
 --e)
-dist :: Ponto -> Ponto -> Double
-dist (Cartesiano x1 y1) (Cartesiano x2 y2) = sqrt (((x1 - x2) ^ 2) + (y1 - y2) ^ 2)
-dist (Polar d1 a1) (Polar a2 d2) = sqrt((px1-px2)^2+(py1-py2)^2)
+dist' :: Ponto -> Ponto -> Double
+dist' (Cartesiano x1 y1) (Cartesiano x2 y2) = sqrt (((x1 - x2) ^ 2) + (y1 - y2) ^ 2)
+dist' (Polar d1 a1) (Polar a2 d2) = sqrt((px1-px2)^2+(py1-py2)^2)
                                    where 
                                    px1 = d1 * cos a1
                                    px2 = d2 * cos a2
                                    py1 = d1 * sin a1
                                    py2 = d2 * sin a2
 
+
+-------------------------------------------------------------------------------------------------------
 --7)
 data Figura = Circulo Ponto Double
             | Rectangulo Ponto Ponto
@@ -217,5 +222,72 @@ data Figura = Circulo Ponto Double
 
 --a)
 poligono :: Figura -> Bool
-poligono (Circulo (Ponto x y) z) = if z > 0 then True else False
+poligono (Circulo (Cartesiano x y) z) = if z > 0 then True else False
 poligono (Rectangulo a b) = if (posx a) /= (posx b) && (posy a) /= (posy b) then True else False
+poligono (Triangulo a b c) | (x+y > z) || (x+z > y) || (y + z > x) = True
+                           | otherwise = False
+                           where 
+                              x = dist' a b
+                              y = dist' a c
+                              z = dist' b c
+
+--b)
+vertices :: Figura -> [Ponto]
+vertices (Circulo (Cartesiano _ _) _) = []
+vertices (Rectangulo (Cartesiano x1 y1) (Cartesiano x2 y2)) = [(Cartesiano x1 y1), (Cartesiano x1 y2), (Cartesiano x2 y2), (Cartesiano x2 y1)]
+vertices (Triangulo a b c) = [a,b,c]
+
+--c)
+area :: Figura -> Double
+area (Triangulo p1 p2 p3) =
+            let a = dist' p1 p2
+                b = dist' p2 p3
+                c = dist' p3 p1
+                s = (a+b+c) / 2 
+            in sqrt (s*(s-a)*(s-b)*(s-c))
+area (Circulo (Cartesiano x y) r) = (r^2) * pi
+area (Rectangulo a b) | posx a > posx b = (posx a - posx b) * (posy a - posy b)
+                      | otherwise = (posx b - posx a) * (posy b - posy a)
+
+
+--d)
+perimetro' :: Figura -> Double
+perimetro' (Circulo c r) = 2 * r * pi
+perimetro' (Rectangulo (Cartesiano x1 y1) (Cartesiano x2 y2)) = dist' (Cartesiano x1 y1) (Cartesiano x1 y2) + dist' (Cartesiano x1 y1) (Cartesiano x2 y1) + dist' (Cartesiano x2 y1) (Cartesiano x2 y2) + dist' (Cartesiano x2 y2) (Cartesiano x1 y2)
+perimetro' (Triangulo a b c) = let p1 = dist' a b
+                                   p2 = dist' b c
+                                   p3 = dist' c a
+                               in  p1 + p2 + p3 
+
+perimetro'' :: Figura -> Double
+perimetro'' (Circulo a r) = 2 * pi * r
+perimetro'' (Rectangulo a b) = 2 * (((abs (posx a)) + (abs(posx b))) + ((abs (posy a)) + (abs(posy b))))
+perimetro'' (Triangulo a b c) = let p1 = dist' a b
+                                    p2 = dist' b c
+                                    p3 = dist' c a
+                                in p1 + p2 + p3 
+
+-------------------------------------------------------------------------------------------------------
+--8)
+--a)
+isLower :: Char -> Bool
+isLower x = if ord(x) >= 97 && ord(x) <= 122 then True else False
+
+--b)
+isDigit :: Char -> Bool
+isDigit x = if ord(x) >= 48 && ord(x) <= 57 then True else False
+
+--c)
+isAlpha :: Char -> Bool
+isAlpha x = if ord(x) >= 65 && ord(x) <= 90 || ord(x) >= 97 && ord(x) <= 122 then True else False
+
+--d)
+toUpper :: Char -> Char
+toUpper x | Data.Char.isLower x == True = chr (ord(x) - 32)
+          | otherwise = x
+
+intToDigit :: Int -> Char
+intToDigit x = if elem x [0..9] then chr( ord('0') + x) else error ""
+
+digitToInt :: Char -> Int
+digitToInt x = if isAlpha x == True then (ord x - ord '0') else error ""
