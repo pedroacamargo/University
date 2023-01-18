@@ -192,7 +192,7 @@ listadecontatos = [Casa 939944323, Trab 221312222, Tlm 2225000985, Email "pedroa
 acrescEmail :: Nome -> String -> Agenda -> Agenda
 acrescEmail nome email agenda = agenda ++ [(nome, [Email email])]
 
---b) You can see the definitions of map (\x ->) in University/1 ano/programacao-funcional/haskell-functions/map.hs
+--b) You can see the definitions of map (\x ->) at University/1 ano/programacao-funcional/haskell-functions/map.hs
 verEmails :: Nome -> Agenda -> Maybe [String]
 verEmails nome [(nom, cont)] = if nome == nom then Just (map (\x -> case x of Email e -> e) cont) else Nothing
 verEmails nome ((nom,cont): agenda) = if nome == nom then verEmails nome [(nom,cont)] else verEmails nome agenda
