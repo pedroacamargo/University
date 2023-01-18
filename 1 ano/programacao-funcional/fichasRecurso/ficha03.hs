@@ -184,6 +184,9 @@ data Contacto = Casa Integer | Trab Integer | Tlm Integer | Email String derivin
 type Nome = String
 type Agenda = [(Nome, [Contacto])]
 
+listadecontatos :: [Contacto]
+listadecontatos = [Casa 939944323, Trab 221312222, Tlm 2225000985, Email "pedroaugennes@gmail.com", Tlm 1239597733]
+
 
 --a)
 acrescEmail :: Nome -> String -> Agenda -> Agenda
@@ -194,3 +197,110 @@ verEmails :: Nome -> Agenda -> Maybe [String]
 verEmails nome [(nom, cont)] = if nome == nom then Just (map (\x -> case x of Email e -> e) cont) else Nothing
 verEmails nome ((nom,cont): agenda) = if nome == nom then verEmails nome [(nom,cont)] else verEmails nome agenda
 
+--c)
+consTelefs :: [Contacto] -> [Integer]
+consTelefs (h:t) = case h of
+                Tlm a ->  a : consTelefs t
+                Casa b -> b : consTelefs t
+                Trab c -> c : consTelefs t
+                _ -> consTelefs t
+consTelefs [] = []
+
+--d) dado um nome e agenda, retorna o numero de telefone da casa (caso exista)
+casa :: Nome -> Agenda -> Maybe Integer
+casa nome [(name, (contato:t))] = if nome == name then case contato of
+                                                    Casa x -> Just x 
+                                                    otherwise -> casa nome [(name,t)]
+                                                  else Nothing
+casa nome ((name, contato):t2) = if nome == name then casa nome [(name, contato)] else casa nome t2
+
+-------------------------------------------------------------------------------------------------------------------
+--4)
+type Dia = Int
+type Mes = Int
+type Ano = Int
+type Nome' = String
+
+data Data = D Dia Mes Ano deriving Show
+
+type TabDN = [(Nome',Data)]
+
+listaDeAmigos :: TabDN
+listaDeAmigos = [("Pedro Augusto Camargo", D 25 3 2004), ("Costanzo Bruno Annichini", D 7 1 2002)]
+
+--a)
+procura :: Nome' -> TabDN -> Maybe Data
+procura n [] = Nothing
+procura n ((nome,date):t) = if n == nome then Just date else procura n t
+
+--b)
+idade :: Data -> Nome' -> TabDN -> Maybe Int
+idade _ _ [] = Nothing
+idade (D d1 m1 a1) nome ((nom,(D d2 m2 a2 )):t) | nome /= nom = idade (D d1 m1 a1) nome t
+                                                  | a1 < a2 || (a1 == a2 && m1 < m2) = Just 0
+                                                  | m1 < m2 || (m1 == m2 && d1 < d2) = Just (a1-a2-1)
+                                                  | otherwise = Just (a1-a2)
+
+--c)
+anterior :: Data -> Data -> Bool
+anterior (D d1 m1 a1) (D d2 m2 a2) | a1 < a2 = True
+                                   | a1 == a2 && m1 < m2 = True
+                                   | a1 == a2 && m1 == m2 && d1 < d2 = True
+                                   | otherwise = False
+
+--d)
+ordena :: TabDN -> TabDN
+ordena [] = []
+ordena ((name,date):t) = aux''' [(name,date)] (ordena t)
+                    where aux''' :: TabDN -> TabDN -> TabDN
+                          aux''' [(nom,dat)] [] = [(nom,dat)]
+                          aux''' [(nom,dat)] ((n,d):t) = if anterior dat d == False then (n,d) : aux''' [(nom,dat)] t else (nom,dat) : aux''' [(n,d)] t  
+
+--e) apresenta o nome e idade das pessoas, numa dada data, por ordem crescente da idade das pessoas
+porIdade:: Data -> TabDN -> [(Nome,Int)]
+porIdade _ [] = []
+porIdade (D d1 m1 a1) ((nome,(D d2 m2 a2)):t) = auxx nome (a1 - a2) t (D d1 m1 a1)
+                                            where auxx :: Nome' -> Int -> TabDN -> Data -> [(Nome,Int)]
+                                                  auxx n i [] _ = [(n,i)]
+                                                  auxx n i ((nome,(D d1 m1 a1)):t) (D d2 m2 a2) | (a2 - a1) < i = (nome, a2-a1) : auxx n i t (D d2 m2 a2)
+                                                                                                | otherwise = (n,i) : auxx nome (a2 - a1) t (D d2 m2 a2)
+
+-------------------------------------------------------------------------------------------------------------------
+--5)
+
+data Movimento = Credito Float | Debito Float 
+                deriving Show
+
+data Data' = D' Int Int Int 
+            deriving Show
+
+data Extracto = Ext Float [(Data', String, Movimento)]
+                deriving Show
+
+--a)
+extValor :: Extracto -> Float -> [Movimento]
+extValor (Ext x []) _ = []
+extValor (Ext x ((_,_,Debito y):t)) z = if z > y then (Debito y) : extValor (Ext x t) z else extValor (Ext x t) z
+extValor (Ext x ((_,_,Credito y):t)) z = if z > y then (Credito y) : extValor (Ext x t) z else extValor (Ext x t) z
+
+--b)
+filtro :: Extracto -> [String] -> [(Data',Movimento)]
+filtro (Ext x []) s = []
+filtro (Ext x ((d,s,m):t)) s2 = if elem s s2 then (d,m) : filtro (Ext x t) s2 else filtro (Ext x t) s2
+
+--c)
+creDeb :: Extracto -> (Float,Float)
+creDeb (Ext x lista) = (cred lista, deb lista)
+                    where cred :: [(Data',String,Movimento)] -> Float
+                          cred [] = 0
+                          cred ((d,s,Credito x):t) = x + cred t
+                          cred ((d,s,Debito x):t) = cred t
+                          deb :: [(Data',String,Movimento)] -> Float
+                          deb [] = 0
+                          deb ((d,s,Credito x):t) = deb t
+                          deb ((d,s,Debito x):t) = x + deb t
+
+--d)
+saldo :: Extracto -> Float
+saldo (Ext si resto) = si + d - c
+                       where (d,c) = creDeb (Ext si resto)
