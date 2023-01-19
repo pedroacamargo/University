@@ -15,4 +15,16 @@
      <td>Functional Programming</td>
      <td><a href="https://github.com/pedroacamargo/University/tree/main/1%20ano/programacao-funcional">(Click here)</a></td>
   </tr>
+  <tr>
+      <td align="center">1</td>
+      <td align="center">1st</td>
+      <td>Imperative Programming</td>
+      <td><a href="https://github.com/pedroacamargo/University/tree/main/1%20ano/programacao-imperativa">(Click here)</a></td>
+  </tr>
+  <tr>
+      <td align="center">1</td>
+      <td align="center">1st</td>
+      <td>Digital Systems</td>
+      <td><a href="https://github.com/pedroacamargo/University/tree/main/1%20ano/sistemas-de-computacao">(Click here)</a></td>
+  </tr>
 </table>
