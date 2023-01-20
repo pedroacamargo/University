@@ -132,3 +132,30 @@ addMat m1 m2 = zipWith (\l1 l2 -> zipWith (+) l1 l2) m1 m2
 transpose :: Mat a -> Mat a 
 transpose ([]:_) = []
 transpose m = map head m : transpose (map tail m)
+
+--e)
+multMat :: Num a => Mat a -> Mat a -> Mat a
+multMat m1 m2 | snd (dimMat m1) == fst (dimMat m2) = zipWith (\l1 l2 -> zipWith (*) l1 l2) m1 m2
+              | otherwise = [[]]
+
+--f)
+zipWMat :: (a -> b -> c) -> Mat a -> Mat b -> Mat c
+zipWMat f (h:t) (x:xs) = zipWith (\a b -> a `f` b) h x : zipWMat f t xs
+zipWMat f _ _ = []
+
+--g)ex: triSup [[1,2,3], [0,4,5], [0,0,6]]  |<-===->| all (==0) [0,0] {True} && triSup [[4,5],[0,6]] -> all (==0) [0] {True} && triSup [[6]] -> [] {True}
+triSup :: (Num a,Eq a) => Mat a -> Bool
+triSup [] = True
+triSup (h:t) = let l = map head t
+                   rm = map tail t
+               in all (==0) l && triSup rm
+
+--h)
+rotateLeft :: Mat a -> Mat a
+rotateLeft [] = [[]]
+rotateLeft m = map last m : rotateLeft (map init m)
+
+-- |1 2 3|     |3 5 6|
+-- |0 4 5| ==  |2 4 0|
+-- |0 0 6|     |1 0 0|
+
