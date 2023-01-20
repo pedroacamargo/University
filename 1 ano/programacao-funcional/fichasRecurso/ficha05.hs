@@ -46,7 +46,7 @@ p1 :: Polinomio
 p1 = [(2,3), (3,4), (5,3), (4,5),(0,10)] 
 --a)
 selgrau :: Int -> Polinomio -> Polinomio
-selgrau x ((c,g):t) = filter (\n -> x == snd n) ((c,g):t)
+selgrau n ps = filter (\x -> snd x == n) ps 
 
 --b) conta n p -> quantos monomios de grau n existem em p
 conta :: Int -> Polinomio -> Int
@@ -86,12 +86,49 @@ ordena pol = foldr aux [] pol
 ordena' :: Polinomio -> Polinomio
 ordena' pol = sortOn' snd pol
 
----- On work -----
-
---i)
+--i) vai ver se o resto do polinomio possui algum monomio com o mesmo expoente e vai selecioanr todos monomios com o mesmo expoente, assim, irá somar todos os coeficientes do polinomio retornadoda função selgrau. Essa soma será o resultado dos coeficientes somados do resto do polinomio, então será ainda somado o coeficiente do primeiro monomio do polinomio que foi invocado na função, retornando o monomio normalizado do polinomio. -> Por fim, fazer a recursão da função.
 normaliza :: Polinomio -> Polinomio
-normaliza l = let x = fromIntegral (grau l) in filter (\a -> x /= snd a) l
+normaliza [] = []
+normaliza ((b,e):ps) = (sum [bs | (bs,es) <- selgrau e ps] + b,e):normaliza [(bo,eo) | (bo,eo) <- ps, eo /= e]
+
+--j)
+soma :: Polinomio -> Polinomio -> Polinomio 
+soma pol1 pol2 = normaliza (pol1 ++ pol2)
 
 --k)
 produto :: Polinomio -> Polinomio -> Polinomio
-produto pol1 pol2 = foldr mult pol1 pol2
+produto pol1 pol2 = normaliza (foldr mult pol1 pol2)
+
+--l)
+equiv :: Polinomio -> Polinomio -> Bool
+equiv pol1 pol2 = normaliza pol1 == normaliza pol2
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+--3)
+type Mat a = [[a]]
+{-
+|1 2 3|
+|0 4 5| [[1,2,3], [0,4,5], [0,0,6]]
+|0 0 6|
+-}
+mTriangular :: (Num a) => Mat a
+mTriangular = [[1,2,3], [0,4,5], [0,0,6]]
+
+--a) todas linhas tem a mesma dimensao
+dimOK :: Mat a -> Bool
+dimOK (m1:t2) = all (\l1-> length m1 == length l1) t2
+
+-- all -> Returns true if every element in the list fulfill the condition
+
+--b)
+dimMat :: Mat a -> (Int,Int)
+dimMat (h:t) = if dimOK (h:t) then (length h, length (h:t)) else (0,0)
+
+--c) a função zip junta duas listas em uma só dada alguma função
+addMat :: Num a => Mat a -> Mat a -> Mat a
+addMat m1 m2 = zipWith (\l1 l2 -> zipWith (+) l1 l2) m1 m2
+
+--d) de cada elemento de m vamos pegar o primeiro elemento (head) e vamos fazer a recursão
+transpose :: Mat a -> Mat a 
+transpose ([]:_) = []
+transpose m = map head m : transpose (map tail m)
