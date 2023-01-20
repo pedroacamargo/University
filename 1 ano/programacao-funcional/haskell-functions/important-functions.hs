@@ -10,7 +10,7 @@
     fst -> couple first element  ----> given (x,y) || fst (x,y) = x
     snd -> couple second element ----> given (x,y) || snd (x,y) = y
 
-
+max -> The max value between 2 parameters
 init -> Remove the last element of a list
 all -> Returns true if every element in the list fulfill the condition
 dropWhile -> deletes the elements that don't fulfill the condition until the element that fulfill
