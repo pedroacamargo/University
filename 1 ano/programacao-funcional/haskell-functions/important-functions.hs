@@ -10,6 +10,7 @@
     fst -> couple first element  ----> given (x,y) || fst (x,y) = x
     snd -> couple second element ----> given (x,y) || snd (x,y) = y
 
+maximum -> Returns the value of the maximum element in a list
 max -> The max value between 2 parameters
 init -> Remove the last element of a list
 all -> Returns true if every element in the list fulfill the condition
