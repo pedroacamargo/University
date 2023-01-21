@@ -68,3 +68,18 @@ aux (Dir l x) n acc = if n /= acc then (Dir (aux l n (acc+1)) x)
                                   else Nula
 aux (Esq x l) n acc = if n /= acc then (Esq x (aux l n (acc)))
                                   else Nula
+
+
+--b) Esq 1 (Dir (Dir (Esq 9 Nula) 3) 4) seja apresentada como [1, 9, 3, 4].
+arv ::(Num a) => Lista a
+arv = (Esq 1 (Dir (Dir (Esq 9 Nula) 3) 4))
+
+instance Show a => Show (Lista a) where
+    show (Esq x Nula) = show x
+    show (Esq x l) = show x ++ "," ++ show l
+    show (Dir Nula x) = show x
+    show (Dir l x) = show l ++ "," ++ show x
+    show (Nula) = ""
+
+showArv :: Show a => Lista a -> String
+showArv a = "[" ++ show a ++ "]"
