@@ -1,3 +1,5 @@
+import Data.List
+import Data.Char
 --1)
 data Frac = F Integer Integer
 --a)
@@ -48,29 +50,85 @@ isGreaterThanDouble (F x y) [] = []
 isGreaterThanDouble f l = filter (\x -> x > 2*f) l
 
 
+-----------------------------------------------------------------------------------------------------------
+--2)
+data Exp a = Const a | Simetrico (Exp a) | Mais (Exp a) (Exp a) | Menos (Exp a) (Exp a) | Mult (Exp a) (Exp a)
+
+calcula :: Num a => Exp a -> a
+calcula (Const x) = x
+calcula (Simetrico x) = - calcula x
+calcula (Mais x y) = calcula x + calcula y
+calcula (Menos x y) = calcula x - calcula y
+calcula (Mult x y) = calcula x * calcula y
 
 
+infixa :: Show a => Exp a -> String
+infixa (Const x) = show x
+infixa (Simetrico x) = '-' : '(' :  infixa x ++ ")"
+infixa (Mais x y) = '(' : infixa x ++ " + " ++ infixa y ++ ")"
+infixa (Menos x y) = '(' : infixa x ++ " - " ++ infixa y ++ ")"
+infixa (Mult x y) = '(' : infixa x ++ " * " ++ infixa y ++ ")"
+--a) instância show de Exp a
+
+instance Show a => Show (Exp a) where
+    show x = infixa x
+
+--b)
+instance (Num a, Eq a) => Eq (Exp a) where
+    e1 == e2 = calcula e1 == calcula e2
+
+--c)
+instance Num a => Num (Exp a) where
+    e1 + e2 = Const (calcula e1 + calcula e2)
+    e1 - e2 = Const (calcula e1 - calcula e2)
+    e1 * e2 = Const (calcula e1 * calcula e2)
+    abs e = Const (abs (calcula e))
+    negate e1 = Const (negate (calcula e1))
+    signum e = Const (signum (calcula e))
+    fromInteger n = Const (fromInteger n)
+
+--------------------------------------------------------------------------------------------------------------
+--3)
+data Movimento = Credito Float | Debito Float
+data Data = D Int Int Int
+data Extracto = Ext Float [(Data, String, Movimento)]
+
+--a)
+instance Eq Data where
+    (D a b c) == (D x y z) = True
+    (D a b c) /= (D x y z) = False
+
+instance Ord Data where
+    (D a b c) `compare` (D x y z) 
+        | (c,b,a) == (z,y,x) = EQ
+        | (c,b,a) < (z,y,x) = LT
+        | (c,b,a) > (z,y,x) = GT
+
+--b)
+instance Show Data where
+    show (D d m a) = show d ++ "/" ++ show m ++ "/" ++ show a
+
+--c) lista de movimentos apareça ordenada por ordem crescente de data
+ordena :: Extracto -> Extracto
+ordena (Ext vi l) = let lf = sortOn (\(d,_,_)->d) l
+                    in (Ext vi lf)
+
+--d)
+saldo :: Extracto -> Float
+saldo (Ext x l) = foldr (\(_,_,m) acc -> case m of Credito a -> a + acc
+                                                   Debito a -> acc - a) x l
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+instance Show Extracto where
+    show (Ext x l) = 
+        "Saldo anterior: " ++ show x ++
+                     "\n---------------------------------------" ++
+                     "\nData       Descricao   Credito   Debito" ++
+                     "\n---------------------------------------\n" ++ concatMap (\(d,s,m) ->  show d ++ replicate (11 - (length (show d))) ' ' ++ map (toUpper) s ++ "     \n") l ++
+                     "\n Saldo Total: " ++ show (saldo (Ext x l))
 
 
 --Teste2022-2023.hs
-
-
 data Lista a = Esq a (Lista a) | Dir (Lista a) a | Nula 
 
 arv ::(Num a) => Lista a
