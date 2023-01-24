@@ -25,4 +25,3 @@
 -- sum --> takes a list of numbers and returns their sum.
 -- product -> takes a list of numbers and returns their product.
 -- elem -> takes a thing and a list of things and tells us if that thing is an element of the list.
--- 
