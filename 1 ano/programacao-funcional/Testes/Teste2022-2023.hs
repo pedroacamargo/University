@@ -115,9 +115,11 @@ continuarArv x (Empty) = Empty
 continuarArv x (Node r ae ad) = (Node (r,x) (continuarArv (x-1) ae) (continuarArv (x+1) ad))
 
 --b)
+{-
 inorder :: BTree a -> [a]
 inorder Empty = []
 inorder (Node r e d) = (inorder e) ++ (r:inorder d)
 
 unInorder :: [a] -> [BTree a]
 unInorder (h:t) | 
+-}
