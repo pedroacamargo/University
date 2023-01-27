@@ -27,7 +27,7 @@ stringToMatrix s = map stringToVector (lines s)
 -- Função que recebe uma string e devolve uma lista de inteiros
 -- Separamos a string pelas vírgulas e depois convertemos cada elemento da lista de strings para inteiro
 stringToVector :: String -> [Int]
-stringToVector s = map read $ splitOn "," $ s
+stringToVector s = map read (splitOn "," $ s)
 
 -- b)
 -- A estratégia utilizada foi converter a string para matriz, transpor a matriz e converter a matriz transposta para string
