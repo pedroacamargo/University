@@ -384,6 +384,6 @@ areaTotal ((Rect (x,y) (x2,y2)):t) = abs(x - x2) * abs(y - y2) + areaTotal t
 data Equipamento = Bom | Razoavel | Avariado
                    deriving Show
 
-naoReparar :: [Equipamento] -> Int
+naoReparar :: Eq Equipamento => [Equipamento] -> Int
 naoReparar [] = 0
 naoReparar (h:t) = if h == Avariado then naoReparar t else 1 + naoReparar t 

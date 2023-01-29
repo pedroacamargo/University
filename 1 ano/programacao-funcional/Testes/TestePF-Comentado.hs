@@ -2,7 +2,7 @@
 -- Date: 2023-01-27
 -- Description: Teste de Programação Funcional 2023-01-9
 
-import Data.List.Split (splitOn)
+import Data.List
 
 -- Exercício 1
 -- Função clássica das 50 questões de PF
