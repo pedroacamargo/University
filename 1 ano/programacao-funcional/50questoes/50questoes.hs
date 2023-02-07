@@ -13,6 +13,7 @@ import Data.Char
         drop x (excludes x firsts elements of a list)
         maximum (maximum element of a list)
         minimum (minimum element of a list)
+        all
         sum (summates every element in a list)
         product (Multiplies every element in a list)
         elem -> if it contains an element or not (True or False)
