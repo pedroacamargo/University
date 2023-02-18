@@ -121,8 +121,8 @@ void trianguloBrabo () {
 
 int main() {
 
-    //quadradoBrabo(); -> 3.1
+    quadradoBrabo();
     // xadrez(); -> 3.2 
-    trianguloBrabo();
+    // trianguloBrabo();
     return 0;  
 }
