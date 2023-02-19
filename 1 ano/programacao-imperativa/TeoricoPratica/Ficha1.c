@@ -67,62 +67,49 @@ void xadrez() {
     }
 }
 
-void trianguloBrabo () {
-    int x,y,z;
-    int contador, contador2;
-    int colunas;
-    char primeiro = 's';
-    printf("Escolha uma altura para o triangulo: ");
-    scanf("%d", &x);
-    contador = 0;
-    contador2 = x;
-    z = x;
-    y = 1;
-    printf("#\n");
-    while (contador2 != 0) {
-        while (contador <= y + 1) {
-            printf("#");
-            contador += 1;
-            if (contador == y + 1) {
-                printf("\n");
-                y += 1;
-                contador = 0;
-            }
-            if (contador2 == y) {
-                contador = y + 2;
-                break;
-            }
+void trianguloBrabo() {
+    int x = 0; // contador para as #, quando printa 1 #, x++
+    int y = 1; // contador para o maximo de # numa linha, quando x == y, y++/y-- (y++ quando topo = 0 e y-- quando topo = 1) e x = 0, resetando a contagem
+    int altura; // a altura do triângulo dada pelo usuário (máximo de # numa linha)
+    int topo = 0; // 0 = false || 1 = true
 
+    printf("\nDigite um numero para a altura do triangulo: ");
+    scanf("%d", &altura);
+
+    while (x <= altura) {
+        x++;
+        if (y < x) {
+            break;
         }
-        int contador3 = contador2;
-        while (contador2 <= y) {
-            if (primeiro == 's') {
-                contador2 -= 1;
-                primeiro = 'a';
-            }
-            printf("#");
-            contador2 -= 1;
-            if (contador2 == 0) {
-                contador3 -= 1;
-                printf("\n");
-                contador2 = y-1;
-                y -= 1;
-                if (contador3 == 0) {
-                    break;
-                }
-            } 
-            
-        }
+        printf("#");
         
-        break;
+        
+        if (x == altura) {
+            printf("\n");
+            topo = 1;
+            y--;
+            x = 0;
+        }
+
+        if (x == y) {
+            if (topo == 0) {
+                printf("\n");
+                y++;
+                x = 0;
+            } else {
+                printf("\n");
+                y--;
+                x = 0;
+            }
+        }
     }
 }
 
 
 int main() {
 
-    quadradoBrabo();
+    // quadradoBrabo();
     // xadrez(); -> 3.2 
-    // trianguloBrabo();
+    trianguloBrabo();
     return 0;  
 }
