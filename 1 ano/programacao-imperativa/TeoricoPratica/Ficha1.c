@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 
 // 3.1)
@@ -105,11 +106,71 @@ void trianguloBrabo() {
     }
 }
 
+void trianguloBraboVertical(int n) {
+    int linha,symbol,espaco,square;
+    square = 1;
+    // for each line, do something
+    for (linha = 1; linha < n + 1; linha++) {
+        for (espaco = n - linha;espaco != 0; espaco--) {
+            putchar(' ');
+        }
+        for (symbol = 0; symbol < square; symbol++ ) {
+            putchar('#');
+        }
+        printf("\n");
+        square += 2;
+    }
+}
+
+void matriz(int n) {
+    int i = n, j = n; // matrix i x j
+    for (i = 1; i <= n; i++) {
+        for (j = 1;j <= n; j++) {
+            if (i - j == 0) {
+                putchar('#');
+            } else if (i + j == n + 1) {
+                putchar('#');
+            } else {
+                putchar(' ');
+            }
+        }
+        printf("\n");
+    }
+}
+
+void circulo(int r) {
+    int i,j, contador = 0, diametro = 2*r + 1;
+    // matrix lines
+    for (i = 0; i < 2*r + 1 ; i++) {
+        contador++;
+        if (contador == r + 1) {
+            for (j = 0; j < 2 * r + 1;j++) {
+                putchar('#');
+            }
+        } else {
+            for (j = 0; j<= 2 * r + 1;j++) {
+                double distance = sqrt((double)(i-r)*(i-r) + (j-r)*(j-r));
+                if (distance>r-0.5 && distance<r+0.5) {
+                    printf("#");
+                } else { 
+                    printf(" ");
+                }
+            }
+        }
+        putchar('\n');
+        
+
+    }
+}
+
 
 int main() {
 
-    // quadradoBrabo();
+    // quadradoBrabo(); -> 3.1
     // xadrez(); -> 3.2 
-    trianguloBrabo();
+    // trianguloBrabo(); -> 3.3
+    // trianguloBraboVertical(5);
+    // matriz(9);
+    circulo(4);
     return 0;  
 }
