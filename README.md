@@ -24,7 +24,7 @@
   <tr>
       <td align="center">1</td>
       <td align="center">2nd</td>
-      <td align="center">Digital Systems</td>
+      <td align="center">Lab</td>
       <td><a href="https://github.com/pedroacamargo/University/tree/main/1%20ano/sistemas-de-computacao">(Click here)</a></td>
   </tr>
 </table>
