@@ -14,7 +14,7 @@ int getSoldier() {
 int main() {
     int s1,s2,s3;
 
-    s1 = getSoldier();
+    s1 = getSoldier(); 
     s2 = getSoldier();
     s3 = getSoldier();
 
@@ -33,7 +33,7 @@ int main() {
             }
 
         }
-
+    
     }
 
     // print the sorted array
