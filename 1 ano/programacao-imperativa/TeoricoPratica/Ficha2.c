@@ -66,30 +66,47 @@ int mdc1(int a, int b) {
 
 // substituir o maior dos argumentos pela diferença entre eles até que seja 0 || 
 int mdc2(int a, int b) {
-    int c; 
-    if (a >= b) {
-        if (a - b == 0) {
-            c = a;
-            return c;
+    int c = 0; 
+    if (a > b) {
+        mdc2(a - b,b);
+    } else if (b > a) {
+        mdc2(a,b - a);
+    } else if (a == 0 || b == 0){
+        switch (a) {
+            case 0:
+                return b;
+                break;
+            default:
+                return a;
+                break;
         }
-        a -= b;
-    } else if (a <= b) {
-        if (b - a == 0) {
-            c = b;
-            return c;
-        }
-        b -= a;
-    } else if (a == 0 || b == 0) {
-        return c;
     }
+}
+
+int mdc2Resto(int a, int b) {
+    if (a == 0 || b == 0) {
+        switch (a) {
+            case 0:
+                return b;
+                break;
+            default:
+                return a;
+                break;
+        }
+    } else if (a > b) {
+        mdc2(a % b,b);
+    } else if (b > a) {
+        mdc2(a,b % a);
+    } 
 }
 
 int main(){
     float res1 = multInt1(10,2.0);
     float res2 = multInt2(81,423);
     int res3 = mdc1(21,2);
-    int res4 = mdc2(126,45);
-    printf("%d", res4);
+    int res4 = mdc2(100,5);
+    int res5 = mdc2Resto(100,5);
+    printf("%d", res5);
     // printf("%.0f",res3);
     return 0;
 }
