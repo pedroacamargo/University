@@ -100,13 +100,41 @@ int mdc2Resto(int a, int b) {
     } 
 }
 
+// 6)
+int fib1(int n) {
+    int res;
+    if (n >= 2) {
+        return (fib1(n-1) + fib1(n-2));
+    } else if (n == 1){
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int fib2(int n) {
+    int a = 1;
+    int b = 1;
+    int i, resultado;
+
+    if (n == 1 || n == 0) {
+        return 1;
+    }
+    
+    for (i = 1;i < n;i++) {
+        resultado = a + b;
+        a = b;
+        b = resultado;
+    }
+    return resultado;
+}
+
 int main(){
     float res1 = multInt1(10,2.0);
     float res2 = multInt2(81,423);
     int res3 = mdc1(21,2);
     int res4 = mdc2(100,5);
-    int res5 = mdc2Resto(100,5);
+    int res5 = fib2(5);
     printf("%d", res5);
-    // printf("%.0f",res3);
     return 0;
 }
