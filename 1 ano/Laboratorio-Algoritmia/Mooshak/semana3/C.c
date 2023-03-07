@@ -3,35 +3,35 @@
 
 int main() {
 	int N = 0;
-	char linha[200];
-	char* token;
+	int K - 0;
+	int linha[200];
 
 	int index = 0;
-	char* arrayParaOrdenar[200];
+
 
 	int maior = 0;
 
 	if (scanf("%d", &N) != 1) return 1;
 
-	for (int i = 0; i < N + 1 ; i++) { // linhas
+	for (int i = 0; i < N + 1; i++) { // linhas
 
-		fgets(linha,200,stdin); 
+		if (scanf("%d", &K) != 1) return 1;
 
-		token = strtok(linha, " ");
+		for (int j = 0; i < K; i++) {
+			if (scanf("%d", &atual) != 1) return 1;
 
-		while (token != NULL) {
-
-			arrayParaOrdenar[index++] = token;
-
-			token = strtok(NULL, " ");
-
+			if (atual > maior) {
+				maior = j;
+			} 
 		}
+	
+		printf("%d",linha);		
 
-		for (int i = 0; i < 3; i++) {
-			printf("%s",arrayParaOrdenar[i]);
-		}
-		
-		memset(linha,0,strlen(linha));
+
+
+
+
+
 
 	}	
 
