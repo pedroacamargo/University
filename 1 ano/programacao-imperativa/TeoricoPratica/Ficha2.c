@@ -1,16 +1,5 @@
 #include <stdio.h>
-
-// 1) produto de um número m por um inteiro n -> somátorio de n parcelas constantes
-float multInt1(int n, float m) {
-    int r = 0;
-
-
-    for (n; n != 0;n--) {
-        r += m;
-    }
-
-    return r;
-}
+#include <assert.h>
 
 // 2) dado dois números n e m, construir uma tabela de divisão inteira n por 2
 float multInt2(int n, float m) {
@@ -40,6 +29,7 @@ int verMaiorDivisor(int a) {
             return i;
         }
     }
+  return 0;
 }
 
 int mdc1(int a, int b) {
@@ -62,6 +52,7 @@ int mdc1(int a, int b) {
     } else if (maiorDivisorA == 0 || maiorDivisorB == 0) {
         return temp;
     }
+  return 0;
 }
 
 // substituir o maior dos argumentos pela diferença entre eles até que seja 0 || 
@@ -81,6 +72,7 @@ int mdc2(int a, int b) {
                 break;
         }
     }
+  return 0;
 }
 
 int mdc2Resto(int a, int b) {
@@ -98,6 +90,7 @@ int mdc2Resto(int a, int b) {
     } else if (b > a) {
         mdc2(a,b % a);
     } 
+  return 0;
 }
 
 // 6)
@@ -121,7 +114,7 @@ int fib2(int n) {
         return 1;
     }
     
-    for (i = 1;i < n;i++) {
+   for (i = 1;i < n;i++) {
         resultado = a + b;
         a = b;
         b = resultado;
@@ -129,12 +122,68 @@ int fib2(int n) {
     return resultado;
 }
 
+// 6.1)
+int fibonacci1(int n) {
+  int res;
+  if (n >= 2) {
+    return (fibonacci1(n - 1) + fibonacci1(n - 2));
+  } else if (n == 1) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+// resolução stor 6.2
+int fibonacci2(int n) {
+  if (n == 0) return 0;
+
+  int acc1, acc2;
+  acc1 = acc2 = 1;
+  int tmp;
+
+  int i;
+
+  for(i = 3;i < n; i++) {
+    tmp = acc2;
+    acc2 = acc2 + acc1;
+    acc1 = tmp;
+  } 
+
+  return acc2;
+}
+
+// resolução 2 stor 6.2
+int fibonacci2_1(int n) {
+  if (n == 0) return 0;
+
+  int acc1, acc2;
+  acc1 = acc2 = 1;
+  int tmp;
+
+  int i;
+
+  for(i = 3;i < n; i++) {
+    acc2 += acc1;
+    acc1 = acc2 - acc1;
+  } 
+
+  return acc2;
+}
+
+
+
 int main(){
-    float res1 = multInt1(10,2.0);
     float res2 = multInt2(81,423);
     int res3 = mdc1(21,2);
     int res4 = mdc2(100,5);
-    int res5 = fib2(5);
-    printf("%d", res5);
+    int res5 = fibonacci2(7);
+    
+
+    // fazer o assert para dizer se algo deu mal na função
+    // assert(i != 2) -> se i == 2, crashar e nos avisar
+    assert(8 == fibonacci2(6));
+
+    printf("%d\n", res5);
     return 0;
 }

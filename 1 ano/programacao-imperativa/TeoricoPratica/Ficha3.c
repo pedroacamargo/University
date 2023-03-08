@@ -20,10 +20,10 @@ int umA() {
 
 // 2)
 void swapM(int *x, int *y) {
-	int temp;
+	int * temp;
 	temp = x;
-	*x = y;
-	*y = temp;
+	x = y;
+	y = temp;
 }
 
 
