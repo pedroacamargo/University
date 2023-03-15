@@ -35,14 +35,10 @@ int main() {
     // j é cada letra
     for (int j = 0; j < (int) strlen(conjunto); j++) {
 
-
       arrayConjunto[index] = conjunto[j];
       index++; 
       
       int size = strlen(arrayConjunto); 
-
-      printf("Tamanho Array -> %d \n", size);
-      printf("TamanhoConjunto -> %d\n" , tamanhoConjunto);
 
       if (tamanhoConjunto == size) {
 
