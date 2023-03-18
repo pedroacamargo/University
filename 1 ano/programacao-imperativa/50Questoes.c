@@ -95,7 +95,7 @@ void n6(unsigned int n) {
   printf("%d", acc);
 }
 
-char *n7( char s1[], char s2[]) {
+void *n7( char s1[], char s2[]) {
   char newString[strlen(s1) + strlen(s2)];
   int i, j; 
   for (i = 0; i < (int) strlen(s1); i++) {
@@ -118,21 +118,86 @@ char *strcpyMy (char *dest, char source[]) {
     dest[i] = source[i];
   }
 
-  return dest;
+   return dest;
 }
 
+// when doing subtraction operations with chars, the ascii number of the given char will be changed and the res will be the ascii value.
+// Ex: 'b' - 'a' = 1
+void mystrcmp(char s1[], char s2[]) {
+  int index = 0;
+  for(int i = 0; i < (int) strlen(s1); i++) {
+    if (s1[i] != s2[i]) break;
+    index++;
+  }
+  int a = s1[index];
+  int b = s2[index];
+  printf("%d", a - b);
+}
+
+char *mystrstr(char s1[], char s2[]){
+  
+  if(*s1 == '\0' && *s2 == '\0') return s1;
+  
+  if(*s1 == '\n' && *s2 == '\0') return s1;
+  
+	for(; *s1 ; s1++){
+		if(*s1 == *s2){
+			char *r = s1;
+			char *p = s2;
+			while(*s1 == *p && *s1){
+				p++;
+				s1++;
+			}
+
+			if(*p == '\0') return r;
+		}
+	}
+
+	return NULL;
+}
 
 int main() {
-  // n1();   
-  // n2();
-  // n3();
-  // n4(15);
-  // n5(16);
-  // n6(1990);
-  //*n7("ola", "tudo bem");
-  char array[] = "Olá";
-  char *pArray = &array[0];
-  char *a = strcpyMy(array, "ola tudo bem");
-  printf("%s",a);
+  int choice = 0;
+  char *res;
+
+  printf("Escolha uma questão: ");
+  scanf("%d",&choice);
+  
+  switch (choice) {
+    case 1:
+      n1();
+      break;
+    case 2:
+      n2();
+      break;
+    case 3:
+      n3();
+      break;
+    case 4:
+      n4(15);
+      break;
+    case 5:
+      n5(16);
+      break;
+    case 6:
+      n6(1990);
+      break;
+    case 7:
+      n7("ola","tudo bem");
+      break;
+    case 8:
+      //char *pArray = &array[0];
+      //char *a = strcpyMy("Ola","ola tudo bem");
+      //printf("%s",a);
+      break;
+    case 9:
+      mystrcmp("ola", "olb");
+      break;
+    case 10:
+      res = mystrstr("anagrama","ama");
+      printf("%s",res);
+      break;
+  }
+
   return 0;
 }
