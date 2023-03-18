@@ -1,0 +1,13 @@
+while (sscanf(linha, "%s%[^\n]", palavra. linha) == 2) {
+  printf("Palavra: %s\n", palavra)
+}
+
+
+
+C)
+
+char *s = "camel";
+
+int not_rep(int sz, char *s) {
+  s += 2; -> vai retornar "mel\0\0" = "mel"
+}
