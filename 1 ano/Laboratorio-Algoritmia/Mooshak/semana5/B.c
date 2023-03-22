@@ -71,16 +71,22 @@ int main() {
     elem(lista[h]);
   }
 
+
+
   for (int i = 0; i < 24; i++) {
-    printf("%d ",i);
-    for (int j = 1; j <= lista[i][0]; j++) {
-      if ( j == lista[i][0]) {
-        printf("%d",lista[i][j]); // para na obugar no mooshak (espaço no fim)
-      } else {
-        printf("%d ",lista[i][j]);
+    
+    // se a lista possui mais do q 1 elemento
+    if (lista[i][0] > 1) {
+      printf("%d ",i);
+      for (int j = 1; j <= lista[i][0]; j++) {
+        if ( j == lista[i][0]) {
+          printf("%d",lista[i][j]); // para na obugar no mooshak (espaço no fim)
+        } else {
+          printf("%d ",lista[i][j]);
+        }
       }
+      printf("\n");
     }
-    printf("\n");
   }
 
   return 0;
