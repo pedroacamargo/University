@@ -337,6 +337,34 @@ int contaPal(char s[]) {
   return res;
 }
 
+// 21
+int contaVogais(char s[]) {
+  int acc = 0;
+  char vogais[] = "aeiouAEIOU";
+  int size = strlen(s);
+  for (int i = 0; i < size; i++) {
+    for (int j = 0; j < 10; j++) {
+      if (s[i] == vogais[j]) acc++;
+    }
+  }
+
+  return acc;
+}
+
+// 22 - 1 for true, 0 for false
+int contida(char a[], char b[]) {
+  int sizeA = strlen(a);
+  int sizeB = strlen(b);
+  int indexA = 0;
+  for (int i = 0; i < sizeA; i++) {
+    for (int j = 0; j < sizeA; j++) {
+      if (a[i] == b[j]) indexA++;
+    }
+    if (indexA == (sizeB - 1)) return 1;
+  }
+  return 0;
+}
+
 int main() {
   int choice = 0;
   char *res;
@@ -414,6 +442,14 @@ int main() {
         break;
     case 20:
       choice = contaPal("Pedro Augusto Ennes");
+      printf("%d",choice);
+      break;
+    case 21:
+      choice = contaVogais("Pedro Camargo");
+      printf("%d",choice);
+      break;
+    case 22:
+      choice = contida("abe","abcd");
       printf("%d",choice);
       break;
   }
