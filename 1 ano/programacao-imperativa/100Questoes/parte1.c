@@ -365,10 +365,177 @@ int contida(char a[], char b[]) {
   return 0;
 }
 
+// 23
+int palindorome(char s[]) {
+  int size = strlen(s);
+  int palindromo = size/2;
+  int res = 1;
+  for (int i = 0; i < palindromo - 1; i++) {
+    if (!(s[i] == s[size - 1 - i])) {
+      res = 0;
+    }
+  }
+  return res;
+}
+
+// 24
+int remRep(char x[]) {
+  int size = strlen(x);
+  int index = 0;
+  char arrFinal[size];
+  for (int i = 0; i < size; i++) {
+    if (!(x[i] == x[i+1])) {
+      arrFinal[index] = x[i];
+      index++;
+    }
+  }
+  return strlen(arrFinal);
+}
+
+// 25
+int limpaEspacos(char t[]) {
+  // int size = strlen(t);
+  for(int i = 0; t[i]; i++) {
+    if (t[i] == ' ' && t[i+1] == ' ') {
+      for(int j=i+1; t[j]; j++) t[j] = t[j+1];
+      i--;
+    }
+  }
+
+  return strlen(t);
+}
+
+// 26
+void insere(int v[], int N, int x) {
+  for (int i = 0; v[i]; i++) {
+    if (v[i] > x) {
+      for (int j = N; j > i; j--) {
+        v[j] = v[j-1];
+      }
+      v[i] = x;
+      break;
+    }
+    if (i == N -1) {
+      v[N] = x;
+    }
+  }
+}
+
+// 27
+void merge(int r [], int a[], int b[], int na, int nb) {
+  int size = na + nb;
+  int aacc = 0, bacc = 0;
+  int sizeA = na;
+  int sizeB = nb;
+  for (int i = 0; i < size; i++) {
+    if (a[aacc] > b[bacc]) {
+      r[i] = b[bacc];
+      bacc++;
+      sizeB--;
+    } else {
+      r[i] = a[aacc];
+      aacc++;
+      sizeA--;
+    }
+  }
+  for (int k = 0; k < size - 1; k++) {
+    printf("%d ",r[k]);
+  }
+}
+
+// 28
+int crescente(int a[], int i, int j) {
+  for (int index = i; index <= j; index++) {
+    if (!(a[index] < a[index + 1])) return 0;
+  }
+  return 1;
+}
+
+// 29
+int retiraNeg(int v[], int N) {
+  int acc = -1;
+  for (int i = 0; i < N; i++) {
+    if (v[i] < 0) {
+      for (int j = i; j < N - 1; j++) {
+        v[j] = v[j + 1];
+      }
+    } else {
+      acc++;
+    }
+  }
+  return acc;
+}
+
+//30
+
+int rep(int num, int arr[], int N) {
+  int count = 0;
+
+  for (int i = 0; i < N; i++) {
+    if (num == arr[i]) count++;
+  }
+  return count;
+}
+
+int menosFreq(int v[], int N) {
+  int menos = rep(v[0],v,N);
+  int res = v[0];
+
+  for (int i = 0; i < N; i++) {
+    int atual = rep(v[i],v,N);
+    if (atual < menos) {
+      menos = atual;
+      res = v[i];
+    }
+  }
+  return res;
+}
+
+// 31
+int repete(int num, int v[], int N) {
+  int count = 0;
+  for (int i = 0; i < N; i++) {
+    if (num == v[i]) count++;
+  }
+  return count;
+}
+
+int maisFreq(int v[], int N) {
+  int maior = repete(v[0], v, N);
+  int res = 0;
+  for (int i = 0; i < N; i++) {
+    int atual = repete(v[i],v,N);
+    if (atual > maior) {
+      maior = atual;
+      res = v[i];
+    }
+  }
+
+  return res;
+}
+
+// 32
+int maxCresc(int v[], int N) {
+  int cont = 0;
+  int sizeFreq = 0;
+  for (int i = 0; i < N; i++) {
+    if (v[i] < v[i+1]) cont++;
+    else if (v[i] > v[i+1]) {
+      if (cont > sizeFreq) sizeFreq = cont;
+      cont = 0;
+    }
+  }
+  return sizeFreq;
+}
+
 int main() {
   int choice = 0;
   char *res;
   char ola;
+  char str[] = "Ola   tudo bem";
+  int vetor[100];
+  int vetorA[] = {1,3,4,4,5,5,5,5,5,5,7,11};
+  int vetorB[] = {2,5,10,12};
 
   printf("Escolha uma questão: ");
   scanf("%d",&choice);
@@ -452,6 +619,41 @@ int main() {
       choice = contida("abe","abcd");
       printf("%d",choice);
       break;
+    case 23:
+      choice = palindorome("rotatorrrrr");
+      printf("%d",choice);
+      break;
+    case 24:
+      choice = remRep("aaabaaabbbaaa");
+      printf("%d",choice);
+      break;
+    case 25:
+      choice = limpaEspacos(str);
+      printf("%d",choice);
+      break;
+    // case 26:
+      // insere({1,2,3,4,5},3,10);
+      // break;
+    case 27:
+      merge(vetor, vetorA, vetorB,6,5);
+      break;
+    case 28:
+      choice = crescente(vetorA,1,3);
+      printf("%d",choice);
+      break;
+    case 29:
+      choice = retiraNeg(vetorA, 6);
+      printf("%d",choice);
+      break;
+    case 30:
+      choice = menosFreq(vetorA,6);
+      printf("%d",choice);
+      break;
+    case 31:
+      choice = maisFreq(vetorA, 6);
+      printf("%d",choice);
+      break;
+
   }
 
   return 0;
