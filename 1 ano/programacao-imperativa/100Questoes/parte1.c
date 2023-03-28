@@ -515,18 +515,199 @@ int maisFreq(int v[], int N) {
 }
 
 // 32
-int maxCresc(int v[], int N) {
-  int cont = 0;
-  int sizeFreq = 0;
-  for (int i = 0; i < N; i++) {
-    if (v[i] < v[i+1]) cont++;
-    else if (v[i] > v[i+1]) {
-      if (cont > sizeFreq) sizeFreq = cont;
-      cont = 0;
+int maxCresc(int v[], int N){
+    int i, maior = 1, r = 1;
+
+    for(i=0; i<N; i++){
+        if(v[i+1] >= v[i])
+            r++;
+        else {
+            if(r>maior)
+                maior = r;
+            r=1;
+        }
+    }
+    return maior;
+}
+
+// 33
+// se repetir mais do q 1 vez, retorna > 0
+// se repetir 1 vez retorna 0
+int pertence(int elem, int v[], int n) {
+  int res = -1;
+  for (int i = 0; i < n; i++) {
+    if (elem == v[i]) res++;
+  }
+  return res;
+}
+
+int elimRep(int v[], int n) {
+  int arr[n];
+  int index = 0;
+  for (int i = 0; i < n; i++) {
+    int elem = pertence(v[i],v,n);
+    if (elem == 0) {
+      arr[index] = v[i];
+      index++;
     }
   }
-  return sizeFreq;
+  for (int j = 0; j < index; j++) {
+    v[j] = arr[j];
+  }
+  return index + 1;
 }
+
+// 34
+int elimRepOrd (int v[], int n) {
+  for (int i = 0; i < n - 1; i++) {
+    if (v[i] == v[i + 1]) {
+      for (int j = i; j < n; j++) {
+        v[j] = v[j + 1];
+      }
+      n--;
+    }
+  }
+  return n - 1;
+}
+
+// 35
+int comunsOrd(int a[], int na, int b[], int nb) {
+  int count = 0;
+  for (int i = 0; i < na; i++) {
+    for (int j = 0; j < nb; j++) {
+      if (a[i] == b[j]) {
+        count++;
+        i++;
+      } else if (a[i] < b[j]) {
+        i++;
+      }
+    }  
+  }
+  return count;
+}
+
+// 36
+int pertence2(int b[], int num, int nb) {
+  for (int i = 0; i < nb; i++) {
+    if (b[i] == num) {
+      return 1;
+    }
+  }
+  return 0;
+}
+int comuns(int a[], int na, int b[], int nb) {
+  int count = 0;
+  for (int i = 0; i < na; i++) {
+    if (pertence2(b, a[i], nb) == 1) count++;
+  }
+  return count;
+}
+
+// 37
+int minInd(int v[], int n) {
+  int menor = v[0];
+
+  for (int i = 0; i < n; i++) {
+    if (v[i] <= menor) menor = v[i];
+  }
+  
+  return menor;
+}
+
+// 38
+void somasAc (int v[], int Ac [], int N) {
+  Ac[0] = v[0];
+  for (int i = 1; i < N; i++) {
+    Ac[i] = 0;
+    for (int j = 0; j <= i; j++) {
+      Ac[i] += v[j];
+    }
+  }
+}
+
+// 39
+// [
+//  1 2 3
+//  0 2 3
+//  0 0 3
+// ]
+int triSup (int N, float m[N][N]) {
+  for (int i = 1; i < N; i++) {
+    for (int j = 0; j < i;j++) {
+      if (m[i][j] != 0) return 0;
+    }
+  }
+  return 1;
+}
+
+// 40
+void transposta(int N, float m [N][N]) {
+  float temp;
+  for (int i = 0; i < N; i++) {
+    for (int j = 0; j < N; j++) {
+      temp = m[i][j];
+      m[i][j] = m[j][i];
+      m[j][i] = temp;
+    }
+  }
+}
+
+// 41
+void addTo (int N, int M, int a [N][M], int b[N][M]) {
+  for (int i = 0; i < N; i++) {
+    for (int j = 0; j < M; j++) {
+      a[i][j] += b[i][j];
+    }
+  }
+}
+
+// 42
+int unionSet (int N, int v1[N], int v2[N], int r[N]){
+  int count = 0;
+  for (int i = 0; i < N; i++) {
+    r[i] = v1[i] || v2[i];
+    count++;
+  }
+  return count;
+}
+
+// 43
+int intersectSet(int N, int v1[N], int v2[N], int r[N]) {
+  int count = 0;
+  for (int i = 0; i < N; i++) {
+    r[i] = v1[i] && v2[i];
+    count++;
+  }
+  return count;
+}
+
+// 44
+int intersectMSet (int N, int v1[N], int v2[N],int r[N]) {
+    int len = 0;
+    for(int i = 0; i < N; i++) {
+        r[i] = v1[i] < v2[i] ? v1[i] : v2[i];
+        len += r[i]; 
+    }
+    return len;
+}
+
+// 45
+int unionMSet (int N, int v1[N], int v2[N], int r[N]) {
+    int len = 0;
+    for(int i = 0; i < N; i++) {
+        r[i] = v1[i] + v2[i];
+        len += r[i]; 
+    }
+    return len;
+}
+
+// 46
+int cardinalMSet (int N, int v[N]) {
+    int len = 0;
+    for(int i = 0; i < N; i++) len += v[i];
+    return len;
+}
+
 
 int main() {
   int choice = 0;
@@ -534,12 +715,14 @@ int main() {
   char ola;
   char str[] = "Ola   tudo bem";
   int vetor[100];
-  int vetorA[] = {1,3,4,4,5,5,5,5,5,5,7,11};
+  int vetorA[] = {1,3,4,11,11,11,11};
   int vetorB[] = {2,5,10,12};
+  int vetor38[] = {1,2,3,4};
+  int vetor38_2[5];
 
   printf("Escolha uma questão: ");
   scanf("%d",&choice);
-  
+
   switch (choice) {
     case 1:
       n1();
@@ -653,7 +836,44 @@ int main() {
       choice = maisFreq(vetorA, 6);
       printf("%d",choice);
       break;
-
+    case 32:
+      choice = maxCresc(vetorA, 6);
+      printf("%d",choice);
+      break;
+    case 33:
+      choice = elimRep(vetorA, 6);
+      printf("%d",choice);
+      break;
+    case 34:
+      choice = elimRepOrd(vetorA, 6);
+      printf("%d",choice);
+      break;
+    case 35:
+      // choice = comunsOrd(int *a, int na, int *b, int nb)
+      break;
+    case 36:
+      // choice = comuns(int *a, int na, int *b, int nb)
+      break; 
+    case 37:
+      choice = minInd(vetorA, 6);
+      printf("%d",choice);
+      break;
+    case 38:
+      somasAc(vetor38, vetor38_2, 4);
+      break;
+    case 39:
+      // triSup(int N, float (*m)[N])
+      break;
+    case 40:
+      // transposta(int N, float (*m)[N]) 
+      break;
+    case 41:
+      // unionSet(int N, int *v1, int *v2, int *r)
+      break;
+    case 42:
+      // intersectSet(int N, int *v1, int *v2, int *r)
+      break;
+    
   }
 
   return 0;
