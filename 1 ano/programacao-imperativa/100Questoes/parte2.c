@@ -7,7 +7,6 @@ int valor;
 struct lligada *prox;
 } *LInt;
 
-
 /* Questão 1 */
 int length(LInt lista) {
   int count = 0;
@@ -30,6 +29,8 @@ void freeL(LInt l) {
 		free(l);
 		l = list;
 	}
+
+   
 }
 
 /* Questão 3 */
