@@ -35,6 +35,8 @@ LInt removeMaiores(LInt l, int x) {
     return l;
 }
 
+/* Questão 3 */
+
 
 int main(){
     
