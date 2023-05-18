@@ -54,7 +54,7 @@ void imprimeL (LInt lista) {
     LInt temp = 3 4 5 NULL
     prox = 2 1 NULL
     lista = 2 1 NULL
-    prox = 3 4 5 NULL
+    prox = 3 4 5
   } 
   ....
   lista = 5 4 3 2 1 NULL
