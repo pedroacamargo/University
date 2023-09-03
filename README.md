@@ -27,4 +27,10 @@
       <td align="center">Lab</td>
       <td><a href="https://github.com/pedroacamargo/University/tree/main/1%20ano/Laboratorio-Algoritmia">(Click here)</a></td>
   </tr>
+  <tr>
+      <td align="center">2</td>
+      <td align="center">1st</td>
+      <td align="center">Algorithms & Complexity</td>
+      <td><a href="https://github.com/pedroacamargo/University/tree/main/2%20ano/Algorithms-&-Complexity">(Click here)</a></td>
+  </tr>
 </table>
