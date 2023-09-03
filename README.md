@@ -8,35 +8,41 @@
     <th>Semester</th>
     <th>Subject</th>
     <th>Repository</th>
+    <th>Project</th>
   </tr>
   <tr>
      <td align="center">1</td>
      <td align="center">1st</td>
      <td align="center">Functional Programming</td>
      <td><a href="https://github.com/pedroacamargo/University/tree/main/1%20ano/programacao-funcional">(Click here)</a></td>
+     <td align="center">X</td>
   </tr>
   <tr>
       <td align="center">1</td>
       <td align="center">2nd</td>
       <td align="center">Imperative Programming</td>
       <td><a href="https://github.com/pedroacamargo/University/tree/main/1%20ano/programacao-imperativa">(Click here)</a></td>
+      <td align="center">X</td>
   </tr>
   <tr>
       <td align="center">1</td>
       <td align="center">2nd</td>
       <td align="center">Lab</td>
       <td><a href="https://github.com/pedroacamargo/University/tree/main/1%20ano/Laboratorio-Algoritmia">(Click here)</a></td>
+      <td align="center"><a href="https://github.com/pedroacamargo/Donut-Hunt">Donut Hunt</a></td>
   </tr>
   <tr>
       <td align="center">2</td>
       <td align="center">1st</td>
       <td align="center">Algorithms & Complexity</td>
       <td><a href="https://github.com/pedroacamargo/University/tree/main/2%20ano/Algorithms-&-Complexity">(Click here)</a></td>
+      <td align="center">X</td>
   </tr>
   <tr>
       <td align="center">2</td>
       <td align="center">1st</td>
       <td align="center">Networking</td>
       <td><a href="https://github.com/pedroacamargo/University/tree/main/2%20ano/Networking">(Click here)</a></td>
+      <td align="center">X</td>
   </tr>
 </table>
