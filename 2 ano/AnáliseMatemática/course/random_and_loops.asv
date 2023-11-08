@@ -1,0 +1,17 @@
+% Section 1 - If Statement
+% Logic & Loops
+
+clc, clearvars, close all
+
+A = randi(5,1,10);
+num3 = sum(A == 3);
+
+if num3 >= 3
+    disp("WOW!")
+end
+
+%% Section 2 - For Loop
+
+for i = 1:length(A)
+    i;
+end
