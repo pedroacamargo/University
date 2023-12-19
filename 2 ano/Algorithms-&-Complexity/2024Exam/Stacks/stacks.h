@@ -1,4 +1,3 @@
-
 /**
  * @def Using static arrays
 */
