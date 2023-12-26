@@ -169,8 +169,6 @@ AVLTree updateAVLRec(AVLTree a, int k, int i, int *g, int *u) {
     return a;
 }
 
-
-
 // Exame 2023
 AVLTree createNode(int value) {
     AVLTree b;
