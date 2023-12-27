@@ -11,23 +11,7 @@ GraphMat g1 = {{NE, 2 , 7 , NE, NE, NE},
                { 3 , NE, NE, NE, NE, NE},
                { 4 , NE, NE, 3 , 2 , NE}};
 
-
-typedef struct edge {
-    int dest;
-    int cost;
-    struct edge *next;
-} *EList;
-typedef EList Graph[NV];
-
-
-
-// Vetor de Adjacências
-typedef struct edgeV {
-    int dest;
-    int cost;
-} EdgeV;
-
-typedef struct {
-    int vertices [NV + 1];
-    EdgeV edges [NEd];
-} GraphVect;
+void matToList(GraphMat go, Graph gd);
+int edgeWMat(GraphMat g, int i, int j, int *w);
+int indegreeMat(GraphMat g, int v);
+int outdegreeMat(GraphMat g, int v);
