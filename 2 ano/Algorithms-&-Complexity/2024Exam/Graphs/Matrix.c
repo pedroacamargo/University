@@ -58,3 +58,10 @@ int outdegreeMat(GraphMat g, int v) {
 
     return r;
 }
+
+/**
+ * @param depth_first
+ *  A pesquisa em profundidade (depth-first search) é um algoritmo de pesquisa não informada utilizado para
+ *  percorrer todos os nós de uma árvore ou estrutura de dados do tipo grafo.
+*/
+int procura(Graph g, int o, int d);
