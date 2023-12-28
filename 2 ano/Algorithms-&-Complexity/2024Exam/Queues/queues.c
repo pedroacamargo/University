@@ -73,4 +73,4 @@ int dequeueL(QueueL *q) {
         free(tmp);
     }
     return r;
-}g
+}
