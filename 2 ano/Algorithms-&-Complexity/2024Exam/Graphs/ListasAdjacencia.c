@@ -101,3 +101,35 @@ int DFRec(Graph g, int o, int visitados[]) {
 
     return count;
 }
+
+/**
+ * @param breadth_first
+ * A pesquisa em largura (breadth-first search) é um algoritmo de pesquisa não informada utilizada para
+ * percorrer ou pesquisar estruturas de dados do tipo árvore ou grafo.
+*/
+int travessiaBF(Graph g, int o) {
+    int visitados[NV], i;
+    int q[NV]; int inicio, fim;
+    int count = 0;
+    EList it;
+
+    inicio = fim = 0;
+    q[fim++] = o;
+    visitados[o] = 1;
+    while (inicio < fim) {
+        o = q[inicio++];
+        count++;
+        for (it = g[o]; it != NULL; it = it->next) {
+            if (!visitados[it->dest]) {
+                q[fim++] = it->dest;
+                visitados[it->dest] = 1;
+            }
+        }
+    }
+    return count;
+}
+
+/**
+ * @param algoritmo_de_Khan
+ * O algoritmo de Kahn é um algoritmo para ordenação topológica de grafos dirigidos acíclicos.
+*/
