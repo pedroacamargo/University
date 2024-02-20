@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.css": "tailwindcss",
+        "MYCAT.C": "cpp",
+        "stdlib.h": "c"
+    }
+}
