@@ -30,15 +30,8 @@ public class Main {
         System.out.println("3) "+ printBalace);
         // f1.readInts();
         System.out.println("6)" + f1.factorial(5));
-
-
-
-
         System.out.println("7) Tempo gasto: " + f1.tempoGasto());
-
-
-
-
+        
         input.close();
     }
 }
