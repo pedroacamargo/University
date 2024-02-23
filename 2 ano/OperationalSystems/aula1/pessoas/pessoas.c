@@ -1,35 +1,41 @@
-#include "pessoas.h"
+#include <stdio.h>
+#include <string.h>
+#include "person.h"
 
-// quando chamamos uma função read, o programa fica bloqueado e so para quando passamos o \n ou 0
-// usar o CTRL + D para sair de um processo
-// echo $? - last exit code
 
-int pessoas(char *origem, char *destino) {
-    ssize_t bytesLidos, bytesEscritos;
-    char buffer[BUFFER_SIZE];
-    
-    int fd = open(origem, O_RDONLY);
-    int fd2 = open(destino, O_WRONLY);
+int main(int argc, char* argv[]){
 
-    // printf("fd: %d\n", fd);
-    // printf("fd2: %d\n", fd2);
-
-    if ((bytesLidos = read(fd, buffer, BUFFER_SIZE)) > 0) {
-
-        bytesEscritos = write(fd2, buffer, bytesLidos); // escrever para o stdout
-
-        if (bytesLidos != bytesEscritos) {
-            perror("Failed to write to stdout");
-            return 1;
-        }
-
-    } else {
-        perror("Failed to read from file");
+    if ( argc < 3 )
+    {
+        printf("Usage:\n");
+        printf("Add new person: ./pessoas -i [name] [age]\n");
+        printf("List N persons: ./pessoas -l [N]\n");
+        printf("Change person age: ./pessoas -u [name] [age]\n");
+        printf("Change person age (v2): ./pessoas -o [position] [age]\n");
         return 1;
     }
 
-    close(fd);
-    close(fd2);
+    if ( strcmp(argv[1],"-i") == 0 )
+    {
+        // atoi -> ascii to integer
+        add_person(argv[2], atoi(argv[3]));
+    }
+
+    if ( strcmp(argv[1],"-l") == 0 )
+    {
+        int res = list_persons(atoi(argv[2]));
+        printf("Li %d pessoas\n",res);
+    }
+
+    if ( strcmp(argv[1],"-u") == 0 )
+    {
+        // TO DO
+    }
+
+    if ( strcmp(argv[1],"-o") == 0 )
+    {
+        // TO DO
+    }
 
     return 0;
 }

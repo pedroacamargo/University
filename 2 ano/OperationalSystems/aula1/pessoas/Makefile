@@ -1,12 +1,12 @@
-CC=gcc
-FLAGS=-Wall
-OUTPUT=pessoas
+CC = gcc
+CFLAGS = -Wall -g
 
-pessoas: pessoas.o main.o
+pessoas: pessoas.o person.o
 
-pessoas.o: pessoas.c pessoas.h
+person.o: person.c person.h
 
-main.o: main.c
+pessoas.o: pessoas.c person.h
 
 clean:
-	rm -rf *.o $(OUTPUT)
+	rm -f *.o pessoas file_pessoas
+

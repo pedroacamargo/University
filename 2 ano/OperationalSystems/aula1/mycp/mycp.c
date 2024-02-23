@@ -8,13 +8,24 @@ int mycp(char *origem, char *destino) {
     ssize_t bytesLidos, bytesEscritos;
     char buffer[BUFFER_SIZE];
     
+    
     int fd = open(origem, O_RDONLY);
-    int fd2 = open(destino, O_WRONLY | O_CREAT, 0644);
+    if (fd == -1) {
+        perror("Failed to open file");
+        return -1;
+    }
 
-    // printf("fd: %d\n", fd);
-    // printf("fd2: %d\n", fd2);
+    // O_WRONLY - write only
+    // O_CREAT - create file if it does not exist
+    // O_TRUNC - truncate file to 0 length if it exists
+    int fd2 = open(destino, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd2 == -1) {
+        perror("Failed to open file");
+        return -1;
+    }
 
-    if ((bytesLidos = read(fd, buffer, BUFFER_SIZE)) > 0) {
+
+    while ((bytesLidos = read(fd, buffer, BUFFER_SIZE)) > 0) {
 
         bytesEscritos = write(fd2, buffer, bytesLidos); // escrever para o stdout
 
@@ -23,9 +34,6 @@ int mycp(char *origem, char *destino) {
             return 1;
         }
 
-    } else {
-        perror("Failed to read from file");
-        return 1;
     }
 
     close(fd);

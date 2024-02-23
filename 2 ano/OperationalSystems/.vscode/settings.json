@@ -2,6 +2,7 @@
     "files.associations": {
         "*.css": "tailwindcss",
         "MYCAT.C": "cpp",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "fcntl.h": "c"
     }
 }
