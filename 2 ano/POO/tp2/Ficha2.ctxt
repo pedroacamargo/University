@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Ficha2
+comment1.params=
+comment1.target=Ficha2()
+comment2.params=arr
+comment2.target=int\ minimoNumeros(int[])
+comment3.params=
+comment3.target=int[]\ scanNumbers()
+comment4.params=arr\ inicio\ fim
+comment4.target=int[]\ getSlice(int[],\ int,\ int)
+comment5.params=arr1\ arr2
+comment5.target=int[]\ compareElements(int[],\ int[])
+numComments=6

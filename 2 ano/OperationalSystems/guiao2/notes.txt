@@ -1,0 +1,2 @@
+PID de 1 é o processo princiapl do programa
+o return pode ir entre 0 - 254, o -1 é o 255

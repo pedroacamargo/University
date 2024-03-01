@@ -1,5 +1,3 @@
-package tp1;
-
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
@@ -17,7 +15,7 @@ public class Main {
         // System.out.println(("O meu contador ci agora está em: "+ci.getContador()));
         // System.out.println(("O meu contador cj agora está em: "+cj.getContador()));
 
-        // ------------------------------------------------------------------------------------------------
+        // ---------------------- Ficha 1 ----------------------
 
         Scanner input = new Scanner(System.in);
         // double grausCelsius = input.nextDouble();
@@ -35,5 +33,15 @@ public class Main {
         System.out.println("7) Tempo gasto: " + f1.tempoGasto());
         
         input.close();
+
+        // ---------------------- Ficha 2 ----------------------
+
+        Ficha2 f = new Ficha2();
+
+        int[] array = f.scanNumbers();
+        System.out.println("Valor mínimo no array: " + f.minimoNumeros(array));
+        f.getSlice(array, 2, 4);
+        int[] array2 = f.scanNumbers();
+
     }
 }

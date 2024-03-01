@@ -18,7 +18,8 @@ int main(int argc, char* argv[]){
     if ( strcmp(argv[1],"-i") == 0 )
     {
         // atoi -> ascii to integer
-        add_person(argv[2], atoi(argv[3]));
+        int i = add_person(argv[2], atoi(argv[3]));
+        printf("Adicionada pessoa na posicao %d\n",i);
     }
 
     if ( strcmp(argv[1],"-l") == 0 )
@@ -29,7 +30,7 @@ int main(int argc, char* argv[]){
 
     if ( strcmp(argv[1],"-u") == 0 )
     {
-        // TO DO
+        update_age(argv[2], atoi(argv[3]));
     }
 
     if ( strcmp(argv[1],"-o") == 0 )

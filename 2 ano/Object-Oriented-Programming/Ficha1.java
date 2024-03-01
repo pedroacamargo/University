@@ -1,10 +1,8 @@
-package tp1;
-
-import java.text.DecimalFormat;
-import java.time.Duration;
+// import java.text.DecimalFormat;
+// import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+// import java.util.Locale;
 import java.util.Scanner;
 
 public class Ficha1 {
@@ -22,7 +20,7 @@ public class Ficha1 {
     }
 
     public double eurosParaLibras(double valor, double taxaConversao) {        
-        String res = DecimalFormat.getCurrencyInstance(Locale.UK).format(valor);
+        // String res = DecimalFormat.getCurrencyInstance(Locale.UK).format(valor);
         return valor * taxaConversao;
     }
 
@@ -63,7 +61,7 @@ public class Ficha1 {
         long beforeMili = before.toNanoOfDay();
         long afterMili = after.toNanoOfDay();
 
-        Duration d = Duration.between(before, after);
+        // Duration d = Duration.between(before, after);
 
         return afterMili - beforeMili;
     }

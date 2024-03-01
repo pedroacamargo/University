@@ -3,6 +3,13 @@
         "*.css": "tailwindcss",
         "MYCAT.C": "cpp",
         "stdlib.h": "c",
-        "fcntl.h": "c"
+        "fcntl.h": "c",
+        "array": "c",
+        "bitset": "c",
+        "string_view": "c",
+        "format": "c",
+        "initializer_list": "c",
+        "span": "c",
+        "unistd.h": "c"
     }
 }

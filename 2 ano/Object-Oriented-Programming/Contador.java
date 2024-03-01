@@ -1,5 +1,3 @@
-package tp1;
-
 /**
  * A minha primeira classe em Java
  */
