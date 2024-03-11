@@ -24,6 +24,7 @@ def bfs(adj,o):
                 queue.append(d)
     return pai
 
+
 '''
 
 O objectivo deste problema é determinar quantos movimentos são necessários para 
@@ -34,40 +35,48 @@ Assuma que o tabuleiro tem tamanho ilimitado.
 
 '''
 
+def caminho(adj,o,d):
+    pai = bfs(adj,o)
+    caminho = [d]
+    
+    while d in pai:
+        print(d)
+        d = pai[d]
+        caminho.insert(0,d)
+    
+    return caminho 
+
+def adjacentes(x,y,adj,queue):
+    for i in range(-2,3):
+        for j in range(-2,3):
+            if (i != 0 and j != 0) and abs(i) != abs(j):
+                adj[(x,y)].add((i + x, j + y))
+                
+                if (i + x, j + y) not in adj:
+                    adj[(i + x, j + y)] = set()
+                if (i + x, j + y) not in queue:
+                    queue.append((i + x, j + y))
+    
+
 def saltos(o,d):
     if o[0] == d[0] and o[1] == d[1]: return 0
     
     adj = {}
+    x = o[0]
+    y = o[1]
     
-    origin = [o[0], o[1]]
-    x = origin[0]
-    y = origin[1]
+    adj[(o[0], o[1])] = set()
+    queue = []
     
-    adj[(origin[0], origin[1])] = set()
-    
-    while x != d[0] and y != d[1]:
+    while x != d[0] or y != d[1]:
+        adjacentes(x,y,adj,queue)
+        removed_element = queue.pop(0)
+        x = removed_element[0]
+        y = removed_element[1]
         
-        for i in range(-2,3):
-            for j in range(-2,3):
-                if (i != 0 and j != 0) and abs(i) != abs(j):
-                    adj[x,y].add((i,j))
-                    adj[(i,j)] = set()
-                    
+    adjacentes(x,y,adj,queue)
         
-        
-            
-        #adj[(2,-1)] = set()
-        #adj[(2,-1)].add((1,1))
-        
-        adj[(1,1)] = set()
-            
-        x = d[0]
-        y = d[1]
-        
-        
-    #res = bfs(adj,(0,0))
-    print(adj)
-    #print(res)
+    res = caminho(adj,o,d)
     
     
-    return -1
+    return len(res) - 1
