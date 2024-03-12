@@ -1,0 +1,5 @@
+Dijkstra -> Distância mais curta de um ponto ao outro
+
+Floyd Warshall -> Distancia mais curta entre todos os pares possiveis
+
+Prim -> Não sai
