@@ -5,8 +5,8 @@
 #include <sys/wait.h>
 
 #define MAX_RAND 100
-#define ROWS 10
-#define COLUMNS 10
+#define ROWS 200
+#define COLUMNS 200
 
 
 

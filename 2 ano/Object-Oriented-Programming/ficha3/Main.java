@@ -20,7 +20,7 @@ public class Main {
         }
 
 
-        lampada.debug();
+        // lampada.debug();
         lampada.lampOFF();
         long res = lampada.totalConsumo();
         System.out.println(res);

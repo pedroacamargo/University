@@ -56,9 +56,9 @@ public class Ponto {
         return Math.sqrt(Math.pow(p.getX() - this.x, 2) + Math.pow(p.getY() - this.y, 2));
     }
 
-    private boolean xIgualAy(Ponto p) {
-        return this.x == p.getX() && this.y == p.getY();
-    }
+    // private boolean xIgualAy(Ponto p) {
+    //     return this.x == p.getX() && this.y == p.getY();
+    // }
 
     public boolean equals(Object o) {
         if (this == o) {
