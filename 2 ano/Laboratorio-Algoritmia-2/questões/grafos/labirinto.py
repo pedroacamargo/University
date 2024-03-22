@@ -1,14 +1,3 @@
-'''
-
-Implemente uma função que calcula um dos caminhos mais curtos para atravessar
-um labirinto. O mapa do labirinto é quadrado e representado por uma lista 
-de strings, onde um ' ' representa um espaço vazio e um '#' um obstáculo.
-O ponto de entrada é o canto superior esquerdo e o ponto de saída o canto
-inferior direito. A função deve devolver uma string com as instruções para
-atravesar o labirinto. As instruções podem ser 'N','S','E','O'.
-
-'''
-
 def bfs(adj, o, d):
     pai = {}
     vis = {o}
@@ -24,6 +13,7 @@ def bfs(adj, o, d):
             adjacente = (xx, yy)
             if adjacente not in vis and 0 <= xx < len(adj) and 0 <= yy < len(adj[0]) and adj[xx][yy] != "#":
                 vis.add(adjacente)
+                print(vis)
                 pai[adjacente] = v
                 queue.append(adjacente)
     return pai
@@ -67,4 +57,3 @@ mapa = ["  ########",
         "#        #",
         "########  "]
 print(caminho(mapa))
-

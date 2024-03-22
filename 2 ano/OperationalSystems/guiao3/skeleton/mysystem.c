@@ -20,9 +20,30 @@ int mysystem (const char* command) {
 	}
 	exec_args[i]=NULL;
 
-	// ---------
-	//   TO DO
-	// ---------
+	pid_t pid = fork();
+	switch (pid) {
+		case -1: {
+			perror("Error on fork\n");
+			break;
+		}
+		case 0: {
+			execvp(exec_args[0], exec_args);
+			_exit(-1);
+			break;
+		}
+		default: {
+			int status;
+			waitpid(pid, &status, 0);
+
+
+			res = WEXITSTATUS(status);
+			if (res == 255) {
+				perror("Error on execvp\n");
+				return -1;
+			}
+			break;
+		}
+	}
 
 	free(tofree);
 
