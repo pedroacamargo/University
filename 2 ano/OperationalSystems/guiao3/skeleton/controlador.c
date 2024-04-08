@@ -28,10 +28,6 @@ void controller(int N, char** commands) {
 		} else {
 			printf("Child %d (%s) terminated abnormally\n", terminated, commands[i]);
 		}
-		// if (WIFEXITED(status)) {
-		// 	printf("Child %d terminated with status %d\n", terminated, WEXITSTATUS(status));
-		// }
-
 	}
 }
 
