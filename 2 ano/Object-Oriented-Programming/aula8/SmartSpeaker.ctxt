@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=SmartSpeaker
+comment0.text=\n\ Um\ SmartSpeaker\ \u00E9\ um\ SmartDevice\ que\ al\u00E9m\ de\ ligar\ e\ desligar\ permite\ tamb\u00E9m\n\ reproduzir\ som.\n\ Consegue\ ligar-se\ a\ um\ canal\ (por\ simplifica\u00E7\u00E3o\ uma\ r\u00E1dio\ online)\ e\ permite\n\ a\ regula\u00E7\u00E3o\ do\ seu\ n\u00EDvel\ de\ volume.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=SmartSpeaker()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ SmartSpeaker\n
+comment2.params=s
+comment2.target=SmartSpeaker(java.lang.String)
+comment3.params=cod\ channel\ i
+comment3.target=SmartSpeaker(java.lang.String,\ java.lang.String,\ int)
+comment4.params=
+comment4.target=void\ volumeUp()
+comment5.params=
+comment5.target=void\ volumeDown()
+comment6.params=
+comment6.target=int\ getVolume()
+comment7.params=
+comment7.target=java.lang.String\ getChannel()
+comment8.params=c
+comment8.target=void\ setChannel(java.lang.String)
+numComments=9

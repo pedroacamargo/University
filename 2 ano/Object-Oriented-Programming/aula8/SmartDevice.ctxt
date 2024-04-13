@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=SmartDevice
+comment0.text=\n\ A\ classe\ SmartDevice\ \u00E9\ um\ contactor\ simples.\n\ Permite\ ligar\ ou\ desligar\ circuitos.\ \n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=SmartDevice()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ SmartDevice\n
+comment2.params=s
+comment2.target=SmartDevice(java.lang.String)
+comment3.params=s\ b
+comment3.target=SmartDevice(java.lang.String,\ boolean)
+comment4.params=
+comment4.target=void\ turnOn()
+comment5.params=
+comment5.target=void\ turnOff()
+comment6.params=
+comment6.target=boolean\ getOn()
+comment7.params=b
+comment7.target=void\ setOn(boolean)
+comment8.params=
+comment8.target=java.lang.String\ getID()
+numComments=9

@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=SmartBulb
+comment0.text=\n\ Uma\ SmartBulb\ \u00E9\ uma\ l\u00E2mpada\ inteligente\ que\ al\u00E9m\ de\ ligar\ e\ desligar\ (j\u00E1\ que\n\ \u00E9\ subclasse\ de\ SmartDevice)\ tamb\u00E9m\ permite\ escolher\ a\ intensidade\ da\ ilumina\u00E7\u00E3o\ \n\ (a\ cor\ da\ mesma).\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=SmartBulb()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ SmartBulb\n
+comment2.params=id\ tone
+comment2.target=SmartBulb(java.lang.String,\ int)
+comment3.params=id
+comment3.target=SmartBulb(java.lang.String)
+comment4.params=t
+comment4.target=void\ setTone(int)
+comment5.params=
+comment5.target=int\ getTone()
+numComments=6
