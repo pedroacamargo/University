@@ -32,16 +32,12 @@ int main() {
 
     close(pipe_fd[0]);
     
-    int fork_res2 = fork();
     int fd_out = open("/etc", O_RDONLY, 0666);
 
-    if (fork_res2 == 0) {
-        close(pipe_fd[0]);
-        dup2(pipe_fd[1], STDOUT_FILENO);
-        close(pipe_fd[1]);
-        int exec_res = execlp("ls", "ls", "/etc", NULL);
-        _exit(0);
-    }
+    close(pipe_fd[0]);
+    dup2(pipe_fd[1], STDOUT_FILENO);
+    close(pipe_fd[1]);
+    int exec_res = execlp("ls", "ls", "/etc", NULL);
 
     close(pipe_fd[1]);
 
