@@ -145,3 +145,15 @@ private void saveToFile(Viagem viagem) {
         throw new RuntimeException(e);
     }
 }
+
+
+
+
+
+------------------------------------------------------------------------------------------
+
+
+
+Parte 1)
+public Equipa getEquipa(String idClube, String idEquipa) throws ClubeNaoExisteException, EquipaNaoExisteException
+
