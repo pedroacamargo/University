@@ -1,0 +1,147 @@
+reduce:
+    alunos.stream().mapToDOuble(Aluno::getNota).sum()
+    alunos.stream().reduce(0.0, (ac, al) -> ac+al.getNota(), (ac1, ac2) -> ac1+ac2);
+    alunos.stream().mapToDouble(Aluno::getNota).reduce(0.0, (ac1, ac2) -> ac1+ac2);
+
+percorrer um map:
+    for (Aluno a : alunos.values()) {
+
+    }
+
+
+
+
+// 1)
+public class UberUM {
+    private Map<String, Veiculo> veiculos;
+
+    UberUM(Set<Map.Entry<String,Veiculo>> info) {
+        this.veiculos = new HashMap<>();
+        for (Map.Entry<String, Veiculo> entry : info) {
+            this.veiculos.put(entry.getKey(), entry.getValue().clone());
+        }
+    }
+}
+
+public abstract class Veiculo implements Comparable<Veiculo>, Serializable {
+    private String matricula;
+    private String marca;
+    private String modelo;
+    private double precokm;
+    private List<Viagem> viagens; 
+    // List em vez de Set já que temos que manter a ordem para retornar a viagem mais antiga na questão 3
+    // List devia ser LinkedList para assegurar ordem mesmo quando viagens são removidas
+    // Pode ser ArrayList caso se assuma que viagens não serão removidas
+		...
+}
+
+// 3)
+public class UberUM {
+    private Map<String, Veiculo> veiculos;
+
+    UberUM(Set<Map.Entry<String,Veiculo>> info) {
+        this.veiculos = new HashMap<>();
+        for (Map.Entry<String, Veiculo> entry : info) {
+            this.veiculos.put(entry.getKey(), entry.getValue().clone());
+        }
+    }
+
+    public Viagem viagemMaisAntiga(String matricula) throws ... {
+        if (!this.veiculos.containsKey(matricula)) throw new VeiculoNotFoundException();
+
+        Veiculo veiculo = this.veiculos.get(matricula);
+        return veiculo.getViagemMaisAntiga();
+    }
+}
+
+public abstract class Veiculo implements Comparable<Veiculo>, Serializable throws NoViagensDoneException {
+    List<Viagem> viagens;
+
+    public Viagem getViagemMaisAntiga() {
+        if (this.viagens.isEmpty()) {
+            throw new NoViagensDoneException()
+        }
+
+        return viagens.get(0).clone(); // A viagem mais antiga será a primeira adicionada
+    }
+}
+
+public class NoViagensDoneException extends RuntimeException {
+    public NoViagensDoneException() {
+        super("No viagens done in the past");
+    }
+}
+
+
+public class VeiculoNotFoundException extends RuntimeException {
+    public VeiculoNotFoundException() {
+        super("Veiculo not found");
+    }
+}
+
+// 4)
+public class UberUM {
+    private Map<String, Veiculo> veiculos;
+
+    UberUM(Set<Map.Entry<String,Veiculo>> info) {
+        this.veiculos = new HashMap<>();
+        for (Map.Entry<String, Veiculo> entry : info) {
+            this.veiculos.put(entry.getKey(), entry.getValue().clone());
+        }
+    }
+
+    public Viagem viagemMaisAntiga(String matricula) throws ... {
+        if (!this.veiculos.containsKey(matricula)) throw new VeiculoNotFoundException();
+
+        Veiculo veiculo = this.veiculos.get(matricula);
+        return veiculo.getViagemMaisAntiga();
+    }
+
+    public void adicionaViagem(String matricula, String origem, String destino, float distancia) throws VeiculoNotFoundException {
+        Veiculo veiculo = this.veiculos.get(matricula);
+        if (!veiculo) throw VeiculoNotFoundException();
+
+        veiculo.adicionaViagem(origem,destino,distancia);
+    }
+}
+
+public abstract class Veiculo implements Comparable<Veiculo>, Serializable throws NoViagensDoneException {
+    List<Viagem> viagens;
+
+    public abstract float custoViagem();
+
+    public void adicionaViagem(String origem, String destino, float distancia) {
+        float preco = this.custoViagem();
+
+        Viagem newViagem = new Viagem(origem, destino, distancia, preco);
+        viagens.add(newViagem);
+    }
+}
+
+5)
+public class UberUM {
+    private Map<String, Veiculo> veiculos;
+
+    public Map<String, List<Veiculo>> porMarcaPorValor() {
+        Map<String, <List<Veiculo>> lista = new HashMap<>();
+
+        for (Map<String, Veiculo> entry : this.veiculos.entrySet()) {
+            if (!lista.containsKey(entry.getMarca())) lista.put(entry.getMarca(), new List<Veiculo>());
+            lista.put(entry.getMarca(), lista.get(entry.getMarca()).add(Veiculo));
+        }
+
+        lista.sort((v1, v2) -> v1.get)
+    }
+}
+
+
+6)
+private void saveToFile(Viagem viagem) {
+    try {
+        FileOutputStream fos = new FileOutputStream(viagem.getOrigem() + viagem.getDestino());
+        ObjectOutputStream oos = new ObjectOutputStream(f);
+        oos.writObject(viagem);
+    } catch(IOException e) { 
+        throw new RuntimeException(e);
+    }
+}
