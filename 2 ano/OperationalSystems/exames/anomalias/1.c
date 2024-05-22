@@ -7,8 +7,6 @@
 #define READ_PIPE 0
 #define WRITE_PIPE 1
 
-
-
 void defeitos(int N, char* imagens[N], int max) {
     int atual = 0;
     for (int i = 0; i < N; i++) {
@@ -34,9 +32,7 @@ void conta(int N, char* imagens[N]) {
 
     if (fork() == 0) {
         dup2(p[WRITE_PIPE], STDOUT_FILENO);
-
         close(p[WRITE_PIPE]); close(p[READ_PIPE]);
-
         defeitos(N, imagens, 1);
         _exit(0);
     }
@@ -46,9 +42,7 @@ void conta(int N, char* imagens[N]) {
 
     if (fork() == 0) {
         dup2(p[READ_PIPE], STDIN_FILENO);
-
         close(p[WRITE_PIPE]); close(p[READ_PIPE]);
-
         execlp("wc", "wc", "-l", NULL);
         _exit(0);
     }
