@@ -10,6 +10,7 @@
         "format": "c",
         "initializer_list": "c",
         "span": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "wait.h": "c"
     }
 }
