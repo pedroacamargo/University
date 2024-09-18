@@ -1,0 +1,19 @@
+-> Cliente
+===> O cliente pode comprar Medicamentos
+===> O cliente pode ter prescrição
+
+-> Prescrição
+===> Existem medicamentos que necessitam de prescrição médica 
+
+-> Medicamentos
+===> Uma farmácia possui medicamentos 
+===> Os medicamentos podem estar indisponíveis
+
+-> Fornecedor
+===> O fornecedor fornece medicamentos
+===> O fornecedor pode se atrasar
+
+-> Vendas
+===> Os medicamentos podem ser vendidos
+===> As vendas precisam de pagamentos
+

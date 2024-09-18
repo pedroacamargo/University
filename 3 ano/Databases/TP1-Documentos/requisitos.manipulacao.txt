@@ -1,0 +1,3 @@
+-> Deve ser possível saber se um medicamente necessita de prescrição ou não
+-> Deve ser possível saber quanto lucrou em 1 mês
+-> Listar todos os funcionários da farmácia
