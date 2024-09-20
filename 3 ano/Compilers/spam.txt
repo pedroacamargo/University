@@ -1,0 +1,19 @@
+### Conceitos básicos de expressões regulares
+
+- `a` - corresponde a uma ocorrência do caracter `a`.
+- `a?` - corresponde a 0 ou 1 ocorrências do caracter `a`.
+- `a+` - corresponde a 1 ou mais ocorrências do caracter `a`.
+- `a*` - corresponde a 0 ou mais ocorrências do caracter `a`.
+- `[abc]` - corresponde a uma ocorrência de um dos caracteres `a`, `b` ou `c`.
+- `[a-z]` - corresponde a uma ocorrência de um caracter entre `a` e `z`.
+- `^` - corresponde ao início da string.
+- `$` - corresponde ao fim da string.
+- `[^abc]` - corresponde a uma ocorrência de qualquer caracter que não seja `a`, `b` ou `c`.
+
+Podemos usar o operador de união para unir várias expressões regulares. Por exemplo: `a|bbb|[^a-z]`, que corresponde a uma das várias (neste caso, 3) expressões regulares que fazem parte da união.
+
+Podemos simplificar expressões regulares como `bbb` para `b{3}`, ou seja, 3 ocorrências consecutivas do caracter `b`, neste caso. Outras opções incluem `b{3,}` para 3 ou mais ocorrências ou `b{3,6}` para entre 3 a 6 ocorrências, por exemplo.
+
+Para formar grupos de expressões regulares, usamos parênteses. Por exemplo: `((abc)*|[0-9]+)?`. Os operadores após um grupo atuam sobre o grupo.
+
+Podemos ainda aplicar modificadores a grupos. Por exemplo, `(?i:teste)` corresponde à expressão "teste", escrita com qualquer combinação de maiúsculas e minúsculas (e.g., "TESTE", "tEsTe", "TEste", etc.).
