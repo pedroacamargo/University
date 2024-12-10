@@ -88,3 +88,24 @@ CREATE VIEW q3 AS
 
 
 --- remover da base de dados toda a informação relativa à tarefa ‘Limpeza de Microscópio’;
+DELETE FROM InvestigadorTarefa
+    WHERE Tarefa IN (SELECT Id FROM Tarefa WHERE Designacao = 'Limpeza de Microscópio');
+
+DELETE FROM Tarefa
+    WHERE Designacao = 'Limpeza de Microscópio';
+
+--- desenvolver uma função que permita obter o tempo total relativo à realização das tarefas associadas com um
+--- dado investigador.
+CREATE FUNCTION tempo_total(
+    IdInvestigador INT
+) RETURNS INT AS 
+BEGIN
+    DECLARE TotalTempo INT;
+
+    SELECT
+        SUM(IT.Duracao) INTO TotalTempo FROM InvestigadorTarefa AS IT
+        WHERE IT.Investigador = IdInvestigador;
+
+    RETURN IFNULL(TotalTempo, 0);
+END;
+
