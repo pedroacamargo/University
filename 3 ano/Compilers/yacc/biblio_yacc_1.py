@@ -42,6 +42,7 @@ def p_autor(p):
     "Autor  : TEXTO"
     p[0] = p[1]
     parser.autores.add(p[1])
+    print(p[1])
     
 def p_ano(p):    
     "Ano    : INT"
@@ -61,9 +62,9 @@ parser.livroAutor = {}
 
 fonte = ""
 for linha in sys.stdin:
-    fonte += linha
+    fonte = linha
+    parser.parse(fonte)
 
-parser.parse(fonte)
 
 if parser.exito:
     print ("Parsing terminou com sucesso!")

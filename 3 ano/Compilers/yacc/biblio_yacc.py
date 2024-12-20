@@ -36,8 +36,8 @@ parser.exito = True
 fonte = ""
 for linha in sys.stdin:
     fonte += linha
+    parser.parse(fonte)
 
-parser.parse(fonte)
 
 if parser.exito:
     print ("Parsing teminou com sucesso!")
