@@ -1,0 +1,3 @@
+/home/mutante/Programming/University/3 ano/CG/build/CMakeFiles/class2.dir
+/home/mutante/Programming/University/3 ano/CG/build/CMakeFiles/edit_cache.dir
+/home/mutante/Programming/University/3 ano/CG/build/CMakeFiles/rebuild_cache.dir
