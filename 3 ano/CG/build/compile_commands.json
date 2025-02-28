@@ -1,8 +1,8 @@
 [
 {
   "directory": "/home/mutante/Programming/University/3 ano/CG/build",
-  "command": "/usr/bin/g++   -g -o CMakeFiles/class2.dir/main.cpp.o -c \"/home/mutante/Programming/University/3 ano/CG/aula02/main.cpp\"",
-  "file": "/home/mutante/Programming/University/3 ano/CG/aula02/main.cpp",
-  "output": "CMakeFiles/class2.dir/main.cpp.o"
+  "command": "/usr/bin/c++   -g -o CMakeFiles/class4.dir/main.cpp.o -c \"/home/mutante/Programming/University/3 ano/CG/aula04/main.cpp\"",
+  "file": "/home/mutante/Programming/University/3 ano/CG/aula04/main.cpp",
+  "output": "CMakeFiles/class4.dir/main.cpp.o"
 }
 ]

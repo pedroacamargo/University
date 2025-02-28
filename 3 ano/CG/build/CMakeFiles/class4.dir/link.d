@@ -1,13 +1,20 @@
-class2: \
+class4: \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o \
   /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o \
-  CMakeFiles/class2.dir/main.cpp.o \
+  CMakeFiles/class4.dir/main.cpp.o \
   /usr/lib/x86_64-linux-gnu/libGL.so \
   /usr/lib/x86_64-linux-gnu/libGLU.so \
   /usr/lib/x86_64-linux-gnu/libglut.so \
   /usr/lib/x86_64-linux-gnu/libXmu.so \
   /usr/lib/x86_64-linux-gnu/libXi.so \
+  /usr/lib/x86_64-linux-gnu/libGLEW.so \
+  /usr/lib/x86_64-linux-gnu/libGL.so \
+  /usr/lib/x86_64-linux-gnu/libGLU.so \
+  /usr/lib/x86_64-linux-gnu/libglut.so \
+  /usr/lib/x86_64-linux-gnu/libXmu.so \
+  /usr/lib/x86_64-linux-gnu/libXi.so \
+  /usr/lib/x86_64-linux-gnu/libGLEW.so \
   /usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libm.so \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libm.so \
@@ -41,7 +48,6 @@ class2: \
   /usr/lib/i386-linux-gnu/libGLX.so.0 \
   /lib/x86_64-linux-gnu/libGLX.so.0 \
   /lib/x86_64-linux-gnu/libOpenGL.so.0 \
-  /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libgcc_s.so.1 \
   /lib/i386-linux-gnu/libX11.so.6 \
   /usr/lib/i386-linux-gnu/libX11.so.6 \
   /lib/x86_64-linux-gnu/libX11.so.6 \
@@ -75,7 +81,7 @@ class2: \
 
 /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o:
 
-CMakeFiles/class2.dir/main.cpp.o:
+CMakeFiles/class4.dir/main.cpp.o:
 
 /usr/lib/x86_64-linux-gnu/libGL.so:
 
@@ -86,6 +92,20 @@ CMakeFiles/class2.dir/main.cpp.o:
 /usr/lib/x86_64-linux-gnu/libXmu.so:
 
 /usr/lib/x86_64-linux-gnu/libXi.so:
+
+/usr/lib/x86_64-linux-gnu/libGLEW.so:
+
+/usr/lib/x86_64-linux-gnu/libGL.so:
+
+/usr/lib/x86_64-linux-gnu/libGLU.so:
+
+/usr/lib/x86_64-linux-gnu/libglut.so:
+
+/usr/lib/x86_64-linux-gnu/libXmu.so:
+
+/usr/lib/x86_64-linux-gnu/libXi.so:
+
+/usr/lib/x86_64-linux-gnu/libGLEW.so:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so:
 
@@ -152,8 +172,6 @@ CMakeFiles/class2.dir/main.cpp.o:
 /lib/x86_64-linux-gnu/libGLX.so.0:
 
 /lib/x86_64-linux-gnu/libOpenGL.so.0:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libgcc_s.so.1:
 
 /lib/i386-linux-gnu/libX11.so.6:
 

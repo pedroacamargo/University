@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "class2",
+					"name" : "class4",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "class2::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-class2-Debug-339138e21ada51edabc4.json",
-					"name" : "class2",
+					"id" : "class4::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-class4-Debug-681a509695a9c6c39d1b.json",
+					"name" : "class4",
 					"projectIndex" : 0
 				}
 			]
@@ -50,7 +50,7 @@
 	"paths" : 
 	{
 		"build" : "/home/mutante/Programming/University/3 ano/CG/build",
-		"source" : "/home/mutante/Programming/University/3 ano/CG/aula02"
+		"source" : "/home/mutante/Programming/University/3 ano/CG/aula04"
 	},
 	"version" : 
 	{

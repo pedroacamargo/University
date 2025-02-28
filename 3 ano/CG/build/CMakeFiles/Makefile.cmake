@@ -7,7 +7,7 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/home/mutante/Programming/University/3 ano/CG/aula02/CMakeLists.txt"
+  "/home/mutante/Programming/University/3 ano/CG/aula04/CMakeLists.txt"
   "CMakeFiles/3.31.4/CMakeCCompiler.cmake"
   "CMakeFiles/3.31.4/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.31.4/CMakeSystem.cmake"
@@ -98,6 +98,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake"
   "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/Compiler/zOS-C-DetermineCompiler.cmake"
   "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake"
+  "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/FindGLEW.cmake"
   "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/FindGLUT.cmake"
   "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/FindOpenGL.cmake"
   "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake"
@@ -143,5 +144,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/class2.dir/DependInfo.cmake"
+  "CMakeFiles/class4.dir/DependInfo.cmake"
   )

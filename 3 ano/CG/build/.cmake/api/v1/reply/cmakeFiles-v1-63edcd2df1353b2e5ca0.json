@@ -893,13 +893,33 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/FindGLEW.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/opt/cmake-3.31.4-linux-x86_64/share/cmake-3.31/Modules/SelectLibraryConfigurations.cmake"
 		}
 	],
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
 		"build" : "/home/mutante/Programming/University/3 ano/CG/build",
-		"source" : "/home/mutante/Programming/University/3 ano/CG/aula02"
+		"source" : "/home/mutante/Programming/University/3 ano/CG/aula04"
 	},
 	"version" : 
 	{

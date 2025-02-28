@@ -1,4 +1,4 @@
-# Install script for directory: /home/mutante/Programming/University/3 ano/CG/aula02
+# Install script for directory: /home/mutante/Programming/University/3 ano/CG/aula04
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
