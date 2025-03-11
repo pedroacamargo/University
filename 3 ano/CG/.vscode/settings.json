@@ -1,8 +1,3 @@
 {
-    "files.associations": {
-        "*.css": "tailwindcss",
-        "cmath": "cpp",
-        "iostream": "cpp"
-    },
-    "cmake.sourceDirectory": "/home/mutante/Programming/University/3 ano/CG/aula04"
+    "cmake.sourceDirectory": "/home/mutante/Programming/University/3 ano/CG/aula05"
 }

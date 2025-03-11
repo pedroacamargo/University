@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/mutante/Programming/University/3 ano/CG/aula05/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/class5.dir/main.cpp.o -c \"/home/mutante/Programming/University/3 ano/CG/aula05/main.cpp\"",
+  "file": "/home/mutante/Programming/University/3 ano/CG/aula05/main.cpp",
+  "output": "CMakeFiles/class5.dir/main.cpp.o"
+}
+]
