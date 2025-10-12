@@ -1,0 +1,99 @@
+H -> 262 -> a
+D -> 197 -> e
+P -> 166 -> o
+Q -> 149 -> s
+W -> 118 -> r       ? -> d
+R -> 90  -> n
+J -> 68 -> d
+T -> m
+F -> t
+K -> p
+N -> u
+L -> q
+O -> l
+A -> v
+Y -> c
+S -> f
+V -> i
+I -> b
+X -> h
+
+
+oQ -> 44
+WH -> 39 -> ra
+DR -> 37
+HW -> 37 -> ar
+DQ -> 31
+Ya -> 30
+aQ -> 27
+
+DRF -> 18 -> ent
+LND -> 17 -> LNe
+RFD -> 14 -> nte
+HWH -> 13 -> ara       ? -> ara/aca/ada
+TDR -> 11 -> Ten
+aJP -> 11 -> aco
+
+
+
+
+Como descobri o a/r:
+Vi q havia HW e WH, eu já sabia que H = a então visualizei na tabela de dígrafos o ar e ra. Também tinha um HWH nos trígafos e na tabela de trígafos também havia ada (eu estava na dúvida entre ara, aca ou ada)
+
+ara aca ada
+
+
+'Kar': 9
+O único trígafo na tabela com ar no fim é par, então K -> p
+
+'Fra': 5
+Vou deduzir q F -> t
+
+
+IrVrNTapPrtaDQtPNYDCP
+No fim da mensagem um pouco decifrada eu vi o "pPrta" e deduzi que é porta, então P -> o
+
+
+'RtD': 14 e 'DRt': 18
+Como os dois trígafos se repetem bastante, é fácil saber, pela tabela, que R -> n e D -> e
+Além disso, a letra <D> possui 197 acontecimentos na mensagem, sendo o top 2 e uma vogal, faz sentido D -> e
+
+
+'Ten': 11
+Como a frequência do trígafo men é alta e é o unico trígafo que termina em <en>, temos que T -> m
+
+
+
+'Nma': 7 e 'LNe': 17
+Temos que a única frequência do trígafo que termina em <ma> começa com N e uma das mais frequentes possui o N (provavelmente será o trígafo <que> que ainda não foi decifrado).
+Então N -> u e consequentemente L -> q
+
+
+quaOquer -> qualquer
+Então O -> l
+
+palaAra -> palavra
+Então A -> v
+
+'aJe': 7 e 'aJo': 11
+Como na tabela de frequência temos ade e ado, muito provavelmente J -> d
+
+aYelerar
+Provavelmente é acelerar, então Y -> c
+
+daSrente
+Provavelmente é da frente, então S -> f
+
+automoveVQdafrente
+Provavelmente é automoveis da frente, então V -> i, Q -> s
+
+proIlema -> problema
+Então I -> b
+
+vermelXo -> vermelho
+
+faiUasbrancas -> faixas brancas
+
+buGinam -> buzinam
+iCual -> igual
+novoaBuntamento -> novo ajuntamento
