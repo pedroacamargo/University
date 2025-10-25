@@ -1,2 +1,20 @@
----
-# TO DO
+- name: Copy file from files/ to remote host
+  copy:
+    src: files/Dockerfile      # local path relative to your playbook
+    dest: /home/vagrant   # remote path where you want it
+    owner: vagrant
+    mode: '0644'
+
+- name: Verify the file exists on remote host
+  stat:
+    path: /home/vagrant/Dockerfile
+  register: file_check
+
+- name: Show result
+  debug:
+    msg: "File exists: {{ file_check.stat.exists }}"
+
+# 1 - Criar Diretório
+# 2 - Criar Dockerfile
+# 3 - Copiar script
+# 4 - Fazer build

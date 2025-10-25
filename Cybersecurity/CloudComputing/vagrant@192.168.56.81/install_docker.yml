@@ -1,5 +1,0 @@
-- name: Install Docker
-  hosts: nodes
-  roles:
-    - role: docker
-      tags: ["docker"]
