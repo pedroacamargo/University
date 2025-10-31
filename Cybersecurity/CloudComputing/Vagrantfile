@@ -45,25 +45,29 @@ Vagrant.configure("2") do |config|
     lv.memory = 1024
     lv.cpus = 2
     lv.management_network_name = "vagrant-libvirt"
-    lv.management_network_address = "192.168.122.0/24" # <— change subnet here
-    lv.management_network_mac = nil
     lv.management_network_mode = "nat"
-    lv.management_network_autostart = false
-    lv.management_network_keep = false
+    lv.management_network_autostart = true
+    # lv.management_network_keep = false
   end
   config.vm.provision :shell, privileged: true, inline: $provision_all
 
-  # Nodes VMs configuration
   (1..Number_Nodes).each do |i|
     config.vm.define "node#{i}" do |node|
       node.vm.hostname = "node#{i}"
-      node.vm.network :private_network, ip: "#{NODES_IP_RANGE}.#{100+i}", libvirt__dhcp_enabled: false
+      node.ssh.host = "#{NODES_IP_RANGE}.#{100+i}"
+      node.vm.network :private_network,
+        ip: "#{NODES_IP_RANGE}.#{100+i}",
+        libvirt__network_name: "vagrant-libvirt",
+        libvirt__dhcp_enabled: false,
+        libvirt__forward_mode: "none"
     end
   end
+
 
   # Myvm configuration
   config.vm.define :myvm do |mv|
     mv.vm.hostname = "myvm"
+    mv.ssh.host = MY_VM_IP
     mv.vm.network :private_network, ip: MY_VM_IP
     mv.vm.provision :file, source: PRIVATE_KEY_PATH, destination: "~/.ssh/"
     mv.vm.provision :shell, inline: $provision_myvm
@@ -72,7 +76,8 @@ Vagrant.configure("2") do |config|
   # Control Plane VM configuration
   config.vm.define :controlplane do |cp|
     cp.vm.hostname = "controlPlane"
-    cp.vm.provider "virtualbox" do |v|
+    cp.ssh.host = CONTROL_PLANE_IP
+    cp.vm.provider :libvirt do |v|
       v.memory = 2048
     end
     cp.vm.network :private_network, ip: CONTROL_PLANE_IP
@@ -81,9 +86,7 @@ Vagrant.configure("2") do |config|
   # Monitor VM configuration
   config.vm.define :monitor do |monitor|
     monitor.vm.hostname = "monitor"
-    monitor.vm.provider "virtualbox" do |v|
-      v.memory = 2048
-    end
+    monitor.ssh.host = MONITOR_VM_IP
     monitor.vm.network :private_network, ip: MONITOR_VM_IP
   end
 
