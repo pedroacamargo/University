@@ -16,7 +16,8 @@ else
     echo "file_shadow already exists. Skipping creation."
 fi
 
+echo "Compiling source code..."
 gcc ./code/protect.c -o protect -lcrypto -Wno-deprecated-declarations
 gcc ./code/verify.c -o verify -lcrypto -Wno-deprecated-declarations
-
-# TODO: Add a cron job to check file integrity every hour
+gcc ./code/update.c -o update -lcrypto -Wno-deprecated-declarations
+echo "Compilation completed."

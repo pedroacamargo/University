@@ -54,14 +54,13 @@ int main(int argc, char *argv[])
 
     // Read and process the file content
     char buffer[256];
-    int found = 0;
+    int updated = 0;
 
     const char *target = getenv("USER");
     if (target == NULL) {
         fprintf(stderr, "USER environment variable not set.\n");
         return 1;
     }
-
 
     // Process each line
     while (fgets(buffer, sizeof(buffer), file) != NULL) {
@@ -71,54 +70,52 @@ int main(int argc, char *argv[])
 
         // Check if this line corresponds to the target user
         if (strncmp(buffer, target, strlen(target)) == 0 && buffer[strlen(target)] == ':') {
+            
+            // Break user line into tokens
+            char tempbuf[2048];
+            strcpy(tempbuf, buffer);
 
-            // Check if file is already protected
-            char *token = strtok(buffer, ":");
-            token = strtok(NULL, ":"); // skip username
+            char *tokens[256];
+            int count = 0;
+            char *tok = strtok(tempbuf, ":");
+            while (tok && count < 256) {
+                tokens[count++] = tok;
+                tok = strtok(NULL, ":");
+            }
 
+            fprintf(tmpfile, "%s", tokens[0]); // username
 
-            while (token != NULL) {
-                char *path = token;
-                token = strtok(NULL, ":");
-                if (token == NULL) break; // malformed line
-                char *stored_hash = token;
+            for (int i = 1; i < count; i += 2) {
+                if (i + 1 >= count) break; // malformed pair
+                char *path = tokens[i];
+                char *old_hash = tokens[i + 1];
 
                 if (strcmp(path, argv[1]) == 0) {
-                    found = 1;
-                    unsigned char current_hash[SHA256_DIGEST_LENGTH];
-                    char current_hash_str[SHA256_DIGEST_LENGTH * 2 + 1];
-
-                    if (!hash_file(argv[1], current_hash)) {
-                        printf("Cannot read file: %s\n", argv[1]);
-                        fclose(file);
-                        return 0;
-                    }
-
-                    to_hex_string(current_hash, current_hash_str, SHA256_DIGEST_LENGTH);
-
-                    if (strcmp(current_hash_str, stored_hash) == 0) {
-                        printf("Integrity OK for %s\n", argv[1]);
+                    unsigned char hash[SHA256_DIGEST_LENGTH];
+                    char hash_str[SHA256_DIGEST_LENGTH * 2 + 1];
+                    if (hash_file(argv[1], hash)) {
+                        to_hex_string(hash, hash_str, SHA256_DIGEST_LENGTH);
+                        fprintf(tmpfile, ":%s:%s", path, hash_str);
+                        printf("Updated hash for %s for user %s\n", path, target);
+                        updated = 1;
                     } else {
-                        printf("Integrity FAILED for %s\n", argv[1]);
-                        printf("Stored:  %s\nCurrent: %s\n", stored_hash, current_hash_str);
+                        fprintf(stderr, "Failed to hash %s\n", path);
+                        fprintf(tmpfile, ":%s:%s", path, old_hash);
                     }
-                    fclose(file);
-                    return 1;
+                } else {
+                    fprintf(tmpfile, ":%s:%s", path, old_hash);
                 }
             }
+            fprintf(tmpfile, "\n");
         } else {
-            // Just copy unchanged
             fprintf(tmpfile, "%s\n", buffer);
         }
     }
     
-    // If not found, append a new line
-    if (!found) {
-        printf("No entry found for file: %s\n", argv[1]);
-        fclose(file);
-        return 0;
-    }
-
+    if (updated)
+        printf("✅ Hash updated successfully.\n");
+    else
+        printf("⚠️ File not found in file_shadow for update.\n");
 
     fclose(file);
     fclose(tmpfile);
@@ -126,6 +123,5 @@ int main(int argc, char *argv[])
     remove("file_shadow");
     rename("file_shadow.tmp", "file_shadow");
 
-    printf("File opened successfully.\n");
     return EXIT_SUCCESS;
 }

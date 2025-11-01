@@ -126,6 +126,5 @@ int main(int argc, char *argv[])
     remove("file_shadow");
     rename("file_shadow.tmp", "file_shadow");
 
-    printf("File opened successfully.\n");
     return EXIT_SUCCESS;
 }

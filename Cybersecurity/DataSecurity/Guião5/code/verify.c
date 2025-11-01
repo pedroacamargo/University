@@ -110,6 +110,5 @@ int main(int argc, char *argv[])
 
     fclose(file);
 
-    printf("File opened successfully.\n");
     return EXIT_SUCCESS;
 }
