@@ -17,5 +17,6 @@ else
 fi
 
 gcc ./code/protect.c -o protect -lcrypto -Wno-deprecated-declarations
+gcc ./code/verify.c -o verify -lcrypto -Wno-deprecated-declarations
 
 # TODO: Add a cron job to check file integrity every hour

@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     }
 
     // Read and process the file content
-    char buffer[2000];
+    char buffer[256];
     int found = 0;
 
     const char *target = getenv("USER");
@@ -71,37 +71,41 @@ int main(int argc, char *argv[])
 
         // Check if this line corresponds to the target user
         if (strncmp(buffer, target, strlen(target)) == 0 && buffer[strlen(target)] == ':') {
-            printf("%s\n", buffer);
 
-            // Check if file is already protected]
-            char *token = strtok(strdup(buffer), ":");
-            char *name = token;
+            // Check if file is already protected
+            char *token = strtok(buffer, ":");
+            token = strtok(NULL, ":"); // skip username
+
+
             while (token != NULL) {
-                if (argv[1] != NULL && strcmp(token, argv[1]) == 0) {
-                    printf("File is already protected: %s\n", argv[1]);
-                    fclose(file);
-                    fclose(tmpfile);
-                    remove("file_shadow.tmp");
-                    return EXIT_SUCCESS;
-                }
+                char *path = token;
                 token = strtok(NULL, ":");
+                if (token == NULL) break; // malformed line
+                char *stored_hash = token;
+
+                if (strcmp(path, argv[1]) == 0) {
+                    found = 1;
+                    unsigned char current_hash[SHA256_DIGEST_LENGTH];
+                    char current_hash_str[SHA256_DIGEST_LENGTH * 2 + 1];
+
+                    if (!hash_file(argv[1], current_hash)) {
+                        printf("Cannot read file: %s\n", argv[1]);
+                        fclose(file);
+                        return 0;
+                    }
+
+                    to_hex_string(current_hash, current_hash_str, SHA256_DIGEST_LENGTH);
+
+                    if (strcmp(current_hash_str, stored_hash) == 0) {
+                        printf("Integrity OK for %s\n", argv[1]);
+                    } else {
+                        printf("Integrity FAILED for %s\n", argv[1]);
+                        printf("Stored:  %s\nCurrent: %s\n", stored_hash, current_hash_str);
+                    }
+                    fclose(file);
+                    return 1;
+                }
             }
-
-
-            // Found the matching user — append our text
-            if (hash_file(argv[1], hash)) {
-                to_hex_string(hash, hash_str, SHA256_DIGEST_LENGTH);
-                fprintf(tmpfile, "%s:%s:%s\n", buffer, argv[1], hash_str);
-                printf("Added: %s:%s:%s\n", buffer, argv[1], hash_str);
-            } else {
-                fprintf(stderr, "Error hashing file: %s\n", argv[1]);
-                fclose(file);
-                fclose(tmpfile);
-                return EXIT_FAILURE;
-            }
-
-            printf("Modified line for user: %s\n", target);
-            found = 1;
         } else {
             // Just copy unchanged
             fprintf(tmpfile, "%s\n", buffer);
@@ -110,13 +114,9 @@ int main(int argc, char *argv[])
     
     // If not found, append a new line
     if (!found) {
-        unsigned char hash[SHA256_DIGEST_LENGTH];
-        char hash_str[SHA256_DIGEST_LENGTH * 2 + 1];
-        if (hash_file(argv[1], hash)) {
-            to_hex_string(hash, hash_str, SHA256_DIGEST_LENGTH);
-            fprintf(tmpfile, "%s:%s:%s\n", target, argv[1], hash_str);
-            printf("Appended new line for user: %s\n", target);
-        }
+        printf("No entry found for file: %s\n", argv[1]);
+        fclose(file);
+        return 0;
     }
 
 
