@@ -56,10 +56,11 @@
     
 	\large Grupo nº33}
 
-\author{Carlos Daniel Silva Fernandes \\ (A102499) 
+\author{Carlos Daniel Silva Fernandes \\ (PG59783) 
        \and Afonso Miguel da Silva Ribeiro \\ (PG60232)
-       \and Pedro Augusto Ennes Camargo \\ (A102504)
-       \and Renato Pereira Garcia \\ (A101987)
+       \and Pedro Augusto Ennes de Martino Camargo \\ (PG59791)
+       \and Renato Pereira Garcia \\ (PG61542)
+       \and Luís Filipe Pinheiro Silva \\ (PG59790)
 }
 
 \date{\today} % Data
@@ -98,6 +99,24 @@
 
         Numa primeira fase deste projeto, é feito o estudo da aplicação de tracking de voos airtrail.
         Neste relatório estão presentes detalhes sobre a arquitetura da aplicação, as suas funcionalidades e APIs, bem como uma reflexão e discussão sobre potenciais pontos de falha da aplicação, gargalos de desempenho e possíveis dificuldades na instalação.
+        
+        O principal objetivo da aplicação \textbf{AirTrail} é fornecer um sistema completo de \textbf{tracking de viagens aéreas}, permitindo que o utilizador registe e acompanhe todas as viagens realizadas num determinado período de tempo.
+
+        \subsection{Funcionalidades Principais}
+
+        \begin{itemize}
+        \item \textbf{Adição Manual de Viagens:}  
+        O utilizador pode adicionar uma viagem manualmente através de formulários disponibilizados pela própria aplicação.
+
+        \item \textbf{Importação de Dados:}  
+        O \textbf{AirTrail} permite importar ficheiros provenientes de outras plataformas de gestão de voos, facilitando a migração e centralização de dados.  
+
+        \item \textbf{Exportação de Dados:}  
+        O utilizador pode exportar os seus registos de voo, permitindo criar cópias de segurança (\textit{backups}) ou transferir os dados para outras aplicações compatíveis.
+
+        \item \textbf{Estatísticas de Voo:}  
+        A aplicação gera automaticamente estatísticas e métricas baseadas nas viagens registadas, fornecendo ao utilizador uma visão geral do seu histórico de voos.
+        \end{itemize}
 
         \section{Principais Tecnologias}
 
@@ -113,21 +132,7 @@
 
         A arquitetura adotada é do tipo \textbf{cliente-servidor}, em que o cliente interage com o servidor web que, por sua vez, comunica com a base de dados.
 
-        \section{Componentes}
-
-        \begin{itemize}
-        \item \textbf{Web Server:} Container \texttt{airtrail}
-        % \begin{itemize}
-            % \item \textit{Função:} Expor a API REST que permite aos utilizadores interagir com a base de dados.
-        % \end{itemize}
-
-        \item \textbf{Base de Dados:} Container \texttt{airtrail\_db}
-        % \begin{itemize}
-        %     \item \textit{Função:} Armazenar os dados relacionais da aplicação AirTrail.
-        % \end{itemize}
-        \end{itemize}
-
-        \section{Infraestrutura}
+        \subsection{Infraestrutura e Componentes}
 
         A infraestrutura é composta por dois containers Docker que comunicam entre si através de uma \textit{bridge network} criada automaticamente pelo \textit{docker compose}:
 
@@ -136,17 +141,77 @@
         b16b80e06117   airtrail_default            bridge    local
         \end{verbatim}
 
-        A comunicação entre a base de dados e o servidor web é facilitada através de um \textbf{ORM} (\textit{Object-Relational Mapping}), utilizando as bibliotecas \textit{Prisma} e \textit{Kysely} para abstrair e simplificar o acesso aos dados.
 
-    \chapter{Arquitetura e principais componentes}
-        A aplicação tem uma arquitetura clinte-servidor, com o servidor ligado a uma base de dados PostgresSQL. Tanto o servidor como a base de dados correm em containers Docker, e comunicam através de uma bridge network criada automaticamente pelo docker compose. Entre a base de dados e o web server é utilizado um ORM (Object-Relational Mapping) para facilitar a comunicação entre os dois componentes
+        \begin{itemize}
+        \item \textbf{Web Server:} Container \texttt{airtrail}
+        \item \textbf{Base de Dados:} Container \texttt{airtrail\_db}
+        \end{itemize}
 
-        \section{Web Server}
+        % A comunicação entre a base de dados e o servidor web é facilitada através de um \textbf{ORM} (\textit{Object-Relational Mapping}), utilizando as bibliotecas \textit{Prisma} e \textit{Kysely} para abstrair e simplificar o acesso aos dados.
 
-        \section{Base de dados}
+        \section{APIs fornecidas pela aplicação}
 
-	\chapter{Conclusão}
-        Durante o desenvolvimento desta fase, o principal desafio passou por compreender e implementar corretamente as curvas de \textbf{Bezier} e de \textbf{Catmull-Rom}, bem como ajustar as transformações de forma a garantir um movimento natural dos objetos.\\
-        Apesar destas adversidades, consideramos que concluímos o trabalho com a qualidade exigida pela equipa docente.
+        \subsection{API REST}
+
+         A \textbf{API REST} da aplicação \textbf{AirTrail} fornece um conjunto de endpoints para gestão das viagens registadas por cada utilizador.  
+        Abaixo estão listadas as principais rotas:
+
+        {\small
+        \begin{verbatim}
+        GET  /flight/list       -> Lista todos os voos do utilizador.
+        GET  /flight/get/[id]   -> Detalhes de um voo específico.
+        POST /flight/save       -> Cria ou atualiza um voo existente.
+        POST /flight/delete     -> Remove um voo pelo seu ID.
+        \end{verbatim}
+        }
+
+        \subsection{APIs Externas}
+
+        A aplicação \textbf{AirTrail} faz uso de serviços externos para obter e enriquecer informações sobre voos e aeronaves.  
+
+        \begin{itemize}
+        \item \textbf{Adsbdb:}  
+        Serviço utilizado para realizar \textit{fetch} de informações associadas a \textit{flight numbers}.  
+
+        \item \textbf{AeroDataBox:}  
+        Alternativa à Adsbdb, permitindo que o utilizador opte por uma integração premium.  
+        \end{itemize}
+
+
+    \chapter{Análise de Riscos}
+        
+        \section{Ponto Único de Falha}
+
+        O principal risco na arquitetura da aplicação \textbf{AirTrail} é o \textbf{Web Server}.  
+        Caso o servidor falhe por qualquer motivo, todos os clientes conectados perdem imediatamente o acesso à aplicação.  
+
+        Algumas causas possíveis para uma falha no servidor incluem:
+        \begin{itemize}
+        \item Falta de energia elétrica no local de hospedagem;
+        \item Ciberataques direcionados ao servidor web;
+        \item Erros humanos durante manutenção ou atualização do sistema.
+        \end{itemize}
+
+        Para mitigar este risco, recomenda-se a implementação de mecanismos de \textbf{redundância}, \textbf{replicação} e \textbf{failover}, garantindo alta disponibilidade do serviço.
+
+        \section{Gargalos de Desempenho}
+
+        À medida que o número de utilizadores cresce, o servidor pode tornar-se um gargalo, resultando em tempos de resposta mais lentos ou até falhas.  
+        Como a aplicação \textbf{AirTrail} utiliza o \textbf{SvelteKit} com \textbf{Server-Side Rendering (SSR)}, cada requisição ao servidor requer processamento adicional, o que aumenta a carga computacional.  
+
+        Com apenas uma instância de servidor web, o sistema não possui escalabilidade horizontal. Assim, em situações de aumento de tráfego, o servidor pode atingir o limite da sua capacidade, afetando o desempenho global da aplicação.
+
+        % \subsection{Dependências Externas}
+
+        % A aplicação depende de serviços externos para o seu correto funcionamento.  
+        % Um exemplo crítico é o uso da API \textbf{ADSBDB} para obtenção de informações de voos.  
+
+        % Caso este serviço deixe de ser mantido, fique desatualizado ou indisponível, o funcionamento do \textbf{AirTrail} poderá ser severamente afetado.  
+        % Recomenda-se a existência de \textbf{mecanismos de fallback} ou alternativas configuráveis (como o \textbf{AeroDataBox}) para minimizar o impacto de eventuais falhas externas.
+
+    
+	% \chapter{Conclusão}
+    %     Durante o desenvolvimento desta fase, o principal desafio passou por compreender e implementar corretamente as curvas de \textbf{Bezier} e de \textbf{Catmull-Rom}, bem como ajustar as transformações de forma a garantir um movimento natural dos objetos.\\
+    %     Apesar destas adversidades, consideramos que concluímos o trabalho com a qualidade exigida pela equipa docente.
 
 \end{document}
