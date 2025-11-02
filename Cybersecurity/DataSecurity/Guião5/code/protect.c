@@ -11,12 +11,19 @@ void to_hex_string(const unsigned char *hash, char *output, size_t length) {
     output[length * 2] = '\0';
 }
 
+// Hash a file with a salt
 int hash_file(const char *path, unsigned char output[SHA256_DIGEST_LENGTH]) {
+    const unsigned char salt[] = "salt1234"; 
+    size_t salt_len = strlen((const char *)salt);
+
     FILE *file = fopen(path, "rb");
     if (!file) return 0;
 
     SHA256_CTX ctx;
     SHA256_Init(&ctx);
+
+    // Add the salt to the beginning of the hash
+    SHA256_Update(&ctx, salt, salt_len);
 
     unsigned char buffer[4096];
     size_t bytes;

@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc} % define o encoding usado texto fonte (input)--usual "utf8" ou "latin1
+\usepackage{graphicx} %permite incluir graficos, tabelas, figuras
+\usepackage{subcaption}
+\usepackage[title]{appendix}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{multicol}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=black,
+    }
+    
+    
+    
+\usepackage{bera}% optional: just to have a nice mono-spaced font
+
+\definecolor{eclipseStrings}{RGB}{42,0.0,255}
+\definecolor{eclipseKeywords}{RGB}{127,0,85}
+    
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+
+
+
+
+\title{Aplicações e Serviços de Computação em Nuvem Fase-1 \\
+    
+	\large Grupo nº33}
+
+\author{Carlos Daniel Silva Fernandes \\ (A102499) 
+       \and Afonso Miguel da Silva Ribeiro \\ (PG60232)
+       \and Pedro Augusto Ennes Camargo \\ (A102504)
+       \and Renato Pereira Garcia \\ (A101987)
+}
+
+\date{\today} % Data
+
+\begin{document}
+
+\raggedbottom % Evita espaçamentos forçados para preencher a página
+
+\begin{minipage}{0.9\linewidth}
+    \centering
+    \includegraphics[width=0.4\textwidth]{uniMinho.png}\par
+    \href{https://www.uminho.pt/PT}
+    {\scshape\LARGE Universidade do Minho} \par
+    \vspace{0.2cm} % Reduz espaço vertical
+    \href{https://www.eng.uminho.pt/pt/Estudar/_layouts/15/UMinho.PortaisUOEI.UI/Pages/CatalogoCursoDetail.aspx?itemId=5692&catId=16}
+    {\scshape\Large Mestrado em Cibersegurança} \par
+
+    \vspace{-0.5cm} % Reduz espaço antes do título
+    \maketitle
+    \vspace{-1cm} % Reduz espaço depois do título
+
+   
+\end{minipage}
+
+\vspace{-0.5cm} % Reduz espaço antes do índice
+\renewcommand{\baselinestretch}{0.9}\normalsize % Compacta o espaçamento entre linhas
+
+\tableofcontents
+
+\pagebreak
+
+
+	\chapter{Contextualização}
+
+        \section{Visão Geral da Aplicação}
+
+        Numa primeira fase deste projeto, é feito o estudo da aplicação de tracking de voos airtrail.
+        Neste relatório estão presentes detalhes sobre a arquitetura da aplicação, as suas funcionalidades e APIs, bem como uma reflexão e discussão sobre potenciais pontos de falha da aplicação, gargalos de desempenho e possíveis dificuldades na instalação.
+
+        \section{Principais Tecnologias}
+
+        \begin{itemize}
+        \item \textbf{Base de Dados:} \textit{PostgreSQL}
+        \item \textbf{Web Server:} Desenvolvido com \textit{SvelteKit} e \textit{TypeScript}
+        \item \textbf{Backend:} Integrado no próprio frontend através do \textit{SvelteKit}
+        \item \textbf{Acesso à Base de Dados:} \textit{Kysely} (SQL Builder)
+        \item \textbf{Schema e Migrações:} Geridas com \textit{Prisma}
+        \end{itemize}
+
+        \section{Arquitetura}
+
+        A arquitetura adotada é do tipo \textbf{cliente-servidor}, em que o cliente interage com o servidor web que, por sua vez, comunica com a base de dados.
+
+        \section{Componentes}
+
+        \begin{itemize}
+        \item \textbf{Web Server:} Container \texttt{airtrail}
+        % \begin{itemize}
+            % \item \textit{Função:} Expor a API REST que permite aos utilizadores interagir com a base de dados.
+        % \end{itemize}
+
+        \item \textbf{Base de Dados:} Container \texttt{airtrail\_db}
+        % \begin{itemize}
+        %     \item \textit{Função:} Armazenar os dados relacionais da aplicação AirTrail.
+        % \end{itemize}
+        \end{itemize}
+
+        \section{Infraestrutura}
+
+        A infraestrutura é composta por dois containers Docker que comunicam entre si através de uma \textit{bridge network} criada automaticamente pelo \textit{docker compose}:
+
+        \begin{verbatim}
+        NETWORK ID     NAME                        DRIVER    SCOPE
+        b16b80e06117   airtrail_default            bridge    local
+        \end{verbatim}
+
+        A comunicação entre a base de dados e o servidor web é facilitada através de um \textbf{ORM} (\textit{Object-Relational Mapping}), utilizando as bibliotecas \textit{Prisma} e \textit{Kysely} para abstrair e simplificar o acesso aos dados.
+
+    \chapter{Arquitetura e principais componentes}
+        A aplicação tem uma arquitetura clinte-servidor, com o servidor ligado a uma base de dados PostgresSQL. Tanto o servidor como a base de dados correm em containers Docker, e comunicam através de uma bridge network criada automaticamente pelo docker compose. Entre a base de dados e o web server é utilizado um ORM (Object-Relational Mapping) para facilitar a comunicação entre os dois componentes
+
+        \section{Web Server}
+
+        \section{Base de dados}
+
+	\chapter{Conclusão}
+        Durante o desenvolvimento desta fase, o principal desafio passou por compreender e implementar corretamente as curvas de \textbf{Bezier} e de \textbf{Catmull-Rom}, bem como ajustar as transformações de forma a garantir um movimento natural dos objetos.\\
+        Apesar destas adversidades, consideramos que concluímos o trabalho com a qualidade exigida pela equipa docente.
+
+\end{document}
