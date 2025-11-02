@@ -72,11 +72,14 @@
 \begin{minipage}{0.9\linewidth}
     \centering
     \includegraphics[width=0.4\textwidth]{uniMinho.png}\par
+    \vspace{0.6 cm} % Reduz espaço vertical
     \href{https://www.uminho.pt/PT}
     {\scshape\LARGE Universidade do Minho} \par
-    \vspace{0.2cm} % Reduz espaço vertical
+    \vspace{1cm} % Reduz espaço vertical
     \href{https://www.eng.uminho.pt/pt/Estudar/_layouts/15/UMinho.PortaisUOEI.UI/Pages/CatalogoCursoDetail.aspx?itemId=5692&catId=16}
     {\scshape\Large Mestrado em Cibersegurança} \par
+    \vspace{0.2cm} % Reduz espaço vertical
+    {\scshape\Large Mestrado em Engenharia Informática} \par
 
     \vspace{-0.5cm} % Reduz espaço antes do título
     \maketitle
@@ -119,33 +122,29 @@
         \end{itemize}
 
         \section{Principais Tecnologias}
+        \noindent \textbf{Base de Dados:} \textit{PostgreSQL}; 
+        \textbf{Web Server:} \textit{SvelteKit} + \textit{TypeScript};
+        \textbf{Backend:} Integrado no frontend via \textit{SvelteKit};
+        \textbf{Acesso à BD:} \textit{Kysely};
+        \textbf{Schema/Migrações:} \textit{Prisma}.
 
-        \begin{itemize}
-        \item \textbf{Base de Dados:} \textit{PostgreSQL}
-        \item \textbf{Web Server:} Desenvolvido com \textit{SvelteKit} e \textit{TypeScript}
-        \item \textbf{Backend:} Integrado no próprio frontend através do \textit{SvelteKit}
-        \item \textbf{Acesso à Base de Dados:} \textit{Kysely} (SQL Builder)
-        \item \textbf{Schema e Migrações:} Geridas com \textit{Prisma}
-        \end{itemize}
+        \section{Instalação da Aplicação}
 
-        \section{Arquitetura}
+        A aplicação \textit{AirTrail} pode ser instalada de duas formas principais: manualmente ou através de \textit{containers} utilizando \textit{Docker}.
+
+        A \textbf{instalação manual} é um processo mais trabalhoso e pouco fiável para sistemas de maior escala, uma vez que a sua replicação e manutenção tornam-se mais complexas e propensas a erros humanos. Além disso, apresenta menor portabilidade entre diferentes ambientes.
+
+        Por outro lado, a \textbf{instalação containerizada} com \textit{Docker} oferece maior portabilidade, facilita o processo de implantação e reduz significativamente o risco de inconsistências. Esta abordagem também permite uma escalabilidade mais simples e eficiente, sendo a mais recomendada para ambientes de produção.
+
+
+        \section{Arquitetura e Componentes}
 
         A arquitetura adotada é do tipo \textbf{cliente-servidor}, em que o cliente interage com o servidor web que, por sua vez, comunica com a base de dados.
-
-        \subsection{Infraestrutura e Componentes}
-
+        
         A infraestrutura é composta por dois containers Docker que comunicam entre si através de uma \textit{bridge network} criada automaticamente pelo \textit{docker compose}:
 
-        \begin{verbatim}
-        NETWORK ID     NAME                        DRIVER    SCOPE
-        b16b80e06117   airtrail_default            bridge    local
-        \end{verbatim}
+        O web server e a base de dados são implementados nos containers airtrail e airtrail\_db, respetivamente.
 
-
-        \begin{itemize}
-        \item \textbf{Web Server:} Container \texttt{airtrail}
-        \item \textbf{Base de Dados:} Container \texttt{airtrail\_db}
-        \end{itemize}
 
         % A comunicação entre a base de dados e o servidor web é facilitada através de um \textbf{ORM} (\textit{Object-Relational Mapping}), utilizando as bibliotecas \textit{Prisma} e \textit{Kysely} para abstrair e simplificar o acesso aos dados.
 
@@ -185,21 +184,29 @@
         O principal risco na arquitetura da aplicação \textbf{AirTrail} é o \textbf{Web Server}.  
         Caso o servidor falhe por qualquer motivo, todos os clientes conectados perdem imediatamente o acesso à aplicação.  
 
-        Algumas causas possíveis para uma falha no servidor incluem:
-        \begin{itemize}
-        \item Falta de energia elétrica no local de hospedagem;
-        \item Ciberataques direcionados ao servidor web;
-        \item Erros humanos durante manutenção ou atualização do sistema.
-        \end{itemize}
+        Além disso, a utilização de APIs externas, representa outro ponto de falha potencial.  
+        Caso este serviço fique indisponível, o funcionamento do \textbf{AirTrail} poderá ser afetado.  
 
-        Para mitigar este risco, recomenda-se a implementação de mecanismos de \textbf{redundância}, \textbf{replicação} e \textbf{failover}, garantindo alta disponibilidade do serviço.
+        Para mitigar o risco, recomenda-se a implementação de \textbf{redundância}, \textbf{replicação} e \textbf{failover}, garantindo alta disponibilidade do serviço.
 
         \section{Gargalos de Desempenho}
 
-        À medida que o número de utilizadores cresce, o servidor pode tornar-se um gargalo, resultando em tempos de resposta mais lentos ou até falhas.  
-        Como a aplicação \textbf{AirTrail} utiliza o \textbf{SvelteKit} com \textbf{Server-Side Rendering (SSR)}, cada requisição ao servidor requer processamento adicional, o que aumenta a carga computacional.  
+        À medida que o número de utilizadores cresce, o servidor pode passar por gargalos de desempenho, resultando em tempos de resposta mais lentos ou até falhas.
 
         Com apenas uma instância de servidor web, o sistema não possui escalabilidade horizontal. Assim, em situações de aumento de tráfego, o servidor pode atingir o limite da sua capacidade, afetando o desempenho global da aplicação.
+
+        O comando \texttt{docker stats} foi utilizado para monitorizar o consumo de recursos dos containers em execução.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{dockerStatus.png}
+            \caption{Consumo de recursos dos containers.}
+            \label{fig:airtrail-containers}
+        \end{figure}
+
+        Comparando com as especificações mínimas recomendadas pela documentação oficial do projeto (\textbf{2~CPU cores}, \textbf{2~GB de RAM} e \textbf{10~GB de espaço em disco}), observa-se que o consumo real é significativamente inferior aos limites estabelecidos.  
+Isso indica que o AirTrail é uma aplicação leve e eficiente para pequenos ambientes de produção ou testes locais.
+
 
         % \subsection{Dependências Externas}
 

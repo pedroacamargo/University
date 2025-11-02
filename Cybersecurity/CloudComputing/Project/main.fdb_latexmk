@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1762111536.72746 "/home/mutante/Programming/University/Cybersecurity/CloudComputing/Project/main.tex" "main.pdf" "main" 1762111537.19937 0
+["pdflatex"] 1762113769.3203 "/home/mutante/Programming/University/Cybersecurity/CloudComputing/Project/main.tex" "main.pdf" "main" 1762113769.74481 0
   "/etc/texmf/web2c/texmf.cnf" 1762104774.59013 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/mutante/Programming/University/Cybersecurity/CloudComputing/Project/main.tex" 1762111536.12587 9521 ae18c324d9faf6f96ffb6da431a976ea ""
+  "/home/mutante/Programming/University/Cybersecurity/CloudComputing/Project/main.tex" 1762113769.14671 10524 47e902bc997c68f871a498be06544c52 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm" 1136768653 3584 929cdff2b7a8c11bd4d49fd68cb0ae70 ""
@@ -124,10 +124,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1741904018 41538 c016915c1d51223b6dbbfe27341748a8 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1762105116 5306818 1fa401c76333135f70f9b590f03b90db ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1762105031 1929831 8d3a8bf5131c3d0e0c9373c58ca5aad6 ""
-  "main.aux" 1762111537.14589 1945 20a61ef8a709d9f388635de2c44eefc9 "pdflatex"
-  "main.out" 1762111537.14689 1926 4f8411a4f4c3af631e51dc18b343364f "pdflatex"
-  "main.tex" 1762111536.12587 9521 ae18c324d9faf6f96ffb6da431a976ea ""
-  "main.toc" 1762111537.14785 1031 3183e01158be78b2b70b738fa4fb200d "pdflatex"
+  "dockerStatus.png" 1762111876.89988 20612 9c52acb49c24e5c707a47e99b9f9c7f2 ""
+  "main.aux" 1762113769.69913 2269 cda91155ebd800b5600f33084567b292 "pdflatex"
+  "main.out" 1762113769.69913 1982 4d7e0fdb75b58b4d2548bde7e4e51a7b "pdflatex"
+  "main.tex" 1762113769.14671 10524 47e902bc997c68f871a498be06544c52 ""
+  "main.toc" 1762113769.69996 1034 409aa8061eaeb7aaa434466265d13ce7 "pdflatex"
   "uniMinho.png" 1762105223.88304 11019 babdea99a0b2a391a5e6b16ef9514abe ""
   (generated)
   "main.aux"
