@@ -1,0 +1,28 @@
+- name: Delete PVs
+  kubernetes.core.k8s:
+    definition: "{{ lookup('template', 'k8s-node-pv.yml') }}"
+    state: absent
+  loop: "{{ groups['nodes'] }}"
+  loop_control:
+    loop_var: node_name
+    index_var: item
+  vars:
+    pv_name: "pv-{{ item | int + 1 }}"
+    sc_name: local-storage
+    pv_path: /mnt/data
+
+- name: Delete StorageClass
+  kubernetes.core.k8s:
+    definition: "{{ lookup('template', 'k8s-sc.yml') }}"
+    state: absent
+
+- name: Delete PVs folder
+  become: true
+  ansible.builtin.file:
+    path: "{{ pv_path }}"
+    state: absent
+  loop: "{{ groups['nodes'] }}"
+  loop_control:
+    loop_var: node_name
+  delegate_to: "{{ node_name }}"
+  ignore_unreachable: true

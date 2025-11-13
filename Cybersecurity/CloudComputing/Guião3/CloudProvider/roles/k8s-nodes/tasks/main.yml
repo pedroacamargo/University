@@ -1,0 +1,15 @@
+- name: Check if kubelet.conf exists
+  ansible.builtin.stat:
+    path: "/etc/kubernetes/kubelet.conf"
+  register: kubelet_conf
+
+- name: Delete kubelet.conf if needed
+  become: true
+  ansible.builtin.file:
+    path: /etc/kubernetes/kubelet.conf
+    state: absent
+  when: kubelet_conf.stat.exists and reset
+
+- name: Join to cluster if needed
+  ansible.builtin.include_tasks: join_cluster.yml
+  when: not kubelet_conf.stat.exists or reset

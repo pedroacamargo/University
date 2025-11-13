@@ -1,0 +1,17 @@
+- name: Reset K8s component
+  become: true
+  ansible.builtin.command: "kubeadm reset --force"
+  changed_when: true
+  register: reset_cluster
+
+- name: Copy the join command to server location
+  ansible.builtin.copy:
+    src: /tmp/join-command
+    dest: /tmp/join-command.sh
+    mode: '0777'
+
+- name: Join the node to K8s cluster
+  become: true
+  when: reset_cluster is succeeded
+  ansible.builtin.command: sh /tmp/join-command.sh
+  changed_when: true

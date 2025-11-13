@@ -1,0 +1,30 @@
+---
+- name: Install Docker
+  hosts: k8s
+  roles:
+    - role: docker
+      tags: ["docker"]
+
+- name: Install Kubernetes
+  hosts: k8s
+  roles:
+    - role: k8s
+      tags: ["k8s"]
+
+- name: Init k8s cluster
+  hosts: control_planes
+  roles:
+    - role: k8s-control-plane
+      tags: ["k8s-init", "k8s-cp"]
+
+- name: Join k8s nodes
+  hosts: nodes
+  roles:
+    - role: k8s-nodes
+      tags: ["k8s-init", "k8s-nodes"]
+
+- name: Setup k8s storage
+  hosts: control_planes
+  roles:
+    - role: k8s-storage
+      tags: ["k8s-storage", "never"]

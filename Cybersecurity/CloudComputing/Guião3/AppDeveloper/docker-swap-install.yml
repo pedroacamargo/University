@@ -1,0 +1,9 @@
+- name: "Install MySQL & Swap with Docker"
+  hosts: dockerswap
+  gather_facts: false
+  roles:
+    - role: docker-mysql
+      tags: ["mysql"]
+
+    - role: docker-swap
+      tags: ["swap"]

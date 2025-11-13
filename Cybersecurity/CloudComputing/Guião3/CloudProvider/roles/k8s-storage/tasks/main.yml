@@ -1,0 +1,30 @@
+- name: Delete old PVs if reset is true
+  ansible.builtin.include_tasks:
+    file: cleanup.yml
+  when: reset
+
+- name: Create a K8s Storage class
+  kubernetes.core.k8s:
+    definition: "{{ lookup('template', 'k8s-sc.yml') }}"
+
+- name: Create a folder for PVs on each node of inventory
+  become: true
+  ansible.builtin.file:
+    path: "{{ pv_path }}"
+    state: directory
+    mode: "0755"
+  loop: "{{ groups['nodes'] }}"
+  loop_control:
+    loop_var: node_name
+  delegate_to: "{{ node_name }}"
+  ignore_unreachable: true
+
+- name: Create a K8s Persistent Volume
+  kubernetes.core.k8s:
+    definition: "{{ lookup('template', 'k8s-node-pv.yml') }}"
+  loop: "{{ groups['nodes'] }}"
+  loop_control:
+    loop_var: node_name
+    index_var: item
+  vars:
+    pv_name: "pv-{{ item | int + 1 }}"

@@ -1,0 +1,183 @@
+- name: Disable systemd-timesyncd.service
+  become: true
+  ansible.builtin.systemd:
+    name: systemd-timesyncd.service
+    enabled: false
+    state: stopped
+  ignore_errors: true
+
+- name: Block to disable Swap permanently
+  become: true
+  block:
+    - name: Disable swap
+      ansible.builtin.command: swapoff -a
+      when: ansible_swaptotal_mb > 0
+      changed_when: true
+
+    - name: Remove swapfile from /etc/fstab
+      ansible.posix.mount:
+        name: "{{ item }}"
+        fstype: swap
+        state: absent
+      with_items:
+        - swap
+        - none
+  rescue:
+    - name: Log a failure message if the block fails
+      ansible.builtin.fail:
+        msg: "Failed to disable swap."
+
+- name: Disable and stop UFW
+  become: true
+  ansible.builtin.systemd:
+    name: ufw
+    enabled: false
+    state: stopped
+
+- name: Enable Kernel modules and configure sysctl
+  become: true
+  block:
+    - name: Load Kernel modules
+      ansible.builtin.modprobe:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - br_netfilter
+        - overlay
+
+    - name: Add kernel settings to /etc/sysctl.d/kubernetes.conf
+      ansible.builtin.copy:
+        dest: /etc/sysctl.d/kubernetes.conf
+        content: |
+          net.bridge.bridge-nf-call-ip6tables = 1
+          net.bridge.bridge-nf-call-iptables  = 1
+          net.ipv4.ip_forward                 = 1
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Apply the new kernel settings
+      ansible.builtin.command: sysctl --system
+      changed_when: true
+  rescue:
+    - name: Log a failure message if the block fails
+      ansible.builtin.fail:
+        msg: "Failed to enable Kernel modules and configure sysctl."
+
+- name: Block to configure systemd cgroup driver for Containerd
+  become: true
+  block:
+    - name: Generate default containerd configuration if config file doesn't exist
+      ansible.builtin.command:
+        cmd: "containerd config default"
+      register: containerd_config_default
+      changed_when: false
+
+    - name: Write default config to /etc/containerd/config.toml if not present if previous command succeeded
+      ansible.builtin.copy:
+        content: "{{ containerd_config_default.stdout }}"
+        dest: /etc/containerd/config.toml
+        mode: '0644'
+      when: containerd_config_default.stdout != ""
+
+    - name: Ensure cgroup driver is set to systemd in containerd config
+      ansible.builtin.replace:
+        path: /etc/containerd/config.toml
+        regexp: '^(\s*)SystemdCgroup\s*=\s*false'
+        replace: '\1SystemdCgroup = true'
+        backup: true
+
+    - name: Restart containerd to apply changes
+      ansible.builtin.systemd:
+        name: containerd
+        state: restarted
+  rescue:
+    - name: Log a failure message if the block fails
+      ansible.builtin.fail:
+        msg: "Failed to configure systemd cgroup driver for Containerd."
+
+- name: Ensure Kubernetes hosts are present in /etc/hosts
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    line: "{{ item.ansible_host }} {{ item.inventory_hostname }}"
+    state: present
+  loop: "{{ groups['k8s'] | map('extract', hostvars) | list }}"
+
+- name: Block to install necessary packages and setup the Kubernetes APT repository
+  become: true
+  block:
+    - name: Install packages needed to use the Kubernetes apt repository
+      ansible.builtin.apt:
+        name: "{{ k8s_dependencies_packages }}"
+        state: present
+        update_cache: true
+
+    - name: Download Kubernetes APT Release key
+      ansible.builtin.get_url:
+        url: "{{ k8s_repo_url }}/Release.key"
+        dest: /tmp/Release.key
+        mode: '0644'
+
+    - name: Create directory for apt keyrings
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+    - name: Convert the key to GPG format and move it to the keyring directory
+      ansible.builtin.command:
+        cmd: "gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/Release.key"
+        creates: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+    - name: Clean up temporary key file
+      ansible.builtin.file:
+        path: /tmp/Release.key
+        state: absent
+
+    - name: Add Kubernetes apt repository
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] {{ k8s_repo_url }}/ /"
+        filename: kubernetes
+        state: present
+  rescue:
+    - name: Log error if Kubernetes repository setup fails
+      ansible.builtin.fail:
+        msg: "Failed to set up the Kubernetes APT repository."
+
+- name: Block to install Kubernetes packages and reload kubelet
+  become: true
+  block:
+    - name: Install Kubernetes packages
+      ansible.builtin.apt:
+        name: "{{ k8s_packages }}"
+        state: present
+        update_cache: true
+
+    - name: Ensure /etc/default/kubelet exists
+      ansible.builtin.file:
+        path: /etc/default/kubelet
+        state: touch
+        mode: '0644'
+
+    - name: Configure node ip
+      ansible.builtin.lineinfile:
+        path: /etc/default/kubelet
+        line: KUBELET_EXTRA_ARGS=--node-ip={{ ansible_host }}
+        state: present
+
+    - name: Restart kubelet daemon
+      ansible.builtin.systemd:
+        name: kubelet
+        daemon_reload: true
+        enabled: true
+  rescue:
+    - name: Log error if Kubernetes package installation fails
+      ansible.builtin.fail:
+        msg: "Failed to install Kubernetes packages or reload kubelet."
+
+- name: Install python3 packages for Kubernetes
+  become: true
+  ansible.builtin.apt:
+    name: "{{ k8s_python_packages }}"
+    state: present

@@ -1,0 +1,34 @@
+- name: Check if kubeadm has already run
+  become: true
+  ansible.builtin.stat:
+    path: "/etc/kubernetes/pki/ca.key"
+  register: kubeadm_ca
+
+- name: Init cluster if needed
+  ansible.builtin.include_tasks: init_cluster.yml
+  when: not kubeadm_ca.stat.exists or reset
+  run_once: true
+
+- name: Enable and check kubelet service
+  become: true
+  ansible.builtin.systemd:
+    name: kubelet
+    daemon_reload: true
+    state: started
+    enabled: true
+  register: started_kubelet
+
+- name: Generate join command
+  become: true
+  ansible.builtin.command: kubeadm token create --print-join-command
+  changed_when: true
+  register: join_command
+
+- name: Copy join command to local file
+  ansible.builtin.copy:
+    content: "{{ join_command.stdout_lines[0] }}"
+    owner: "{{ ansible_user | default(ansible_user_id) }}"
+    group: "{{ ansible_user | default(ansible_user_id) }}"
+    mode: "0644"
+    dest: "/tmp/join-command"
+  delegate_to: localhost

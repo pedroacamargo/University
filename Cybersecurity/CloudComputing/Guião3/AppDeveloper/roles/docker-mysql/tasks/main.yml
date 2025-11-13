@@ -1,0 +1,67 @@
+# Create a Docker network
+- name: Create a Docker network
+  community.docker.docker_network:
+    name: "{{ db_network }}"
+    state: present
+
+# Get Docker image
+- name: Check if the image exists locally
+  community.docker.docker_image_info:
+    name: "{{ db_image }}"
+  register: result
+
+# if the image does not exist locally, pull it
+- name: Pull the image if it does not exist locally
+  community.docker.docker_image:
+    name: "{{ db_image }}"
+    source: pull
+  when: result.images | length == 0
+
+# Start the MySQL container
+- name: Run MySQL container
+  community.docker.docker_container:
+    name: "{{ db_host }}"
+    image: "{{ db_image }}"
+    state: started
+    ports:
+      - "3306:3306"
+    env:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_DATABASE: "{{ db_name }}"
+      MYSQL_USER: "{{ db_username }}"
+      MYSQL_PASSWORD: "{{ db_password }}"
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - name: "{{ db_network }}"
+    detach: true
+
+# Check if the container is running
+- name: Check if the container is running
+  ansible.builtin.shell:
+    cmd: docker ps | grep "{{ db_host }}"
+  register: result
+  changed_when: false
+  ignore_errors: true
+
+# Fail the playbook if the container is not running
+- name: Fail if the container is not running
+  ansible.builtin.fail:
+    msg: "Container {{ db_host }} is not running"
+  when: result.rc != 0
+
+# Check if the database is accessible
+# Retry the task up to 5 times with a delay of 10 seconds between retries
+- name: Check if the database is accessible
+  ansible.builtin.shell: docker exec {{ db_host }} mysql -u{{ db_username }} -p{{ db_password }} -e "SHOW DATABASES;"
+  register: result
+  retries: 5
+  delay: 10
+  until: result.rc == 0
+  changed_when: false
+
+# Fail the playbook if the database is not accessible
+- name: Fail if the database is not accessible
+  ansible.builtin.fail:
+    msg: "Database {{ db_name }} is not accessible. Output: {{ result.stdout }}"
+  when: result.rc != 0

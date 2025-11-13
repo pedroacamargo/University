@@ -1,0 +1,11 @@
+# Variable with the IP address of the first control plane node
+control_plane_ip: "{{ hostvars[groups['control_planes'][0]]['ansible_host'] }}"
+
+# Variable with the subnet / range of IP addresses for the flannel network overlay
+pod_network_cidr: 10.244.0.0/16
+
+# Variable indicating whether to reset the k8s cluster or not
+reset: false
+
+# Variable with the name of the network interface to use for the flannel network overlay
+m_iface: eth1

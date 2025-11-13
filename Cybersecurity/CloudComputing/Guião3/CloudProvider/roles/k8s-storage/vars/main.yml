@@ -1,0 +1,5 @@
+# Variable that defines the storage class name
+sc_name: local-storage
+
+# Variable that defines the path for the PVs
+pv_path: /mnt/data

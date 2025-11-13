@@ -1,0 +1,39 @@
+- name: Create a PVC for MySQL
+  kubernetes.core.k8s:
+    definition: "{{ lookup('template', 'mysql-pvc.yml') | from_yaml }}"
+    state: present
+    wait: true
+
+- name: Create a Deployment for MySQL
+  kubernetes.core.k8s:
+    definition: "{{ lookup('template', 'mysql-deployment.yml') | from_yaml }}"
+    state: present
+    wait: true
+    wait_timeout: 180
+
+- name: Create a service for exposing MySQL
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('template', 'mysql-service.yml') | from_yaml }}"
+    wait: true
+
+- name: Wait till MySQL pod is created
+  kubernetes.core.k8s_info:
+    kind: Pod
+    namespace: default
+    label_selectors:
+      - app=mysql
+    wait: true
+    wait_sleep: 5
+    wait_timeout: 180
+  register: mysql_pod_info
+
+- name: Wait until MySQL is ready to accept connections
+  kubernetes.core.k8s_exec:
+    namespace: default
+    pod: "{{ mysql_pod_info.resources[0].metadata.name }}"
+    command: mysql -u{{ db_username }} -p{{ db_password }} -e "SHOW DATABASES;"
+  register: mysql_login
+  retries: 3
+  delay: 10
+  until: mysql_login.rc == 0

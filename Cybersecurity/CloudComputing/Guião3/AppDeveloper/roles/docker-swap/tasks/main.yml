@@ -1,0 +1,41 @@
+- name: Create a build directory
+  ansible.builtin.file:
+    path: "{{ docker_build_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Copy Dockerfile to the build directory
+  ansible.builtin.copy:
+    src: Dockerfile
+    dest: "{{ docker_build_dir }}"
+    mode: "0644"
+
+- name: Copy script to the build directory
+  ansible.builtin.copy:
+    src: script.sh
+    dest: "{{ docker_build_dir }}"
+    mode: "0755"
+
+- name: Build image from Dockerfile
+  community.docker.docker_image:
+    name: "{{ swap_image }}"
+    build:
+      path: "{{ docker_build_dir }}"
+    source: build
+
+- name: Run SWAP container
+  community.docker.docker_container:
+    name: "{{ swap_container }}"
+    image: "{{ swap_image }}"
+    state: started
+    ports:
+      - "8000:8000"
+    env:
+      DB_HOST: "{{ db_host }}"
+      DB_DATABASE: "{{ db_name }}"
+      DB_USERNAME: "{{ db_username }}"
+      DB_PASSWORD: "{{ db_password }}"
+      SEED: "true"
+    networks:
+      - name: "{{ db_network }}"
+    detach: true

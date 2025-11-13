@@ -1,0 +1,7 @@
+# Database configurations
+db_network: dnet
+db_host: swap-db
+db_image: mysql:latest
+db_name: swap
+db_username: swap_user
+db_password: swap_secret

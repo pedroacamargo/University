@@ -1,0 +1,18 @@
+k8s_dependencies_packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg
+  - socat
+
+k8s_version: 1.31
+k8s_repo_url: "https://pkgs.k8s.io/core:/stable:/v{{ k8s_version }}/deb"
+k8s_packages:
+  - "kubelet={{ k8s_version }}.*"
+  - "kubeadm={{ k8s_version }}.*"
+  - "kubectl={{ k8s_version }}.*"
+
+k8s_python_packages:
+  - python3-openshift
+  - python3-yaml
+  - python3-kubernetes

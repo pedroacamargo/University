@@ -1,0 +1,43 @@
+- name: Reset Kubernetes component
+  become: true
+  ansible.builtin.command: "kubeadm reset --force"
+  register: reset_cluster
+  changed_when: true
+
+- name: Init Kubernetes cluster
+  become: true
+  when: reset_cluster is succeeded
+  ansible.builtin.command: |
+    kubeadm init --apiserver-advertise-address={{ control_plane_ip }} \
+                 --pod-network-cidr={{ pod_network_cidr }}
+  register: init_cluster
+  changed_when: true
+
+- name: Create Kubernetes config directory
+  ansible.builtin.file:
+    path: ".kube/"
+    state: directory
+    owner: "{{ ansible_user | default(ansible_user_id) }}"
+    group: "{{ ansible_user | default(ansible_user_id) }}"
+    mode: "0755"
+
+- name: Copy admin.conf to Home directory
+  become: true
+  when: init_cluster is succeeded
+  ansible.builtin.copy:
+    src: "/etc/kubernetes/admin.conf"
+    dest: ".kube/config"
+    owner: "{{ ansible_user | default(ansible_user_id) }}"
+    group: "{{ ansible_user | default(ansible_user_id) }}"
+    mode: "0644"
+    remote_src: true
+
+- name: Copy flannel config from template
+  ansible.builtin.template:
+    src: kube-flannel.yml.j2
+    dest: /tmp/kube-flannel.yml
+    mode: '0644'
+
+- name: Apply flannel pod network
+  ansible.builtin.command: kubectl apply -f /tmp/kube-flannel.yml
+  changed_when: true

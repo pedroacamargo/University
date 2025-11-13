@@ -1,0 +1,3 @@
+docker_build_dir: /tmp/swap
+swap_image: swap:latest
+swap_container: swap

@@ -1,0 +1,8 @@
+- name: "Install MySQL & Swap with Kubernetes"
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - role: k8s-mysql
+      tags: ["mysql"]
+    - role: k8s-swap
+      tags: ["swap"]
