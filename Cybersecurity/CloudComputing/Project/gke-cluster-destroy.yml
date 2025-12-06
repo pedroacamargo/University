@@ -1,0 +1,7 @@
+# DO NOT CHANGE!
+---
+- name: Destroy GKE cluster
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - gke_cluster_destroy

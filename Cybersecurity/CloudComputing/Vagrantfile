@@ -44,9 +44,9 @@ Vagrant.configure("2") do |config|
   config.vm.provider :libvirt do |lv|
     lv.memory = 1024
     lv.cpus = 2
-    lv.management_network_name = "vagrant-libvirt"
-    lv.management_network_mode = "nat"
-    lv.management_network_autostart = true
+    # lv.management_network_name = "vagrant-libvirt"
+    # lv.management_network_mode = "nat"
+    # lv.management_network_autostart = true
     # lv.management_network_keep = false
   end
   config.vm.provision :shell, privileged: true, inline: $provision_all
@@ -54,12 +54,15 @@ Vagrant.configure("2") do |config|
   (1..Number_Nodes).each do |i|
     config.vm.define "node#{i}" do |node|
       node.vm.hostname = "node#{i}"
-      node.ssh.host = "#{NODES_IP_RANGE}.#{100+i}"
+      # node.ssh.host = "#{NODES_IP_RANGE}.#{100+i}"
       node.vm.network :private_network,
-        ip: "#{NODES_IP_RANGE}.#{100+i}",
-        libvirt__network_name: "vagrant-libvirt",
-        libvirt__dhcp_enabled: false,
-        libvirt__forward_mode: "none"
+        :ip => "#{NODES_IP_RANGE}.#{100+i}"
+        # libvirt__network_name: "vagrant-libvirt",
+        # libvirt__dhcp_enabled: false,
+        # libvirt__forward_mode: "none"
+      node.vm.provider :libvirt do |lv|
+        lv.memory = 3000
+      end
     end
   end
 
@@ -67,8 +70,8 @@ Vagrant.configure("2") do |config|
   # Myvm configuration
   config.vm.define :myvm do |mv|
     mv.vm.hostname = "myvm"
-    mv.ssh.host = MY_VM_IP
-    mv.vm.network :private_network, ip: MY_VM_IP
+    # mv.ssh.host = MY_VM_IP
+    mv.vm.network :private_network, :ip => MY_VM_IP
     mv.vm.provision :file, source: PRIVATE_KEY_PATH, destination: "~/.ssh/"
     mv.vm.provision :shell, inline: $provision_myvm
   end
@@ -76,18 +79,21 @@ Vagrant.configure("2") do |config|
   # Control Plane VM configuration
   config.vm.define :controlplane do |cp|
     cp.vm.hostname = "controlPlane"
-    cp.ssh.host = CONTROL_PLANE_IP
+    # cp.ssh.host = CONTROL_PLANE_IP
     cp.vm.provider :libvirt do |v|
       v.memory = 2048
     end
-    cp.vm.network :private_network, ip: CONTROL_PLANE_IP
+    cp.vm.network :private_network, :ip => CONTROL_PLANE_IP
   end
 
   # Monitor VM configuration
   config.vm.define :monitor do |monitor|
     monitor.vm.hostname = "monitor"
-    monitor.ssh.host = MONITOR_VM_IP
-    monitor.vm.network :private_network, ip: MONITOR_VM_IP
+    # monitor.ssh.host = MONITOR_VM_IP
+    monitor.vm.provider :libvirt do |v|
+      v.memory = 2048
+    end
+    monitor.vm.network :private_network, :ip => MONITOR_VM_IP
   end
 
 end
@@ -98,6 +104,7 @@ $provision_all = <<-SHELL
   echo "#{READ_PUBLIC_KEY}" >> /home/vagrant/.ssh/authorized_keys
   sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
   sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+  rm /etc/ssh/sshd_config.d/*
   systemctl restart ssh.service
   apt update -y
 SHELL
@@ -107,5 +114,8 @@ $provision_myvm = <<-SHELL
   apt upgrade
   apt -y install software-properties-common
   apt-add-repository -y ppa:ansible/ansible
-  apt install ansible -y
+
+  apt remove ansible -y
+  apt install python3-pip -y
+  pip install ansible==9.2.0 ansible-core==2.16.3 --break-system-packages
 SHELL

@@ -1,0 +1,68 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+
+#Variables
+PUBLIC_KEY_PATH = "~/.ssh/id_rsa.pub" #Change me if needed!
+PRIVATE_KEY_PATH = "~/.ssh/id_rsa"  #Change me if needed!
+READ_PUBLIC_KEY = File.read(File.expand_path(PUBLIC_KEY_PATH)).strip
+
+# TP VM
+TP_VM_IP  = "192.168.56.50"   #Change me if needed!
+
+Vagrant.configure("2") do |config|
+
+  # Global configurations
+  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.box_version = "202508.03.0"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 1024
+    vb.cpus = 2
+  end
+
+  # TP VM configurations
+  config.vm.define :tpvm do |tp|
+    tp.vm.hostname = "tpvm"
+    tp.vm.network :private_network, ip: TP_VM_IP
+    tp.vm.provision :shell, privileged: true, inline: $provision
+    tp.vm.provision :file, source: "./checkpoint.sh", destination: "~/checkpoint.sh"
+    tp.vm.provision :file, source: "../../codebase", destination: "~/codebase"
+  end
+
+end
+
+# Provisioning script
+$provision = <<-SHELL
+  echo "[Task 1] Configure SSH Public Key authentication"
+  echo "#{READ_PUBLIC_KEY}" >> /home/vagrant/.ssh/authorized_keys
+  sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/g' /etc/ssh/sshd_config
+  sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+  rm /etc/ssh/sshd_config.d/*
+  systemctl restart ssh.service
+
+  echo "[Task 2] Update Package List"
+  apt update -y
+
+  echo "[Task 3] Install Curl"
+  apt install -y curl
+
+  echo "[Task 4] Install Ansible"
+  apt update
+  apt install -y ansible
+
+  echo "[Task 5] Install Python and create a Virtual Env"
+  apt install python3-pip -y
+  apt install python3.12-venv -y
+  python3 -m venv /home/vagrant/.checkpoints
+  chown -R vagrant:vagrant /home/vagrant/.checkpoints
+  echo "source /home/vagrant/.checkpoints/bin/activate" >> /home/vagrant/.bashrc
+
+  echo "[Task 6] Install Python Kubernetes package"
+  apt install python3-kubernetes -y
+  source /home/vagrant/.checkpoints/bin/activate && pip install kubernetes
+
+SHELL

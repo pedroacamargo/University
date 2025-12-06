@@ -4,6 +4,7 @@ k8s_dependencies_packages:
   - curl
   - gnupg
   - socat
+  - conntrack
 
 k8s_version: 1.31
 k8s_repo_url: "https://pkgs.k8s.io/core:/stable:/v{{ k8s_version }}/deb"

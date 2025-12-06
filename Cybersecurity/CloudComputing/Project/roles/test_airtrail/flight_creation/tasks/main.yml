@@ -1,0 +1,66 @@
+---
+- name: Refresh inventory
+  ansible.builtin.meta: refresh_inventory
+
+- name: Task 0 - Check access to App (HTTP GET should return 200)
+  ansible.builtin.uri:
+    url: "http://{{ app_ip }}:{{ app_port }}/"
+    method: GET
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 6
+  delay: 30
+  tags: ["test_dgc_access"]
+
+- name: Task 1 - Add new flight
+  ansible.builtin.uri:
+    url: "http://{{ app_ip }}:{{ app_port }}/api/flight/save"
+    method: POST
+    headers:
+      Authorization: "Bearer {{ app_admin_api_key }}"
+      Content-Type: "application/json"
+    body:
+      from: "KJFK"
+      to: "EGLL"
+      departure: "2022-01-01"
+      seats:
+        - userId: "<USER_ID>"
+    body_format: json
+    status_code: 200
+    return_content: true
+  register: save_flight_response
+
+- name: Show API response
+  ansible.builtin.debug:
+    var: save_flight_response
+
+- name: Save flight ID in a variable
+  ansible.builtin.set_fact:
+    flight_id: "{{ save_flight_response.json.id }}"
+
+- name: Show flight ID
+  ansible.builtin.debug:
+    var: flight_id
+
+- name: Update flight_id in inventory
+  ansible.builtin.lineinfile:
+    path: inventory/gcp.yml
+    regexp: '^(\s*)app_admin_flight_id:.*$'
+    line: '\1app_admin_flight_id: "{{ flight_id }}"'
+    backrefs: true
+
+- name: Task 2 - Get flight information by ID
+  ansible.builtin.uri:
+    url: "http://{{ app_ip }}:{{ app_port }}/api/flight/get/{{ flight_id }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ app_admin_api_key }}"
+      Accept: "application/json"
+    return_content: true
+    status_code: 200
+  register: get_flight_response
+
+- name: Show flight information
+  ansible.builtin.debug:
+    var: get_flight_response

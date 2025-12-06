@@ -1,0 +1,293 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc} % define o encoding usado texto fonte (input)--usual "utf8" ou "latin1
+\usepackage{graphicx} %permite incluir graficos, tabelas, figuras
+\usepackage{subcaption}
+\usepackage[title]{appendix}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{multicol}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=black,
+    }
+    
+    
+    
+\usepackage{bera}% optional: just to have a nice mono-spaced font
+
+\definecolor{eclipseStrings}{RGB}{42,0.0,255}
+\definecolor{eclipseKeywords}{RGB}{127,0,85}
+    
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+
+
+
+
+\title{Segurança de Sistemas de Computação \\}
+
+\author{Carlos Daniel Silva Fernandes \\ (PG59783) 
+       \and Pedro Augusto Ennes de Martino Camargo \\ (PG59791)
+       \and Luís Filipe Pinheiro Silva \\ (PG59790)
+}
+
+\date{\today} % Data
+
+\begin{document}
+
+\raggedbottom % Evita espaçamentos forçados para preencher a página
+
+\begin{minipage}{0.9\linewidth}
+    \centering
+    \includegraphics[width=0.4\textwidth]{uniMinho.png}\par
+    \vspace{0.6 cm} % Reduz espaço vertical
+    \href{https://www.uminho.pt/PT}
+    {\scshape\LARGE Universidade do Minho} \par
+    \vspace{1cm} % Reduz espaço vertical
+    \href{https://www.eng.uminho.pt/pt/Estudar/_layouts/15/UMinho.PortaisUOEI.UI/Pages/CatalogoCursoDetail.aspx?itemId=5692&catId=16}
+    {\scshape\Large Mestrado em Cibersegurança} \par
+    \vspace{0.2cm} % Reduz espaço vertical
+
+    \vspace{-0.5cm} % Reduz espaço antes do título
+    \maketitle
+    \vspace{-1cm} % Reduz espaço depois do título
+
+   
+\end{minipage}
+
+\vspace{-0.5cm} % Reduz espaço antes do índice
+\renewcommand{\baselinestretch}{0.9}\normalsize % Compacta o espaçamento entre linhas
+
+\tableofcontents
+
+\pagebreak
+
+
+	\chapter{Buffer Overflow Exploitation}
+
+        \section{Invoking the Shell Code}
+
+        Os binários gerados pela \texttt{Makefile} são para duas arquiteturas diferentes: 32 bits e 64 bits.  
+        Dependendo da arquitetura do sistema operativo, somente um binário irá funcionar. Como na VM do SEED existem bibliotecas que permitem a execução de programas 32 bits, nenhuma falha acontece.
+
+        O \textit{shellcode} difere entre as duas arquiteturas; portanto, um atacante deve considerar esse facto ao criar \textit{shellcodes}.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/InvokingShellCode.png}
+            \caption{Shellcode invocado.}
+        \end{figure}        
+
+        \newpage
+        
+        \section{Task 3: Launching Attack on 32-bit Program (Level 1)}
+
+        Primeiramente, ao colocarmos um \textit{breakpoint} dentro da função bof(...) entramos no \textit{stack frame} da função, ou seja, o registo \%ebp apontará para o topo desse \textit{stack frame}. Com essa informação, podemos calcular a distância que o \textit{buffer} deverá ser preenchido, pois sabemos que esse \textit{stack frame} possui apenas uma variável (\texttt{buffer}).
+
+        Dentro do \texttt{gdb}, podemos prever essa distância de escrita no \textit{buffer} ao ler o valor do registo \%ebp e o endereço de \texttt{\&buffer}. Portanto, a escrita necessária no \textit{buffer} será de \texttt{108 + 4} bytes, pois antes do \textit{return address} existe ainda o endereço do \textit{frame pointer} da função anterior.
+
+        \begin{figure}[h!]
+            \centering
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{imgs/StackFrame.png}
+                \caption{Estrutura do Stack Frame}
+            \end{minipage}
+            \hfill
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{imgs/MathDistance.png}
+                \caption{Cálculo da distância de escrita pelo gdb}
+            \end{minipage}
+        \end{figure}
+
+
+        Com 103 `\texttt{a}' na \texttt{badfile} obtemos o seguinte \textit{stack frame}.  
+        Na figura podemos observar o endereço do registrador \texttt{\%ebp} e, logo a seguir, um \textit{return address} \texttt{0xffffcf53} — este é o endereço que iremos explorar.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/StackFrameExplanation1.png}
+            \caption{Stack Frame com 103 'a's}
+        \end{figure}  
+
+
+        \begin{itemize}
+            \item Como o binário desta \textit{task} foi compilado para \textbf{32 bits}, o \textit{shellcode} deverá ser de arquitetura \textbf{x86 (32-bit)}.
+            \item Para aumentar a margem de erro, o \textit{shellcode} foi colocado no fim do \textit{payload}, e o restante do \textit{payload} foi preenchido com \texttt{0x90} (NOP sled).
+            \item A protecção que randomiza endereços (ASLR) foi desativada para esta execução, pelo que o endereço de retorno do \textit{stack frame} pode ser \emph{hardcoded} para apontar para um endereço dentro do \textit{payload} previamente identificado pelo \texttt{gdb}.
+        \end{itemize}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/RootShellTask1.png}
+            \caption{Root shell obtida na Task 1}
+        \end{figure}  
+
+        \section{Task 4: Launching Attack without Knowing Buffer Size (Level 2)}
+
+        \subsection{Cálculo do Offset até ao \texttt{\%ebp}}
+
+        \begin{enumerate}
+            \item Para fins de \textit{debug}, preenchemos a \texttt{badfile} com vários caracteres \texttt{'a'}.
+            
+            \item No \texttt{gdb}, é possível inspecionar o \textit{stack frame} a partir do registo \texttt{\%ebp}, que aponta para a base do \textit{stack frame} da função \texttt{bof()}.
+            
+            \item Como o código ASCII do caractere \texttt{'a'} é \texttt{0x61}, procuramos por várias ocorrências de \texttt{0x61} na memória para localizar a região onde o \textit{buffer} é armazenado.
+            
+            \item Inicialmente utilizamos um \textit{offset} de 200 bytes e, após localizar os \texttt{0x61} em memória, refinamos o valor por tentativa e erro até descobrir que a distância entre o início do \textit{buffer} e o registo \texttt{\%ebp} é de \textbf{168 bytes}.
+        \end{enumerate}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/badfile.png}
+            \caption{Badfile com 'a's}
+        \end{figure}  
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/StackFrameExplanation2.png}
+            \caption{Stack Frame e \%ebp}
+        \end{figure} 
+
+        Com essa informação, basta alterarmos novamente o script em \texttt{Python} para utilizar um \textit{offset} de \texttt{168 + 4} bytes (sendo \texttt{4} o \textit{previous frame pointer}).  
+        Com isso, o \textit{shellcode} é executado corretamente.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/RootShellTask2.png}
+            \caption{Root shell obtida na Task 2}
+        \end{figure} 
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/codigoPython.png}
+            \caption{Offset utilizado para o exploit}
+        \end{figure} 
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/StackFrame2.png}
+            \caption{Stack Frame e \%ebp}
+        \end{figure} 
+
+
+
+
+        \section{Task 5: Launching Attack on 64-bit Program (Level 3)}
+
+        Da mesma forma que descobrimos o tamanho do buffer no \textit{Level 2}, descobrimos que o \textit{offset} deve ser 216, para alterarmos o \textit{return address}.
+
+        Para os programas \texttt{x64}, tivemos que arrumar uma estratégia para evitar escrever zeros no buffer, por causa do \texttt{strcpy}, que para no primeiro \texttt{0} que encontrar. Como a arquitetura é \textit{little endian}, nós conseguimos escrever o \textit{return address}, pois os zeros são adicionados no \textit{return address} automaticamente, no fim dos 8 bytes de memória.
+
+        Como não podemos escrever além do \textit{return address}, temos que apontar para o que foi escrito anteriormente no buffer, e colocar o \textit{shellcode} dentro do buffer. Além disso, como o \textit{shellcode} cabe dentro do buffer, podemos escrevê-lo dentro do próprio buffer. Depois basta acharmos o \textit{return address} correto do programa \texttt{./stack-L3} e temos acesso ao \texttt{bash} criado pelo \textit{overflow}.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/RootShellTask3.png}
+            \caption{Root shell obtida na Task 3}
+        \end{figure} 
+
+
+        \section{Task 7: Defeating dash’s Countermeasure}
+
+        Basicamente, a forma de ultrapassarmos essa medida de proteção do sistema é, junto do \textit{shellcode}, adicionarmos no começo a função \texttt{setuid(0)}, que irá transformar o programa em um programa \textit{setuid} (somente se ele tiver o bit \textit{setuid} ativo ou se o programa for executado como \textit{root}).
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/RootShellDash.png}
+            \caption{Root shell com Dash Countermeasure Exemplo}
+        \end{figure} 
+
+
+        Aqui está o ataque em x32 mesmo com a countermeasure ligada, acessando a root shell.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/RootShellDash2.png}
+            \caption{Root shell com Dash Countermeasure - x32}
+        \end{figure} 
+
+
+        \section{Task 8: Defeating Address Randomization}
+
+        Com o \textit{address randomization}, o nosso ataque deixa de funcionar, pois como os endereços mudam, o nosso \textit{payload} passa a apontar para um endereço fora da memória do programa, resultando em um \textit{Segmentation Fault}. Isso acontece porque, com a \textit{countermeasure} de \textit{address randomization}, o endereço de memória muda a cada chamada do binário. Para atacarmos, teríamos que contar com muita sorte ou simplesmente utilizar uma estratégia de \textit{brute-force}.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/AddressRandomization.png}
+            \caption{Segmentation Fault com Address Randomization}
+        \end{figure}
+
+        Com o script de \textit{brute force}, conseguimos atacar o programa em apenas 11 segundos, com somente 20\,124 tentativas. Portanto, já conseguimos contornar duas \textit{countermeasures} do sistema.
+
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/AddressRandomization2.png}
+            \caption{Root shell com Address Randomization}
+        \end{figure}
+
+        
+        \section{Tasks 9: Experimenting with Other Countermeasures}
+
+        \subsection{Task 9.a: Turn on the StackGuard Protection}
+
+        Com o StackGuard ativo, o programa detecta que houve uma tentativa de \textit{buffer overflow} e termina a execução do programa, impedindo que o atacante consiga explorar a vulnerabilidade. Existe um "Stack smashing detected" que indica que o \textit{canary} foi alterado, ou seja, o \textit{buffer overflow} foi detectado.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/StackSmashingDetected.png}
+            \caption{Stack Smashing Detected com StackGuard ativo}
+        \end{figure}
+
+        É possível contornar essa proteção se o atacante conseguir descobrir o valor do \textit{canary} antes de sobrescrevê-lo. Dessa forma, o atacante pode incluir o valor correto do \textit{canary} no \textit{payload}, evitando que a proteção seja acionada. Além disso, é preciso contornar o NULL byte que é sempre adicionado no primeiro byte do canary, o que significa que o overflow da string irá parar nesse byte.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/StackSmashingDetected2.png}
+            \caption{Assembly com StackGuard ativo}
+        \end{figure}
+
+        Na figura acima (1.17) podemos observar a instrução que compara o valor do \textit{canary} no final da função com o valor original. Se os valores forem diferentes, o programa chama a função \texttt{\_\_stack\_chk\_fail}, que termina a execução do programa com a mensagem \textit{``Stack Smashing Detected''}.
+
+
+        \subsection{Task 9.b: Turn on the Non-executable Stack Protection}
+
+        Ao compilarmos o shellcode.c sem a flag -z execstack, a stack torna-se não-executável. Dessa forma, quando tentamos executar o shellcode que foi injetado na stack, o kernel impede a execução e termina o programa com um erro de \textit{segmentation fault}.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{imgs/ExecutableStack.png}
+            \caption{Segmentation Fault com Non-executable Stack ativo}
+        \end{figure}
+        
+\end{document}

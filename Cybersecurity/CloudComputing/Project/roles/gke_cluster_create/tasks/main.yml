@@ -1,0 +1,45 @@
+---
+- name: Create Google Kubernetes Engine Cluster
+  gcp_container_cluster:
+    name: ascn-cluster
+    initial_node_count: "{{ gcp_initial_node_count }}"
+    node_config:
+      machine_type: "{{ gcp_machine_type }}"
+      disk_size_gb: "{{ gcp_disk_size_gb }}"
+      image_type: "{{ gcp_image_type }}"
+    location: "{{ gcp_zone }}"
+    project: "{{ gcp_project }}"
+    auth_kind: "{{ gcp_auth_kind }}"
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
+  register: cluster
+  until: "cluster is not failed"
+  delay: 60
+  retries: 3
+
+- name: Verify that the cluster was created
+  ansible.builtin.shell: gcloud container clusters describe  --project="{{ gcp_project }}"  --zone="{{ gcp_zone }}"  ascn-cluster
+  register: results
+
+- name: Verify that the command succeeded
+  ansible.builtin.assert:
+    that:
+      - results.rc == 0
+
+- name: Create a node pool
+  gcp_container_node_pool:
+    name: default-pool
+    initial_node_count: "{{ gcp_initial_node_count }}"
+    cluster: "{{ cluster }}"
+    config:
+      machine_type: "{{ gcp_machine_type }}"
+      image_type: "{{ gcp_image_type }}"
+      disk_size_gb: "{{ gcp_disk_size_gb }}"
+    location: "{{ gcp_zone }}"
+    project: "{{ gcp_project }}"
+    auth_kind: "{{ gcp_auth_kind }}"
+    service_account_file: "{{ gcp_cred_file }}"
+    state: present
+
+- name: Connect to the cluster (update kubeconfig)"
+  ansible.builtin.shell: gcloud container clusters get-credentials  --project="{{ gcp_project }}"  --zone="{{ gcp_zone }}"  ascn-cluster

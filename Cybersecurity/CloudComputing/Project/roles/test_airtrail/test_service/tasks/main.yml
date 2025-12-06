@@ -1,0 +1,13 @@
+---
+- name: Refresh inventory
+  ansible.builtin.meta: refresh_inventory
+
+- name: Task 0 - Check access to App (HTTP GET should return {{ http_status_code }})
+  ansible.builtin.uri:
+    url: "http://{{ app_ip }}:{{ app_port }}/"
+    method: GET
+    status_code: "{{ http_status_code }}"
+  register: result
+  until: result.status == http_status_code
+  retries: 6
+  delay: 30

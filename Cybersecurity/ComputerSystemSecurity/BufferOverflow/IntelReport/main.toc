@@ -1,0 +1,12 @@
+\babel@toc {portuguese}{}\relax 
+\contentsline {chapter}{\numberline {1}Buffer Overflow Exploitation}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Invoking the Shell Code}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Task 3: Launching Attack on 32-bit Program (Level 1)}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Task 4: Launching Attack without Knowing Buffer Size (Level 2)}{5}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Cálculo do Offset até ao \texttt {\%ebp}}{5}{subsection.1.3.1}%
+\contentsline {section}{\numberline {1.4}Task 5: Launching Attack on 64-bit Program (Level 3)}{7}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Task 7: Defeating dash’s Countermeasure}{8}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Task 8: Defeating Address Randomization}{9}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Tasks 9: Experimenting with Other Countermeasures}{10}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Task 9.a: Turn on the StackGuard Protection}{10}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Task 9.b: Turn on the Non-executable Stack Protection}{11}{subsection.1.7.2}%

@@ -1,0 +1,75 @@
+---
+# 1a fase: test deployment and accessability to Airtrail
+- name: "[Test 1] Deploy Airtrail"
+  import_playbook: airtrail-deploy.yml
+  tags: ["test1"]
+
+- name: "[Test 1] Test access to Airtrail"
+  hosts: localhost
+  gather_facts: true
+  roles:
+    - { role: test_airtrail/test_service, http_status_code: 200 }
+  tags: ["test1"]
+
+- name: "[Test 1] Create an account"
+  hosts: localhost
+  gather_facts: true
+  roles:
+    - { role: test_airtrail/account_setup }
+  tags: ["test1"]
+
+# 2a fase - test creation of a flight
+- name: "[Test 2] - Create a new flight"
+  hosts: localhost
+  gather_facts: true
+  roles:
+    - { role: test_airtrail/flight_creation }
+  tags: ["test2"]
+
+# # # 3a fase - test undeploy and accessability to Airtrail
+- name: "[Test 3] Undeploy Airtrail (without deleting data)"
+  import_playbook: airtrail-undeploy.yml
+  tags: ["test3"]
+
+- name: "[Test 3] Test access to Airtrail (should fail)"
+  hosts: localhost
+  gather_facts: true
+  roles:
+    - { role: test_airtrail/test_service, http_status_code: -1 }
+  tags: ["test3"]
+
+# 4a fase - test deployment with previous data
+- name: "[Test 4] Deploy Airtrail (with previous data)"
+  import_playbook: airtrail-deploy.yml
+  tags: ["test4"]
+
+- name: "[Test 4] - Get flight information"
+  hosts: localhost
+  gather_facts: true
+  roles:
+    - { role: test_airtrail/flight_info, http_status_code: 200 }
+  tags: ["test4"]
+
+# 5a fase - test clean deployment
+- name: "[Test 5] Undeploy Airtrail (deleting data)"
+  import_playbook: airtrail-undeploy.yml
+  vars:
+    delete_data: "true"
+  tags: ["test5"]
+
+- name: "[Test 5] Deploy Airtrail (with a clean start)"
+  import_playbook: airtrail-deploy.yml
+  tags: ["test5"]
+
+- name: "[Test 5] - Get flight information"
+  hosts: localhost
+  gather_facts: true
+  roles:
+    - { role: test_airtrail/flight_info, http_status_code: 401 }
+  tags: ["test5"]
+
+- name: "[Test 5] - Undeploy Airtrail (deleting data)"
+  import_playbook: airtrail-undeploy.yml
+  vars:
+    delete_data: "true"
+  tags: ["test5"]

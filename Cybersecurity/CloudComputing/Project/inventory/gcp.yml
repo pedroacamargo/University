@@ -1,0 +1,29 @@
+---
+all:
+  vars:
+    # GKE cluster variables
+    gcp_project: <project_name> # ID of GCP Project
+    gcp_auth_kind: serviceaccount # Do not change
+    gcp_cred_file: <path_service_account> # Path to service account keys (json file downloaded from GCP)
+
+    gcp_zone: us-central1-a
+    gcp_image_type: ubuntu_containerd
+    gcp_machine_type: e2-small # Can be changed if necessary
+    gcp_disk_size_gb: 100 # Can be changed if necessary
+    gcp_initial_node_count: 2 # Number of nodes to create. Can be changed if necessary
+
+    # BEGIN Test variables (DO NOT CHANGE)
+    app_admin: admin
+    app_admin_password: admin1234
+    app_admin_display_name: Admin
+    app_admin_unit: metric
+    app_admin_api_key: <APP_ADMIN_API_KEY>
+    app_admin_flight_id: <APP_ADMIN_FLIGHT_ID>
+    # END Test variables (DO NOT CHANGE)
+
+    # App variables
+    app_ip: <APP_SERVICE_IP>
+    app_port: <APP_PORT>
+
+    # Additional variables
+    # ...

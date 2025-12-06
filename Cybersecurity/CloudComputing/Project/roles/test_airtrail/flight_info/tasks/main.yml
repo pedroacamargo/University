@@ -1,0 +1,29 @@
+---
+- name: Refresh inventory
+  ansible.builtin.meta: refresh_inventory
+
+- name: Task 0 - Check access to App (HTTP GET should return 200)
+  ansible.builtin.uri:
+    url: "http://{{ app_ip }}:{{ app_port }}/"
+    method: GET
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 10
+  delay: 20
+  tags: ["test_dgc_creation"]
+
+
+- name: Task 1 - Get flight information by ID
+  ansible.builtin.uri:
+    url: "http://{{ app_ip }}:{{ app_port }}/api/flight/get/{{ app_admin_flight_id }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ app_admin_api_key }}"
+    return_content: true
+    status_code: "{{ http_status_code }}"
+  register: get_flight_response
+
+- name: Show flight information
+  ansible.builtin.debug:
+    var: get_flight_response

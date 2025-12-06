@@ -25,3 +25,19 @@ info snapshots
 ```sh
 delvm <snapshot_name>
 ```
+
+----
+
+## Vagrant
+
+### List Vagrant Networks
+
+```sh
+sudo virsh net-list --all
+```
+
+### List Vagrant Running Nodes
+
+```sh
+sudo virsh net-list --all
+```

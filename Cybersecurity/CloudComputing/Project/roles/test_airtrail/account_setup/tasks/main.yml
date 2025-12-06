@@ -1,0 +1,90 @@
+---
+- name: Refresh inventory
+  ansible.builtin.meta: refresh_inventory
+
+- name: Task 0 - Check access to App (HTTP GET should return 200)
+  ansible.builtin.uri:
+    url: "http://{{ app_ip }}:{{ app_port }}/"
+    method: GET
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 10
+  delay: 20
+  tags: ["test_account_creation"]
+
+- name: Task 1 - Setup user
+  ansible.builtin.uri:
+    url: "http://{{ app_ip }}:{{ app_port }}/api/users/setup"
+    method: POST
+    headers:
+      Origin: "http://{{ app_ip }}:{{ app_port }}"
+    body_format: form-multipart
+    body:
+      username: "{{ app_admin }}"
+      password: "{{ app_admin_password }}"
+      displayName: "{{ app_admin_display_name }}"
+      unit: "{{ app_admin_unit }}"
+    status_code: 303
+    return_content: true
+  register: setup_user_response
+
+- name: Show API response
+  ansible.builtin.debug:
+    var: setup_user_response.json
+
+- name: Task 2 - Login
+  ansible.builtin.uri:
+    url: "http://{{ app_ip }}:{{ app_port }}/api/users/login"
+    method: POST
+    headers:
+      Accept: "application/json"
+      Content-Type: "application/x-www-form-urlencoded"
+      Origin: "http://{{ app_ip }}:{{ app_port }}"
+    body: "username={{ app_admin }}&password={{ app_admin_password }}"
+    body_format: raw
+    return_content: true
+    status_code: [200, 303]
+    follow_redirects: all
+  register: login_response
+
+- name: Debug login response
+  ansible.builtin.debug:
+    var: login_response
+
+- name: Extract auth_session value from login response
+  ansible.builtin.set_fact:
+    auth_session: "{{ (login_response.set_cookie | regex_findall('auth_session=([^;]+)'))[0] }}"
+
+- name: Show extracted auth_session
+  ansible.builtin.debug:
+    var: auth_session
+
+- name: Task 3 - Create API key
+  ansible.builtin.uri:
+    url: "http://{{ app_ip }}:{{ app_port }}/api/trpc/user.createApiKey?batch=1"
+    method: POST
+    headers:
+      Content-Type: "application/json"
+      Origin: "http://{{ app_ip }}:{{ app_port }}"
+      Cookie: "auth_session={{ auth_session }}"
+    body: '{"0":"[\"myapikey\"]"}'
+    body_format: raw
+    return_content: true
+    status_code: 200
+  register: create_apikey_response
+
+- name: Extract API key from response
+  ansible.builtin.set_fact:
+    api_key: "{{ create_apikey_response.json[0].result.data | regex_replace('\"', '') }}"
+
+- name: Debug API key
+  ansible.builtin.debug:
+    var: api_key
+
+- name: Update API key in inventory
+  ansible.builtin.lineinfile:
+    path: inventory/gcp.yml
+    regexp: '^(\s*)app_admin_api_key:.*$'
+    line: '\1app_admin_api_key: "{{ api_key }}"'
+    backrefs: true
