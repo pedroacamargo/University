@@ -1,0 +1,169 @@
+DEBUG:root:received {"id":4,"src":"c4","dest":"n1","body":{"type":"init","node_id":"n1","node_ids":["n1","n2","n3","n4","n5"],"msg_id":1}}
+INFO:root:initializing node n1
+DEBUG:root:sending {"dest": "c4", "src": "n1", "body": {"msg_id": 1, "in_reply_to": 1, "type": "init_ok"}}
+WARNING:root:unknown message type init
+DEBUG:root:received {"id":12,"src":"c11","dest":"n1","body":{"echo":"Please echo 61","type":"echo","msg_id":1}}
+INFO:root:echoing Please echo 61
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 2, "in_reply_to": 1, "type": "echo_ok", "echo": "Please echo 61"}}
+DEBUG:root:received {"id":16,"src":"c11","dest":"n1","body":{"echo":"Please echo 121","type":"echo","msg_id":2}}
+INFO:root:echoing Please echo 121
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 3, "in_reply_to": 2, "type": "echo_ok", "echo": "Please echo 121"}}
+DEBUG:root:received {"id":26,"src":"c11","dest":"n1","body":{"echo":"Please echo 118","type":"echo","msg_id":3}}
+INFO:root:echoing Please echo 118
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 4, "in_reply_to": 3, "type": "echo_ok", "echo": "Please echo 118"}}
+DEBUG:root:received {"id":28,"src":"c11","dest":"n1","body":{"echo":"Please echo 73","type":"echo","msg_id":4}}
+INFO:root:echoing Please echo 73
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 5, "in_reply_to": 4, "type": "echo_ok", "echo": "Please echo 73"}}
+DEBUG:root:received {"id":42,"src":"c11","dest":"n1","body":{"echo":"Please echo 53","type":"echo","msg_id":5}}
+INFO:root:echoing Please echo 53
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 6, "in_reply_to": 5, "type": "echo_ok", "echo": "Please echo 53"}}
+DEBUG:root:received {"id":44,"src":"c11","dest":"n1","body":{"echo":"Please echo 67","type":"echo","msg_id":6}}
+INFO:root:echoing Please echo 67
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 7, "in_reply_to": 6, "type": "echo_ok", "echo": "Please echo 67"}}
+DEBUG:root:received {"id":52,"src":"c11","dest":"n1","body":{"echo":"Please echo 116","type":"echo","msg_id":7}}
+INFO:root:echoing Please echo 116
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 8, "in_reply_to": 7, "type": "echo_ok", "echo": "Please echo 116"}}
+DEBUG:root:received {"id":56,"src":"c11","dest":"n1","body":{"echo":"Please echo 119","type":"echo","msg_id":8}}
+INFO:root:echoing Please echo 119
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 9, "in_reply_to": 8, "type": "echo_ok", "echo": "Please echo 119"}}
+DEBUG:root:received {"id":68,"src":"c11","dest":"n1","body":{"echo":"Please echo 0","type":"echo","msg_id":9}}
+INFO:root:echoing Please echo 0
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 10, "in_reply_to": 9, "type": "echo_ok", "echo": "Please echo 0"}}
+DEBUG:root:received {"id":80,"src":"c11","dest":"n1","body":{"echo":"Please echo 9","type":"echo","msg_id":10}}
+INFO:root:echoing Please echo 9
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 11, "in_reply_to": 10, "type": "echo_ok", "echo": "Please echo 9"}}
+DEBUG:root:received {"id":98,"src":"c11","dest":"n1","body":{"echo":"Please echo 58","type":"echo","msg_id":11}}
+INFO:root:echoing Please echo 58
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 12, "in_reply_to": 11, "type": "echo_ok", "echo": "Please echo 58"}}
+DEBUG:root:received {"id":110,"src":"c11","dest":"n1","body":{"echo":"Please echo 56","type":"echo","msg_id":12}}
+INFO:root:echoing Please echo 56
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 13, "in_reply_to": 12, "type": "echo_ok", "echo": "Please echo 56"}}
+DEBUG:root:received {"id":124,"src":"c11","dest":"n1","body":{"echo":"Please echo 124","type":"echo","msg_id":13}}
+INFO:root:echoing Please echo 124
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 14, "in_reply_to": 13, "type": "echo_ok", "echo": "Please echo 124"}}
+DEBUG:root:received {"id":132,"src":"c11","dest":"n1","body":{"echo":"Please echo 111","type":"echo","msg_id":14}}
+INFO:root:echoing Please echo 111
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 15, "in_reply_to": 14, "type": "echo_ok", "echo": "Please echo 111"}}
+DEBUG:root:received {"id":136,"src":"c11","dest":"n1","body":{"echo":"Please echo 105","type":"echo","msg_id":15}}
+INFO:root:echoing Please echo 105
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 16, "in_reply_to": 15, "type": "echo_ok", "echo": "Please echo 105"}}
+DEBUG:root:received {"id":142,"src":"c11","dest":"n1","body":{"echo":"Please echo 87","type":"echo","msg_id":16}}
+INFO:root:echoing Please echo 87
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 17, "in_reply_to": 16, "type": "echo_ok", "echo": "Please echo 87"}}
+DEBUG:root:received {"id":178,"src":"c11","dest":"n1","body":{"echo":"Please echo 8","type":"echo","msg_id":17}}
+INFO:root:echoing Please echo 8
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 18, "in_reply_to": 17, "type": "echo_ok", "echo": "Please echo 8"}}
+DEBUG:root:received {"id":184,"src":"c11","dest":"n1","body":{"echo":"Please echo 124","type":"echo","msg_id":18}}
+INFO:root:echoing Please echo 124
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 19, "in_reply_to": 18, "type": "echo_ok", "echo": "Please echo 124"}}
+DEBUG:root:received {"id":188,"src":"c11","dest":"n1","body":{"echo":"Please echo 99","type":"echo","msg_id":19}}
+INFO:root:echoing Please echo 99
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 20, "in_reply_to": 19, "type": "echo_ok", "echo": "Please echo 99"}}
+DEBUG:root:received {"id":192,"src":"c11","dest":"n1","body":{"echo":"Please echo 12","type":"echo","msg_id":20}}
+INFO:root:echoing Please echo 12
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 21, "in_reply_to": 20, "type": "echo_ok", "echo": "Please echo 12"}}
+DEBUG:root:received {"id":206,"src":"c11","dest":"n1","body":{"echo":"Please echo 29","type":"echo","msg_id":21}}
+INFO:root:echoing Please echo 29
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 22, "in_reply_to": 21, "type": "echo_ok", "echo": "Please echo 29"}}
+DEBUG:root:received {"id":210,"src":"c11","dest":"n1","body":{"echo":"Please echo 23","type":"echo","msg_id":22}}
+INFO:root:echoing Please echo 23
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 23, "in_reply_to": 22, "type": "echo_ok", "echo": "Please echo 23"}}
+DEBUG:root:received {"id":212,"src":"c11","dest":"n1","body":{"echo":"Please echo 100","type":"echo","msg_id":23}}
+INFO:root:echoing Please echo 100
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 24, "in_reply_to": 23, "type": "echo_ok", "echo": "Please echo 100"}}
+DEBUG:root:received {"id":224,"src":"c11","dest":"n1","body":{"echo":"Please echo 91","type":"echo","msg_id":24}}
+INFO:root:echoing Please echo 91
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 25, "in_reply_to": 24, "type": "echo_ok", "echo": "Please echo 91"}}
+DEBUG:root:received {"id":232,"src":"c11","dest":"n1","body":{"echo":"Please echo 115","type":"echo","msg_id":25}}
+INFO:root:echoing Please echo 115
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 26, "in_reply_to": 25, "type": "echo_ok", "echo": "Please echo 115"}}
+DEBUG:root:received {"id":262,"src":"c11","dest":"n1","body":{"echo":"Please echo 41","type":"echo","msg_id":26}}
+INFO:root:echoing Please echo 41
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 27, "in_reply_to": 26, "type": "echo_ok", "echo": "Please echo 41"}}
+DEBUG:root:received {"id":266,"src":"c11","dest":"n1","body":{"echo":"Please echo 49","type":"echo","msg_id":27}}
+INFO:root:echoing Please echo 49
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 28, "in_reply_to": 27, "type": "echo_ok", "echo": "Please echo 49"}}
+DEBUG:root:received {"id":272,"src":"c11","dest":"n1","body":{"echo":"Please echo 13","type":"echo","msg_id":28}}
+INFO:root:echoing Please echo 13
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 29, "in_reply_to": 28, "type": "echo_ok", "echo": "Please echo 13"}}
+DEBUG:root:received {"id":292,"src":"c11","dest":"n1","body":{"echo":"Please echo 71","type":"echo","msg_id":29}}
+INFO:root:echoing Please echo 71
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 30, "in_reply_to": 29, "type": "echo_ok", "echo": "Please echo 71"}}
+DEBUG:root:received {"id":312,"src":"c11","dest":"n1","body":{"echo":"Please echo 12","type":"echo","msg_id":30}}
+INFO:root:echoing Please echo 12
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 31, "in_reply_to": 30, "type": "echo_ok", "echo": "Please echo 12"}}
+DEBUG:root:received {"id":322,"src":"c11","dest":"n1","body":{"echo":"Please echo 66","type":"echo","msg_id":31}}
+INFO:root:echoing Please echo 66
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 32, "in_reply_to": 31, "type": "echo_ok", "echo": "Please echo 66"}}
+DEBUG:root:received {"id":340,"src":"c11","dest":"n1","body":{"echo":"Please echo 95","type":"echo","msg_id":32}}
+INFO:root:echoing Please echo 95
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 33, "in_reply_to": 32, "type": "echo_ok", "echo": "Please echo 95"}}
+DEBUG:root:received {"id":358,"src":"c11","dest":"n1","body":{"echo":"Please echo 27","type":"echo","msg_id":33}}
+INFO:root:echoing Please echo 27
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 34, "in_reply_to": 33, "type": "echo_ok", "echo": "Please echo 27"}}
+DEBUG:root:received {"id":362,"src":"c11","dest":"n1","body":{"echo":"Please echo 76","type":"echo","msg_id":34}}
+INFO:root:echoing Please echo 76
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 35, "in_reply_to": 34, "type": "echo_ok", "echo": "Please echo 76"}}
+DEBUG:root:received {"id":380,"src":"c11","dest":"n1","body":{"echo":"Please echo 19","type":"echo","msg_id":35}}
+INFO:root:echoing Please echo 19
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 36, "in_reply_to": 35, "type": "echo_ok", "echo": "Please echo 19"}}
+DEBUG:root:received {"id":394,"src":"c11","dest":"n1","body":{"echo":"Please echo 5","type":"echo","msg_id":36}}
+INFO:root:echoing Please echo 5
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 37, "in_reply_to": 36, "type": "echo_ok", "echo": "Please echo 5"}}
+DEBUG:root:received {"id":426,"src":"c11","dest":"n1","body":{"echo":"Please echo 16","type":"echo","msg_id":37}}
+INFO:root:echoing Please echo 16
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 38, "in_reply_to": 37, "type": "echo_ok", "echo": "Please echo 16"}}
+DEBUG:root:received {"id":436,"src":"c11","dest":"n1","body":{"echo":"Please echo 4","type":"echo","msg_id":38}}
+INFO:root:echoing Please echo 4
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 39, "in_reply_to": 38, "type": "echo_ok", "echo": "Please echo 4"}}
+DEBUG:root:received {"id":440,"src":"c11","dest":"n1","body":{"echo":"Please echo 11","type":"echo","msg_id":39}}
+INFO:root:echoing Please echo 11
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 40, "in_reply_to": 39, "type": "echo_ok", "echo": "Please echo 11"}}
+DEBUG:root:received {"id":446,"src":"c11","dest":"n1","body":{"echo":"Please echo 127","type":"echo","msg_id":40}}
+INFO:root:echoing Please echo 127
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 41, "in_reply_to": 40, "type": "echo_ok", "echo": "Please echo 127"}}
+DEBUG:root:received {"id":458,"src":"c11","dest":"n1","body":{"echo":"Please echo 112","type":"echo","msg_id":41}}
+INFO:root:echoing Please echo 112
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 42, "in_reply_to": 41, "type": "echo_ok", "echo": "Please echo 112"}}
+DEBUG:root:received {"id":464,"src":"c11","dest":"n1","body":{"echo":"Please echo 31","type":"echo","msg_id":42}}
+INFO:root:echoing Please echo 31
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 43, "in_reply_to": 42, "type": "echo_ok", "echo": "Please echo 31"}}
+DEBUG:root:received {"id":492,"src":"c11","dest":"n1","body":{"echo":"Please echo 124","type":"echo","msg_id":43}}
+INFO:root:echoing Please echo 124
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 44, "in_reply_to": 43, "type": "echo_ok", "echo": "Please echo 124"}}
+DEBUG:root:received {"id":502,"src":"c11","dest":"n1","body":{"echo":"Please echo 127","type":"echo","msg_id":44}}
+INFO:root:echoing Please echo 127
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 45, "in_reply_to": 44, "type": "echo_ok", "echo": "Please echo 127"}}
+DEBUG:root:received {"id":504,"src":"c11","dest":"n1","body":{"echo":"Please echo 29","type":"echo","msg_id":45}}
+INFO:root:echoing Please echo 29
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 46, "in_reply_to": 45, "type": "echo_ok", "echo": "Please echo 29"}}
+DEBUG:root:received {"id":508,"src":"c11","dest":"n1","body":{"echo":"Please echo 73","type":"echo","msg_id":46}}
+INFO:root:echoing Please echo 73
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 47, "in_reply_to": 46, "type": "echo_ok", "echo": "Please echo 73"}}
+DEBUG:root:received {"id":510,"src":"c11","dest":"n1","body":{"echo":"Please echo 43","type":"echo","msg_id":47}}
+INFO:root:echoing Please echo 43
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 48, "in_reply_to": 47, "type": "echo_ok", "echo": "Please echo 43"}}
+DEBUG:root:received {"id":516,"src":"c11","dest":"n1","body":{"echo":"Please echo 26","type":"echo","msg_id":48}}
+INFO:root:echoing Please echo 26
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 49, "in_reply_to": 48, "type": "echo_ok", "echo": "Please echo 26"}}
+DEBUG:root:received {"id":518,"src":"c11","dest":"n1","body":{"echo":"Please echo 102","type":"echo","msg_id":49}}
+INFO:root:echoing Please echo 102
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 50, "in_reply_to": 49, "type": "echo_ok", "echo": "Please echo 102"}}
+DEBUG:root:received {"id":524,"src":"c11","dest":"n1","body":{"echo":"Please echo 7","type":"echo","msg_id":50}}
+INFO:root:echoing Please echo 7
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 51, "in_reply_to": 50, "type": "echo_ok", "echo": "Please echo 7"}}
+DEBUG:root:received {"id":542,"src":"c11","dest":"n1","body":{"echo":"Please echo 10","type":"echo","msg_id":51}}
+INFO:root:echoing Please echo 10
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 52, "in_reply_to": 51, "type": "echo_ok", "echo": "Please echo 10"}}
+DEBUG:root:received {"id":572,"src":"c11","dest":"n1","body":{"echo":"Please echo 45","type":"echo","msg_id":52}}
+INFO:root:echoing Please echo 45
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 53, "in_reply_to": 52, "type": "echo_ok", "echo": "Please echo 45"}}
+DEBUG:root:received {"id":586,"src":"c11","dest":"n1","body":{"echo":"Please echo 14","type":"echo","msg_id":53}}
+INFO:root:echoing Please echo 14
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 54, "in_reply_to": 53, "type": "echo_ok", "echo": "Please echo 14"}}
+DEBUG:root:received {"id":600,"src":"c11","dest":"n1","body":{"echo":"Please echo 92","type":"echo","msg_id":54}}
+INFO:root:echoing Please echo 92
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 55, "in_reply_to": 54, "type": "echo_ok", "echo": "Please echo 92"}}
+DEBUG:root:received {"id":602,"src":"c11","dest":"n1","body":{"echo":"Please echo 53","type":"echo","msg_id":55}}
+INFO:root:echoing Please echo 53
+DEBUG:root:sending {"dest": "c11", "src": "n1", "body": {"msg_id": 56, "in_reply_to": 55, "type": "echo_ok", "echo": "Please echo 53"}}

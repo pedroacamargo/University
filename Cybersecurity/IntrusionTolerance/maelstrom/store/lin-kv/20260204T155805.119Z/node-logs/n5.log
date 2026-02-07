@@ -1,0 +1,4 @@
+DEBUG:root:received {"id":0,"src":"c0","dest":"n5","body":{"type":"init","node_id":"n5","node_ids":["n1","n2","n3","n4","n5"],"msg_id":1}}
+INFO:root:initializing node n5
+DEBUG:root:sending {"dest": "c0", "src": "n5", "body": {"msg_id": 1, "in_reply_to": 1, "type": "init_ok"}}
+WARNING:root:unknown message type init

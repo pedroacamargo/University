@@ -1,0 +1,580 @@
+8	:invoke	:cas	[4 [2 1]]
+0	:invoke	:read	[0 nil]
+9	:invoke	:cas	[4 [4 4]]
+3	:invoke	:cas	[1 [3 3]]
+4	:invoke	:cas	[2 [4 1]]
+5	:invoke	:cas	[2 [2 1]]
+6	:invoke	:write	[3 1]
+8	:info	:cas	[4 [2 1]]	:net-timeout
+7	:invoke	:write	[3 1]
+18	:invoke	:cas	[4 [4 1]]
+2	:invoke	:cas	[1 [0 1]]
+0	:fail	:read	[0 nil]	:net-timeout
+9	:info	:cas	[4 [4 4]]	:net-timeout
+1	:invoke	:cas	[0 [4 1]]
+3	:info	:cas	[1 [3 3]]	:net-timeout
+4	:info	:cas	[2 [4 1]]	:net-timeout
+14	:invoke	:cas	[2 [2 0]]
+5	:info	:cas	[2 [2 1]]	:net-timeout
+6	:info	:write	[3 1]	:net-timeout
+0	:invoke	:read	[0 nil]
+7	:info	:write	[3 1]	:net-timeout
+16	:invoke	:cas	[3 [1 1]]
+19	:invoke	:cas	[4 [2 1]]
+18	:info	:cas	[4 [4 1]]	:net-timeout
+2	:info	:cas	[1 [0 1]]	:net-timeout
+17	:invoke	:cas	[3 [2 3]]
+12	:invoke	:cas	[1 [3 4]]
+1	:info	:cas	[0 [4 1]]	:net-timeout
+28	:invoke	:write	[4 1]
+14	:info	:cas	[2 [2 0]]	:net-timeout
+0	:fail	:read	[0 nil]	:net-timeout
+0	:invoke	:read	[0 nil]
+16	:info	:cas	[3 [1 1]]	:net-timeout
+19	:info	:cas	[4 [2 1]]	:net-timeout
+17	:info	:cas	[3 [2 3]]	:net-timeout
+12	:info	:cas	[1 [3 4]]	:net-timeout
+26	:invoke	:write	[3 2]
+28	:info	:write	[4 1]	:net-timeout
+27	:invoke	:cas	[3 [1 3]]
+0	:fail	:read	[0 nil]	:net-timeout
+0	:invoke	:read	[0 nil]
+26	:info	:write	[3 2]	:net-timeout
+36	:invoke	:cas	[3 [2 1]]
+24	:invoke	:cas	[2 [3 3]]
+38	:invoke	:write	[4 1]
+11	:invoke	:cas	[0 [0 4]]
+27	:info	:cas	[3 [1 3]]	:net-timeout
+37	:invoke	:cas	[3 [2 0]]
+15	:invoke	:cas	[2 [4 0]]
+0	:fail	:read	[0 nil]	:net-timeout
+0	:invoke	:read	[0 nil]
+36	:info	:cas	[3 [2 1]]	:net-timeout
+24	:info	:cas	[2 [3 3]]	:net-timeout
+38	:info	:write	[4 1]	:net-timeout
+22	:invoke	:cas	[1 [2 3]]
+11	:info	:cas	[0 [0 4]]	:net-timeout
+48	:invoke	:write	[4 2]
+37	:info	:cas	[3 [2 0]]	:net-timeout
+15	:info	:cas	[2 [4 0]]	:net-timeout
+34	:invoke	:write	[2 3]
+0	:fail	:read	[0 nil]	:net-timeout
+0	:invoke	:read	[0 nil]
+22	:info	:cas	[1 [2 3]]	:net-timeout
+32	:invoke	:write	[1 2]
+21	:invoke	:cas	[0 [4 3]]
+48	:info	:write	[4 2]	:net-timeout
+58	:invoke	:write	[4 2]
+34	:info	:write	[2 3]	:net-timeout
+29	:invoke	:cas	[4 [4 1]]
+13	:invoke	:cas	[1 [1 0]]
+0	:fail	:read	[0 nil]	:net-timeout
+32	:info	:write	[1 2]	:net-timeout
+25	:invoke	:write	[2 3]
+0	:invoke	:read	[0 nil]
+21	:info	:cas	[0 [4 3]]	:net-timeout
+42	:invoke	:cas	[1 [1 1]]
+58	:info	:write	[4 2]	:net-timeout
+31	:invoke	:cas	[0 [3 3]]
+46	:invoke	:write	[3 3]
+29	:info	:cas	[4 [4 1]]	:net-timeout
+47	:invoke	:cas	[3 [3 0]]
+13	:info	:cas	[1 [1 0]]	:net-timeout
+25	:info	:write	[2 3]	:net-timeout
+44	:invoke	:cas	[2 [0 0]]
+0	:fail	:read	[0 nil]	:net-timeout
+68	:invoke	:cas	[4 [4 0]]
+42	:info	:cas	[1 [1 1]]	:net-timeout
+52	:invoke	:write	[1 2]
+39	:invoke	:cas	[4 [3 1]]
+31	:info	:cas	[0 [3 3]]	:net-timeout
+46	:info	:write	[3 3]	:net-timeout
+47	:info	:cas	[3 [3 0]]	:net-timeout
+23	:invoke	:write	[1 3]
+44	:info	:cas	[2 [0 0]]	:net-timeout
+68	:info	:cas	[4 [4 0]]	:net-timeout
+78	:invoke	:cas	[4 [4 4]]
+52	:info	:write	[1 2]	:net-timeout
+39	:info	:cas	[4 [3 1]]	:net-timeout
+49	:invoke	:cas	[4 [3 2]]
+57	:invoke	:write	[3 1]
+23	:info	:write	[1 3]	:net-timeout
+41	:invoke	:write	[0 3]
+62	:invoke	:write	[1 1]
+54	:invoke	:cas	[2 [2 3]]
+78	:info	:cas	[4 [4 4]]	:net-timeout
+0	:invoke	:read	[0 nil]
+33	:invoke	:cas	[1 [2 3]]
+49	:info	:cas	[4 [3 2]]	:net-timeout
+57	:info	:write	[3 1]	:net-timeout
+56	:invoke	:cas	[3 [2 3]]
+35	:invoke	:cas	[2 [4 2]]
+41	:info	:write	[0 3]	:net-timeout
+88	:invoke	:write	[4 1]
+62	:info	:write	[1 1]	:net-timeout
+54	:info	:cas	[2 [2 3]]	:net-timeout
+51	:invoke	:cas	[0 [4 4]]
+59	:invoke	:write	[4 1]
+0	:fail	:read	[0 nil]	:net-timeout
+33	:info	:cas	[1 [2 3]]	:net-timeout
+67	:invoke	:write	[3 3]
+72	:invoke	:cas	[1 [1 4]]
+0	:invoke	:read	[0 nil]
+56	:info	:cas	[3 [2 3]]	:net-timeout
+35	:info	:cas	[2 [4 2]]	:net-timeout
+43	:invoke	:write	[1 2]
+88	:info	:write	[4 1]	:net-timeout
+98	:invoke	:write	[4 1]
+64	:invoke	:write	[2 0]
+51	:info	:cas	[0 [4 4]]	:net-timeout
+59	:info	:write	[4 1]	:net-timeout
+69	:invoke	:write	[4 1]
+67	:info	:write	[3 3]	:net-timeout
+61	:invoke	:cas	[0 [4 2]]
+45	:invoke	:cas	[2 [0 3]]
+72	:info	:cas	[1 [1 4]]	:net-timeout
+0	:fail	:read	[0 nil]	:net-timeout
+66	:invoke	:write	[3 1]
+43	:info	:write	[1 2]	:net-timeout
+98	:info	:write	[4 1]	:net-timeout
+0	:invoke	:read	[0 nil]
+64	:info	:write	[2 0]	:net-timeout
+82	:invoke	:cas	[1 [3 1]]
+69	:info	:write	[4 1]	:net-timeout
+77	:invoke	:cas	[3 [0 2]]
+61	:info	:cas	[0 [4 2]]	:net-timeout
+71	:invoke	:write	[0 3]
+45	:info	:cas	[2 [0 3]]	:net-timeout
+66	:info	:write	[3 1]	:net-timeout
+74	:invoke	:write	[2 3]
+0	:fail	:read	[0 nil]	:net-timeout
+76	:invoke	:cas	[3 [3 1]]
+82	:info	:cas	[1 [3 1]]	:net-timeout
+0	:invoke	:read	[0 nil]
+77	:info	:cas	[3 [0 2]]	:net-timeout
+71	:info	:write	[0 3]	:net-timeout
+87	:invoke	:cas	[3 [3 3]]
+74	:info	:write	[2 3]	:net-timeout
+53	:invoke	:cas	[1 [0 1]]
+92	:invoke	:cas	[1 [4 4]]
+76	:info	:cas	[3 [3 1]]	:net-timeout
+0	:fail	:read	[0 nil]	:net-timeout
+0	:invoke	:read	[0 nil]
+81	:invoke	:write	[0 3]
+87	:info	:cas	[3 [3 3]]	:net-timeout
+108	:invoke	:cas	[4 [0 4]]
+53	:info	:cas	[1 [0 1]]	:net-timeout
+92	:info	:cas	[1 [4 4]]	:net-timeout
+102	:invoke	:cas	[1 [0 0]]
+84	:invoke	:cas	[2 [0 2]]
+0	:fail	:read	[0 nil]	:net-timeout
+81	:info	:write	[0 3]	:net-timeout
+55	:invoke	:cas	[2 [3 2]]
+108	:info	:cas	[4 [0 4]]	:net-timeout
+63	:invoke	:write	[1 3]
+118	:invoke	:cas	[4 [4 0]]
+102	:info	:cas	[1 [0 0]]	:net-timeout
+84	:info	:cas	[2 [0 2]]	:net-timeout
+94	:invoke	:write	[2 2]
+91	:invoke	:cas	[0 [0 1]]
+55	:info	:cas	[2 [3 2]]	:net-timeout
+79	:invoke	:cas	[4 [3 0]]
+63	:info	:write	[1 3]	:net-timeout
+65	:invoke	:cas	[2 [0 3]]
+118	:info	:cas	[4 [4 0]]	:net-timeout
+94	:info	:write	[2 2]	:net-timeout
+0	:invoke	:read	[0 nil]
+91	:info	:cas	[0 [0 1]]	:net-timeout
+104	:invoke	:cas	[2 [0 1]]
+79	:info	:cas	[4 [3 0]]	:net-timeout
+112	:invoke	:cas	[1 [4 1]]
+101	:invoke	:write	[0 0]
+65	:info	:cas	[2 [0 3]]	:net-timeout
+86	:invoke	:write	[3 1]
+0	:fail	:read	[0 nil]	:net-timeout
+75	:invoke	:write	[2 3]
+104	:info	:cas	[2 [0 1]]	:net-timeout
+73	:invoke	:cas	[1 [4 2]]
+112	:info	:cas	[1 [4 1]]	:net-timeout
+101	:info	:write	[0 0]	:net-timeout
+128	:invoke	:write	[5 3]
+114	:invoke	:cas	[2 [3 0]]
+86	:info	:write	[3 1]	:net-timeout
+111	:invoke	:cas	[0 [4 3]]
+75	:info	:write	[2 3]	:net-timeout
+89	:invoke	:cas	[5 [1 0]]
+73	:info	:cas	[1 [4 2]]	:net-timeout
+0	:invoke	:read	[0 nil]
+128	:info	:write	[5 3]	:net-timeout
+114	:info	:cas	[2 [3 0]]	:net-timeout
+97	:invoke	:write	[3 4]
+111	:info	:cas	[0 [4 3]]	:net-timeout
+138	:invoke	:cas	[5 [3 1]]
+122	:invoke	:cas	[6 [2 4]]
+89	:info	:cas	[5 [1 0]]	:net-timeout
+83	:invoke	:write	[6 2]
+0	:fail	:read	[0 nil]	:net-timeout
+124	:invoke	:write	[7 4]
+0	:invoke	:read	[0 nil]
+121	:invoke	:write	[0 3]
+97	:info	:write	[3 4]	:net-timeout
+99	:invoke	:cas	[5 [3 2]]
+138	:info	:cas	[5 [3 1]]	:net-timeout
+122	:info	:cas	[6 [2 4]]	:net-timeout
+96	:invoke	:cas	[8 [4 1]]
+83	:info	:write	[6 2]	:net-timeout
+107	:invoke	:write	[8 3]
+124	:info	:write	[7 4]	:net-timeout
+0	:fail	:read	[0 nil]	:net-timeout
+121	:info	:write	[0 3]	:net-timeout
+0	:invoke	:read	[0 nil]
+99	:info	:cas	[5 [3 2]]	:net-timeout
+132	:invoke	:cas	[6 [0 0]]
+96	:info	:cas	[8 [4 1]]	:net-timeout
+93	:invoke	:write	[6 2]
+107	:info	:write	[8 3]	:net-timeout
+131	:invoke	:write	[0 4]
+134	:invoke	:cas	[7 [0 3]]
+0	:fail	:read	[0 nil]	:net-timeout
+106	:invoke	:cas	[8 [1 0]]
+132	:info	:cas	[6 [0 0]]	:net-timeout
+85	:invoke	:cas	[7 [1 2]]
+142	:invoke	:cas	[6 [2 1]]
+117	:invoke	:write	[8 4]
+93	:info	:write	[6 2]	:net-timeout
+0	:invoke	:read	[0 nil]
+131	:info	:write	[0 4]	:net-timeout
+134	:info	:cas	[7 [0 3]]	:net-timeout
+141	:invoke	:write	[0 3]
+106	:info	:cas	[8 [1 0]]	:net-timeout
+144	:invoke	:cas	[7 [3 2]]
+103	:invoke	:cas	[6 [3 4]]
+85	:info	:cas	[7 [1 2]]	:net-timeout
+142	:info	:cas	[6 [2 1]]	:net-timeout
+117	:info	:write	[8 4]	:net-timeout
+0	:fail	:read	[0 nil]	:net-timeout
+148	:invoke	:cas	[5 [2 0]]
+141	:info	:write	[0 3]	:net-timeout
+116	:invoke	:cas	[8 [4 1]]
+144	:info	:cas	[7 [3 2]]	:net-timeout
+103	:info	:cas	[6 [3 4]]	:net-timeout
+0	:invoke	:read	[0 nil]
+109	:invoke	:cas	[5 [3 4]]
+148	:info	:cas	[5 [2 0]]	:net-timeout
+127	:invoke	:write	[8 2]
+116	:info	:cas	[8 [4 1]]	:net-timeout
+154	:invoke	:cas	[7 [2 1]]
+158	:invoke	:write	[5 4]
+0	:fail	:read	[0 nil]	:net-timeout
+109	:info	:cas	[5 [3 4]]	:net-timeout
+95	:invoke	:cas	[7 [0 0]]
+127	:info	:write	[8 2]	:net-timeout
+152	:invoke	:cas	[6 [3 2]]
+154	:info	:cas	[7 [2 1]]	:net-timeout
+158	:info	:write	[5 4]	:net-timeout
+151	:invoke	:write	[0 3]
+168	:invoke	:cas	[5 [4 0]]
+95	:info	:cas	[7 [0 0]]	:net-timeout
+113	:invoke	:cas	[6 [4 3]]
+152	:info	:cas	[6 [3 2]]	:net-timeout
+162	:invoke	:cas	[6 [2 4]]
+126	:invoke	:cas	[8 [0 0]]
+151	:info	:write	[0 3]	:net-timeout
+137	:invoke	:cas	[8 [1 4]]
+168	:info	:cas	[5 [4 0]]	:net-timeout
+113	:info	:cas	[6 [4 3]]	:net-timeout
+178	:invoke	:write	[5 4]
+119	:invoke	:cas	[5 [0 4]]
+123	:invoke	:write	[6 4]
+162	:info	:cas	[6 [2 4]]	:net-timeout
+126	:info	:cas	[8 [0 0]]	:net-timeout
+0	:invoke	:read	[0 nil]
+136	:invoke	:write	[8 1]
+137	:info	:cas	[8 [1 4]]	:net-timeout
+164	:invoke	:cas	[7 [4 3]]
+161	:invoke	:write	[0 4]
+178	:info	:write	[5 4]	:net-timeout
+119	:info	:cas	[5 [0 4]]	:net-timeout
+123	:info	:write	[6 4]	:net-timeout
+105	:invoke	:cas	[7 [2 1]]
+172	:invoke	:cas	[6 [4 0]]
+0	:fail	:read	[0 nil]	:net-timeout
+136	:info	:write	[8 1]	:net-timeout
+0	:invoke	:read	[0 nil]
+133	:invoke	:cas	[6 [1 3]]
+164	:info	:cas	[7 [4 3]]	:net-timeout
+174	:invoke	:cas	[7 [3 2]]
+161	:info	:write	[0 4]	:net-timeout
+171	:invoke	:cas	[0 [3 4]]
+105	:info	:cas	[7 [2 1]]	:net-timeout
+188	:invoke	:cas	[5 [3 3]]
+115	:invoke	:write	[7 1]
+146	:invoke	:cas	[8 [1 4]]
+172	:info	:cas	[6 [4 0]]	:net-timeout
+129	:invoke	:write	[5 2]
+0	:fail	:read	[0 nil]	:net-timeout
+133	:info	:cas	[6 [1 3]]	:net-timeout
+147	:invoke	:cas	[8 [4 1]]
+174	:info	:cas	[7 [3 2]]	:net-timeout
+171	:info	:cas	[0 [3 4]]	:net-timeout
+188	:info	:cas	[5 [3 3]]	:net-timeout
+115	:info	:write	[7 1]	:net-timeout
+198	:invoke	:cas	[5 [1 0]]
+146	:info	:cas	[8 [1 4]]	:net-timeout
+184	:invoke	:write	[7 3]
+129	:info	:write	[5 2]	:net-timeout
+182	:invoke	:write	[6 2]
+147	:info	:cas	[8 [4 1]]	:net-timeout
+125	:invoke	:cas	[7 [4 1]]
+198	:info	:cas	[5 [1 0]]	:net-timeout
+143	:invoke	:cas	[6 [4 3]]
+184	:info	:write	[7 3]	:net-timeout
+181	:invoke	:cas	[0 [3 4]]
+182	:info	:write	[6 2]	:net-timeout
+156	:invoke	:cas	[8 [2 0]]
+192	:invoke	:cas	[6 [4 4]]
+125	:info	:cas	[7 [4 1]]	:net-timeout
+208	:invoke	:write	[5 3]
+194	:invoke	:cas	[7 [0 1]]
+157	:invoke	:cas	[8 [1 3]]
+143	:info	:cas	[6 [4 3]]	:net-timeout
+0	:invoke	:read	[0 nil]
+181	:info	:cas	[0 [3 4]]	:net-timeout
+139	:invoke	:cas	[5 [1 0]]
+191	:invoke	:cas	[9 [0 2]]
+156	:info	:cas	[8 [2 0]]	:net-timeout
+192	:info	:cas	[6 [4 4]]	:net-timeout
+208	:info	:write	[5 3]	:net-timeout
+135	:invoke	:cas	[7 [4 0]]
+166	:invoke	:cas	[8 [2 0]]
+194	:info	:cas	[7 [0 1]]	:net-timeout
+157	:info	:cas	[8 [1 3]]	:net-timeout
+167	:invoke	:write	[8 2]
+0	:fail	:read	[0 nil]	:net-timeout
+139	:info	:cas	[5 [1 0]]	:net-timeout
+0	:invoke	:read	[9 nil]
+191	:info	:cas	[9 [0 2]]	:net-timeout
+201	:invoke	:cas	[9 [4 3]]
+135	:info	:cas	[7 [4 0]]	:net-timeout
+202	:invoke	:write	[6 1]
+166	:info	:cas	[8 [2 0]]	:net-timeout
+153	:invoke	:cas	[6 [1 4]]
+167	:info	:write	[8 2]	:net-timeout
+177	:invoke	:cas	[8 [4 3]]
+218	:invoke	:cas	[5 [3 1]]
+149	:invoke	:write	[5 0]
+0	:fail	:read	[9 nil]	:net-timeout
+201	:info	:cas	[9 [4 3]]	:net-timeout
+176	:invoke	:cas	[8 [1 3]]
+202	:info	:write	[6 1]	:net-timeout
+0	:invoke	:read	[9 nil]
+153	:info	:cas	[6 [1 4]]	:net-timeout
+177	:info	:cas	[8 [4 3]]	:net-timeout
+211	:invoke	:write	[9 0]
+218	:info	:cas	[5 [3 1]]	:net-timeout
+149	:info	:write	[5 0]	:net-timeout
+228	:invoke	:write	[5 2]
+163	:invoke	:cas	[6 [3 0]]
+176	:info	:cas	[8 [1 3]]	:net-timeout
+212	:invoke	:write	[6 0]
+0	:fail	:read	[9 nil]	:net-timeout
+0	:invoke	:read	[9 nil]
+211	:info	:write	[9 0]	:net-timeout
+186	:invoke	:cas	[8 [1 2]]
+187	:invoke	:cas	[8 [1 1]]
+159	:invoke	:cas	[5 [3 3]]
+228	:info	:write	[5 2]	:net-timeout
+163	:info	:cas	[6 [3 0]]	:net-timeout
+204	:invoke	:cas	[7 [3 0]]
+212	:info	:write	[6 0]	:net-timeout
+222	:invoke	:cas	[10 [1 2]]
+238	:invoke	:write	[5 3]
+0	:fail	:read	[9 nil]	:net-timeout
+221	:invoke	:write	[9 0]
+186	:info	:cas	[8 [1 2]]	:net-timeout
+145	:invoke	:write	[7 1]
+187	:info	:cas	[8 [1 1]]	:net-timeout
+159	:info	:cas	[5 [3 3]]	:net-timeout
+196	:invoke	:cas	[12 [0 2]]
+204	:info	:cas	[7 [3 0]]	:net-timeout
+214	:invoke	:cas	[7 [4 2]]
+222	:info	:cas	[10 [1 2]]	:net-timeout
+238	:info	:write	[5 3]	:net-timeout
+232	:invoke	:cas	[10 [4 2]]
+221	:info	:write	[9 0]	:net-timeout
+0	:invoke	:read	[9 nil]
+145	:info	:write	[7 1]	:net-timeout
+231	:invoke	:cas	[9 [1 2]]
+196	:info	:cas	[12 [0 2]]	:net-timeout
+206	:invoke	:cas	[12 [1 1]]
+155	:invoke	:write	[7 4]
+214	:info	:cas	[7 [4 2]]	:net-timeout
+232	:info	:cas	[10 [4 2]]	:net-timeout
+197	:invoke	:cas	[12 [4 4]]
+242	:invoke	:write	[10 2]
+224	:invoke	:cas	[7 [2 0]]
+0	:fail	:read	[9 nil]	:net-timeout
+231	:info	:cas	[9 [1 2]]	:net-timeout
+248	:invoke	:write	[11 3]
+206	:info	:cas	[12 [1 1]]	:net-timeout
+155	:info	:write	[7 4]	:net-timeout
+165	:invoke	:cas	[7 [3 2]]
+0	:invoke	:read	[9 nil]
+169	:invoke	:cas	[11 [3 1]]
+197	:info	:cas	[12 [4 4]]	:net-timeout
+241	:invoke	:cas	[9 [0 4]]
+242	:info	:write	[10 2]	:net-timeout
+224	:info	:cas	[7 [2 0]]	:net-timeout
+234	:invoke	:cas	[13 [0 2]]
+216	:invoke	:cas	[12 [3 2]]
+207	:invoke	:write	[12 4]
+248	:info	:write	[11 3]	:net-timeout
+165	:info	:cas	[7 [3 2]]	:net-timeout
+0	:fail	:read	[9 nil]	:net-timeout
+258	:invoke	:write	[11 0]
+169	:info	:cas	[11 [3 1]]	:net-timeout
+0	:invoke	:read	[9 nil]
+241	:info	:cas	[9 [0 4]]	:net-timeout
+179	:invoke	:cas	[11 [3 0]]
+234	:info	:cas	[13 [0 2]]	:net-timeout
+216	:info	:cas	[12 [3 2]]	:net-timeout
+207	:info	:write	[12 4]	:net-timeout
+244	:invoke	:cas	[13 [4 4]]
+173	:invoke	:write	[10 3]
+258	:info	:write	[11 0]	:net-timeout
+0	:fail	:read	[9 nil]	:net-timeout
+268	:invoke	:write	[11 4]
+179	:info	:cas	[11 [3 0]]	:net-timeout
+175	:invoke	:cas	[13 [0 0]]
+244	:info	:cas	[13 [4 4]]	:net-timeout
+173	:info	:write	[10 3]	:net-timeout
+254	:invoke	:cas	[13 [0 3]]
+189	:invoke	:cas	[11 [3 0]]
+252	:invoke	:cas	[10 [2 3]]
+251	:invoke	:cas	[9 [2 4]]
+268	:info	:write	[11 4]	:net-timeout
+175	:info	:cas	[13 [0 0]]	:net-timeout
+183	:invoke	:cas	[10 [0 3]]
+226	:invoke	:write	[12 3]
+278	:invoke	:write	[11 2]
+217	:invoke	:cas	[12 [2 1]]
+254	:info	:cas	[13 [0 3]]	:net-timeout
+189	:info	:cas	[11 [3 0]]	:net-timeout
+0	:invoke	:read	[9 nil]
+252	:info	:cas	[10 [2 3]]	:net-timeout
+262	:invoke	:cas	[10 [3 0]]
+251	:info	:cas	[9 [2 4]]	:net-timeout
+185	:invoke	:write	[13 3]
+264	:invoke	:cas	[13 [3 4]]
+183	:info	:cas	[10 [0 3]]	:net-timeout
+193	:invoke	:write	[10 4]
+226	:info	:write	[12 3]	:net-timeout
+278	:info	:write	[11 2]	:net-timeout
+217	:info	:cas	[12 [2 1]]	:net-timeout
+288	:invoke	:cas	[11 [2 2]]
+0	:fail	:read	[9 nil]	:net-timeout
+199	:invoke	:write	[11 2]
+262	:info	:cas	[10 [3 0]]	:net-timeout
+236	:invoke	:write	[12 1]
+185	:info	:write	[13 3]	:net-timeout
+264	:info	:cas	[13 [3 4]]	:net-timeout
+227	:invoke	:cas	[12 [4 3]]
+193	:info	:write	[10 4]	:net-timeout
+274	:invoke	:write	[13 3]
+288	:info	:cas	[11 [2 2]]	:net-timeout
+195	:invoke	:cas	[13 [1 3]]
+199	:info	:write	[11 2]	:net-timeout
+203	:invoke	:cas	[10 [1 4]]
+236	:info	:write	[12 1]	:net-timeout
+227	:info	:cas	[12 [4 3]]	:net-timeout
+298	:invoke	:cas	[11 [2 4]]
+274	:info	:write	[13 3]	:net-timeout
+246	:invoke	:cas	[12 [3 0]]
+195	:info	:cas	[13 [1 3]]	:net-timeout
+203	:info	:cas	[10 [1 4]]	:net-timeout
+237	:invoke	:cas	[12 [1 3]]
+284	:invoke	:cas	[13 [3 4]]
+205	:invoke	:write	[13 3]
+272	:invoke	:write	[10 3]
+213	:invoke	:cas	[10 [4 1]]
+298	:info	:cas	[11 [2 4]]	:net-timeout
+246	:info	:cas	[12 [3 0]]	:net-timeout
+261	:invoke	:cas	[9 [0 1]]
+256	:invoke	:cas	[12 [0 2]]
+0	:invoke	:read	[9 nil]
+308	:invoke	:cas	[11 [1 3]]
+237	:info	:cas	[12 [1 3]]	:net-timeout
+284	:info	:cas	[13 [3 4]]	:net-timeout
+205	:info	:write	[13 3]	:net-timeout
+272	:info	:write	[10 3]	:net-timeout
+247	:invoke	:cas	[12 [1 0]]
+213	:info	:cas	[10 [4 1]]	:net-timeout
+215	:invoke	:cas	[13 [0 0]]
+261	:info	:cas	[9 [0 1]]	:net-timeout
+256	:info	:cas	[12 [0 2]]	:net-timeout
+0	:fail	:read	[9 nil]	:net-timeout
+308	:info	:cas	[11 [1 3]]	:net-timeout
+266	:invoke	:cas	[12 [2 3]]
+282	:invoke	:cas	[10 [2 4]]
+0	:invoke	:read	[9 nil]
+223	:invoke	:cas	[10 [3 2]]
+247	:info	:cas	[12 [1 0]]	:net-timeout
+271	:invoke	:cas	[9 [1 0]]
+215	:info	:cas	[13 [0 0]]	:net-timeout
+257	:invoke	:cas	[12 [1 2]]
+294	:invoke	:cas	[13 [2 0]]
+266	:info	:cas	[12 [2 3]]	:net-timeout
+282	:info	:cas	[10 [2 4]]	:net-timeout
+0	:fail	:read	[9 nil]	:net-timeout
+225	:invoke	:write	[13 3]
+223	:info	:cas	[10 [3 2]]	:net-timeout
+233	:invoke	:write	[10 4]
+271	:info	:cas	[9 [1 0]]	:net-timeout
+292	:invoke	:cas	[10 [0 4]]
+257	:info	:cas	[12 [1 2]]	:net-timeout
+294	:info	:cas	[13 [2 0]]	:net-timeout
+276	:invoke	:cas	[12 [1 4]]
+225	:info	:write	[13 3]	:net-timeout
+267	:invoke	:cas	[12 [4 3]]
+233	:info	:write	[10 4]	:net-timeout
+243	:invoke	:cas	[10 [0 0]]
+318	:invoke	:write	[11 2]
+292	:info	:cas	[10 [0 4]]	:net-timeout
+304	:invoke	:cas	[13 [4 2]]
+276	:info	:cas	[12 [1 4]]	:net-timeout
+286	:invoke	:write	[12 0]
+267	:info	:cas	[12 [4 3]]	:net-timeout
+235	:invoke	:write	[13 3]
+243	:info	:cas	[10 [0 0]]	:net-timeout
+281	:invoke	:cas	[9 [0 4]]
+0	:invoke	:read	[9 nil]
+318	:info	:write	[11 2]	:net-timeout
+304	:info	:cas	[13 [4 2]]	:net-timeout
+277	:invoke	:write	[12 3]
+302	:invoke	:cas	[10 [2 4]]
+286	:info	:write	[12 0]	:net-timeout
+296	:invoke	:write	[12 4]
+235	:info	:write	[13 3]	:net-timeout
+281	:info	:cas	[9 [0 4]]	:net-timeout
+314	:invoke	:write	[13 4]
+0	:fail	:read	[9 nil]	:net-timeout
+328	:invoke	:write	[11 4]
+277	:info	:write	[12 3]	:net-timeout
+302	:info	:cas	[10 [2 4]]	:net-timeout
+291	:invoke	:write	[9 0]
+209	:invoke	:write	[11 2]
+296	:info	:write	[12 4]	:net-timeout
+245	:invoke	:write	[13 0]
+314	:info	:write	[13 4]	:net-timeout
+328	:info	:write	[11 4]	:net-timeout
+306	:invoke	:cas	[14 [3 1]]
+324	:invoke	:cas	[13 [1 2]]
+291	:info	:write	[9 0]	:net-timeout
+209	:info	:write	[11 2]	:net-timeout
+0	:invoke	:read	[9 nil]
+245	:info	:write	[13 0]	:net-timeout
+253	:invoke	:cas	[10 [4 1]]
+306	:info	:cas	[14 [3 1]]	:net-timeout
+324	:info	:cas	[13 [1 2]]	:net-timeout
+0	:fail	:read	[9 nil]	:net-timeout
+253	:info	:cas	[10 [4 1]]	:net-timeout

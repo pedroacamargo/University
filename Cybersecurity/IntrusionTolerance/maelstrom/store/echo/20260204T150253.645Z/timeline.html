@@ -1,0 +1,233 @@
+<html><head><style>.ops        { position: absolute; }
+.op         { position: absolute; padding: 2px; border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); transition: all 0.3s cubic-bezier(.25,.8,.25,1); overflow: hidden; }
+.op.invoke  { background: #eeeeee; }
+.op.ok      { background: #6DB6FE; }
+.op.info    { background: #FFAA26; }
+.op.fail    { background: #FEB5DA; }
+.op:target  { box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); }
+</style></head><body><div><a href="/">jepsen</a> / <a href="/files/echo">echo</a> / <a href="/files/echo/20260204T150253.645Z">20260204T150253.645Z</a> / <a href="/files/echo/20260204T150253.645Z/">independent</a> / <a href="/files/echo/20260204T150253.645Z/independent/"></a></div><h1>echo key </h1><div class="ops"><a href="#i1"><div class="op ok" id="i1" style="width:100;left:0;top:0;height:16" title="Dur: 6 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:53.662Z
+
+Op:
+{:process 0
+ :type :ok
+ :f :echo
+ :index 1
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 36&quot;, :msg_id 2, :in_reply_to 1}}">0 echo Please echo 36<br />{:type "echo_ok", :echo "Please echo 36", :msg_id 2, :in_reply_to 1}</div></a><a href="#i3"><div class="op ok" id="i3" style="width:100;left:424;top:32;height:16" title="Dur: 3 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:53.879Z
+
+Op:
+{:process 4
+ :type :ok
+ :f :echo
+ :index 3
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 115&quot;, :msg_id 2, :in_reply_to 1}}">4 echo Please echo 115<br />{:type "echo_ok", :echo "Please echo 115", :msg_id 2, :in_reply_to 1}</div></a><a href="#i5"><div class="op ok" id="i5" style="width:100;left:106;top:64;height:16" title="Dur: 5 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:53.996Z
+
+Op:
+{:process 1
+ :type :ok
+ :f :echo
+ :index 5
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 20&quot;, :msg_id 2, :in_reply_to 1}}">1 echo Please echo 20<br />{:type "echo_ok", :echo "Please echo 20", :msg_id 2, :in_reply_to 1}</div></a><a href="#i7"><div class="op ok" id="i7" style="width:100;left:318;top:96;height:16" title="Dur: 6 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:54.168Z
+
+Op:
+{:process 3
+ :type :ok
+ :f :echo
+ :index 7
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 85&quot;, :msg_id 2, :in_reply_to 1}}">3 echo Please echo 85<br />{:type "echo_ok", :echo "Please echo 85", :msg_id 2, :in_reply_to 1}</div></a><a href="#i9"><div class="op ok" id="i9" style="width:100;left:424;top:128;height:16" title="Dur: 4 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:54.405Z
+
+Op:
+{:process 4
+ :type :ok
+ :f :echo
+ :index 9
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 24&quot;, :msg_id 3, :in_reply_to 2}}">4 echo Please echo 24<br />{:type "echo_ok", :echo "Please echo 24", :msg_id 3, :in_reply_to 2}</div></a><a href="#i11"><div class="op ok" id="i11" style="width:100;left:106;top:160;height:16" title="Dur: 4 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:54.464Z
+
+Op:
+{:process 1
+ :type :ok
+ :f :echo
+ :index 11
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 79&quot;, :msg_id 3, :in_reply_to 2}}">1 echo Please echo 79<br />{:type "echo_ok", :echo "Please echo 79", :msg_id 3, :in_reply_to 2}</div></a><a href="#i13"><div class="op ok" id="i13" style="width:100;left:424;top:192;height:16" title="Dur: 4 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:54.753Z
+
+Op:
+{:process 4
+ :type :ok
+ :f :echo
+ :index 13
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 99&quot;, :msg_id 4, :in_reply_to 3}}">4 echo Please echo 99<br />{:type "echo_ok", :echo "Please echo 99", :msg_id 4, :in_reply_to 3}</div></a><a href="#i15"><div class="op ok" id="i15" style="width:100;left:424;top:224;height:16" title="Dur: 4 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:55.061Z
+
+Op:
+{:process 4
+ :type :ok
+ :f :echo
+ :index 15
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 22&quot;, :msg_id 5, :in_reply_to 4}}">4 echo Please echo 22<br />{:type "echo_ok", :echo "Please echo 22", :msg_id 5, :in_reply_to 4}</div></a><a href="#i17"><div class="op ok" id="i17" style="width:100;left:424;top:256;height:16" title="Dur: 4 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:55.255Z
+
+Op:
+{:process 4
+ :type :ok
+ :f :echo
+ :index 17
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 121&quot;, :msg_id 6, :in_reply_to 5}}">4 echo Please echo 121<br />{:type "echo_ok", :echo "Please echo 121", :msg_id 6, :in_reply_to 5}</div></a><a href="#i19"><div class="op ok" id="i19" style="width:100;left:0;top:288;height:16" title="Dur: 3 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:55.398Z
+
+Op:
+{:process 0
+ :type :ok
+ :f :echo
+ :index 19
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 67&quot;, :msg_id 3, :in_reply_to 2}}">0 echo Please echo 67<br />{:type "echo_ok", :echo "Please echo 67", :msg_id 3, :in_reply_to 2}</div></a><a href="#i21"><div class="op ok" id="i21" style="width:100;left:0;top:320;height:16" title="Dur: 3 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:55.432Z
+
+Op:
+{:process 0
+ :type :ok
+ :f :echo
+ :index 21
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 99&quot;, :msg_id 4, :in_reply_to 3}}">0 echo Please echo 99<br />{:type "echo_ok", :echo "Please echo 99", :msg_id 4, :in_reply_to 3}</div></a><a href="#i23"><div class="op ok" id="i23" style="width:100;left:106;top:352;height:16" title="Dur: 3 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:55.815Z
+
+Op:
+{:process 1
+ :type :ok
+ :f :echo
+ :index 23
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 89&quot;, :msg_id 4, :in_reply_to 3}}">1 echo Please echo 89<br />{:type "echo_ok", :echo "Please echo 89", :msg_id 4, :in_reply_to 3}</div></a><a href="#i25"><div class="op ok" id="i25" style="width:100;left:318;top:384;height:16" title="Dur: 3 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:56.018Z
+
+Op:
+{:process 3
+ :type :ok
+ :f :echo
+ :index 25
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 30&quot;, :msg_id 3, :in_reply_to 2}}">3 echo Please echo 30<br />{:type "echo_ok", :echo "Please echo 30", :msg_id 3, :in_reply_to 2}</div></a><a href="#i27"><div class="op ok" id="i27" style="width:100;left:318;top:416;height:16" title="Dur: 3 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:56.276Z
+
+Op:
+{:process 3
+ :type :ok
+ :f :echo
+ :index 27
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 13&quot;, :msg_id 4, :in_reply_to 3}}">3 echo Please echo 13<br />{:type "echo_ok", :echo "Please echo 13", :msg_id 4, :in_reply_to 3}</div></a><a href="#i29"><div class="op ok" id="i29" style="width:100;left:106;top:448;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:56.281Z
+
+Op:
+{:process 1
+ :type :ok
+ :f :echo
+ :index 29
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 4&quot;, :msg_id 5, :in_reply_to 4}}">1 echo Please echo 4<br />{:type "echo_ok", :echo "Please echo 4", :msg_id 5, :in_reply_to 4}</div></a><a href="#i31"><div class="op ok" id="i31" style="width:100;left:0;top:480;height:16" title="Dur: 3 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:56.596Z
+
+Op:
+{:process 0
+ :type :ok
+ :f :echo
+ :index 31
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 97&quot;, :msg_id 5, :in_reply_to 4}}">0 echo Please echo 97<br />{:type "echo_ok", :echo "Please echo 97", :msg_id 5, :in_reply_to 4}</div></a><a href="#i33"><div class="op ok" id="i33" style="width:100;left:106;top:512;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:56.837Z
+
+Op:
+{:process 1
+ :type :ok
+ :f :echo
+ :index 33
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 74&quot;, :msg_id 6, :in_reply_to 5}}">1 echo Please echo 74<br />{:type "echo_ok", :echo "Please echo 74", :msg_id 6, :in_reply_to 5}</div></a><a href="#i35"><div class="op ok" id="i35" style="width:100;left:424;top:544;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:56.871Z
+
+Op:
+{:process 4
+ :type :ok
+ :f :echo
+ :index 35
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 21&quot;, :msg_id 7, :in_reply_to 6}}">4 echo Please echo 21<br />{:type "echo_ok", :echo "Please echo 21", :msg_id 7, :in_reply_to 6}</div></a><a href="#i37"><div class="op ok" id="i37" style="width:100;left:212;top:576;height:16" title="Dur: 5 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:57.059Z
+
+Op:
+{:process 2
+ :type :ok
+ :f :echo
+ :index 37
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 60&quot;, :msg_id 2, :in_reply_to 1}}">2 echo Please echo 60<br />{:type "echo_ok", :echo "Please echo 60", :msg_id 2, :in_reply_to 1}</div></a><a href="#i39"><div class="op ok" id="i39" style="width:100;left:106;top:608;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:57.182Z
+
+Op:
+{:process 1
+ :type :ok
+ :f :echo
+ :index 39
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 7&quot;, :msg_id 7, :in_reply_to 6}}">1 echo Please echo 7<br />{:type "echo_ok", :echo "Please echo 7", :msg_id 7, :in_reply_to 6}</div></a><a href="#i41"><div class="op ok" id="i41" style="width:100;left:0;top:640;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:57.232Z
+
+Op:
+{:process 0
+ :type :ok
+ :f :echo
+ :index 41
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 119&quot;, :msg_id 6, :in_reply_to 5}}">0 echo Please echo 119<br />{:type "echo_ok", :echo "Please echo 119", :msg_id 6, :in_reply_to 5}</div></a><a href="#i43"><div class="op ok" id="i43" style="width:100;left:212;top:672;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:57.510Z
+
+Op:
+{:process 2
+ :type :ok
+ :f :echo
+ :index 43
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 22&quot;, :msg_id 3, :in_reply_to 2}}">2 echo Please echo 22<br />{:type "echo_ok", :echo "Please echo 22", :msg_id 3, :in_reply_to 2}</div></a><a href="#i45"><div class="op ok" id="i45" style="width:100;left:212;top:704;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:57.817Z
+
+Op:
+{:process 2
+ :type :ok
+ :f :echo
+ :index 45
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 126&quot;, :msg_id 4, :in_reply_to 3}}">2 echo Please echo 126<br />{:type "echo_ok", :echo "Please echo 126", :msg_id 4, :in_reply_to 3}</div></a><a href="#i47"><div class="op ok" id="i47" style="width:100;left:212;top:736;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:58.189Z
+
+Op:
+{:process 2
+ :type :ok
+ :f :echo
+ :index 47
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 108&quot;, :msg_id 5, :in_reply_to 4}}">2 echo Please echo 108<br />{:type "echo_ok", :echo "Please echo 108", :msg_id 5, :in_reply_to 4}</div></a><a href="#i49"><div class="op ok" id="i49" style="width:100;left:212;top:768;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-04T15:02:58.432Z
+
+Op:
+{:process 2
+ :type :ok
+ :f :echo
+ :index 49
+ :value {:type &quot;echo_ok&quot;, :echo &quot;Please echo 59&quot;, :msg_id 6, :in_reply_to 5}}">2 echo Please echo 59<br />{:type "echo_ok", :echo "Please echo 59", :msg_id 6, :in_reply_to 5}</div></a></div></body></html>
