@@ -1,0 +1,58 @@
+{:linearizable
+ {:valid? false,
+  :configs
+  ({:model {:value 1},
+    :last-op
+    {:process 8,
+     :type :ok,
+     :f :write,
+     :value 1,
+     :index 61,
+     :time 5832192451},
+    :pending
+    [{:process 0,
+      :type :invoke,
+      :f :read,
+      :value 0,
+      :index 62,
+      :time 5918990846}]}),
+  :final-paths
+  ([{:op
+     {:process 8,
+      :type :ok,
+      :f :write,
+      :value 1,
+      :index 61,
+      :time 5832192451},
+     :model {:value 1}}
+    {:op
+     {:process 0,
+      :type :ok,
+      :f :read,
+      :value 0,
+      :index 63,
+      :time 5921196047},
+     :model {:msg "can't read 0 from register 1"}}]),
+  :previous-ok
+  {:process 8,
+   :type :ok,
+   :f :write,
+   :value 1,
+   :index 61,
+   :time 5832192451},
+  :last-op
+  {:process 8,
+   :type :ok,
+   :f :write,
+   :value 1,
+   :index 61,
+   :time 5832192451},
+  :op
+  {:process 0,
+   :type :ok,
+   :f :read,
+   :value 0,
+   :index 63,
+   :time 5921196047}},
+ :timeline {:valid? true},
+ :valid? false}

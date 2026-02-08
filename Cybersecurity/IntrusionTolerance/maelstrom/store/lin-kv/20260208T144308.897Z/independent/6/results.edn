@@ -1,0 +1,81 @@
+{:linearizable
+ {:valid? true,
+  :configs
+  ({:model {:value nil},
+    :last-op nil,
+    :pending
+    [{:process 99,
+      :type :invoke,
+      :f :cas,
+      :value [4 4],
+      :index 341,
+      :time 33650134497}
+     {:process 137,
+      :type :invoke,
+      :f :write,
+      :value 1,
+      :index 317,
+      :time 31079463099}
+     {:process 147,
+      :type :invoke,
+      :f :write,
+      :value 2,
+      :index 337,
+      :time 33237712312}
+     {:process 148,
+      :type :invoke,
+      :f :cas,
+      :value [3 2],
+      :index 339,
+      :time 33383051645}
+     {:process 156,
+      :type :invoke,
+      :f :cas,
+      :value [2 0],
+      :index 323,
+      :time 31538078008}
+     {:process 157,
+      :type :invoke,
+      :f :write,
+      :value 2,
+      :index 349,
+      :time 34325139581}
+     {:process 158,
+      :type :invoke,
+      :f :cas,
+      :value [3 4],
+      :index 351,
+      :time 34435646962}
+     {:process 166,
+      :type :invoke,
+      :f :write,
+      :value 1,
+      :index 333,
+      :time 32664516113}
+     {:process 176,
+      :type :invoke,
+      :f :cas,
+      :value [4 3],
+      :index 344,
+      :time 33830049840}
+     {:process 195,
+      :type :invoke,
+      :f :cas,
+      :value [2 1],
+      :index 314,
+      :time 30836011309}
+     {:process 205,
+      :type :invoke,
+      :f :cas,
+      :value [2 3],
+      :index 330,
+      :time 32328080843}
+     {:process 215,
+      :type :invoke,
+      :f :write,
+      :value 2,
+      :index 342,
+      :time 33663296585}]}),
+  :final-paths ()},
+ :timeline {:valid? true},
+ :valid? true}

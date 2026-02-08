@@ -1,0 +1,134 @@
+{:linearizable
+ {:valid? false,
+  :configs
+  ({:model {:value 2},
+    :last-op
+    {:process 4,
+     :type :ok,
+     :f :read,
+     :value 2,
+     :index 30,
+     :time 191061673},
+    :pending
+    [{:process 0,
+      :type :invoke,
+      :f :read,
+      :value 1,
+      :index 28,
+      :time 167397164}
+     {:process 5,
+      :type :invoke,
+      :f :cas,
+      :value [1 1],
+      :index 25,
+      :time 153707126}
+     {:process 7,
+      :type :invoke,
+      :f :cas,
+      :value [2 3],
+      :index 29,
+      :time 179298274}]}),
+  :final-paths
+  ([{:op
+     {:process 4,
+      :type :ok,
+      :f :read,
+      :value 2,
+      :index 30,
+      :time 191061673},
+     :model {:value 2}}
+    {:op
+     {:process 7,
+      :type :invoke,
+      :f :cas,
+      :value [2 3],
+      :index 29,
+      :time 179298274},
+     :model {:value 3}}
+    {:op
+     {:process 5,
+      :type :ok,
+      :f :cas,
+      :value [1 1],
+      :index 33,
+      :time 191716487},
+     :model {:msg "can't CAS 3 from 1 to 1"}}]
+   [{:op
+     {:process 4,
+      :type :ok,
+      :f :read,
+      :value 2,
+      :index 30,
+      :time 191061673},
+     :model {:value 2}}
+    {:op
+     {:process 0,
+      :type :invoke,
+      :f :read,
+      :value 1,
+      :index 28,
+      :time 167397164},
+     :model {:msg "can't read 1 from register 2"}}]
+   [{:op
+     {:process 4,
+      :type :ok,
+      :f :read,
+      :value 2,
+      :index 30,
+      :time 191061673},
+     :model {:value 2}}
+    {:op
+     {:process 5,
+      :type :ok,
+      :f :cas,
+      :value [1 1],
+      :index 33,
+      :time 191716487},
+     :model {:msg "can't CAS 2 from 1 to 1"}}]
+   [{:op
+     {:process 4,
+      :type :ok,
+      :f :read,
+      :value 2,
+      :index 30,
+      :time 191061673},
+     :model {:value 2}}
+    {:op
+     {:process 7,
+      :type :invoke,
+      :f :cas,
+      :value [2 3],
+      :index 29,
+      :time 179298274},
+     :model {:value 3}}
+    {:op
+     {:process 0,
+      :type :invoke,
+      :f :read,
+      :value 1,
+      :index 28,
+      :time 167397164},
+     :model {:msg "can't read 1 from register 3"}}]),
+  :previous-ok
+  {:process 1,
+   :type :ok,
+   :f :read,
+   :value 2,
+   :index 31,
+   :time 191268907},
+  :last-op
+  {:process 4,
+   :type :ok,
+   :f :read,
+   :value 2,
+   :index 30,
+   :time 191061673},
+  :op
+  {:process 5,
+   :type :ok,
+   :f :cas,
+   :value [1 1],
+   :index 33,
+   :time 191716487}},
+ :timeline {:valid? true},
+ :valid? false}

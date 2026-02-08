@@ -1,0 +1,17 @@
+DEBUG:root:received {"id":3,"src":"c3","dest":"n2","body":{"type":"init","node_id":"n2","node_ids":["n0","n1","n2","n3","n4"],"msg_id":1}}
+INFO:root:initializing node n2
+INFO:root:nodes in cluster: {'n2', 'n3', 'n4', 'n1', 'n0'}
+DEBUG:root:sending {"dest": "c3", "src": "n2", "body": {"msg_id": 1, "in_reply_to": 1, "type": "init_ok"}}
+DEBUG:root:received {"id":14,"src":"c12","dest":"n2","body":{"key":0,"type":"read","msg_id":1}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c12", "src": "n2", "body": {"msg_id": 2, "in_reply_to": 1, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":36,"src":"c12","dest":"n2","body":{"key":0,"type":"read","msg_id":2}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c12", "src": "n2", "body": {"msg_id": 3, "in_reply_to": 2, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":46,"src":"c18","dest":"n2","body":{"key":0,"value":3,"type":"write","msg_id":1}}
+INFO:root:writing key 0 with value 3
+Traceback (most recent call last):
+  File "/home/mutante/Programming/University/Cybersecurity/IntrusionTolerance/Guião1/echo.py", line 33, in <module>
+    broadcast({"type": "replicate", "key": msg.body.key, "value": msg.body.value}, nodes, msg.body.node_id)
+                                                                                          ^^^^^^^^^^^^^^^^
+AttributeError: 'types.SimpleNamespace' object has no attribute 'node_id'

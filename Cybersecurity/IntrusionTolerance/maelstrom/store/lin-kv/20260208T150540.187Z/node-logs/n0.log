@@ -1,0 +1,713 @@
+DEBUG:root:received {"id":4,"src":"c4","dest":"n0","body":{"type":"init","node_id":"n0","node_ids":["n0","n1","n2","n3","n4"],"msg_id":1}}
+INFO:root:initializing node n0
+INFO:root:nodes in cluster: {'n4', 'n0', 'n2', 'n3', 'n1'}
+DEBUG:root:sending {"dest": "c4", "src": "n0", "body": {"msg_id": 1, "in_reply_to": 1, "type": "init_ok"}}
+DEBUG:root:received {"id":10,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":0,"type":"cas","msg_id":1}}
+INFO:root:cas on key 0: expected 4, current None, new 0
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 2, "in_reply_to": 1, "type": "error", "code": 20, "text": "key does not exist"}}
+DEBUG:root:received {"id":14,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":4,"type":"cas","msg_id":2}}
+INFO:root:cas on key 0: expected 0, current None, new 4
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 3, "in_reply_to": 2, "type": "error", "code": 20, "text": "key does not exist"}}
+DEBUG:root:received {"id":16,"src":"c10","dest":"n0","body":{"key":0,"value":0,"type":"write","msg_id":3}}
+INFO:root:writing key 0 with value 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 4, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 5, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 6, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 7, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 8, "in_reply_to": 3, "type": "write_ok"}}
+DEBUG:root:received {"id":22,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":2,"type":"cas","msg_id":4}}
+INFO:root:cas on key 0: expected 4, current 0, new 2
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 9, "in_reply_to": 4, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":24,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":1}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 10, "in_reply_to": 1, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":26,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":2}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 11, "in_reply_to": 2, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":28,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":3}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 12, "in_reply_to": 3, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":31,"src":"n4","dest":"n0","body":{"msg_id":2,"type":"replicate","key":0,"value":2}}
+DEBUG:root:received {"id":36,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":0,"type":"cas","msg_id":5}}
+INFO:root:cas on key 0: expected 1, current 2, new 0
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 13, "in_reply_to": 5, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":38,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":4}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 14, "in_reply_to": 4, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":40,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":2,"type":"cas","msg_id":6}}
+INFO:root:cas on key 0: expected 3, current 2, new 2
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 15, "in_reply_to": 6, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":42,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":1,"type":"cas","msg_id":7}}
+INFO:root:cas on key 0: expected 1, current 2, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 16, "in_reply_to": 7, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":48,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":5}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 17, "in_reply_to": 5, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":50,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":6}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 18, "in_reply_to": 6, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":52,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":7}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 19, "in_reply_to": 7, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":56,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":8}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 20, "in_reply_to": 8, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":58,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":9}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 21, "in_reply_to": 9, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":60,"src":"c10","dest":"n0","body":{"key":0,"value":4,"type":"write","msg_id":8}}
+INFO:root:writing key 0 with value 4
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 22, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 23, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 24, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 25, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 26, "in_reply_to": 8, "type": "write_ok"}}
+DEBUG:root:received {"id":68,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":2,"type":"cas","msg_id":9}}
+INFO:root:cas on key 0: expected 1, current 4, new 2
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 27, "in_reply_to": 9, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":70,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":0,"type":"cas","msg_id":10}}
+INFO:root:cas on key 0: expected 4, current 4, new 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 28, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 29, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 30, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 31, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 32, "in_reply_to": 10, "type": "cas_ok"}}
+DEBUG:root:received {"id":78,"src":"c10","dest":"n0","body":{"key":0,"value":0,"type":"write","msg_id":11}}
+INFO:root:writing key 0 with value 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 33, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 34, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 35, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 36, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 37, "in_reply_to": 11, "type": "write_ok"}}
+DEBUG:root:received {"id":85,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":10}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 38, "in_reply_to": 10, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":88,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":11}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 39, "in_reply_to": 11, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":90,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":12}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 40, "in_reply_to": 12, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":92,"src":"c10","dest":"n0","body":{"key":0,"from":2,"to":1,"type":"cas","msg_id":12}}
+INFO:root:cas on key 0: expected 2, current 0, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 41, "in_reply_to": 12, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":94,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":13}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 42, "in_reply_to": 13, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":102,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":4,"type":"cas","msg_id":13}}
+INFO:root:cas on key 0: expected 4, current 0, new 4
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 43, "in_reply_to": 13, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":104,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":3,"type":"cas","msg_id":14}}
+INFO:root:cas on key 0: expected 3, current 0, new 3
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 44, "in_reply_to": 14, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":106,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":14}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 45, "in_reply_to": 14, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":108,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":15}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 46, "in_reply_to": 15, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":113,"src":"n4","dest":"n0","body":{"msg_id":9,"type":"replicate","key":0,"value":1}}
+DEBUG:root:received {"id":118,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":1,"type":"cas","msg_id":15}}
+INFO:root:cas on key 0: expected 4, current 1, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 47, "in_reply_to": 15, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":120,"src":"c10","dest":"n0","body":{"key":0,"value":4,"type":"write","msg_id":16}}
+INFO:root:writing key 0 with value 4
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 48, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 49, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 50, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 51, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 52, "in_reply_to": 16, "type": "write_ok"}}
+DEBUG:root:received {"id":128,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":0,"type":"cas","msg_id":17}}
+INFO:root:cas on key 0: expected 0, current 4, new 0
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 53, "in_reply_to": 17, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":132,"src":"c10","dest":"n0","body":{"key":0,"value":3,"type":"write","msg_id":18}}
+INFO:root:writing key 0 with value 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 54, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 55, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 56, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 57, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 58, "in_reply_to": 18, "type": "write_ok"}}
+DEBUG:root:received {"id":141,"src":"n1","dest":"n0","body":{"msg_id":7,"type":"replicate","key":0,"value":2}}
+DEBUG:root:received {"id":144,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":16}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 59, "in_reply_to": 16, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":150,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":17}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 60, "in_reply_to": 17, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":152,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":18}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 61, "in_reply_to": 18, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":156,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":4,"type":"cas","msg_id":19}}
+INFO:root:cas on key 0: expected 4, current 2, new 4
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 62, "in_reply_to": 19, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":158,"src":"c10","dest":"n0","body":{"key":0,"from":2,"to":4,"type":"cas","msg_id":20}}
+INFO:root:cas on key 0: expected 2, current 2, new 4
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 63, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 64, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 65, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 66, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 67, "in_reply_to": 20, "type": "cas_ok"}}
+DEBUG:root:received {"id":164,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":1,"type":"cas","msg_id":21}}
+INFO:root:cas on key 0: expected 4, current 4, new 1
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 68, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 69, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 70, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 71, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 72, "in_reply_to": 21, "type": "cas_ok"}}
+DEBUG:root:received {"id":170,"src":"c10","dest":"n0","body":{"key":0,"value":4,"type":"write","msg_id":22}}
+INFO:root:writing key 0 with value 4
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 73, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 74, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 75, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 76, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 77, "in_reply_to": 22, "type": "write_ok"}}
+DEBUG:root:received {"id":176,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":19}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 78, "in_reply_to": 19, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":180,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":20}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 79, "in_reply_to": 20, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":183,"src":"n4","dest":"n0","body":{"msg_id":16,"type":"replicate","key":0,"value":4}}
+DEBUG:root:received {"id":188,"src":"c10","dest":"n0","body":{"key":0,"value":2,"type":"write","msg_id":23}}
+INFO:root:writing key 0 with value 2
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 80, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 81, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 82, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 83, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 84, "in_reply_to": 23, "type": "write_ok"}}
+DEBUG:root:received {"id":194,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":21}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 85, "in_reply_to": 21, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":198,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":2,"type":"cas","msg_id":24}}
+INFO:root:cas on key 0: expected 3, current 2, new 2
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 86, "in_reply_to": 24, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":200,"src":"c10","dest":"n0","body":{"key":0,"value":1,"type":"write","msg_id":25}}
+INFO:root:writing key 0 with value 1
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 87, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 88, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 89, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 90, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 91, "in_reply_to": 25, "type": "write_ok"}}
+DEBUG:root:received {"id":206,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":3,"type":"cas","msg_id":26}}
+INFO:root:cas on key 0: expected 3, current 1, new 3
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 92, "in_reply_to": 26, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":208,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":1,"type":"cas","msg_id":27}}
+INFO:root:cas on key 0: expected 0, current 1, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 93, "in_reply_to": 27, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":213,"src":"n1","dest":"n0","body":{"msg_id":14,"type":"replicate","key":0,"value":0}}
+DEBUG:root:received {"id":218,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":22}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 94, "in_reply_to": 22, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":220,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":23}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 95, "in_reply_to": 23, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":222,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":1,"type":"cas","msg_id":28}}
+INFO:root:cas on key 0: expected 1, current 0, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 96, "in_reply_to": 28, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":224,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":24}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 97, "in_reply_to": 24, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":226,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":3,"type":"cas","msg_id":29}}
+INFO:root:cas on key 0: expected 1, current 0, new 3
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 98, "in_reply_to": 29, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":228,"src":"c10","dest":"n0","body":{"key":0,"from":2,"to":1,"type":"cas","msg_id":30}}
+INFO:root:cas on key 0: expected 2, current 0, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 99, "in_reply_to": 30, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":232,"src":"c10","dest":"n0","body":{"key":0,"from":2,"to":4,"type":"cas","msg_id":31}}
+INFO:root:cas on key 0: expected 2, current 0, new 4
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 100, "in_reply_to": 31, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":234,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":3,"type":"cas","msg_id":32}}
+INFO:root:cas on key 0: expected 3, current 0, new 3
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 101, "in_reply_to": 32, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":239,"src":"n1","dest":"n0","body":{"msg_id":19,"type":"replicate","key":0,"value":3}}
+DEBUG:root:received {"id":244,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":25}}
+INFO:root:reading key 0 with value 3
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 102, "in_reply_to": 25, "type": "read_ok", "value": 3}}
+DEBUG:root:received {"id":246,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":26}}
+INFO:root:reading key 0 with value 3
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 103, "in_reply_to": 26, "type": "read_ok", "value": 3}}
+DEBUG:root:received {"id":248,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":0,"type":"cas","msg_id":33}}
+INFO:root:cas on key 0: expected 1, current 3, new 0
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 104, "in_reply_to": 33, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":250,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":27}}
+INFO:root:reading key 0 with value 3
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 105, "in_reply_to": 27, "type": "read_ok", "value": 3}}
+DEBUG:root:received {"id":254,"src":"c10","dest":"n0","body":{"key":0,"from":2,"to":0,"type":"cas","msg_id":34}}
+INFO:root:cas on key 0: expected 2, current 3, new 0
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 106, "in_reply_to": 34, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":256,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":0,"type":"cas","msg_id":35}}
+INFO:root:cas on key 0: expected 4, current 3, new 0
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 107, "in_reply_to": 35, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":260,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":3,"type":"cas","msg_id":36}}
+INFO:root:cas on key 0: expected 3, current 3, new 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 108, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 109, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 110, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 111, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 112, "in_reply_to": 36, "type": "cas_ok"}}
+DEBUG:root:received {"id":269,"src":"n1","dest":"n0","body":{"msg_id":25,"type":"replicate","key":0,"value":4}}
+DEBUG:root:received {"id":272,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":28}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 113, "in_reply_to": 28, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":278,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":1,"type":"cas","msg_id":37}}
+INFO:root:cas on key 0: expected 0, current 4, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 114, "in_reply_to": 37, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":280,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":4,"type":"cas","msg_id":38}}
+INFO:root:cas on key 0: expected 0, current 4, new 4
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 115, "in_reply_to": 38, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":290,"src":"c10","dest":"n0","body":{"key":0,"from":2,"to":1,"type":"cas","msg_id":39}}
+INFO:root:cas on key 0: expected 2, current 4, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 116, "in_reply_to": 39, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":292,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":29}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 117, "in_reply_to": 29, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":294,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":30}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 118, "in_reply_to": 30, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":297,"src":"n3","dest":"n0","body":{"msg_id":10,"type":"replicate","key":0,"value":2}}
+DEBUG:root:received {"id":302,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":31}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 119, "in_reply_to": 31, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":304,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":32}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 120, "in_reply_to": 32, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":306,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":2,"type":"cas","msg_id":40}}
+INFO:root:cas on key 0: expected 1, current 2, new 2
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 121, "in_reply_to": 40, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":310,"src":"c10","dest":"n0","body":{"key":0,"value":3,"type":"write","msg_id":41}}
+INFO:root:writing key 0 with value 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 122, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 123, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 124, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 125, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 126, "in_reply_to": 41, "type": "write_ok"}}
+DEBUG:root:received {"id":316,"src":"c10","dest":"n0","body":{"key":0,"value":2,"type":"write","msg_id":42}}
+INFO:root:writing key 0 with value 2
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 127, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 128, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 129, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 130, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 131, "in_reply_to": 42, "type": "write_ok"}}
+DEBUG:root:received {"id":322,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":2,"type":"cas","msg_id":43}}
+INFO:root:cas on key 0: expected 0, current 2, new 2
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 132, "in_reply_to": 43, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":324,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":33}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 133, "in_reply_to": 33, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":326,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":34}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 134, "in_reply_to": 34, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":336,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":35}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 135, "in_reply_to": 35, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":338,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":36}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 136, "in_reply_to": 36, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":340,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":2,"type":"cas","msg_id":44}}
+INFO:root:cas on key 0: expected 4, current 2, new 2
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 137, "in_reply_to": 44, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":342,"src":"c10","dest":"n0","body":{"key":0,"value":3,"type":"write","msg_id":45}}
+INFO:root:writing key 0 with value 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 138, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 139, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 140, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 141, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 142, "in_reply_to": 45, "type": "write_ok"}}
+DEBUG:root:received {"id":348,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":3,"type":"cas","msg_id":46}}
+INFO:root:cas on key 0: expected 0, current 3, new 3
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 143, "in_reply_to": 46, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":352,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":1,"type":"cas","msg_id":47}}
+INFO:root:cas on key 0: expected 4, current 3, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 144, "in_reply_to": 47, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":354,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":37}}
+INFO:root:reading key 0 with value 3
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 145, "in_reply_to": 37, "type": "read_ok", "value": 3}}
+DEBUG:root:received {"id":356,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":38}}
+INFO:root:reading key 0 with value 3
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 146, "in_reply_to": 38, "type": "read_ok", "value": 3}}
+DEBUG:root:received {"id":370,"src":"c10","dest":"n0","body":{"key":0,"value":0,"type":"write","msg_id":48}}
+INFO:root:writing key 0 with value 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 147, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 148, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 149, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 150, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 151, "in_reply_to": 48, "type": "write_ok"}}
+DEBUG:root:received {"id":376,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":39}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 152, "in_reply_to": 39, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":384,"src":"c10","dest":"n0","body":{"key":0,"value":0,"type":"write","msg_id":49}}
+INFO:root:writing key 0 with value 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 153, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 154, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 155, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 156, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 157, "in_reply_to": 49, "type": "write_ok"}}
+DEBUG:root:received {"id":390,"src":"c10","dest":"n0","body":{"key":0,"value":2,"type":"write","msg_id":50}}
+INFO:root:writing key 0 with value 2
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 158, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 159, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 160, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 161, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 162, "in_reply_to": 50, "type": "write_ok"}}
+DEBUG:root:received {"id":406,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":40}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 163, "in_reply_to": 40, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":408,"src":"c10","dest":"n0","body":{"key":0,"value":3,"type":"write","msg_id":51}}
+INFO:root:writing key 0 with value 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 164, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 165, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 166, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 167, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 168, "in_reply_to": 51, "type": "write_ok"}}
+DEBUG:root:received {"id":414,"src":"c10","dest":"n0","body":{"key":0,"value":1,"type":"write","msg_id":52}}
+INFO:root:writing key 0 with value 1
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 169, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 170, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 171, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 172, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 173, "in_reply_to": 52, "type": "write_ok"}}
+DEBUG:root:received {"id":420,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":2,"type":"cas","msg_id":53}}
+INFO:root:cas on key 0: expected 1, current 1, new 2
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 174, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 175, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 176, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 177, "type": "replicate", "key": 0, "value": 2}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 178, "in_reply_to": 53, "type": "cas_ok"}}
+DEBUG:root:received {"id":426,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":2,"type":"cas","msg_id":54}}
+INFO:root:cas on key 0: expected 0, current 2, new 2
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 179, "in_reply_to": 54, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":428,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":0,"type":"cas","msg_id":55}}
+INFO:root:cas on key 0: expected 4, current 2, new 0
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 180, "in_reply_to": 55, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":430,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":1,"type":"cas","msg_id":56}}
+INFO:root:cas on key 0: expected 1, current 2, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 181, "in_reply_to": 56, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":432,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":41}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 182, "in_reply_to": 41, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":437,"src":"n1","dest":"n0","body":{"msg_id":34,"type":"replicate","key":0,"value":4}}
+DEBUG:root:received {"id":442,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":42}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 183, "in_reply_to": 42, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":444,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":43}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 184, "in_reply_to": 43, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":448,"src":"c10","dest":"n0","body":{"key":0,"value":0,"type":"write","msg_id":57}}
+INFO:root:writing key 0 with value 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 185, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 186, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 187, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 188, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 189, "in_reply_to": 57, "type": "write_ok"}}
+DEBUG:root:received {"id":454,"src":"c10","dest":"n0","body":{"key":0,"value":1,"type":"write","msg_id":58}}
+INFO:root:writing key 0 with value 1
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 190, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 191, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 192, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 193, "type": "replicate", "key": 0, "value": 1}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 194, "in_reply_to": 58, "type": "write_ok"}}
+DEBUG:root:received {"id":466,"src":"c10","dest":"n0","body":{"key":0,"value":3,"type":"write","msg_id":59}}
+INFO:root:writing key 0 with value 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 195, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 196, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 197, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 198, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 199, "in_reply_to": 59, "type": "write_ok"}}
+DEBUG:root:received {"id":475,"src":"n1","dest":"n0","body":{"msg_id":40,"type":"replicate","key":0,"value":1}}
+DEBUG:root:received {"id":480,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":44}}
+INFO:root:reading key 0 with value 1
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 200, "in_reply_to": 44, "type": "read_ok", "value": 1}}
+DEBUG:root:received {"id":488,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":45}}
+INFO:root:reading key 0 with value 1
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 201, "in_reply_to": 45, "type": "read_ok", "value": 1}}
+DEBUG:root:received {"id":490,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":46}}
+INFO:root:reading key 0 with value 1
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 202, "in_reply_to": 46, "type": "read_ok", "value": 1}}
+DEBUG:root:received {"id":496,"src":"c10","dest":"n0","body":{"key":0,"value":4,"type":"write","msg_id":60}}
+INFO:root:writing key 0 with value 4
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 203, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 204, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 205, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 206, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 207, "in_reply_to": 60, "type": "write_ok"}}
+DEBUG:root:received {"id":504,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":47}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 208, "in_reply_to": 47, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":506,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":48}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 209, "in_reply_to": 48, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":508,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":49}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 210, "in_reply_to": 49, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":518,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":50}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 211, "in_reply_to": 50, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":520,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":4,"type":"cas","msg_id":61}}
+INFO:root:cas on key 0: expected 4, current 4, new 4
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 212, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 213, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 214, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 215, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 216, "in_reply_to": 61, "type": "cas_ok"}}
+DEBUG:root:received {"id":528,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":0,"type":"cas","msg_id":62}}
+INFO:root:cas on key 0: expected 4, current 4, new 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 217, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 218, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 219, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 220, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 221, "in_reply_to": 62, "type": "cas_ok"}}
+DEBUG:root:received {"id":538,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":51}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 222, "in_reply_to": 51, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":542,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":52}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 223, "in_reply_to": 52, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":544,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":53}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 224, "in_reply_to": 53, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":546,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":54}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 225, "in_reply_to": 54, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":548,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":55}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 226, "in_reply_to": 55, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":550,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":1,"type":"cas","msg_id":63}}
+INFO:root:cas on key 0: expected 1, current 0, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 227, "in_reply_to": 63, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":556,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":4,"type":"cas","msg_id":64}}
+INFO:root:cas on key 0: expected 0, current 0, new 4
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 228, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 229, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 230, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 231, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 232, "in_reply_to": 64, "type": "cas_ok"}}
+DEBUG:root:received {"id":562,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":56}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 233, "in_reply_to": 56, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":567,"src":"n1","dest":"n0","body":{"msg_id":47,"type":"replicate","key":0,"value":3}}
+DEBUG:root:received {"id":574,"src":"n2","dest":"n0","body":{"msg_id":20,"type":"replicate","key":0,"value":0}}
+DEBUG:root:received {"id":576,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":57}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 234, "in_reply_to": 57, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":578,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":58}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 235, "in_reply_to": 58, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":580,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":59}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 236, "in_reply_to": 59, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":582,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":0,"type":"cas","msg_id":65}}
+INFO:root:cas on key 0: expected 4, current 0, new 0
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 237, "in_reply_to": 65, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":584,"src":"c10","dest":"n0","body":{"key":0,"value":3,"type":"write","msg_id":66}}
+INFO:root:writing key 0 with value 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 238, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 239, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 240, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 241, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 242, "in_reply_to": 66, "type": "write_ok"}}
+DEBUG:root:received {"id":596,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":60}}
+INFO:root:reading key 0 with value 3
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 243, "in_reply_to": 60, "type": "read_ok", "value": 3}}
+DEBUG:root:received {"id":602,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":61}}
+INFO:root:reading key 0 with value 3
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 244, "in_reply_to": 61, "type": "read_ok", "value": 3}}
+DEBUG:root:received {"id":605,"src":"n4","dest":"n0","body":{"msg_id":45,"type":"replicate","key":0,"value":0}}
+DEBUG:root:received {"id":610,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":62}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 245, "in_reply_to": 62, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":612,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":63}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 246, "in_reply_to": 63, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":616,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":4,"type":"cas","msg_id":67}}
+INFO:root:cas on key 0: expected 4, current 0, new 4
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 247, "in_reply_to": 67, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":620,"src":"c10","dest":"n0","body":{"key":0,"from":2,"to":1,"type":"cas","msg_id":68}}
+INFO:root:cas on key 0: expected 2, current 0, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 248, "in_reply_to": 68, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":622,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":64}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 249, "in_reply_to": 64, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":624,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":65}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 250, "in_reply_to": 65, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":626,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":66}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 251, "in_reply_to": 66, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":629,"src":"n3","dest":"n0","body":{"msg_id":37,"type":"replicate","key":0,"value":3}}
+DEBUG:root:received {"id":636,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":1,"type":"cas","msg_id":69}}
+INFO:root:cas on key 0: expected 4, current 3, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 252, "in_reply_to": 69, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":638,"src":"c10","dest":"n0","body":{"key":0,"value":3,"type":"write","msg_id":70}}
+INFO:root:writing key 0 with value 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 253, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 254, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 255, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 256, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 257, "in_reply_to": 70, "type": "write_ok"}}
+DEBUG:root:received {"id":644,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":4,"type":"cas","msg_id":71}}
+INFO:root:cas on key 0: expected 4, current 3, new 4
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 258, "in_reply_to": 71, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":646,"src":"c10","dest":"n0","body":{"key":0,"value":0,"type":"write","msg_id":72}}
+INFO:root:writing key 0 with value 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 259, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 260, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 261, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 262, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 263, "in_reply_to": 72, "type": "write_ok"}}
+DEBUG:root:received {"id":652,"src":"c10","dest":"n0","body":{"key":0,"value":0,"type":"write","msg_id":73}}
+INFO:root:writing key 0 with value 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 264, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 265, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 266, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 267, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 268, "in_reply_to": 73, "type": "write_ok"}}
+DEBUG:root:received {"id":660,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":3,"type":"cas","msg_id":74}}
+INFO:root:cas on key 0: expected 0, current 0, new 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 269, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 270, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 271, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 272, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 273, "in_reply_to": 74, "type": "cas_ok"}}
+DEBUG:root:received {"id":669,"src":"n1","dest":"n0","body":{"msg_id":54,"type":"replicate","key":0,"value":2}}
+DEBUG:root:received {"id":672,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":67}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 274, "in_reply_to": 67, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":674,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":68}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 275, "in_reply_to": 68, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":677,"src":"n4","dest":"n0","body":{"msg_id":52,"type":"replicate","key":0,"value":4}}
+DEBUG:root:received {"id":682,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":3,"type":"cas","msg_id":75}}
+INFO:root:cas on key 0: expected 3, current 4, new 3
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 276, "in_reply_to": 75, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":684,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":69}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 277, "in_reply_to": 69, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":690,"src":"c10","dest":"n0","body":{"key":0,"value":4,"type":"write","msg_id":76}}
+INFO:root:writing key 0 with value 4
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 278, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 279, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 280, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 281, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 282, "in_reply_to": 76, "type": "write_ok"}}
+DEBUG:root:received {"id":696,"src":"c10","dest":"n0","body":{"key":0,"from":2,"to":2,"type":"cas","msg_id":77}}
+INFO:root:cas on key 0: expected 2, current 4, new 2
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 283, "in_reply_to": 77, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":698,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":70}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 284, "in_reply_to": 70, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":700,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":71}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 285, "in_reply_to": 71, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":706,"src":"n2","dest":"n0","body":{"msg_id":28,"type":"replicate","key":0,"value":0}}
+DEBUG:root:received {"id":708,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":72}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 286, "in_reply_to": 72, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":710,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":73}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 287, "in_reply_to": 73, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":712,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":2,"type":"cas","msg_id":78}}
+INFO:root:cas on key 0: expected 3, current 0, new 2
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 288, "in_reply_to": 78, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":714,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":74}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 289, "in_reply_to": 74, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":716,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":0,"type":"cas","msg_id":79}}
+INFO:root:cas on key 0: expected 3, current 0, new 0
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 290, "in_reply_to": 79, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":720,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":1,"type":"cas","msg_id":80}}
+INFO:root:cas on key 0: expected 4, current 0, new 1
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 291, "in_reply_to": 80, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":724,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":75}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 292, "in_reply_to": 75, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":726,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":76}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 293, "in_reply_to": 76, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":728,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":77}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 294, "in_reply_to": 77, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":731,"src":"n3","dest":"n0","body":{"msg_id":42,"type":"replicate","key":0,"value":1}}
+DEBUG:root:received {"id":736,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":78}}
+INFO:root:reading key 0 with value 1
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 295, "in_reply_to": 78, "type": "read_ok", "value": 1}}
+DEBUG:root:received {"id":738,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":79}}
+INFO:root:reading key 0 with value 1
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 296, "in_reply_to": 79, "type": "read_ok", "value": 1}}
+DEBUG:root:received {"id":740,"src":"c10","dest":"n0","body":{"key":0,"from":2,"to":3,"type":"cas","msg_id":81}}
+INFO:root:cas on key 0: expected 2, current 1, new 3
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 297, "in_reply_to": 81, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":746,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":0,"type":"cas","msg_id":82}}
+INFO:root:cas on key 0: expected 0, current 1, new 0
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 298, "in_reply_to": 82, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":750,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":80}}
+INFO:root:reading key 0 with value 1
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 299, "in_reply_to": 80, "type": "read_ok", "value": 1}}
+DEBUG:root:received {"id":752,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":81}}
+INFO:root:reading key 0 with value 1
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 300, "in_reply_to": 81, "type": "read_ok", "value": 1}}
+DEBUG:root:received {"id":754,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":82}}
+INFO:root:reading key 0 with value 1
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 301, "in_reply_to": 82, "type": "read_ok", "value": 1}}
+DEBUG:root:received {"id":758,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":83}}
+INFO:root:reading key 0 with value 1
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 302, "in_reply_to": 83, "type": "read_ok", "value": 1}}
+DEBUG:root:received {"id":760,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":4,"type":"cas","msg_id":83}}
+INFO:root:cas on key 0: expected 0, current 1, new 4
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 303, "in_reply_to": 83, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":762,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":84}}
+INFO:root:reading key 0 with value 1
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 304, "in_reply_to": 84, "type": "read_ok", "value": 1}}
+DEBUG:root:received {"id":764,"src":"c10","dest":"n0","body":{"key":0,"from":1,"to":3,"type":"cas","msg_id":84}}
+INFO:root:cas on key 0: expected 1, current 1, new 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 305, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 306, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 307, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 308, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 309, "in_reply_to": 84, "type": "cas_ok"}}
+DEBUG:root:received {"id":770,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":0,"type":"cas","msg_id":85}}
+INFO:root:cas on key 0: expected 3, current 3, new 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 310, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 311, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 312, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 313, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 314, "in_reply_to": 85, "type": "cas_ok"}}
+DEBUG:root:received {"id":778,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":4,"type":"cas","msg_id":86}}
+INFO:root:cas on key 0: expected 0, current 0, new 4
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 315, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 316, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 317, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 318, "type": "replicate", "key": 0, "value": 4}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 319, "in_reply_to": 86, "type": "cas_ok"}}
+DEBUG:root:received {"id":784,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":85}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 320, "in_reply_to": 85, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":790,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":86}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 321, "in_reply_to": 86, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":792,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":87}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 322, "in_reply_to": 87, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":794,"src":"c12","dest":"n0","body":{"key":0,"type":"read","msg_id":88}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c12", "src": "n0", "body": {"msg_id": 323, "in_reply_to": 88, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":796,"src":"c10","dest":"n0","body":{"key":0,"from":4,"to":3,"type":"cas","msg_id":87}}
+INFO:root:cas on key 0: expected 4, current 4, new 3
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 324, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 325, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 326, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 327, "type": "replicate", "key": 0, "value": 3}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 328, "in_reply_to": 87, "type": "cas_ok"}}
+DEBUG:root:received {"id":802,"src":"c10","dest":"n0","body":{"key":0,"from":3,"to":0,"type":"cas","msg_id":88}}
+INFO:root:cas on key 0: expected 3, current 3, new 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 329, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 330, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 331, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 332, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 333, "in_reply_to": 88, "type": "cas_ok"}}
+DEBUG:root:received {"id":812,"src":"c10","dest":"n0","body":{"key":0,"from":0,"to":0,"type":"cas","msg_id":89}}
+INFO:root:cas on key 0: expected 0, current 0, new 0
+DEBUG:root:sending {"dest": "n4", "src": "n0", "body": {"msg_id": 334, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n2", "src": "n0", "body": {"msg_id": 335, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n3", "src": "n0", "body": {"msg_id": 336, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "n1", "src": "n0", "body": {"msg_id": 337, "type": "replicate", "key": 0, "value": 0}}
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 338, "in_reply_to": 89, "type": "cas_ok"}}

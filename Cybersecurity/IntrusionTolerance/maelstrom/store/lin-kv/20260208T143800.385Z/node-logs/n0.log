@@ -1,0 +1,38 @@
+DEBUG:root:received {"id":2,"src":"c2","dest":"n0","body":{"type":"init","node_id":"n0","node_ids":["n0","n1","n2","n3","n4"],"msg_id":1}}
+INFO:root:initializing node n0
+INFO:root:nodes in cluster: {'n0', 'n3', 'n2', 'n1', 'n4'}
+DEBUG:root:sending {"dest": "c2", "src": "n0", "body": {"msg_id": 1, "in_reply_to": 1, "type": "init_ok"}}
+DEBUG:root:received {"id":10,"src":"c10","dest":"n0","body":{"key":0,"type":"read","msg_id":1}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 2, "in_reply_to": 1, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":20,"src":"c10","dest":"n0","body":{"key":0,"type":"read","msg_id":2}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 3, "in_reply_to": 2, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":24,"src":"c10","dest":"n0","body":{"key":0,"type":"read","msg_id":3}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 4, "in_reply_to": 3, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":26,"src":"c10","dest":"n0","body":{"key":0,"type":"read","msg_id":4}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 5, "in_reply_to": 4, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":30,"src":"c17","dest":"n0","body":{"key":0,"from":1,"to":0,"type":"cas","msg_id":1}}
+INFO:root:cas on key 0: expected 1, current None, new 0
+DEBUG:root:sending {"dest": "c17", "src": "n0", "body": {"msg_id": 6, "in_reply_to": 1, "type": "error", "code": 20, "text": "key does not exist"}}
+DEBUG:root:received {"id":32,"src":"c10","dest":"n0","body":{"key":0,"type":"read","msg_id":5}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 7, "in_reply_to": 5, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":34,"src":"c17","dest":"n0","body":{"key":0,"from":4,"to":0,"type":"cas","msg_id":2}}
+INFO:root:cas on key 0: expected 4, current None, new 0
+DEBUG:root:sending {"dest": "c17", "src": "n0", "body": {"msg_id": 8, "in_reply_to": 2, "type": "error", "code": 20, "text": "key does not exist"}}
+DEBUG:root:received {"id":42,"src":"c10","dest":"n0","body":{"key":0,"type":"read","msg_id":6}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 9, "in_reply_to": 6, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":44,"src":"c10","dest":"n0","body":{"key":0,"type":"read","msg_id":7}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c10", "src": "n0", "body": {"msg_id": 10, "in_reply_to": 7, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":50,"src":"c17","dest":"n0","body":{"key":0,"value":0,"type":"write","msg_id":3}}
+INFO:root:writing key 0 with value 0
+Traceback (most recent call last):
+  File "/home/mutante/Programming/University/Cybersecurity/IntrusionTolerance/Guião1/echo.py", line 33, in <module>
+    broadcast({"type": "replicate", "key": msg.body.key, "value": msg.body.value}, nodes, msg.body.node_id)
+                                                                                          ^^^^^^^^^^^^^^^^
+AttributeError: 'types.SimpleNamespace' object has no attribute 'node_id'

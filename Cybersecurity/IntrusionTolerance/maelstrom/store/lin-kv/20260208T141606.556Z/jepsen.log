@@ -1,0 +1,842 @@
+2026-02-08 14:16:06,582{GMT}	INFO	[jepsen test runner] jepsen.core: Test version bd0472adf900152b9202913b5b89a4b15f56338b (plus uncommitted changes)
+2026-02-08 14:16:06,582{GMT}	INFO	[jepsen test runner] jepsen.core: Command line:
+lein run test lin_kv --bin ../Guião1/echo.py --concurrency 10
+2026-02-08 14:16:06,623{GMT}	INFO	[jepsen test runner] jepsen.core: Running test:
+{:args ["lin_kv"]
+ :remote
+ #jepsen.control.retry.Remote{:remote #jepsen.control.scp.Remote{:cmd-remote #jepsen.control.sshj.SSHJRemote{:concurrency-limit 6,
+                                                                                                             :conn-spec nil,
+                                                                                                             :client nil,
+                                                                                                             :semaphore nil},
+                                                                 :conn-spec nil},
+                              :conn nil}
+ :log-net-send false
+ :node-count nil
+ :availability nil
+ :max-txn-length 4
+ :concurrency 10
+ :db
+ #object[maelstrom.db$db$reify__16612
+         "0x6757ed9e"
+         "maelstrom.db$db$reify__16612@6757ed9e"]
+ :max-writes-per-key 16
+ :leave-db-running? false
+ :name "lin-kv"
+ :logging-json? false
+ :start-time
+ #object[org.joda.time.DateTime "0x77d5395a" "2026-02-08T14:16:06.556Z"]
+ :nemesis-interval 10
+ :net
+ #object[maelstrom.net$jepsen_net$reify__15721
+         "0x7b0eb7e"
+         "maelstrom.net$jepsen_net$reify__15721@7b0eb7e"]
+ :client
+ #object[maelstrom.workload.lin_kv$client$reify__20973
+         "0x2381a837"
+         "maelstrom.workload.lin_kv$client$reify__20973@2381a837"]
+ :barrier
+ #object[java.util.concurrent.CyclicBarrier
+         "0x7be29ac4"
+         "java.util.concurrent.CyclicBarrier@7be29ac4"]
+ :log-stderr false
+ :pure-generators true
+ :ssh {:dummy? true}
+ :rate 5
+ :checker
+ #object[jepsen.checker$compose$reify__11089
+         "0x2523730b"
+         "jepsen.checker$compose$reify__11089@2523730b"]
+ :argv ("test" "lin_kv" "--bin" "../Guião1/echo.py" "--concurrency" "10")
+ :nemesis
+ (jepsen.nemesis.ReflCompose
+  {:fm {:start-partition 0,
+        :stop-partition 0,
+        :kill 1,
+        :start 1,
+        :pause 1,
+        :resume 1},
+   :nemeses [#unprintable "jepsen.nemesis.combined$partition_nemesis$reify__16905@25c887ca"
+             #unprintable "jepsen.nemesis.combined$db_nemesis$reify__16886@ba65354"]})
+ :nodes ["n1" "n2" "n3" "n4" "n5"]
+ :test-count 1
+ :latency {:mean 0, :dist :constant}
+ :bin "../Guião1/echo.py"
+ :generator
+ #object[jepsen.util.Forgettable
+         "0x7cc742d"
+         (jepsen.generator.TimeLimit
+          {:limit 60000000000,
+           :cutoff nil,
+           :gen (jepsen.generator.Any
+                 {:gens [(jepsen.generator.OnThreads
+                          {:f #{:nemesis},
+                           :context-filter #object[jepsen.generator.context$make_thread_filter$lazy_filter__12077
+                                                   "0x1b74a062"
+                                                   "jepsen.generator.context$make_thread_filter$lazy_filter__12077@1b74a062"],
+                           :gen nil})
+                         (jepsen.generator.OnThreads
+                          {:f #jepsen.generator.context.AllBut{:element :nemesis},
+                           :context-filter #object[jepsen.generator.context$make_thread_filter$lazy_filter__12077
+                                                   "0x6f5690f3"
+                                                   "jepsen.generator.context$make_thread_filter$lazy_filter__12077@6f5690f3"],
+                           :gen (jepsen.generator.Stagger
+                                 {:dt 400000000,
+                                  :next-time nil,
+                                  :gen (jepsen.generator.OnThreads
+                                        {:f #jepsen.generator.context.AllBut{:element :nemesis},
+                                         :context-filter #object[jepsen.generator.context$make_thread_filter$lazy_filter__12077
+                                                                 "0x160a8986"
+                                                                 "jepsen.generator.context$make_thread_filter$lazy_filter__12077@160a8986"],
+                                         :gen (jepsen.independent.ConcurrentGenerator
+                                               {:n 10,
+                                                :fgen #object[jepsen.tests.linearizable_register$test$fn__17385
+                                                              "0x11ed241c"
+                                                              "jepsen.tests.linearizable_register$test$fn__17385@11ed241c"],
+                                                :group->threads nil,
+                                                :thread->group nil,
+                                                :group->context-filter nil,
+                                                :keys (0 1 2 3 4 5 6 7 ...),
+                                                :gens nil})})})})]})})]
+ :log-net-recv false
+ :os
+ #object[maelstrom.net$jepsen_os$reify__15724
+         "0x74ae2dec"
+         "maelstrom.net$jepsen_os$reify__15724@74ae2dec"]
+ :time-limit 60
+ :workload :lin-kv
+ :consistency-models [:strict-serializable]
+ :topology :grid}
+
+2026-02-08 14:16:07,672{GMT}	INFO	[jepsen node n1] maelstrom.net: Starting Maelstrom network
+2026-02-08 14:16:07,673{GMT}	INFO	[jepsen test runner] jepsen.db: Tearing down DB
+2026-02-08 14:16:07,675{GMT}	INFO	[jepsen test runner] jepsen.db: Setting up DB
+2026-02-08 14:16:07,676{GMT}	INFO	[jepsen node n2] maelstrom.db: Setting up n2
+2026-02-08 14:16:07,676{GMT}	INFO	[jepsen node n3] maelstrom.db: Setting up n3
+2026-02-08 14:16:07,676{GMT}	INFO	[jepsen node n5] maelstrom.db: Setting up n5
+2026-02-08 14:16:07,676{GMT}	INFO	[jepsen node n4] maelstrom.db: Setting up n4
+2026-02-08 14:16:07,677{GMT}	INFO	[jepsen node n3] maelstrom.process: launching ../Guião1/echo.py ["lin_kv"]
+2026-02-08 14:16:07,677{GMT}	INFO	[jepsen node n2] maelstrom.process: launching ../Guião1/echo.py ["lin_kv"]
+2026-02-08 14:16:07,677{GMT}	INFO	[jepsen node n4] maelstrom.process: launching ../Guião1/echo.py ["lin_kv"]
+2026-02-08 14:16:07,677{GMT}	INFO	[jepsen node n5] maelstrom.process: launching ../Guião1/echo.py ["lin_kv"]
+2026-02-08 14:16:07,678{GMT}	INFO	[jepsen node n1] maelstrom.service: Starting services: (lin-kv lin-tso lww-kv seq-kv)
+2026-02-08 14:16:07,679{GMT}	INFO	[jepsen node n1] maelstrom.db: Setting up n1
+2026-02-08 14:16:07,680{GMT}	INFO	[jepsen node n1] maelstrom.process: launching ../Guião1/echo.py ["lin_kv"]
+2026-02-08 14:16:07,717{GMT}	INFO	[jepsen test runner] jepsen.core: Relative time begins now
+2026-02-08 14:16:07,733{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [4 4]]
+2026-02-08 14:16:07,742{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [4 4]]	[:key-does-not-exist "key does not exist"]
+2026-02-08 14:16:08,109{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [4 3]]
+2026-02-08 14:16:08,111{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [4 3]]	[:key-does-not-exist "key does not exist"]
+2026-02-08 14:16:08,237{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:08,240{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 nil]
+2026-02-08 14:16:08,540{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:08,542{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 nil]
+2026-02-08 14:16:08,676{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:08,678{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 nil]
+2026-02-08 14:16:08,729{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 3]
+2026-02-08 14:16:08,731{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 3]
+2026-02-08 14:16:09,074{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:09,076{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:16:09,100{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:09,102{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:16:09,127{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:09,128{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:16:09,276{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:09,278{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:16:09,369{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:09,370{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:16:09,676{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:09,678{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:16:09,951{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:09,954{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 nil]
+2026-02-08 14:16:10,340{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 3]
+2026-02-08 14:16:10,341{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 3]
+2026-02-08 14:16:10,656{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 0]
+2026-02-08 14:16:10,657{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 0]
+2026-02-08 14:16:10,925{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [4 1]]
+2026-02-08 14:16:10,927{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [4 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:10,973{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 4]
+2026-02-08 14:16:10,974{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 4]
+2026-02-08 14:16:11,241{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:11,242{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:11,307{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:11,308{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:11,504{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:11,505{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:11,607{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:11,608{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:11,632{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:11,633{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:11,948{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:11,950{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:12,270{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [4 0]]
+2026-02-08 14:16:12,271{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [4 0]]
+2026-02-08 14:16:12,320{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:12,322{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 nil]
+2026-02-08 14:16:12,619{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:12,621{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 nil]
+2026-02-08 14:16:12,697{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 1]]
+2026-02-08 14:16:12,699{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:13,024{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:13,025{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 0]
+2026-02-08 14:16:13,056{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:13,057{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 0]
+2026-02-08 14:16:13,183{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:13,185{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 0]
+2026-02-08 14:16:13,547{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:write	[0 1]
+2026-02-08 14:16:13,549{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:ok	:write	[0 1]
+2026-02-08 14:16:13,636{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:13,638{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 0]
+2026-02-08 14:16:13,702{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 0]]
+2026-02-08 14:16:13,704{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:13,824{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 0]
+2026-02-08 14:16:13,825{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 0]
+2026-02-08 14:16:13,902{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 1]]
+2026-02-08 14:16:13,903{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [3 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:13,946{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 3]
+2026-02-08 14:16:13,947{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 3]
+2026-02-08 14:16:14,193{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 3]]
+2026-02-08 14:16:14,194{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [3 3]]
+2026-02-08 14:16:14,493{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 1]]
+2026-02-08 14:16:14,495{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [3 1]]
+2026-02-08 14:16:14,530{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:14,531{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:14,620{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:14,621{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:14,883{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:14,885{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:15,183{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:write	[0 4]
+2026-02-08 14:16:15,184{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:ok	:write	[0 4]
+2026-02-08 14:16:15,346{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:cas	[0 [1 1]]
+2026-02-08 14:16:15,348{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:fail	:cas	[0 [1 1]]	[:key-does-not-exist "key does not exist"]
+2026-02-08 14:16:15,517{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 1]]
+2026-02-08 14:16:15,518{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [1 1]]
+2026-02-08 14:16:15,586{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 4]]
+2026-02-08 14:16:15,588{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:15,670{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:15,671{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 nil]
+2026-02-08 14:16:16,012{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:16,013{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 nil]
+2026-02-08 14:16:16,041{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:16,042{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 4]
+2026-02-08 14:16:16,143{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 1]]
+2026-02-08 14:16:16,144{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [1 1]]
+2026-02-08 14:16:16,370{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:16,371{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:16,637{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:16,638{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:17,001{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:write	[0 1]
+2026-02-08 14:16:17,002{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:ok	:write	[0 1]
+2026-02-08 14:16:17,182{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:17,183{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:17,493{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:cas	[0 [4 4]]
+2026-02-08 14:16:17,495{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:fail	:cas	[0 [4 4]]	[:key-does-not-exist "key does not exist"]
+2026-02-08 14:16:17,810{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:17,811{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:18,152{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:18,153{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:18,473{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:18,474{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 nil]
+2026-02-08 14:16:18,792{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:18,793{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 1]
+2026-02-08 14:16:19,166{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 4]]
+2026-02-08 14:16:19,168{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:19,220{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:19,222{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 nil]
+2026-02-08 14:16:19,525{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 1]]
+2026-02-08 14:16:19,526{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:19,754{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:19,755{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:20,069{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:20,070{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:20,214{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [2 0]]
+2026-02-08 14:16:20,216{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [2 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:20,233{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:write	[0 2]
+2026-02-08 14:16:20,234{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:ok	:write	[0 2]
+2026-02-08 14:16:20,445{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:20,446{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:20,465{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:20,466{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:20,554{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:20,556{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 nil]
+2026-02-08 14:16:20,661{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:20,662{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 1]
+2026-02-08 14:16:20,691{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:20,692{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 4]
+2026-02-08 14:16:20,922{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:20,923{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 2]
+2026-02-08 14:16:21,126{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:21,127{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:21,280{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:write	[0 4]
+2026-02-08 14:16:21,282{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:ok	:write	[0 4]
+2026-02-08 14:16:21,386{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:21,387{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:21,643{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:21,644{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:21,842{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:cas	[0 [2 4]]
+2026-02-08 14:16:21,844{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:ok	:cas	[0 [2 4]]
+2026-02-08 14:16:21,933{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:21,935{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:22,185{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 0]]
+2026-02-08 14:16:22,186{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:22,416{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:22,417{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 4]
+2026-02-08 14:16:22,781{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 0]
+2026-02-08 14:16:22,782{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 0]
+2026-02-08 14:16:23,076{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 3]
+2026-02-08 14:16:23,078{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 3]
+2026-02-08 14:16:23,240{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 2]]
+2026-02-08 14:16:23,241{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [3 2]]
+2026-02-08 14:16:23,278{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:23,279{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:23,408{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:cas	[0 [2 0]]
+2026-02-08 14:16:23,409{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:fail	:cas	[0 [2 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:23,520{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:write	[0 0]
+2026-02-08 14:16:23,521{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:ok	:write	[0 0]
+2026-02-08 14:16:23,653{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [3 0]]
+2026-02-08 14:16:23,654{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [3 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:23,777{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:23,778{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:24,047{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 1]]
+2026-02-08 14:16:24,049{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [3 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:24,225{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:24,226{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:24,560{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 4]
+2026-02-08 14:16:24,561{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 4]
+2026-02-08 14:16:24,936{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 2]
+2026-02-08 14:16:24,937{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 2]
+2026-02-08 14:16:25,095{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:25,096{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 4]
+2026-02-08 14:16:25,359{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:25,360{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 4]
+2026-02-08 14:16:25,608{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:25,609{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:25,829{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:write	[0 0]
+2026-02-08 14:16:25,830{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:ok	:write	[0 0]
+2026-02-08 14:16:26,064{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:26,065{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:26,330{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [3 3]]
+2026-02-08 14:16:26,332{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [3 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:26,468{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:write	[0 0]
+2026-02-08 14:16:26,469{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:ok	:write	[0 0]
+2026-02-08 14:16:26,773{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 1]]
+2026-02-08 14:16:26,774{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [3 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:27,026{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 0]]
+2026-02-08 14:16:27,027{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:27,169{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 1]]
+2026-02-08 14:16:27,170{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [3 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:27,492{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [4 2]]
+2026-02-08 14:16:27,493{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [4 2]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:27,859{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 0]]
+2026-02-08 14:16:27,860{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [0 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:28,016{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:28,017{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 0]
+2026-02-08 14:16:28,039{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:28,040{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:28,081{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:cas	[0 [0 1]]
+2026-02-08 14:16:28,082{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:ok	:cas	[0 [0 1]]
+2026-02-08 14:16:28,343{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:cas	[0 [4 2]]
+2026-02-08 14:16:28,345{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:fail	:cas	[0 [4 2]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:28,678{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [4 1]]
+2026-02-08 14:16:28,679{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:ok	:cas	[0 [4 1]]
+2026-02-08 14:16:28,964{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:28,965{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:29,211{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:29,212{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:29,287{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 1]
+2026-02-08 14:16:29,288{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 1]
+2026-02-08 14:16:29,571{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:29,572{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 1]
+2026-02-08 14:16:29,836{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:29,837{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 0]
+2026-02-08 14:16:29,897{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:29,898{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 1]
+2026-02-08 14:16:29,908{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 1]
+2026-02-08 14:16:29,909{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 1]
+2026-02-08 14:16:30,108{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:30,109{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:30,403{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:write	[0 0]
+2026-02-08 14:16:30,404{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:ok	:write	[0 0]
+2026-02-08 14:16:30,517{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:30,518{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:30,887{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [0 0]]
+2026-02-08 14:16:30,888{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [0 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:31,003{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:31,004{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:31,111{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 3]
+2026-02-08 14:16:31,112{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 3]
+2026-02-08 14:16:31,140{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 0]]
+2026-02-08 14:16:31,141{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:31,169{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 3]]
+2026-02-08 14:16:31,170{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [0 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:31,556{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:31,558{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 0]
+2026-02-08 14:16:31,875{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 4]
+2026-02-08 14:16:31,876{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 4]
+2026-02-08 14:16:32,120{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 4]]
+2026-02-08 14:16:32,122{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [3 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:32,335{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 0]]
+2026-02-08 14:16:32,337{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:32,401{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:cas	[0 [4 2]]
+2026-02-08 14:16:32,402{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:fail	:cas	[0 [4 2]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:32,656{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:cas	[0 [1 4]]
+2026-02-08 14:16:32,658{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:fail	:cas	[0 [1 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:32,956{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:32,957{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:32,961{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:32,962{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:33,285{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:33,286{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:33,463{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 4]]
+2026-02-08 14:16:33,464{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:33,565{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 2]
+2026-02-08 14:16:33,566{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 2]
+2026-02-08 14:16:33,892{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:33,893{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 0]
+2026-02-08 14:16:33,950{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:33,951{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 1]
+2026-02-08 14:16:34,185{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:34,186{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 0]
+2026-02-08 14:16:34,436{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:34,437{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:34,444{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:write	[0 1]
+2026-02-08 14:16:34,445{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:ok	:write	[0 1]
+2026-02-08 14:16:34,628{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:cas	[0 [4 3]]
+2026-02-08 14:16:34,629{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:fail	:cas	[0 [4 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:34,817{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [2 4]]
+2026-02-08 14:16:34,818{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [2 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:35,191{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:35,192{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:35,252{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:35,253{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:35,261{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 4]]
+2026-02-08 14:16:35,262{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [0 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:35,437{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 4]]
+2026-02-08 14:16:35,438{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [0 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:35,699{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 3]]
+2026-02-08 14:16:35,700{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [0 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:36,024{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 0]
+2026-02-08 14:16:36,025{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 0]
+2026-02-08 14:16:36,422{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:36,423{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 0]
+2026-02-08 14:16:36,508{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 3]]
+2026-02-08 14:16:36,510{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:36,778{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:cas	[0 [1 0]]
+2026-02-08 14:16:36,779{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:ok	:cas	[0 [1 0]]
+2026-02-08 14:16:36,870{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:36,871{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 0]
+2026-02-08 14:16:37,195{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:37,196{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 0]
+2026-02-08 14:16:37,473{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:cas	[0 [0 1]]
+2026-02-08 14:16:37,474{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:ok	:cas	[0 [0 1]]
+2026-02-08 14:16:37,640{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:37,641{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 0]
+2026-02-08 14:16:37,730{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 2]]
+2026-02-08 14:16:37,731{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 2]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:37,824{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 4]]
+2026-02-08 14:16:37,826{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:38,041{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 0]]
+2026-02-08 14:16:38,042{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:38,145{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:38,146{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 1]
+2026-02-08 14:16:38,254{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 2]]
+2026-02-08 14:16:38,256{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [3 2]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:38,523{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 3]]
+2026-02-08 14:16:38,525{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [0 3]]
+2026-02-08 14:16:38,904{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:cas	[0 [4 3]]
+2026-02-08 14:16:38,906{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:fail	:cas	[0 [4 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:39,263{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:cas	[0 [4 1]]
+2026-02-08 14:16:39,265{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:fail	:cas	[0 [4 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:39,352{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [3 3]]
+2026-02-08 14:16:39,353{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [3 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:39,479{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:write	[0 3]
+2026-02-08 14:16:39,480{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:ok	:write	[0 3]
+2026-02-08 14:16:39,525{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 4]
+2026-02-08 14:16:39,526{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 4]
+2026-02-08 14:16:39,624{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:39,625{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:39,672{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 4]]
+2026-02-08 14:16:39,673{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:39,922{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 2]]
+2026-02-08 14:16:39,923{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 2]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:39,933{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:39,934{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 1]
+2026-02-08 14:16:40,214{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 0]
+2026-02-08 14:16:40,215{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 0]
+2026-02-08 14:16:40,453{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 2]
+2026-02-08 14:16:40,453{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 2]
+2026-02-08 14:16:40,529{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:40,530{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:40,728{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:40,729{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:40,753{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [2 3]]
+2026-02-08 14:16:40,754{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [2 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:40,847{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:40,848{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:41,219{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 3]
+2026-02-08 14:16:41,219{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 3]
+2026-02-08 14:16:41,380{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 3]]
+2026-02-08 14:16:41,381{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [3 3]]
+2026-02-08 14:16:41,471{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:41,472{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 0]
+2026-02-08 14:16:41,828{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 1]]
+2026-02-08 14:16:41,829{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [3 1]]
+2026-02-08 14:16:42,201{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:42,202{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 1]
+2026-02-08 14:16:42,493{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 0]
+2026-02-08 14:16:42,494{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 0]
+2026-02-08 14:16:42,699{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 2]]
+2026-02-08 14:16:42,700{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [0 2]]
+2026-02-08 14:16:42,991{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:42,992{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:43,209{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:cas	[0 [3 3]]
+2026-02-08 14:16:43,211{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:fail	:cas	[0 [3 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:43,328{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:43,329{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:43,496{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:43,497{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:43,808{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:43,810{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:43,857{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 0]]
+2026-02-08 14:16:43,858{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [0 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:44,190{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:44,191{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 0]
+2026-02-08 14:16:44,340{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 1]]
+2026-02-08 14:16:44,342{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [0 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:44,733{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:44,734{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 1]
+2026-02-08 14:16:44,746{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 2]
+2026-02-08 14:16:44,747{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 2]
+2026-02-08 14:16:44,935{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 4]]
+2026-02-08 14:16:44,936{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [2 4]]
+2026-02-08 14:16:45,238{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:write	[0 3]
+2026-02-08 14:16:45,239{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:ok	:write	[0 3]
+2026-02-08 14:16:45,621{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:45,621{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:45,668{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [3 1]]
+2026-02-08 14:16:45,669{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [3 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:45,999{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:write	[0 0]
+2026-02-08 14:16:46,000{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:ok	:write	[0 0]
+2026-02-08 14:16:46,242{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:46,243{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:46,563{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 3]]
+2026-02-08 14:16:46,564{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [0 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:46,799{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:46,800{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 3]
+2026-02-08 14:16:46,890{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:46,891{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 0]
+2026-02-08 14:16:46,937{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:46,937{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 1]
+2026-02-08 14:16:47,275{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 1]
+2026-02-08 14:16:47,275{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 1]
+2026-02-08 14:16:47,311{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:47,312{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:47,348{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:47,349{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:47,420{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:write	[0 4]
+2026-02-08 14:16:47,421{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:ok	:write	[0 4]
+2026-02-08 14:16:47,687{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:47,687{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:47,740{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:47,741{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:48,130{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 2]
+2026-02-08 14:16:48,130{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 2]
+2026-02-08 14:16:48,293{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:48,294{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 2]
+2026-02-08 14:16:48,534{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:48,535{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 3]
+2026-02-08 14:16:48,689{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:48,690{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 4]
+2026-02-08 14:16:48,753{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 4]
+2026-02-08 14:16:48,754{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 4]
+2026-02-08 14:16:48,803{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:48,804{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 0]
+2026-02-08 14:16:49,170{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:49,171{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:49,196{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:cas	[0 [1 0]]
+2026-02-08 14:16:49,198{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:fail	:cas	[0 [1 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:49,358{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:cas	[0 [2 0]]
+2026-02-08 14:16:49,359{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:fail	:cas	[0 [2 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:49,495{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:49,495{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:49,712{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:cas	[0 [4 2]]
+2026-02-08 14:16:49,714{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:fail	:cas	[0 [4 2]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:50,024{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 4]
+2026-02-08 14:16:50,025{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 4]
+2026-02-08 14:16:50,113{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 1]]
+2026-02-08 14:16:50,114{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:50,345{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:50,346{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 3]
+2026-02-08 14:16:50,645{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 0]]
+2026-02-08 14:16:50,646{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [0 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:50,885{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 1]]
+2026-02-08 14:16:50,886{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:50,929{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:50,930{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 0]
+2026-02-08 14:16:51,294{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [3 2]]
+2026-02-08 14:16:51,296{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [3 2]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:51,630{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:51,631{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:51,957{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:51,958{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:52,351{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:write	[0 3]
+2026-02-08 14:16:52,352{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:ok	:write	[0 3]
+2026-02-08 14:16:52,609{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:52,610{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:52,890{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:52,891{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:53,181{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [4 1]]
+2026-02-08 14:16:53,182{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [4 1]]
+2026-02-08 14:16:53,466{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 4]
+2026-02-08 14:16:53,467{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 4]
+2026-02-08 14:16:53,760{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:53,760{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 4]
+2026-02-08 14:16:54,145{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:54,146{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 3]
+2026-02-08 14:16:54,186{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:54,186{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 0]
+2026-02-08 14:16:54,261{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:54,262{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:54,398{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:54,399{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:54,646{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:cas	[0 [3 1]]
+2026-02-08 14:16:54,647{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:fail	:cas	[0 [3 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:54,683{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:write	[0 0]
+2026-02-08 14:16:54,684{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:ok	:write	[0 0]
+2026-02-08 14:16:54,967{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:write	[0 4]
+2026-02-08 14:16:54,968{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:ok	:write	[0 4]
+2026-02-08 14:16:55,001{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:55,002{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:55,163{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 4]]
+2026-02-08 14:16:55,164{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:55,371{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:16:55,372{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 3]
+2026-02-08 14:16:55,522{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:16:55,523{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 4]
+2026-02-08 14:16:55,690{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:55,691{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 0]
+2026-02-08 14:16:55,877{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:55,878{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 4]
+2026-02-08 14:16:55,880{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:55,881{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:56,238{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:cas	[0 [4 4]]
+2026-02-08 14:16:56,240{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:fail	:cas	[0 [4 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:56,617{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:56,618{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:16:57,015{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [4 3]]
+2026-02-08 14:16:57,018{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [4 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:57,132{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:write	[0 3]
+2026-02-08 14:16:57,133{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:ok	:write	[0 3]
+2026-02-08 14:16:57,449{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 3]]
+2026-02-08 14:16:57,451{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 3]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:57,716{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 3]
+2026-02-08 14:16:57,717{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 3]
+2026-02-08 14:16:58,107{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [2 4]]
+2026-02-08 14:16:58,109{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [2 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:58,156{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 1]
+2026-02-08 14:16:58,157{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 1]
+2026-02-08 14:16:58,324{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:16:58,325{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 0]
+2026-02-08 14:16:58,366{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:16:58,367{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 3]
+2026-02-08 14:16:58,753{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:16:58,754{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:16:58,790{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:cas	[0 [3 2]]
+2026-02-08 14:16:58,790{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:ok	:cas	[0 [3 2]]
+2026-02-08 14:16:58,976{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:cas	[0 [0 0]]
+2026-02-08 14:16:58,977{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:fail	:cas	[0 [0 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:16:59,319{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [0 0]]
+2026-02-08 14:16:59,320{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:ok	:cas	[0 [0 0]]
+2026-02-08 14:16:59,649{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:write	[0 0]
+2026-02-08 14:16:59,650{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:ok	:write	[0 0]
+2026-02-08 14:17:00,036{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 3]
+2026-02-08 14:17:00,037{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 3]
+2026-02-08 14:17:00,217{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 1]
+2026-02-08 14:17:00,218{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 1]
+2026-02-08 14:17:00,219{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 1]
+2026-02-08 14:17:00,219{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 1]
+2026-02-08 14:17:00,541{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 1]
+2026-02-08 14:17:00,542{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 1]
+2026-02-08 14:17:00,713{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:17:00,714{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 0]
+2026-02-08 14:17:00,794{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 1]]
+2026-02-08 14:17:00,795{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [1 1]]
+2026-02-08 14:17:00,936{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:00,937{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:17:01,155{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:01,156{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:17:01,462{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:01,462{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:17:01,767{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [1 2]]
+2026-02-08 14:17:01,769{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [1 2]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:17:02,000{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:02,001{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 1]
+2026-02-08 14:17:02,263{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 4]]
+2026-02-08 14:17:02,264{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:cas	[0 [1 4]]
+2026-02-08 14:17:02,441{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 2]
+2026-02-08 14:17:02,442{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 2]
+2026-02-08 14:17:02,495{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [4 4]]
+2026-02-08 14:17:02,496{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [4 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:17:02,592{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 1]
+2026-02-08 14:17:02,593{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 1]
+2026-02-08 14:17:02,686{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 4]
+2026-02-08 14:17:02,687{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 4]
+2026-02-08 14:17:02,977{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:17:02,978{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 0]
+2026-02-08 14:17:03,255{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:03,256{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:17:03,264{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:03,265{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:17:03,422{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:03,423{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:17:03,570{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [0 1]]
+2026-02-08 14:17:03,571{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:ok	:cas	[0 [0 1]]
+2026-02-08 14:17:03,715{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:write	[0 0]
+2026-02-08 14:17:03,715{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:ok	:write	[0 0]
+2026-02-08 14:17:04,072{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:04,073{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:17:04,164{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:04,165{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 4]
+2026-02-08 14:17:04,333{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 1]
+2026-02-08 14:17:04,334{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 1]
+2026-02-08 14:17:04,348{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 0]
+2026-02-08 14:17:04,350{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 0]
+2026-02-08 14:17:04,486{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:17:04,487{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 1]
+2026-02-08 14:17:04,730{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 3]
+2026-02-08 14:17:04,731{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 3]
+2026-02-08 14:17:04,788{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:04,789{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:17:04,793{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:04,794{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:17:04,850{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:04,851{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:17:05,187{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:cas	[0 [0 4]]
+2026-02-08 14:17:05,188{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:fail	:cas	[0 [0 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:17:05,397{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:05,398{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:17:05,573{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:05,574{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:17:05,638{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:05,639{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:17:05,725{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [0 2]]
+2026-02-08 14:17:05,726{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [0 2]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:17:06,126{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 1]]
+2026-02-08 14:17:06,127{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 1]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:17:06,436{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:17:06,437{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 1]
+2026-02-08 14:17:06,588{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 3]
+2026-02-08 14:17:06,589{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:ok	:write	[0 3]
+2026-02-08 14:17:06,740{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 0]]
+2026-02-08 14:17:06,741{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 0]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:17:06,855{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:06,856{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:17:07,240{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:cas	[0 [3 4]]
+2026-02-08 14:17:07,241{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:fail	:cas	[0 [3 4]]	[:precondition-failed "value does not match expected"]
+2026-02-08 14:17:07,259{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:07,259{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:17:07,373{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:07,374{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:17:07,585{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:17:07,586{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 3]
+2026-02-08 14:17:07,593{GMT}	INFO	[jepsen test runner] jepsen.core: Run complete, writing
+2026-02-08 14:17:07,629{GMT}	INFO	[jepsen node n2] maelstrom.db: Tearing down n2
+2026-02-08 14:17:07,629{GMT}	INFO	[jepsen node n1] maelstrom.db: Tearing down n1
+2026-02-08 14:17:07,632{GMT}	INFO	[jepsen node n4] maelstrom.db: Tearing down n4
+2026-02-08 14:17:07,632{GMT}	INFO	[jepsen node n5] maelstrom.db: Tearing down n5
+2026-02-08 14:17:07,632{GMT}	INFO	[jepsen node n3] maelstrom.db: Tearing down n3
+2026-02-08 14:17:08,687{GMT}	INFO	[jepsen node n1] maelstrom.net: Shutting down Maelstrom network
+2026-02-08 14:17:08,688{GMT}	INFO	[jepsen test runner] jepsen.core: Analyzing...
+2026-02-08 14:17:08,843{GMT}	INFO	[clojure-agent-send-pool-0] jepsen.independent: Wrote /home/mutante/Programming/University/Cybersecurity/IntrusionTolerance/maelstrom/store/lin-kv/20260208T141606.556Z/independent/0/results.edn
+2026-02-08 14:17:08,850{GMT}	INFO	[clojure-agent-send-pool-0] jepsen.independent: Wrote /home/mutante/Programming/University/Cybersecurity/IntrusionTolerance/maelstrom/store/lin-kv/20260208T141606.556Z/independent/0/history.edn
+2026-02-08 14:17:08,948{GMT}	INFO	[jepsen test runner] jepsen.core: Analysis complete
+2026-02-08 14:17:08,960{GMT}	INFO	[jepsen results] jepsen.store: Wrote /home/mutante/Programming/University/Cybersecurity/IntrusionTolerance/maelstrom/store/lin-kv/20260208T141606.556Z/results.edn
+2026-02-08 14:17:08,969{GMT}	INFO	[jepsen test runner] jepsen.core: {:perf {:latency-graph {:valid? true},
+        :rate-graph {:valid? true},
+        :valid? true},
+ :timeline {:valid? true},
+ :exceptions {:valid? true},
+ :stats {:valid? true,
+         :count 308,
+         :ok-count 235,
+         :fail-count 73,
+         :info-count 0,
+         :by-f {:cas {:valid? true,
+                      :count 95,
+                      :ok-count 22,
+                      :fail-count 73,
+                      :info-count 0},
+                :read {:valid? true,
+                       :count 153,
+                       :ok-count 153,
+                       :fail-count 0,
+                       :info-count 0},
+                :write {:valid? true,
+                        :count 60,
+                        :ok-count 60,
+                        :fail-count 0,
+                        :info-count 0}}},
+ :availability {:valid? true, :ok-fraction 0.762987},
+ :net {:all {:send-count 626,
+             :recv-count 626,
+             :msg-count 626,
+             :msgs-per-op 2.0324676},
+       :clients {:send-count 626, :recv-count 626, :msg-count 626},
+       :servers {:send-count 0,
+                 :recv-count 0,
+                 :msg-count 0,
+                 :msgs-per-op 0.0},
+       :valid? true},
+ :workload {:valid? false,
+            :results {0 {:linearizable {:valid? false,
+                                        :configs ({:model #knossos.model.CASRegister{:value 1},
+                                                   :last-op {:process 8,
+                                                             :type :ok,
+                                                             :f :write,
+                                                             :value 1,
+                                                             :index 61,
+                                                             :time 5832192451},
+                                                   :pending [{:process 0,
+                                                              :type :invoke,
+                                                              :f :read,
+                                                              :value 0,
+                                                              :index 62,
+                                                              :time 5918990846}]}),
+                                        :final-paths ([{:op {:process 8,
+                                                             :type :ok,
+                                                             :f :write,
+                                                             :value 1,
+                                                             :index 61,
+                                                             :time 5832192451},
+                                                        :model #knossos.model.CASRegister{:value 1}}
+                                                       {:op {:process 0,
+                                                             :type :ok,
+                                                             :f :read,
+                                                             :value 0,
+                                                             :index 63,
+                                                             :time 5921196047},
+                                                        :model #knossos.model.Inconsistent{:msg "can't read 0 from register 1"}}]),
+                                        :previous-ok {:process 8,
+                                                      :type :ok,
+                                                      :f :write,
+                                                      :value 1,
+                                                      :index 61,
+                                                      :time 5832192451},
+                                        :last-op {:process 8,
+                                                  :type :ok,
+                                                  :f :write,
+                                                  :value 1,
+                                                  :index 61,
+                                                  :time 5832192451},
+                                        :op {:process 0,
+                                             :type :ok,
+                                             :f :read,
+                                             :value 0,
+                                             :index 63,
+                                             :time 5921196047}},
+                         :timeline {:valid? true},
+                         :valid? false}},
+            :failures [0]},
+ :valid? false}
+
+
+Analysis invalid! (ﾉಥ益ಥ）ﾉ ┻━┻

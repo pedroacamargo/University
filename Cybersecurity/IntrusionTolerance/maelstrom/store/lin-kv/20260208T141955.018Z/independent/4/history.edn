@@ -1,0 +1,138 @@
+{:index 4, :time 354918317, :type :invoke, :process 8, :f :write, :value 2}
+{:index 5, :time 358756069, :type :ok, :process 8, :f :write, :value 2}
+{:index 18, :time 1605576805, :type :invoke, :process 9, :f :write, :value 4}
+{:index 19, :time 1608683757, :type :ok, :process 9, :f :write, :value 4}
+{:index 26, :time 2721736854, :type :invoke, :process 8, :f :cas, :value [1 4]}
+{:index 27, :time 2724982549, :type :fail, :process 8, :f :cas, :value [1 4], :error [:precondition-failed "value does not match expected"]}
+{:index 36, :time 4246534085, :type :invoke, :process 8, :f :cas, :value [0 0]}
+{:index 37, :time 4249559925, :type :fail, :process 8, :f :cas, :value [0 0], :error [:precondition-failed "value does not match expected"]}
+{:index 40, :time 4790956254, :type :invoke, :process 9, :f :cas, :value [0 0]}
+{:index 41, :time 4793838433, :type :fail, :process 9, :f :cas, :value [0 0], :error [:precondition-failed "value does not match expected"]}
+{:index 42, :time 4803765765, :type :invoke, :process 8, :f :cas, :value [2 3]}
+{:index 43, :time 4805991315, :type :fail, :process 8, :f :cas, :value [2 3], :error [:precondition-failed "value does not match expected"]}
+{:index 48, :time 5281258653, :type :invoke, :process 8, :f :cas, :value [2 2]}
+{:index 49, :time 5283487980, :type :fail, :process 8, :f :cas, :value [2 2], :error [:precondition-failed "value does not match expected"]}
+{:index 56, :time 6402261514, :type :invoke, :process 8, :f :write, :value 1}
+{:index 57, :time 6404847614, :type :ok, :process 8, :f :write, :value 1}
+{:index 68, :time 7826385385, :type :invoke, :process 8, :f :cas, :value [2 4]}
+{:index 69, :time 7829561779, :type :fail, :process 8, :f :cas, :value [2 4], :error [:precondition-failed "value does not match expected"]}
+{:index 70, :time 8172093305, :type :invoke, :process 8, :f :cas, :value [4 0]}
+{:index 71, :time 8174759516, :type :fail, :process 8, :f :cas, :value [4 0], :error [:precondition-failed "value does not match expected"]}
+{:index 72, :time 8354166655, :type :invoke, :process 8, :f :cas, :value [1 3]}
+{:index 73, :time 8356178963, :type :ok, :process 8, :f :cas, :value [1 3]}
+{:index 85, :time 9298316507, :type :invoke, :process 8, :f :cas, :value [2 1]}
+{:index 87, :time 9299539284, :type :fail, :process 8, :f :cas, :value [2 1], :error [:precondition-failed "value does not match expected"]}
+{:index 90, :time 9970112765, :type :invoke, :process 8, :f :cas, :value [0 4]}
+{:index 91, :time 9972471566, :type :fail, :process 8, :f :cas, :value [0 4], :error [:precondition-failed "value does not match expected"]}
+{:index 114, :time 12020447321, :type :invoke, :process 8, :f :cas, :value [4 3]}
+{:index 115, :time 12022419002, :type :fail, :process 8, :f :cas, :value [4 3], :error [:precondition-failed "value does not match expected"]}
+{:index 122, :time 12522443599, :type :invoke, :process 8, :f :write, :value 3}
+{:index 123, :time 12524303097, :type :ok, :process 8, :f :write, :value 3}
+{:index 126, :time 13016775583, :type :invoke, :process 8, :f :cas, :value [3 2]}
+{:index 127, :time 13018501580, :type :ok, :process 8, :f :cas, :value [3 2]}
+{:index 136, :time 13755992340, :type :invoke, :process 8, :f :cas, :value [1 0]}
+{:index 137, :time 13757808227, :type :fail, :process 8, :f :cas, :value [1 0], :error [:precondition-failed "value does not match expected"]}
+{:index 142, :time 14542794089, :type :invoke, :process 8, :f :cas, :value [2 0]}
+{:index 143, :time 14544861640, :type :ok, :process 8, :f :cas, :value [2 0]}
+{:index 156, :time 15984214033, :type :invoke, :process 8, :f :write, :value 4}
+{:index 157, :time 15985995654, :type :ok, :process 8, :f :write, :value 4}
+{:index 158, :time 16278787556, :type :invoke, :process 8, :f :cas, :value [2 3]}
+{:index 159, :time 16280441117, :type :fail, :process 8, :f :cas, :value [2 3], :error [:precondition-failed "value does not match expected"]}
+{:index 162, :time 16717474182, :type :invoke, :process 8, :f :cas, :value [1 4]}
+{:index 163, :time 16719170373, :type :fail, :process 8, :f :cas, :value [1 4], :error [:precondition-failed "value does not match expected"]}
+{:index 216, :time 22239193847, :type :invoke, :process 9, :f :write, :value 1}
+{:index 217, :time 22240814856, :type :ok, :process 9, :f :write, :value 1}
+{:index 218, :time 22353911643, :type :invoke, :process 8, :f :cas, :value [4 3]}
+{:index 219, :time 22355355458, :type :fail, :process 8, :f :cas, :value [4 3], :error [:precondition-failed "value does not match expected"]}
+{:index 224, :time 22954437914, :type :invoke, :process 8, :f :write, :value 2}
+{:index 225, :time 22956131741, :type :ok, :process 8, :f :write, :value 2}
+{:index 228, :time 23606239459, :type :invoke, :process 8, :f :cas, :value [1 0]}
+{:index 229, :time 23608147560, :type :fail, :process 8, :f :cas, :value [1 0], :error [:precondition-failed "value does not match expected"]}
+{:index 232, :time 23835011340, :type :invoke, :process 8, :f :cas, :value [2 2]}
+{:index 233, :time 23837079602, :type :ok, :process 8, :f :cas, :value [2 2]}
+{:index 240, :time 24812625727, :type :invoke, :process 8, :f :cas, :value [0 0]}
+{:index 241, :time 24814255773, :type :fail, :process 8, :f :cas, :value [0 0], :error [:precondition-failed "value does not match expected"]}
+{:index 242, :time 24971162438, :type :invoke, :process 8, :f :write, :value 1}
+{:index 243, :time 24972854340, :type :ok, :process 8, :f :write, :value 1}
+{:index 256, :time 26482897165, :type :invoke, :process 8, :f :cas, :value [2 4]}
+{:index 257, :time 26485335215, :type :fail, :process 8, :f :cas, :value [2 4], :error [:precondition-failed "value does not match expected"]}
+{:index 262, :time 27242497220, :type :invoke, :process 8, :f :write, :value 4}
+{:index 263, :time 27244188692, :type :ok, :process 8, :f :write, :value 4}
+{:index 270, :time 28234164426, :type :invoke, :process 8, :f :cas, :value [1 1]}
+{:index 271, :time 28235962078, :type :fail, :process 8, :f :cas, :value [1 1], :error [:precondition-failed "value does not match expected"]}
+{:index 272, :time 28368220403, :type :invoke, :process 8, :f :write, :value 0}
+{:index 273, :time 28369922454, :type :ok, :process 8, :f :write, :value 0}
+{:index 274, :time 28432060867, :type :invoke, :process 8, :f :cas, :value [4 2]}
+{:index 275, :time 28433566668, :type :fail, :process 8, :f :cas, :value [4 2], :error [:precondition-failed "value does not match expected"]}
+{:index 284, :time 29498661610, :type :invoke, :process 8, :f :cas, :value [2 4]}
+{:index 285, :time 29500248484, :type :fail, :process 8, :f :cas, :value [2 4], :error [:precondition-failed "value does not match expected"]}
+{:index 288, :time 29932033290, :type :invoke, :process 8, :f :write, :value 2}
+{:index 289, :time 29933331530, :type :ok, :process 8, :f :write, :value 2}
+{:index 292, :time 30576872041, :type :invoke, :process 8, :f :cas, :value [4 0]}
+{:index 293, :time 30578667459, :type :fail, :process 8, :f :cas, :value [4 0], :error [:precondition-failed "value does not match expected"]}
+{:index 298, :time 30799950519, :type :invoke, :process 8, :f :cas, :value [0 2]}
+{:index 299, :time 30802401253, :type :fail, :process 8, :f :cas, :value [0 2], :error [:precondition-failed "value does not match expected"]}
+{:index 308, :time 31450315125, :type :invoke, :process 8, :f :cas, :value [0 1]}
+{:index 309, :time 31452635303, :type :fail, :process 8, :f :cas, :value [0 1], :error [:precondition-failed "value does not match expected"]}
+{:index 316, :time 31724636377, :type :invoke, :process 8, :f :cas, :value [4 2]}
+{:index 317, :time 31726136968, :type :fail, :process 8, :f :cas, :value [4 2], :error [:precondition-failed "value does not match expected"]}
+{:index 324, :time 32333212762, :type :invoke, :process 8, :f :cas, :value [4 1]}
+{:index 325, :time 32334878405, :type :fail, :process 8, :f :cas, :value [4 1], :error [:precondition-failed "value does not match expected"]}
+{:index 340, :time 33446968247, :type :invoke, :process 8, :f :cas, :value [0 3]}
+{:index 341, :time 33448451335, :type :fail, :process 8, :f :cas, :value [0 3], :error [:precondition-failed "value does not match expected"]}
+{:index 356, :time 34731599196, :type :invoke, :process 8, :f :cas, :value [1 2]}
+{:index 357, :time 34733349769, :type :fail, :process 8, :f :cas, :value [1 2], :error [:precondition-failed "value does not match expected"]}
+{:index 368, :time 35618368290, :type :invoke, :process 8, :f :cas, :value [0 4]}
+{:index 369, :time 35619794361, :type :fail, :process 8, :f :cas, :value [0 4], :error [:precondition-failed "value does not match expected"]}
+{:index 380, :time 36763934503, :type :invoke, :process 8, :f :write, :value 1}
+{:index 381, :time 36765353130, :type :ok, :process 8, :f :write, :value 1}
+{:index 386, :time 37458168213, :type :invoke, :process 8, :f :cas, :value [4 1]}
+{:index 387, :time 37460111831, :type :fail, :process 8, :f :cas, :value [4 1], :error [:precondition-failed "value does not match expected"]}
+{:index 402, :time 38866748433, :type :invoke, :process 8, :f :write, :value 1}
+{:index 403, :time 38868524725, :type :ok, :process 8, :f :write, :value 1}
+{:index 410, :time 39931152439, :type :invoke, :process 8, :f :cas, :value [0 1]}
+{:index 411, :time 39932579372, :type :fail, :process 8, :f :cas, :value [0 1], :error [:precondition-failed "value does not match expected"]}
+{:index 420, :time 41267995858, :type :invoke, :process 8, :f :cas, :value [2 4]}
+{:index 421, :time 41269722536, :type :fail, :process 8, :f :cas, :value [2 4], :error [:precondition-failed "value does not match expected"]}
+{:index 434, :time 42373618804, :type :invoke, :process 8, :f :cas, :value [2 3]}
+{:index 435, :time 42375379065, :type :fail, :process 8, :f :cas, :value [2 3], :error [:precondition-failed "value does not match expected"]}
+{:index 480, :time 45918866778, :type :invoke, :process 9, :f :write, :value 2}
+{:index 481, :time 45919995928, :type :ok, :process 9, :f :write, :value 2}
+{:index 486, :time 46419987564, :type :invoke, :process 8, :f :write, :value 4}
+{:index 487, :time 46421306353, :type :ok, :process 8, :f :write, :value 4}
+{:index 496, :time 47745311853, :type :invoke, :process 8, :f :cas, :value [0 2]}
+{:index 497, :time 47746780454, :type :fail, :process 8, :f :cas, :value [0 2], :error [:precondition-failed "value does not match expected"]}
+{:index 498, :time 47957043342, :type :invoke, :process 8, :f :cas, :value [0 1]}
+{:index 499, :time 47958386878, :type :fail, :process 8, :f :cas, :value [0 1], :error [:precondition-failed "value does not match expected"]}
+{:index 500, :time 48307346261, :type :invoke, :process 8, :f :write, :value 3}
+{:index 501, :time 48308641085, :type :ok, :process 8, :f :write, :value 3}
+{:index 502, :time 48456524285, :type :invoke, :process 9, :f :cas, :value [2 4]}
+{:index 503, :time 48458357454, :type :fail, :process 9, :f :cas, :value [2 4], :error [:precondition-failed "value does not match expected"]}
+{:index 508, :time 49557687341, :type :invoke, :process 8, :f :cas, :value [0 1]}
+{:index 509, :time 49559386968, :type :fail, :process 8, :f :cas, :value [0 1], :error [:precondition-failed "value does not match expected"]}
+{:index 510, :time 49647432307, :type :invoke, :process 8, :f :cas, :value [0 1]}
+{:index 511, :time 49649402043, :type :fail, :process 8, :f :cas, :value [0 1], :error [:precondition-failed "value does not match expected"]}
+{:index 526, :time 51314213596, :type :invoke, :process 8, :f :cas, :value [1 1]}
+{:index 527, :time 51316231103, :type :fail, :process 8, :f :cas, :value [1 1], :error [:precondition-failed "value does not match expected"]}
+{:index 530, :time 51803603509, :type :invoke, :process 8, :f :cas, :value [3 2]}
+{:index 531, :time 51804938858, :type :ok, :process 8, :f :cas, :value [3 2]}
+{:index 538, :time 52683704049, :type :invoke, :process 8, :f :cas, :value [2 1]}
+{:index 539, :time 52685089744, :type :ok, :process 8, :f :cas, :value [2 1]}
+{:index 546, :time 53721962540, :type :invoke, :process 9, :f :cas, :value [4 1]}
+{:index 547, :time 53723950851, :type :fail, :process 9, :f :cas, :value [4 1], :error [:precondition-failed "value does not match expected"]}
+{:index 552, :time 54341523241, :type :invoke, :process 8, :f :cas, :value [3 1]}
+{:index 553, :time 54343319020, :type :fail, :process 8, :f :cas, :value [3 1], :error [:precondition-failed "value does not match expected"]}
+{:index 562, :time 55134923403, :type :invoke, :process 8, :f :cas, :value [4 4]}
+{:index 563, :time 55136398857, :type :fail, :process 8, :f :cas, :value [4 4], :error [:precondition-failed "value does not match expected"]}
+{:index 570, :time 55845995884, :type :invoke, :process 8, :f :write, :value 1}
+{:index 571, :time 55847083356, :type :ok, :process 8, :f :write, :value 1}
+{:index 586, :time 57455853818, :type :invoke, :process 8, :f :write, :value 2}
+{:index 587, :time 57457279338, :type :ok, :process 8, :f :write, :value 2}
+{:index 598, :time 58507909294, :type :invoke, :process 8, :f :cas, :value [2 0]}
+{:index 599, :time 58509482523, :type :ok, :process 8, :f :cas, :value [2 0]}
+{:index 602, :time 58741584574, :type :invoke, :process 8, :f :cas, :value [1 2]}
+{:index 603, :time 58743006998, :type :fail, :process 8, :f :cas, :value [1 2], :error [:precondition-failed "value does not match expected"]}
+{:index 612, :time 59799041466, :type :invoke, :process 9, :f :write, :value 0}
+{:index 613, :time 59800067572, :type :ok, :process 9, :f :write, :value 0}
+{:index 616, :time 59974309822, :type :invoke, :process 8, :f :write, :value 4}
+{:index 617, :time 59975470873, :type :ok, :process 8, :f :write, :value 4}

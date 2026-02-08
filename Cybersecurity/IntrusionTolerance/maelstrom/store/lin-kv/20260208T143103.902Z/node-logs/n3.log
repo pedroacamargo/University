@@ -1,0 +1,68 @@
+DEBUG:root:received {"id":0,"src":"c0","dest":"n3","body":{"type":"init","node_id":"n3","node_ids":["n0","n1","n2","n3","n4"],"msg_id":1}}
+INFO:root:initializing node n3
+INFO:root:nodes in cluster: {'n0', 'n4', 'n2', 'n1', 'n3'}
+DEBUG:root:sending {"dest": "c0", "src": "n3", "body": {"msg_id": 1, "in_reply_to": 1, "type": "init_ok"}}
+DEBUG:root:received {"id":26,"src":"c15","dest":"n3","body":{"key":0,"value":4,"type":"write","msg_id":1}}
+INFO:root:writing key 0 with value 4
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 2, "in_reply_to": 1, "type": "write_ok"}}
+DEBUG:root:received {"id":48,"src":"c15","dest":"n3","body":{"key":0,"from":4,"to":3,"type":"cas","msg_id":2}}
+INFO:root:cas on key 0: expected 4, current 4, new 3
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 3, "in_reply_to": 2, "type": "cas_ok"}}
+DEBUG:root:received {"id":82,"src":"c16","dest":"n3","body":{"key":0,"type":"read","msg_id":1}}
+INFO:root:reading key 0 with value 3
+DEBUG:root:sending {"dest": "c16", "src": "n3", "body": {"msg_id": 4, "in_reply_to": 1, "type": "read_ok", "value": 3}}
+DEBUG:root:received {"id":92,"src":"c15","dest":"n3","body":{"key":0,"value":3,"type":"write","msg_id":3}}
+INFO:root:writing key 0 with value 3
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 5, "in_reply_to": 3, "type": "write_ok"}}
+DEBUG:root:received {"id":114,"src":"c15","dest":"n3","body":{"key":0,"from":4,"to":3,"type":"cas","msg_id":4}}
+INFO:root:cas on key 0: expected 4, current 3, new 3
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 6, "in_reply_to": 4, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":126,"src":"c16","dest":"n3","body":{"key":0,"type":"read","msg_id":2}}
+INFO:root:reading key 0 with value 3
+DEBUG:root:sending {"dest": "c16", "src": "n3", "body": {"msg_id": 7, "in_reply_to": 2, "type": "read_ok", "value": 3}}
+DEBUG:root:received {"id":136,"src":"c15","dest":"n3","body":{"key":0,"value":2,"type":"write","msg_id":5}}
+INFO:root:writing key 0 with value 2
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 8, "in_reply_to": 5, "type": "write_ok"}}
+DEBUG:root:received {"id":170,"src":"c16","dest":"n3","body":{"key":0,"type":"read","msg_id":3}}
+INFO:root:reading key 0 with value 2
+DEBUG:root:sending {"dest": "c16", "src": "n3", "body": {"msg_id": 9, "in_reply_to": 3, "type": "read_ok", "value": 2}}
+DEBUG:root:received {"id":180,"src":"c15","dest":"n3","body":{"key":0,"from":0,"to":1,"type":"cas","msg_id":6}}
+INFO:root:cas on key 0: expected 0, current 2, new 1
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 10, "in_reply_to": 6, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":202,"src":"c15","dest":"n3","body":{"key":0,"from":2,"to":3,"type":"cas","msg_id":7}}
+INFO:root:cas on key 0: expected 2, current 2, new 3
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 11, "in_reply_to": 7, "type": "cas_ok"}}
+DEBUG:root:received {"id":214,"src":"c16","dest":"n3","body":{"key":0,"type":"read","msg_id":4}}
+INFO:root:reading key 0 with value 3
+DEBUG:root:sending {"dest": "c16", "src": "n3", "body": {"msg_id": 12, "in_reply_to": 4, "type": "read_ok", "value": 3}}
+DEBUG:root:received {"id":224,"src":"c15","dest":"n3","body":{"key":0,"from":3,"to":0,"type":"cas","msg_id":8}}
+INFO:root:cas on key 0: expected 3, current 3, new 0
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 13, "in_reply_to": 8, "type": "cas_ok"}}
+DEBUG:root:received {"id":236,"src":"c16","dest":"n3","body":{"key":0,"type":"read","msg_id":5}}
+INFO:root:reading key 0 with value 0
+DEBUG:root:sending {"dest": "c16", "src": "n3", "body": {"msg_id": 14, "in_reply_to": 5, "type": "read_ok", "value": 0}}
+DEBUG:root:received {"id":246,"src":"c15","dest":"n3","body":{"key":0,"from":0,"to":4,"type":"cas","msg_id":9}}
+INFO:root:cas on key 0: expected 0, current 0, new 4
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 15, "in_reply_to": 9, "type": "cas_ok"}}
+DEBUG:root:received {"id":280,"src":"c16","dest":"n3","body":{"key":0,"type":"read","msg_id":6}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c16", "src": "n3", "body": {"msg_id": 16, "in_reply_to": 6, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":290,"src":"c15","dest":"n3","body":{"key":0,"value":4,"type":"write","msg_id":10}}
+INFO:root:writing key 0 with value 4
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 17, "in_reply_to": 10, "type": "write_ok"}}
+DEBUG:root:received {"id":346,"src":"c16","dest":"n3","body":{"key":0,"type":"read","msg_id":7}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c16", "src": "n3", "body": {"msg_id": 18, "in_reply_to": 7, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":356,"src":"c15","dest":"n3","body":{"key":0,"from":2,"to":4,"type":"cas","msg_id":11}}
+INFO:root:cas on key 0: expected 2, current 4, new 4
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 19, "in_reply_to": 11, "type": "error", "code": 22, "text": "value does not match expected"}}
+DEBUG:root:received {"id":434,"src":"c16","dest":"n3","body":{"key":0,"type":"read","msg_id":8}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c16", "src": "n3", "body": {"msg_id": 20, "in_reply_to": 8, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":478,"src":"c16","dest":"n3","body":{"key":0,"type":"read","msg_id":9}}
+INFO:root:reading key 0 with value 4
+DEBUG:root:sending {"dest": "c16", "src": "n3", "body": {"msg_id": 21, "in_reply_to": 9, "type": "read_ok", "value": 4}}
+DEBUG:root:received {"id":510,"src":"c15","dest":"n3","body":{"key":0,"from":1,"to":1,"type":"cas","msg_id":12}}
+INFO:root:cas on key 0: expected 1, current 4, new 1
+DEBUG:root:sending {"dest": "c15", "src": "n3", "body": {"msg_id": 22, "in_reply_to": 12, "type": "error", "code": 22, "text": "value does not match expected"}}
+Traceback (most recent call last):

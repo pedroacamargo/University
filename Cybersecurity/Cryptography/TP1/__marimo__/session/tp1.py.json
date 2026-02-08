@@ -1,0 +1,47 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.19.9"
+  },
+  "cells": [
+    {
+      "id": "MJUe",
+      "code_hash": "aced1cafdfd97510d191818c3bda94af",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"tp1-mestrado-em-ciberseguranca-criptografia\">TP1 - Mestrado em Ciberseguran\u00e7a - Criptografia</h1>\n<h3 id=\"pedro-augusto-ennes-de-martino-camargo-pg59791\">Pedro Augusto Ennes de Martino Camargo - PG59791</h3>\n<h3 id=\"luis-filipe-pinheiro-silva-pg59790\">Lu\u00eds Filipe Pinheiro Silva - PG59790</h3>\n<hr />\n<span class=\"paragraph\">Use o \u201cpackage\u201d <strong>cryptography</strong> para:</span>\n<ol>\n<li>Implementar uma AEAD com \u201cTweakable Block Ciphers\u201d conforme est\u00e1 descrito na \u00faltima sec\u00e7\u00e3o do texto <strong>Cap\u00edtulo 1: Primitivas Criptogr\u00e1ficas B\u00e1sicas</strong>.  A cifra por blocos primitiva, usada para gerar a \u201ctweakable block cipher\u201d, \u00e9 o AES-128.</li>\n<li>Use esta cifra para construir um canal privado de informa\u00e7\u00e3o ass\u00edncrona com acordo de chaves feito com \u201cX25519 key exchange\u201d e \u201cEd25519 Signing&amp;Verification\u201d para autentica\u00e7\u00e3o  dos agentes.  Deve incluir a confirma\u00e7\u00e3o da chave acordada.</li>\n</ol></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "e181efcf155eef21719f37511de1f32f",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hbol",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    }
+  ]
+}

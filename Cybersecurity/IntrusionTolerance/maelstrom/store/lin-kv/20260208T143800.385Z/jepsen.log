@@ -1,0 +1,808 @@
+2026-02-08 14:38:00,409{GMT}	INFO	[jepsen test runner] jepsen.core: Test version bd0472adf900152b9202913b5b89a4b15f56338b (plus uncommitted changes)
+2026-02-08 14:38:00,409{GMT}	INFO	[jepsen test runner] jepsen.core: Command line:
+lein run test lin_kv --bin ../Guião1/echo.py --concurrency 10 --node-count 5
+2026-02-08 14:38:00,447{GMT}	INFO	[jepsen test runner] jepsen.core: Running test:
+{:args ["lin_kv"]
+ :remote
+ #jepsen.control.retry.Remote{:remote #jepsen.control.scp.Remote{:cmd-remote #jepsen.control.sshj.SSHJRemote{:concurrency-limit 6,
+                                                                                                             :conn-spec nil,
+                                                                                                             :client nil,
+                                                                                                             :semaphore nil},
+                                                                 :conn-spec nil},
+                              :conn nil}
+ :log-net-send false
+ :node-count 5
+ :availability nil
+ :max-txn-length 4
+ :concurrency 10
+ :db
+ #object[maelstrom.db$db$reify__16612
+         "0x77d5395a"
+         "maelstrom.db$db$reify__16612@77d5395a"]
+ :max-writes-per-key 16
+ :leave-db-running? false
+ :name "lin-kv"
+ :logging-json? false
+ :start-time
+ #object[org.joda.time.DateTime "0x7b0eb7e" "2026-02-08T14:38:00.385Z"]
+ :nemesis-interval 10
+ :net
+ #object[maelstrom.net$jepsen_net$reify__15721
+         "0x2381a837"
+         "maelstrom.net$jepsen_net$reify__15721@2381a837"]
+ :client
+ #object[maelstrom.workload.lin_kv$client$reify__20973
+         "0x7be29ac4"
+         "maelstrom.workload.lin_kv$client$reify__20973@7be29ac4"]
+ :barrier
+ #object[java.util.concurrent.CyclicBarrier
+         "0x2523730b"
+         "java.util.concurrent.CyclicBarrier@2523730b"]
+ :log-stderr false
+ :pure-generators true
+ :ssh {:dummy? true}
+ :rate 5
+ :checker
+ #object[jepsen.checker$compose$reify__11089
+         "0x25c887ca"
+         "jepsen.checker$compose$reify__11089@25c887ca"]
+ :argv
+ ("test"
+  "lin_kv"
+  "--bin"
+  "../Guião1/echo.py"
+  "--concurrency"
+  "10"
+  "--node-count"
+  "5")
+ :nemesis
+ (jepsen.nemesis.ReflCompose
+  {:fm {:start-partition 0,
+        :stop-partition 0,
+        :kill 1,
+        :start 1,
+        :pause 1,
+        :resume 1},
+   :nemeses [#unprintable "jepsen.nemesis.combined$partition_nemesis$reify__16905@ba65354"
+             #unprintable "jepsen.nemesis.combined$db_nemesis$reify__16886@647dcc5e"]})
+ :nodes ["n0" "n1" "n2" "n3" "n4"]
+ :test-count 1
+ :latency {:mean 0, :dist :constant}
+ :bin "../Guião1/echo.py"
+ :generator
+ #object[jepsen.util.Forgettable
+         "0x734db023"
+         (jepsen.generator.TimeLimit
+          {:limit 60000000000,
+           :cutoff nil,
+           :gen (jepsen.generator.Any
+                 {:gens [(jepsen.generator.OnThreads
+                          {:f #{:nemesis},
+                           :context-filter #object[jepsen.generator.context$make_thread_filter$lazy_filter__12077
+                                                   "0x6f5690f3"
+                                                   "jepsen.generator.context$make_thread_filter$lazy_filter__12077@6f5690f3"],
+                           :gen nil})
+                         (jepsen.generator.OnThreads
+                          {:f #jepsen.generator.context.AllBut{:element :nemesis},
+                           :context-filter #object[jepsen.generator.context$make_thread_filter$lazy_filter__12077
+                                                   "0x160a8986"
+                                                   "jepsen.generator.context$make_thread_filter$lazy_filter__12077@160a8986"],
+                           :gen (jepsen.generator.Stagger
+                                 {:dt 400000000,
+                                  :next-time nil,
+                                  :gen (jepsen.generator.OnThreads
+                                        {:f #jepsen.generator.context.AllBut{:element :nemesis},
+                                         :context-filter #object[jepsen.generator.context$make_thread_filter$lazy_filter__12077
+                                                                 "0x11ed241c"
+                                                                 "jepsen.generator.context$make_thread_filter$lazy_filter__12077@11ed241c"],
+                                         :gen (jepsen.independent.ConcurrentGenerator
+                                               {:n 10,
+                                                :fgen #object[jepsen.tests.linearizable_register$test$fn__17385
+                                                              "0x2f24e1f3"
+                                                              "jepsen.tests.linearizable_register$test$fn__17385@2f24e1f3"],
+                                                :group->threads nil,
+                                                :thread->group nil,
+                                                :group->context-filter nil,
+                                                :keys (0 1 2 3 4 5 6 7 ...),
+                                                :gens nil})})})})]})})]
+ :log-net-recv false
+ :os
+ #object[maelstrom.net$jepsen_os$reify__15724
+         "0x36aacc46"
+         "maelstrom.net$jepsen_os$reify__15724@36aacc46"]
+ :time-limit 60
+ :workload :lin-kv
+ :consistency-models [:strict-serializable]
+ :topology :grid}
+
+2026-02-08 14:38:01,496{GMT}	INFO	[jepsen node n0] maelstrom.net: Starting Maelstrom network
+2026-02-08 14:38:01,496{GMT}	INFO	[jepsen test runner] jepsen.db: Tearing down DB
+2026-02-08 14:38:01,498{GMT}	INFO	[jepsen test runner] jepsen.db: Setting up DB
+2026-02-08 14:38:01,498{GMT}	INFO	[jepsen node n2] maelstrom.db: Setting up n2
+2026-02-08 14:38:01,498{GMT}	INFO	[jepsen node n1] maelstrom.db: Setting up n1
+2026-02-08 14:38:01,498{GMT}	INFO	[jepsen node n3] maelstrom.db: Setting up n3
+2026-02-08 14:38:01,498{GMT}	INFO	[jepsen node n4] maelstrom.db: Setting up n4
+2026-02-08 14:38:01,499{GMT}	INFO	[jepsen node n2] maelstrom.process: launching ../Guião1/echo.py ["lin_kv"]
+2026-02-08 14:38:01,499{GMT}	INFO	[jepsen node n3] maelstrom.process: launching ../Guião1/echo.py ["lin_kv"]
+2026-02-08 14:38:01,499{GMT}	INFO	[jepsen node n4] maelstrom.process: launching ../Guião1/echo.py ["lin_kv"]
+2026-02-08 14:38:01,499{GMT}	INFO	[jepsen node n1] maelstrom.process: launching ../Guião1/echo.py ["lin_kv"]
+2026-02-08 14:38:01,499{GMT}	INFO	[jepsen node n0] maelstrom.service: Starting services: (lin-kv lin-tso lww-kv seq-kv)
+2026-02-08 14:38:01,500{GMT}	INFO	[jepsen node n0] maelstrom.db: Setting up n0
+2026-02-08 14:38:01,501{GMT}	INFO	[jepsen node n0] maelstrom.process: launching ../Guião1/echo.py ["lin_kv"]
+2026-02-08 14:38:01,538{GMT}	INFO	[jepsen test runner] jepsen.core: Relative time begins now
+2026-02-08 14:38:01,554{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:38:01,556{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 nil]
+2026-02-08 14:38:01,584{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:38:01,586{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:ok	:read	[0 nil]
+2026-02-08 14:38:01,873{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:38:01,875{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 nil]
+2026-02-08 14:38:02,018{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:38:02,020{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 nil]
+2026-02-08 14:38:02,182{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:38:02,185{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 nil]
+2026-02-08 14:38:02,193{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:38:02,194{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 nil]
+2026-02-08 14:38:02,335{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:cas	[0 [3 3]]
+2026-02-08 14:38:02,343{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:fail	:cas	[0 [3 3]]	[:key-does-not-exist "key does not exist"]
+2026-02-08 14:38:02,412{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:38:02,414{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 nil]
+2026-02-08 14:38:02,732{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:38:02,734{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 nil]
+2026-02-08 14:38:02,782{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:cas	[0 [1 0]]
+2026-02-08 14:38:02,785{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:fail	:cas	[0 [1 0]]	[:key-does-not-exist "key does not exist"]
+2026-02-08 14:38:02,998{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [1 0]]
+2026-02-08 14:38:03,000{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [1 0]]	[:key-does-not-exist "key does not exist"]
+2026-02-08 14:38:03,114{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:38:03,116{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 nil]
+2026-02-08 14:38:03,286{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:cas	[0 [4 0]]
+2026-02-08 14:38:03,288{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:fail	:cas	[0 [4 0]]	[:key-does-not-exist "key does not exist"]
+2026-02-08 14:38:03,289{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:38:03,290{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:ok	:read	[0 nil]
+2026-02-08 14:38:03,669{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:38:03,671{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:ok	:read	[0 nil]
+2026-02-08 14:38:03,671{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:38:03,672{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:ok	:read	[0 nil]
+2026-02-08 14:38:03,691{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:38:03,692{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 nil]
+2026-02-08 14:38:03,742{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:38:03,743{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:ok	:read	[0 nil]
+2026-02-08 14:38:03,791{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:invoke	:write	[0 3]
+2026-02-08 14:38:04,185{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:invoke	:write	[0 4]
+2026-02-08 14:38:04,193{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:cas	[0 [4 0]]
+2026-02-08 14:38:04,198{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:fail	:cas	[0 [4 0]]	[:key-does-not-exist "key does not exist"]
+2026-02-08 14:38:04,218{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:invoke	:write	[0 0]
+2026-02-08 14:38:04,504{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:invoke	:write	[0 1]
+2026-02-08 14:38:04,685{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:38:04,794{GMT}	INFO	[jepsen worker 7] jepsen.util: 7	:info	:write	[0 3]	:net-timeout
+2026-02-08 14:38:04,870{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:38:04,991{GMT}	INFO	[jepsen worker 7] jepsen.util: 17	:invoke	:cas	[0 [4 4]]
+2026-02-08 14:38:05,188{GMT}	INFO	[jepsen worker 8] jepsen.util: 8	:info	:write	[0 4]	:net-timeout
+2026-02-08 14:38:05,221{GMT}	INFO	[jepsen worker 5] jepsen.util: 5	:info	:write	[0 0]	:net-timeout
+2026-02-08 14:38:05,314{GMT}	INFO	[jepsen worker 5] jepsen.util: 15	:invoke	:write	[0 0]
+2026-02-08 14:38:05,507{GMT}	INFO	[jepsen worker 6] jepsen.util: 6	:info	:write	[0 1]	:net-timeout
+2026-02-08 14:38:05,689{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[0 nil]	:net-timeout
+2026-02-08 14:38:05,714{GMT}	INFO	[jepsen worker 6] jepsen.util: 16	:invoke	:write	[0 3]
+2026-02-08 14:38:05,874{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[0 nil]	:net-timeout
+2026-02-08 14:38:05,895{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[0 nil]
+2026-02-08 14:38:05,989{GMT}	INFO	[jepsen worker 8] jepsen.util: 18	:invoke	:cas	[0 [2 1]]
+2026-02-08 14:38:05,995{GMT}	INFO	[jepsen worker 7] jepsen.util: 17	:info	:cas	[0 [4 4]]	:net-timeout
+2026-02-08 14:38:06,035{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:invoke	:write	[0 1]
+2026-02-08 14:38:06,105{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[0 nil]
+2026-02-08 14:38:06,319{GMT}	INFO	[jepsen worker 5] jepsen.util: 15	:info	:write	[0 0]	:net-timeout
+2026-02-08 14:38:06,501{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[0 nil]
+2026-02-08 14:38:06,564{GMT}	INFO	[jepsen worker 5] jepsen.util: 25	:invoke	:write	[0 2]
+2026-02-08 14:38:06,719{GMT}	INFO	[jepsen worker 6] jepsen.util: 16	:info	:write	[0 3]	:net-timeout
+2026-02-08 14:38:06,807{GMT}	INFO	[jepsen worker 6] jepsen.util: 26	:invoke	:write	[0 1]
+2026-02-08 14:38:06,900{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[0 nil]	:net-timeout
+2026-02-08 14:38:06,994{GMT}	INFO	[jepsen worker 8] jepsen.util: 18	:info	:cas	[0 [2 1]]	:net-timeout
+2026-02-08 14:38:07,041{GMT}	INFO	[jepsen worker 9] jepsen.util: 9	:info	:write	[0 1]	:net-timeout
+2026-02-08 14:38:07,109{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[0 nil]	:net-timeout
+2026-02-08 14:38:07,164{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[0 nil]
+2026-02-08 14:38:07,480{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[0 nil]
+2026-02-08 14:38:07,506{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[0 nil]	:net-timeout
+2026-02-08 14:38:07,571{GMT}	INFO	[jepsen worker 5] jepsen.util: 25	:info	:write	[0 2]	:net-timeout
+2026-02-08 14:38:07,660{GMT}	INFO	[jepsen worker 5] jepsen.util: 35	:invoke	:write	[0 1]
+2026-02-08 14:38:07,814{GMT}	INFO	[jepsen worker 6] jepsen.util: 26	:info	:write	[0 1]	:net-timeout
+2026-02-08 14:38:07,852{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[1 nil]
+2026-02-08 14:38:08,169{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[0 nil]	:net-timeout
+2026-02-08 14:38:08,227{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[1 nil]
+2026-02-08 14:38:08,485{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[0 nil]	:net-timeout
+2026-02-08 14:38:08,494{GMT}	INFO	[jepsen worker 7] jepsen.util: 27	:invoke	:write	[1 4]
+2026-02-08 14:38:08,662{GMT}	INFO	[jepsen worker 5] jepsen.util: 35	:info	:write	[0 1]	:net-timeout
+2026-02-08 14:38:08,797{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[1 nil]
+2026-02-08 14:38:08,859{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:09,179{GMT}	INFO	[jepsen worker 9] jepsen.util: 19	:invoke	:write	[1 1]
+2026-02-08 14:38:09,232{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:09,499{GMT}	INFO	[jepsen worker 7] jepsen.util: 27	:info	:write	[1 4]	:net-timeout
+2026-02-08 14:38:09,520{GMT}	INFO	[jepsen worker 5] jepsen.util: 45	:invoke	:cas	[1 [1 0]]
+2026-02-08 14:38:09,802{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:09,833{GMT}	INFO	[jepsen worker 6] jepsen.util: 36	:invoke	:write	[1 1]
+2026-02-08 14:38:09,923{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[1 nil]
+2026-02-08 14:38:10,184{GMT}	INFO	[jepsen worker 9] jepsen.util: 19	:info	:write	[1 1]	:net-timeout
+2026-02-08 14:38:10,223{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[1 nil]
+2026-02-08 14:38:10,306{GMT}	INFO	[jepsen worker 7] jepsen.util: 37	:invoke	:cas	[1 [2 2]]
+2026-02-08 14:38:10,445{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[1 nil]
+2026-02-08 14:38:10,525{GMT}	INFO	[jepsen worker 5] jepsen.util: 45	:info	:cas	[1 [1 0]]	:net-timeout
+2026-02-08 14:38:10,839{GMT}	INFO	[jepsen worker 6] jepsen.util: 36	:info	:write	[1 1]	:net-timeout
+2026-02-08 14:38:10,841{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[1 nil]
+2026-02-08 14:38:10,928{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:11,056{GMT}	INFO	[jepsen worker 6] jepsen.util: 46	:invoke	:cas	[1 [0 2]]
+2026-02-08 14:38:11,100{GMT}	INFO	[jepsen worker 8] jepsen.util: 28	:invoke	:cas	[1 [3 1]]
+2026-02-08 14:38:11,214{GMT}	INFO	[jepsen worker 9] jepsen.util: 29	:invoke	:cas	[1 [4 1]]
+2026-02-08 14:38:11,229{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:11,311{GMT}	INFO	[jepsen worker 7] jepsen.util: 37	:info	:cas	[1 [2 2]]	:net-timeout
+2026-02-08 14:38:11,331{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[1 nil]
+2026-02-08 14:38:11,451{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:11,570{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[1 nil]
+2026-02-08 14:38:11,843{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:11,886{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[1 nil]
+2026-02-08 14:38:12,061{GMT}	INFO	[jepsen worker 6] jepsen.util: 46	:info	:cas	[1 [0 2]]	:net-timeout
+2026-02-08 14:38:12,079{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[1 nil]
+2026-02-08 14:38:12,106{GMT}	INFO	[jepsen worker 8] jepsen.util: 28	:info	:cas	[1 [3 1]]	:net-timeout
+2026-02-08 14:38:12,220{GMT}	INFO	[jepsen worker 9] jepsen.util: 29	:info	:cas	[1 [4 1]]	:net-timeout
+2026-02-08 14:38:12,322{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[1 nil]
+2026-02-08 14:38:12,335{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:12,574{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:12,649{GMT}	INFO	[jepsen worker 5] jepsen.util: 55	:invoke	:cas	[1 [3 2]]
+2026-02-08 14:38:12,751{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[1 nil]
+2026-02-08 14:38:12,893{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:12,934{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[1 nil]
+2026-02-08 14:38:13,086{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:13,119{GMT}	INFO	[jepsen worker 6] jepsen.util: 56	:invoke	:write	[1 1]
+2026-02-08 14:38:13,313{GMT}	INFO	[jepsen worker 7] jepsen.util: 47	:invoke	:write	[1 1]
+2026-02-08 14:38:13,327{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:13,526{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[1 nil]
+2026-02-08 14:38:13,654{GMT}	INFO	[jepsen worker 5] jepsen.util: 55	:info	:cas	[1 [3 2]]	:net-timeout
+2026-02-08 14:38:13,755{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:13,884{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[1 nil]
+2026-02-08 14:38:13,939{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:13,955{GMT}	INFO	[jepsen worker 5] jepsen.util: 65	:invoke	:cas	[1 [1 4]]
+2026-02-08 14:38:13,961{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[1 nil]
+2026-02-08 14:38:14,133{GMT}	INFO	[jepsen worker 6] jepsen.util: 56	:info	:write	[1 1]	:net-timeout
+2026-02-08 14:38:14,164{GMT}	INFO	[jepsen worker 6] jepsen.util: 66	:invoke	:write	[2 1]
+2026-02-08 14:38:14,191{GMT}	INFO	[jepsen worker 8] jepsen.util: 38	:invoke	:cas	[2 [2 0]]
+2026-02-08 14:38:14,249{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[2 nil]
+2026-02-08 14:38:14,319{GMT}	INFO	[jepsen worker 7] jepsen.util: 47	:info	:write	[1 1]	:net-timeout
+2026-02-08 14:38:14,346{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[2 nil]
+2026-02-08 14:38:14,530{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:14,665{GMT}	INFO	[jepsen worker 7] jepsen.util: 57	:invoke	:cas	[2 [3 1]]
+2026-02-08 14:38:14,863{GMT}	INFO	[jepsen worker 9] jepsen.util: 39	:invoke	:cas	[2 [4 1]]
+2026-02-08 14:38:14,889{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:14,961{GMT}	INFO	[jepsen worker 5] jepsen.util: 65	:info	:cas	[1 [1 4]]	:net-timeout
+2026-02-08 14:38:14,963{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[1 nil]	:net-timeout
+2026-02-08 14:38:15,133{GMT}	INFO	[jepsen worker 5] jepsen.util: 75	:invoke	:cas	[2 [2 1]]
+2026-02-08 14:38:15,169{GMT}	INFO	[jepsen worker 6] jepsen.util: 66	:info	:write	[2 1]	:net-timeout
+2026-02-08 14:38:15,194{GMT}	INFO	[jepsen worker 8] jepsen.util: 38	:info	:cas	[2 [2 0]]	:net-timeout
+2026-02-08 14:38:15,254{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[2 nil]	:net-timeout
+2026-02-08 14:38:15,353{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[2 nil]	:net-timeout
+2026-02-08 14:38:15,433{GMT}	INFO	[jepsen worker 8] jepsen.util: 48	:invoke	:write	[2 4]
+2026-02-08 14:38:15,670{GMT}	INFO	[jepsen worker 7] jepsen.util: 57	:info	:cas	[2 [3 1]]	:net-timeout
+2026-02-08 14:38:15,812{GMT}	INFO	[jepsen worker 6] jepsen.util: 76	:invoke	:cas	[2 [2 1]]
+2026-02-08 14:38:15,868{GMT}	INFO	[jepsen worker 9] jepsen.util: 39	:info	:cas	[2 [4 1]]	:net-timeout
+2026-02-08 14:38:15,987{GMT}	INFO	[jepsen worker 7] jepsen.util: 67	:invoke	:cas	[2 [2 0]]
+2026-02-08 14:38:16,138{GMT}	INFO	[jepsen worker 5] jepsen.util: 75	:info	:cas	[2 [2 1]]	:net-timeout
+2026-02-08 14:38:16,369{GMT}	INFO	[jepsen worker 5] jepsen.util: 85	:invoke	:cas	[2 [3 2]]
+2026-02-08 14:38:16,439{GMT}	INFO	[jepsen worker 8] jepsen.util: 48	:info	:write	[2 4]	:net-timeout
+2026-02-08 14:38:16,458{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[2 nil]
+2026-02-08 14:38:16,607{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[2 nil]
+2026-02-08 14:38:16,660{GMT}	INFO	[jepsen worker 8] jepsen.util: 58	:invoke	:cas	[2 [1 1]]
+2026-02-08 14:38:16,817{GMT}	INFO	[jepsen worker 6] jepsen.util: 76	:info	:cas	[2 [2 1]]	:net-timeout
+2026-02-08 14:38:16,873{GMT}	INFO	[jepsen worker 6] jepsen.util: 86	:invoke	:cas	[2 [4 0]]
+2026-02-08 14:38:16,993{GMT}	INFO	[jepsen worker 7] jepsen.util: 67	:info	:cas	[2 [2 0]]	:net-timeout
+2026-02-08 14:38:17,067{GMT}	INFO	[jepsen worker 7] jepsen.util: 77	:invoke	:write	[2 4]
+2026-02-08 14:38:17,082{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[2 nil]
+2026-02-08 14:38:17,239{GMT}	INFO	[jepsen worker 9] jepsen.util: 49	:invoke	:cas	[2 [3 1]]
+2026-02-08 14:38:17,374{GMT}	INFO	[jepsen worker 5] jepsen.util: 85	:info	:cas	[2 [3 2]]	:net-timeout
+2026-02-08 14:38:17,463{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[2 nil]	:net-timeout
+2026-02-08 14:38:17,464{GMT}	INFO	[jepsen worker 5] jepsen.util: 95	:invoke	:cas	[3 [2 0]]
+2026-02-08 14:38:17,612{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[2 nil]	:net-timeout
+2026-02-08 14:38:17,668{GMT}	INFO	[jepsen worker 8] jepsen.util: 58	:info	:cas	[2 [1 1]]	:net-timeout
+2026-02-08 14:38:17,713{GMT}	INFO	[jepsen worker 8] jepsen.util: 68	:invoke	:cas	[3 [4 0]]
+2026-02-08 14:38:17,877{GMT}	INFO	[jepsen worker 6] jepsen.util: 86	:info	:cas	[2 [4 0]]	:net-timeout
+2026-02-08 14:38:18,054{GMT}	INFO	[jepsen worker 6] jepsen.util: 96	:invoke	:cas	[3 [2 0]]
+2026-02-08 14:38:18,072{GMT}	INFO	[jepsen worker 7] jepsen.util: 77	:info	:write	[2 4]	:net-timeout
+2026-02-08 14:38:18,086{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[2 nil]	:net-timeout
+2026-02-08 14:38:18,131{GMT}	INFO	[jepsen worker 7] jepsen.util: 87	:invoke	:write	[3 1]
+2026-02-08 14:38:18,198{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[3 nil]
+2026-02-08 14:38:18,244{GMT}	INFO	[jepsen worker 9] jepsen.util: 49	:info	:cas	[2 [3 1]]	:net-timeout
+2026-02-08 14:38:18,363{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[3 nil]
+2026-02-08 14:38:18,468{GMT}	INFO	[jepsen worker 5] jepsen.util: 95	:info	:cas	[3 [2 0]]	:net-timeout
+2026-02-08 14:38:18,606{GMT}	INFO	[jepsen worker 5] jepsen.util: 105	:invoke	:cas	[3 [2 4]]
+2026-02-08 14:38:18,718{GMT}	INFO	[jepsen worker 8] jepsen.util: 68	:info	:cas	[3 [4 0]]	:net-timeout
+2026-02-08 14:38:18,752{GMT}	INFO	[jepsen worker 8] jepsen.util: 78	:invoke	:write	[3 2]
+2026-02-08 14:38:18,888{GMT}	INFO	[jepsen worker 9] jepsen.util: 59	:invoke	:write	[3 3]
+2026-02-08 14:38:18,987{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[3 nil]
+2026-02-08 14:38:19,059{GMT}	INFO	[jepsen worker 6] jepsen.util: 96	:info	:cas	[3 [2 0]]	:net-timeout
+2026-02-08 14:38:19,136{GMT}	INFO	[jepsen worker 7] jepsen.util: 87	:info	:write	[3 1]	:net-timeout
+2026-02-08 14:38:19,204{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[3 nil]	:net-timeout
+2026-02-08 14:38:19,223{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[3 nil]
+2026-02-08 14:38:19,367{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[3 nil]	:net-timeout
+2026-02-08 14:38:19,527{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[3 nil]
+2026-02-08 14:38:19,611{GMT}	INFO	[jepsen worker 5] jepsen.util: 105	:info	:cas	[3 [2 4]]	:net-timeout
+2026-02-08 14:38:19,756{GMT}	INFO	[jepsen worker 8] jepsen.util: 78	:info	:write	[3 2]	:net-timeout
+2026-02-08 14:38:19,768{GMT}	INFO	[jepsen worker 5] jepsen.util: 115	:invoke	:cas	[3 [3 4]]
+2026-02-08 14:38:19,892{GMT}	INFO	[jepsen worker 9] jepsen.util: 59	:info	:write	[3 3]	:net-timeout
+2026-02-08 14:38:19,991{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[3 nil]	:net-timeout
+2026-02-08 14:38:20,034{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[4 nil]
+2026-02-08 14:38:20,228{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[3 nil]	:net-timeout
+2026-02-08 14:38:20,410{GMT}	INFO	[jepsen worker 6] jepsen.util: 106	:invoke	:cas	[4 [3 1]]
+2026-02-08 14:38:20,451{GMT}	INFO	[jepsen worker 7] jepsen.util: 97	:invoke	:write	[4 3]
+2026-02-08 14:38:20,531{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[3 nil]	:net-timeout
+2026-02-08 14:38:20,682{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[4 nil]
+2026-02-08 14:38:20,772{GMT}	INFO	[jepsen worker 5] jepsen.util: 115	:info	:cas	[3 [3 4]]	:net-timeout
+2026-02-08 14:38:21,039{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:21,057{GMT}	INFO	[jepsen worker 5] jepsen.util: 125	:invoke	:cas	[4 [3 4]]
+2026-02-08 14:38:21,219{GMT}	INFO	[jepsen worker 8] jepsen.util: 88	:invoke	:cas	[4 [4 0]]
+2026-02-08 14:38:21,416{GMT}	INFO	[jepsen worker 6] jepsen.util: 106	:info	:cas	[4 [3 1]]	:net-timeout
+2026-02-08 14:38:21,432{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[4 nil]
+2026-02-08 14:38:21,457{GMT}	INFO	[jepsen worker 7] jepsen.util: 97	:info	:write	[4 3]	:net-timeout
+2026-02-08 14:38:21,616{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[4 nil]
+2026-02-08 14:38:21,686{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:21,838{GMT}	INFO	[jepsen worker 7] jepsen.util: 107	:invoke	:cas	[4 [0 2]]
+2026-02-08 14:38:21,915{GMT}	INFO	[jepsen worker 9] jepsen.util: 69	:invoke	:cas	[4 [3 4]]
+2026-02-08 14:38:22,061{GMT}	INFO	[jepsen worker 5] jepsen.util: 125	:info	:cas	[4 [3 4]]	:net-timeout
+2026-02-08 14:38:22,180{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[4 nil]
+2026-02-08 14:38:22,223{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[4 nil]
+2026-02-08 14:38:22,223{GMT}	INFO	[jepsen worker 8] jepsen.util: 88	:info	:cas	[4 [4 0]]	:net-timeout
+2026-02-08 14:38:22,436{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:22,556{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[4 nil]
+2026-02-08 14:38:22,620{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:22,654{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[4 nil]
+2026-02-08 14:38:22,842{GMT}	INFO	[jepsen worker 7] jepsen.util: 107	:info	:cas	[4 [0 2]]	:net-timeout
+2026-02-08 14:38:22,919{GMT}	INFO	[jepsen worker 9] jepsen.util: 69	:info	:cas	[4 [3 4]]	:net-timeout
+2026-02-08 14:38:23,057{GMT}	INFO	[jepsen worker 5] jepsen.util: 135	:invoke	:cas	[4 [4 1]]
+2026-02-08 14:38:23,184{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:23,227{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:23,381{GMT}	INFO	[jepsen worker 6] jepsen.util: 116	:invoke	:write	[4 1]
+2026-02-08 14:38:23,559{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:23,658{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:23,677{GMT}	INFO	[jepsen worker 7] jepsen.util: 117	:invoke	:cas	[4 [1 2]]
+2026-02-08 14:38:23,921{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[4 nil]
+2026-02-08 14:38:24,061{GMT}	INFO	[jepsen worker 5] jepsen.util: 135	:info	:cas	[4 [4 1]]	:net-timeout
+2026-02-08 14:38:24,244{GMT}	INFO	[jepsen worker 8] jepsen.util: 98	:invoke	:cas	[4 [2 2]]
+2026-02-08 14:38:24,353{GMT}	INFO	[jepsen worker 9] jepsen.util: 79	:invoke	:cas	[4 [2 1]]
+2026-02-08 14:38:24,386{GMT}	INFO	[jepsen worker 6] jepsen.util: 116	:info	:write	[4 1]	:net-timeout
+2026-02-08 14:38:24,681{GMT}	INFO	[jepsen worker 7] jepsen.util: 117	:info	:cas	[4 [1 2]]	:net-timeout
+2026-02-08 14:38:24,716{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[4 nil]
+2026-02-08 14:38:24,880{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[4 nil]
+2026-02-08 14:38:24,925{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:25,040{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[4 nil]
+2026-02-08 14:38:25,173{GMT}	INFO	[jepsen worker 5] jepsen.util: 145	:invoke	:cas	[4 [2 3]]
+2026-02-08 14:38:25,249{GMT}	INFO	[jepsen worker 8] jepsen.util: 98	:info	:cas	[4 [2 2]]	:net-timeout
+2026-02-08 14:38:25,358{GMT}	INFO	[jepsen worker 9] jepsen.util: 79	:info	:cas	[4 [2 1]]	:net-timeout
+2026-02-08 14:38:25,517{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[5 nil]
+2026-02-08 14:38:25,721{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:25,818{GMT}	INFO	[jepsen worker 6] jepsen.util: 126	:invoke	:cas	[5 [3 2]]
+2026-02-08 14:38:25,885{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:25,981{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[5 nil]
+2026-02-08 14:38:25,999{GMT}	INFO	[jepsen worker 7] jepsen.util: 127	:invoke	:cas	[5 [2 0]]
+2026-02-08 14:38:26,044{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[4 nil]	:net-timeout
+2026-02-08 14:38:26,176{GMT}	INFO	[jepsen worker 5] jepsen.util: 145	:info	:cas	[4 [2 3]]	:net-timeout
+2026-02-08 14:38:26,400{GMT}	INFO	[jepsen worker 5] jepsen.util: 155	:invoke	:cas	[5 [1 3]]
+2026-02-08 14:38:26,521{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:26,720{GMT}	INFO	[jepsen worker 8] jepsen.util: 108	:invoke	:cas	[5 [1 3]]
+2026-02-08 14:38:26,822{GMT}	INFO	[jepsen worker 6] jepsen.util: 126	:info	:cas	[5 [3 2]]	:net-timeout
+2026-02-08 14:38:26,986{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:27,002{GMT}	INFO	[jepsen worker 7] jepsen.util: 127	:info	:cas	[5 [2 0]]	:net-timeout
+2026-02-08 14:38:27,086{GMT}	INFO	[jepsen worker 7] jepsen.util: 137	:invoke	:write	[5 3]
+2026-02-08 14:38:27,368{GMT}	INFO	[jepsen worker 9] jepsen.util: 89	:invoke	:cas	[5 [4 3]]
+2026-02-08 14:38:27,406{GMT}	INFO	[jepsen worker 5] jepsen.util: 155	:info	:cas	[5 [1 3]]	:net-timeout
+2026-02-08 14:38:27,655{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[5 nil]
+2026-02-08 14:38:27,666{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[5 nil]
+2026-02-08 14:38:27,725{GMT}	INFO	[jepsen worker 8] jepsen.util: 108	:info	:cas	[5 [1 3]]	:net-timeout
+2026-02-08 14:38:27,748{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[5 nil]
+2026-02-08 14:38:27,950{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[5 nil]
+2026-02-08 14:38:28,092{GMT}	INFO	[jepsen worker 7] jepsen.util: 137	:info	:write	[5 3]	:net-timeout
+2026-02-08 14:38:28,203{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[5 nil]
+2026-02-08 14:38:28,373{GMT}	INFO	[jepsen worker 9] jepsen.util: 89	:info	:cas	[5 [4 3]]	:net-timeout
+2026-02-08 14:38:28,577{GMT}	INFO	[jepsen worker 5] jepsen.util: 165	:invoke	:cas	[5 [3 4]]
+2026-02-08 14:38:28,659{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:28,667{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:28,752{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:28,953{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:28,953{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[5 nil]
+2026-02-08 14:38:29,166{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[5 nil]
+2026-02-08 14:38:29,175{GMT}	INFO	[jepsen worker 6] jepsen.util: 136	:invoke	:cas	[5 [1 1]]
+2026-02-08 14:38:29,207{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:29,483{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[5 nil]
+2026-02-08 14:38:29,581{GMT}	INFO	[jepsen worker 5] jepsen.util: 165	:info	:cas	[5 [3 4]]	:net-timeout
+2026-02-08 14:38:29,656{GMT}	INFO	[jepsen worker 8] jepsen.util: 118	:invoke	:cas	[5 [4 2]]
+2026-02-08 14:38:29,661{GMT}	INFO	[jepsen worker 9] jepsen.util: 99	:invoke	:cas	[5 [4 3]]
+2026-02-08 14:38:29,952{GMT}	INFO	[jepsen worker 5] jepsen.util: 175	:invoke	:cas	[5 [2 3]]
+2026-02-08 14:38:29,956{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:30,160{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[5 nil]
+2026-02-08 14:38:30,170{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:30,178{GMT}	INFO	[jepsen worker 6] jepsen.util: 136	:info	:cas	[5 [1 1]]	:net-timeout
+2026-02-08 14:38:30,427{GMT}	INFO	[jepsen worker 6] jepsen.util: 146	:invoke	:write	[5 3]
+2026-02-08 14:38:30,488{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:30,616{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[5 nil]
+2026-02-08 14:38:30,660{GMT}	INFO	[jepsen worker 8] jepsen.util: 118	:info	:cas	[5 [4 2]]	:net-timeout
+2026-02-08 14:38:30,664{GMT}	INFO	[jepsen worker 9] jepsen.util: 99	:info	:cas	[5 [4 3]]	:net-timeout
+2026-02-08 14:38:30,682{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[6 nil]
+2026-02-08 14:38:30,861{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[6 nil]
+2026-02-08 14:38:30,952{GMT}	INFO	[jepsen worker 7] jepsen.util: 147	:invoke	:cas	[6 [0 4]]
+2026-02-08 14:38:30,957{GMT}	INFO	[jepsen worker 5] jepsen.util: 175	:info	:cas	[5 [2 3]]	:net-timeout
+2026-02-08 14:38:31,163{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:31,318{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[6 nil]
+2026-02-08 14:38:31,431{GMT}	INFO	[jepsen worker 6] jepsen.util: 146	:info	:write	[5 3]	:net-timeout
+2026-02-08 14:38:31,492{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[6 nil]
+2026-02-08 14:38:31,621{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[5 nil]	:net-timeout
+2026-02-08 14:38:31,686{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:31,739{GMT}	INFO	[jepsen worker 8] jepsen.util: 128	:invoke	:write	[6 3]
+2026-02-08 14:38:31,838{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[6 nil]
+2026-02-08 14:38:31,865{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:31,956{GMT}	INFO	[jepsen worker 7] jepsen.util: 147	:info	:cas	[6 [0 4]]	:net-timeout
+2026-02-08 14:38:32,190{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[6 nil]
+2026-02-08 14:38:32,322{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:32,497{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:32,525{GMT}	INFO	[jepsen worker 5] jepsen.util: 185	:invoke	:cas	[6 [0 3]]
+2026-02-08 14:38:32,676{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[6 nil]
+2026-02-08 14:38:32,743{GMT}	INFO	[jepsen worker 8] jepsen.util: 128	:info	:write	[6 3]	:net-timeout
+2026-02-08 14:38:32,842{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:32,975{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[6 nil]
+2026-02-08 14:38:32,990{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[6 nil]
+2026-02-08 14:38:33,159{GMT}	INFO	[jepsen worker 6] jepsen.util: 156	:invoke	:cas	[6 [0 1]]
+2026-02-08 14:38:33,198{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:33,467{GMT}	INFO	[jepsen worker 7] jepsen.util: 157	:invoke	:write	[6 4]
+2026-02-08 14:38:33,529{GMT}	INFO	[jepsen worker 5] jepsen.util: 185	:info	:cas	[6 [0 3]]	:net-timeout
+2026-02-08 14:38:33,674{GMT}	INFO	[jepsen worker 8] jepsen.util: 138	:invoke	:cas	[6 [3 1]]
+2026-02-08 14:38:33,679{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:33,980{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:33,983{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[6 nil]
+2026-02-08 14:38:33,992{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:34,164{GMT}	INFO	[jepsen worker 6] jepsen.util: 156	:info	:cas	[6 [0 1]]	:net-timeout
+2026-02-08 14:38:34,216{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[6 nil]
+2026-02-08 14:38:34,470{GMT}	INFO	[jepsen worker 7] jepsen.util: 157	:info	:write	[6 4]	:net-timeout
+2026-02-08 14:38:34,504{GMT}	INFO	[jepsen worker 9] jepsen.util: 109	:invoke	:cas	[6 [1 4]]
+2026-02-08 14:38:34,679{GMT}	INFO	[jepsen worker 8] jepsen.util: 138	:info	:cas	[6 [3 1]]	:net-timeout
+2026-02-08 14:38:34,682{GMT}	INFO	[jepsen worker 5] jepsen.util: 195	:invoke	:cas	[6 [4 2]]
+2026-02-08 14:38:34,863{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[6 nil]
+2026-02-08 14:38:34,986{GMT}	INFO	[jepsen worker 6] jepsen.util: 166	:invoke	:cas	[6 [0 4]]
+2026-02-08 14:38:34,986{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:35,219{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:35,231{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[6 nil]
+2026-02-08 14:38:35,381{GMT}	INFO	[jepsen worker 7] jepsen.util: 167	:invoke	:write	[6 3]
+2026-02-08 14:38:35,508{GMT}	INFO	[jepsen worker 9] jepsen.util: 109	:info	:cas	[6 [1 4]]	:net-timeout
+2026-02-08 14:38:35,686{GMT}	INFO	[jepsen worker 5] jepsen.util: 195	:info	:cas	[6 [4 2]]	:net-timeout
+2026-02-08 14:38:35,771{GMT}	INFO	[jepsen worker 5] jepsen.util: 205	:invoke	:cas	[6 [2 2]]
+2026-02-08 14:38:35,867{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:35,990{GMT}	INFO	[jepsen worker 6] jepsen.util: 166	:info	:cas	[6 [0 4]]	:net-timeout
+2026-02-08 14:38:36,109{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[7 nil]
+2026-02-08 14:38:36,235{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[6 nil]	:net-timeout
+2026-02-08 14:38:36,385{GMT}	INFO	[jepsen worker 7] jepsen.util: 167	:info	:write	[6 3]	:net-timeout
+2026-02-08 14:38:36,411{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[7 nil]
+2026-02-08 14:38:36,499{GMT}	INFO	[jepsen worker 7] jepsen.util: 177	:invoke	:cas	[7 [1 2]]
+2026-02-08 14:38:36,565{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[7 nil]
+2026-02-08 14:38:36,775{GMT}	INFO	[jepsen worker 5] jepsen.util: 205	:info	:cas	[6 [2 2]]	:net-timeout
+2026-02-08 14:38:36,823{GMT}	INFO	[jepsen worker 9] jepsen.util: 119	:invoke	:write	[7 3]
+2026-02-08 14:38:37,008{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[7 nil]
+2026-02-08 14:38:37,112{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:37,185{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[7 nil]
+2026-02-08 14:38:37,251{GMT}	INFO	[jepsen worker 5] jepsen.util: 215	:invoke	:cas	[7 [1 4]]
+2026-02-08 14:38:37,415{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:37,446{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[7 nil]
+2026-02-08 14:38:37,468{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[7 nil]
+2026-02-08 14:38:37,504{GMT}	INFO	[jepsen worker 7] jepsen.util: 177	:info	:cas	[7 [1 2]]	:net-timeout
+2026-02-08 14:38:37,570{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:37,652{GMT}	INFO	[jepsen worker 6] jepsen.util: 176	:invoke	:cas	[7 [0 0]]
+2026-02-08 14:38:37,775{GMT}	INFO	[jepsen worker 7] jepsen.util: 187	:invoke	:cas	[7 [2 0]]
+2026-02-08 14:38:37,829{GMT}	INFO	[jepsen worker 9] jepsen.util: 119	:info	:write	[7 3]	:net-timeout
+2026-02-08 14:38:37,900{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[7 nil]
+2026-02-08 14:38:38,012{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:38,079{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[7 nil]
+2026-02-08 14:38:38,189{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:38,255{GMT}	INFO	[jepsen worker 5] jepsen.util: 215	:info	:cas	[7 [1 4]]	:net-timeout
+2026-02-08 14:38:38,271{GMT}	INFO	[jepsen worker 8] jepsen.util: 148	:invoke	:write	[7 2]
+2026-02-08 14:38:38,348{GMT}	INFO	[jepsen worker 9] jepsen.util: 129	:invoke	:cas	[7 [4 1]]
+2026-02-08 14:38:38,451{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:38,451{GMT}	INFO	[jepsen worker 5] jepsen.util: 225	:invoke	:cas	[7 [2 0]]
+2026-02-08 14:38:38,472{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:38,501{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[7 nil]
+2026-02-08 14:38:38,655{GMT}	INFO	[jepsen worker 6] jepsen.util: 176	:info	:cas	[7 [0 0]]	:net-timeout
+2026-02-08 14:38:38,767{GMT}	INFO	[jepsen worker 6] jepsen.util: 186	:invoke	:cas	[7 [1 3]]
+2026-02-08 14:38:38,779{GMT}	INFO	[jepsen worker 7] jepsen.util: 187	:info	:cas	[7 [2 0]]	:net-timeout
+2026-02-08 14:38:38,905{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:38,994{GMT}	INFO	[jepsen worker 7] jepsen.util: 197	:invoke	:cas	[7 [1 3]]
+2026-02-08 14:38:39,082{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:39,168{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[7 nil]
+2026-02-08 14:38:39,264{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[7 nil]
+2026-02-08 14:38:39,275{GMT}	INFO	[jepsen worker 8] jepsen.util: 148	:info	:write	[7 2]	:net-timeout
+2026-02-08 14:38:39,351{GMT}	INFO	[jepsen worker 9] jepsen.util: 129	:info	:cas	[7 [4 1]]	:net-timeout
+2026-02-08 14:38:39,430{GMT}	INFO	[jepsen worker 8] jepsen.util: 158	:invoke	:cas	[7 [0 2]]
+2026-02-08 14:38:39,455{GMT}	INFO	[jepsen worker 5] jepsen.util: 225	:info	:cas	[7 [2 0]]	:net-timeout
+2026-02-08 14:38:39,502{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[7 nil]
+2026-02-08 14:38:39,505{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:39,547{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[7 nil]
+2026-02-08 14:38:39,770{GMT}	INFO	[jepsen worker 6] jepsen.util: 186	:info	:cas	[7 [1 3]]	:net-timeout
+2026-02-08 14:38:39,829{GMT}	INFO	[jepsen worker 9] jepsen.util: 139	:invoke	:cas	[8 [2 1]]
+2026-02-08 14:38:39,962{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[8 nil]
+2026-02-08 14:38:39,998{GMT}	INFO	[jepsen worker 7] jepsen.util: 197	:info	:cas	[7 [1 3]]	:net-timeout
+2026-02-08 14:38:40,171{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:40,268{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:40,329{GMT}	INFO	[jepsen worker 5] jepsen.util: 235	:invoke	:cas	[8 [3 3]]
+2026-02-08 14:38:40,434{GMT}	INFO	[jepsen worker 8] jepsen.util: 158	:info	:cas	[7 [0 2]]	:net-timeout
+2026-02-08 14:38:40,506{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:40,551{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[7 nil]	:net-timeout
+2026-02-08 14:38:40,581{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[8 nil]
+2026-02-08 14:38:40,657{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[8 nil]
+2026-02-08 14:38:40,832{GMT}	INFO	[jepsen worker 9] jepsen.util: 139	:info	:cas	[8 [2 1]]	:net-timeout
+2026-02-08 14:38:40,965{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[8 nil]	:net-timeout
+2026-02-08 14:38:41,027{GMT}	INFO	[jepsen worker 6] jepsen.util: 196	:invoke	:cas	[8 [4 1]]
+2026-02-08 14:38:41,274{GMT}	INFO	[jepsen worker 7] jepsen.util: 207	:invoke	:cas	[8 [2 3]]
+2026-02-08 14:38:41,334{GMT}	INFO	[jepsen worker 5] jepsen.util: 235	:info	:cas	[8 [3 3]]	:net-timeout
+2026-02-08 14:38:41,486{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[8 nil]
+2026-02-08 14:38:41,585{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[8 nil]	:net-timeout
+2026-02-08 14:38:41,661{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[8 nil]	:net-timeout
+2026-02-08 14:38:41,718{GMT}	INFO	[jepsen worker 5] jepsen.util: 245	:invoke	:write	[8 4]
+2026-02-08 14:38:41,979{GMT}	INFO	[jepsen worker 8] jepsen.util: 168	:invoke	:cas	[8 [0 4]]
+2026-02-08 14:38:41,998{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[8 nil]
+2026-02-08 14:38:42,031{GMT}	INFO	[jepsen worker 6] jepsen.util: 196	:info	:cas	[8 [4 1]]	:net-timeout
+2026-02-08 14:38:42,278{GMT}	INFO	[jepsen worker 7] jepsen.util: 207	:info	:cas	[8 [2 3]]	:net-timeout
+2026-02-08 14:38:42,391{GMT}	INFO	[jepsen worker 9] jepsen.util: 149	:invoke	:cas	[8 [3 3]]
+2026-02-08 14:38:42,489{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[8 nil]	:net-timeout
+2026-02-08 14:38:42,634{GMT}	INFO	[jepsen worker 6] jepsen.util: 206	:invoke	:write	[8 2]
+2026-02-08 14:38:42,664{GMT}	INFO	[jepsen worker 7] jepsen.util: 217	:invoke	:cas	[8 [0 2]]
+2026-02-08 14:38:42,722{GMT}	INFO	[jepsen worker 5] jepsen.util: 245	:info	:write	[8 4]	:net-timeout
+2026-02-08 14:38:42,897{GMT}	INFO	[jepsen worker 5] jepsen.util: 255	:invoke	:cas	[8 [4 0]]
+2026-02-08 14:38:42,982{GMT}	INFO	[jepsen worker 8] jepsen.util: 168	:info	:cas	[8 [0 4]]	:net-timeout
+2026-02-08 14:38:43,001{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[8 nil]	:net-timeout
+2026-02-08 14:38:43,030{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[8 nil]
+2026-02-08 14:38:43,163{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[8 nil]
+2026-02-08 14:38:43,294{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[8 nil]
+2026-02-08 14:38:43,395{GMT}	INFO	[jepsen worker 9] jepsen.util: 149	:info	:cas	[8 [3 3]]	:net-timeout
+2026-02-08 14:38:43,637{GMT}	INFO	[jepsen worker 6] jepsen.util: 206	:info	:write	[8 2]	:net-timeout
+2026-02-08 14:38:43,653{GMT}	INFO	[jepsen worker 6] jepsen.util: 216	:invoke	:cas	[8 [4 4]]
+2026-02-08 14:38:43,667{GMT}	INFO	[jepsen worker 7] jepsen.util: 217	:info	:cas	[8 [0 2]]	:net-timeout
+2026-02-08 14:38:43,889{GMT}	INFO	[jepsen worker 7] jepsen.util: 227	:invoke	:write	[9 4]
+2026-02-08 14:38:43,900{GMT}	INFO	[jepsen worker 5] jepsen.util: 255	:info	:cas	[8 [4 0]]	:net-timeout
+2026-02-08 14:38:44,034{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[8 nil]	:net-timeout
+2026-02-08 14:38:44,167{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[8 nil]	:net-timeout
+2026-02-08 14:38:44,187{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[9 nil]
+2026-02-08 14:38:44,299{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[8 nil]	:net-timeout
+2026-02-08 14:38:44,473{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[9 nil]
+2026-02-08 14:38:44,514{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[9 nil]
+2026-02-08 14:38:44,656{GMT}	INFO	[jepsen worker 6] jepsen.util: 216	:info	:cas	[8 [4 4]]	:net-timeout
+2026-02-08 14:38:44,815{GMT}	INFO	[jepsen worker 9] jepsen.util: 159	:invoke	:cas	[9 [1 3]]
+2026-02-08 14:38:44,893{GMT}	INFO	[jepsen worker 7] jepsen.util: 227	:info	:write	[9 4]	:net-timeout
+2026-02-08 14:38:44,962{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[9 nil]
+2026-02-08 14:38:45,190{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:45,333{GMT}	INFO	[jepsen worker 5] jepsen.util: 265	:invoke	:cas	[9 [3 0]]
+2026-02-08 14:38:45,376{GMT}	INFO	[jepsen worker 6] jepsen.util: 226	:invoke	:cas	[9 [2 0]]
+2026-02-08 14:38:45,398{GMT}	INFO	[jepsen worker 7] jepsen.util: 237	:invoke	:cas	[9 [4 2]]
+2026-02-08 14:38:45,476{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:45,519{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:45,792{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[9 nil]
+2026-02-08 14:38:45,819{GMT}	INFO	[jepsen worker 9] jepsen.util: 159	:info	:cas	[9 [1 3]]	:net-timeout
+2026-02-08 14:38:45,966{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:46,143{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[9 nil]
+2026-02-08 14:38:46,337{GMT}	INFO	[jepsen worker 5] jepsen.util: 265	:info	:cas	[9 [3 0]]	:net-timeout
+2026-02-08 14:38:46,379{GMT}	INFO	[jepsen worker 6] jepsen.util: 226	:info	:cas	[9 [2 0]]	:net-timeout
+2026-02-08 14:38:46,413{GMT}	INFO	[jepsen worker 7] jepsen.util: 237	:info	:cas	[9 [4 2]]	:net-timeout
+2026-02-08 14:38:46,443{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[9 nil]
+2026-02-08 14:38:46,550{GMT}	INFO	[jepsen worker 6] jepsen.util: 236	:invoke	:cas	[9 [3 0]]
+2026-02-08 14:38:46,797{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:46,871{GMT}	INFO	[jepsen worker 7] jepsen.util: 247	:invoke	:cas	[9 [3 0]]
+2026-02-08 14:38:47,032{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[9 nil]
+2026-02-08 14:38:47,147{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:47,247{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[9 nil]
+2026-02-08 14:38:47,448{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:47,558{GMT}	INFO	[jepsen worker 6] jepsen.util: 236	:info	:cas	[9 [3 0]]	:net-timeout
+2026-02-08 14:38:47,617{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[9 nil]
+2026-02-08 14:38:47,878{GMT}	INFO	[jepsen worker 7] jepsen.util: 247	:info	:cas	[9 [3 0]]	:net-timeout
+2026-02-08 14:38:47,931{GMT}	INFO	[jepsen worker 5] jepsen.util: 275	:invoke	:cas	[9 [3 2]]
+2026-02-08 14:38:48,040{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:48,107{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[9 nil]
+2026-02-08 14:38:48,143{GMT}	INFO	[jepsen worker 6] jepsen.util: 246	:invoke	:write	[9 4]
+2026-02-08 14:38:48,181{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[9 nil]
+2026-02-08 14:38:48,255{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:48,351{GMT}	INFO	[jepsen worker 7] jepsen.util: 257	:invoke	:cas	[9 [2 4]]
+2026-02-08 14:38:48,369{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[9 nil]
+2026-02-08 14:38:48,622{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:48,631{GMT}	INFO	[jepsen worker 8] jepsen.util: 178	:invoke	:write	[9 3]
+2026-02-08 14:38:48,853{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[9 nil]
+2026-02-08 14:38:48,934{GMT}	INFO	[jepsen worker 5] jepsen.util: 275	:info	:cas	[9 [3 2]]	:net-timeout
+2026-02-08 14:38:49,044{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[9 nil]
+2026-02-08 14:38:49,111{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:49,147{GMT}	INFO	[jepsen worker 6] jepsen.util: 246	:info	:write	[9 4]	:net-timeout
+2026-02-08 14:38:49,187{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:49,260{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[10 nil]
+2026-02-08 14:38:49,357{GMT}	INFO	[jepsen worker 7] jepsen.util: 257	:info	:cas	[9 [2 4]]	:net-timeout
+2026-02-08 14:38:49,377{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:49,523{GMT}	INFO	[jepsen worker 5] jepsen.util: 285	:invoke	:cas	[10 [1 0]]
+2026-02-08 14:38:49,636{GMT}	INFO	[jepsen worker 8] jepsen.util: 178	:info	:write	[9 3]	:net-timeout
+2026-02-08 14:38:49,859{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:49,915{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[10 nil]
+2026-02-08 14:38:50,049{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[9 nil]	:net-timeout
+2026-02-08 14:38:50,088{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[10 nil]
+2026-02-08 14:38:50,204{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[10 nil]
+2026-02-08 14:38:50,266{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[10 nil]	:net-timeout
+2026-02-08 14:38:50,490{GMT}	INFO	[jepsen worker 6] jepsen.util: 256	:invoke	:cas	[10 [4 2]]
+2026-02-08 14:38:50,536{GMT}	INFO	[jepsen worker 5] jepsen.util: 285	:info	:cas	[10 [1 0]]	:net-timeout
+2026-02-08 14:38:50,591{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[10 nil]
+2026-02-08 14:38:50,600{GMT}	INFO	[jepsen worker 5] jepsen.util: 295	:invoke	:cas	[10 [0 0]]
+2026-02-08 14:38:50,921{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[10 nil]	:net-timeout
+2026-02-08 14:38:50,949{GMT}	INFO	[jepsen worker 7] jepsen.util: 267	:invoke	:cas	[10 [2 4]]
+2026-02-08 14:38:51,093{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[10 nil]	:net-timeout
+2026-02-08 14:38:51,207{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[10 nil]	:net-timeout
+2026-02-08 14:38:51,289{GMT}	INFO	[jepsen worker 8] jepsen.util: 188	:invoke	:cas	[10 [4 0]]
+2026-02-08 14:38:51,496{GMT}	INFO	[jepsen worker 6] jepsen.util: 256	:info	:cas	[10 [4 2]]	:net-timeout
+2026-02-08 14:38:51,551{GMT}	INFO	[jepsen worker 9] jepsen.util: 169	:invoke	:cas	[10 [0 1]]
+2026-02-08 14:38:51,594{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[10 nil]	:net-timeout
+2026-02-08 14:38:51,606{GMT}	INFO	[jepsen worker 5] jepsen.util: 295	:info	:cas	[10 [0 0]]	:net-timeout
+2026-02-08 14:38:51,893{GMT}	INFO	[jepsen worker 5] jepsen.util: 305	:invoke	:cas	[10 [1 2]]
+2026-02-08 14:38:51,959{GMT}	INFO	[jepsen worker 7] jepsen.util: 267	:info	:cas	[10 [2 4]]	:net-timeout
+2026-02-08 14:38:51,991{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[10 nil]
+2026-02-08 14:38:52,058{GMT}	INFO	[jepsen worker 6] jepsen.util: 266	:invoke	:cas	[10 [1 0]]
+2026-02-08 14:38:52,221{GMT}	INFO	[jepsen worker 7] jepsen.util: 277	:invoke	:write	[10 0]
+2026-02-08 14:38:52,295{GMT}	INFO	[jepsen worker 8] jepsen.util: 188	:info	:cas	[10 [4 0]]	:net-timeout
+2026-02-08 14:38:52,431{GMT}	INFO	[jepsen worker 8] jepsen.util: 198	:invoke	:write	[10 3]
+2026-02-08 14:38:52,557{GMT}	INFO	[jepsen worker 9] jepsen.util: 169	:info	:cas	[10 [0 1]]	:net-timeout
+2026-02-08 14:38:52,813{GMT}	INFO	[jepsen worker 9] jepsen.util: 179	:invoke	:cas	[10 [4 4]]
+2026-02-08 14:38:52,860{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[10 nil]
+2026-02-08 14:38:52,895{GMT}	INFO	[jepsen worker 5] jepsen.util: 305	:info	:cas	[10 [1 2]]	:net-timeout
+2026-02-08 14:38:52,995{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[10 nil]	:net-timeout
+2026-02-08 14:38:53,063{GMT}	INFO	[jepsen worker 6] jepsen.util: 266	:info	:cas	[10 [1 0]]	:net-timeout
+2026-02-08 14:38:53,214{GMT}	INFO	[jepsen worker 5] jepsen.util: 315	:invoke	:cas	[10 [2 2]]
+2026-02-08 14:38:53,224{GMT}	INFO	[jepsen worker 7] jepsen.util: 277	:info	:write	[10 0]	:net-timeout
+2026-02-08 14:38:53,431{GMT}	INFO	[jepsen worker 6] jepsen.util: 276	:invoke	:cas	[11 [0 3]]
+2026-02-08 14:38:53,438{GMT}	INFO	[jepsen worker 8] jepsen.util: 198	:info	:write	[10 3]	:net-timeout
+2026-02-08 14:38:53,754{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[11 nil]
+2026-02-08 14:38:53,822{GMT}	INFO	[jepsen worker 9] jepsen.util: 179	:info	:cas	[10 [4 4]]	:net-timeout
+2026-02-08 14:38:53,864{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[10 nil]	:net-timeout
+2026-02-08 14:38:53,940{GMT}	INFO	[jepsen worker 8] jepsen.util: 208	:invoke	:cas	[11 [4 0]]
+2026-02-08 14:38:54,219{GMT}	INFO	[jepsen worker 5] jepsen.util: 315	:info	:cas	[10 [2 2]]	:net-timeout
+2026-02-08 14:38:54,337{GMT}	INFO	[jepsen worker 9] jepsen.util: 189	:invoke	:cas	[11 [2 1]]
+2026-02-08 14:38:54,434{GMT}	INFO	[jepsen worker 6] jepsen.util: 276	:info	:cas	[11 [0 3]]	:net-timeout
+2026-02-08 14:38:54,518{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[11 nil]
+2026-02-08 14:38:54,602{GMT}	INFO	[jepsen worker 5] jepsen.util: 325	:invoke	:cas	[11 [1 1]]
+2026-02-08 14:38:54,759{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[11 nil]	:net-timeout
+2026-02-08 14:38:54,886{GMT}	INFO	[jepsen worker 6] jepsen.util: 286	:invoke	:cas	[11 [4 2]]
+2026-02-08 14:38:54,946{GMT}	INFO	[jepsen worker 8] jepsen.util: 208	:info	:cas	[11 [4 0]]	:net-timeout
+2026-02-08 14:38:55,204{GMT}	INFO	[jepsen worker 7] jepsen.util: 287	:invoke	:write	[11 0]
+2026-02-08 14:38:55,307{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[11 nil]
+2026-02-08 14:38:55,342{GMT}	INFO	[jepsen worker 9] jepsen.util: 189	:info	:cas	[11 [2 1]]	:net-timeout
+2026-02-08 14:38:55,522{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[11 nil]	:net-timeout
+2026-02-08 14:38:55,611{GMT}	INFO	[jepsen worker 5] jepsen.util: 325	:info	:cas	[11 [1 1]]	:net-timeout
+2026-02-08 14:38:55,652{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[11 nil]
+2026-02-08 14:38:55,892{GMT}	INFO	[jepsen worker 6] jepsen.util: 286	:info	:cas	[11 [4 2]]	:net-timeout
+2026-02-08 14:38:55,910{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[11 nil]
+2026-02-08 14:38:55,947{GMT}	INFO	[jepsen worker 6] jepsen.util: 296	:invoke	:cas	[11 [4 1]]
+2026-02-08 14:38:56,210{GMT}	INFO	[jepsen worker 7] jepsen.util: 287	:info	:write	[11 0]	:net-timeout
+2026-02-08 14:38:56,257{GMT}	INFO	[jepsen worker 7] jepsen.util: 297	:invoke	:cas	[11 [0 2]]
+2026-02-08 14:38:56,311{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[11 nil]	:net-timeout
+2026-02-08 14:38:56,396{GMT}	INFO	[jepsen worker 8] jepsen.util: 218	:invoke	:write	[11 4]
+2026-02-08 14:38:56,585{GMT}	INFO	[jepsen worker 9] jepsen.util: 199	:invoke	:cas	[11 [3 3]]
+2026-02-08 14:38:56,658{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[11 nil]	:net-timeout
+2026-02-08 14:38:56,761{GMT}	INFO	[jepsen worker 5] jepsen.util: 335	:invoke	:cas	[11 [1 1]]
+2026-02-08 14:38:56,915{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[11 nil]	:net-timeout
+2026-02-08 14:38:56,955{GMT}	INFO	[jepsen worker 6] jepsen.util: 296	:info	:cas	[11 [4 1]]	:net-timeout
+2026-02-08 14:38:57,052{GMT}	INFO	[jepsen worker 6] jepsen.util: 306	:invoke	:cas	[11 [4 0]]
+2026-02-08 14:38:57,239{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[11 nil]
+2026-02-08 14:38:57,260{GMT}	INFO	[jepsen worker 7] jepsen.util: 297	:info	:cas	[11 [0 2]]	:net-timeout
+2026-02-08 14:38:57,399{GMT}	INFO	[jepsen worker 8] jepsen.util: 218	:info	:write	[11 4]	:net-timeout
+2026-02-08 14:38:57,511{GMT}	INFO	[jepsen worker 7] jepsen.util: 307	:invoke	:cas	[12 [2 4]]
+2026-02-08 14:38:57,588{GMT}	INFO	[jepsen worker 9] jepsen.util: 199	:info	:cas	[11 [3 3]]	:net-timeout
+2026-02-08 14:38:57,706{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[12 nil]
+2026-02-08 14:38:57,764{GMT}	INFO	[jepsen worker 5] jepsen.util: 335	:info	:cas	[11 [1 1]]	:net-timeout
+2026-02-08 14:38:57,844{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[12 nil]
+2026-02-08 14:38:57,898{GMT}	INFO	[jepsen worker 5] jepsen.util: 345	:invoke	:cas	[12 [0 3]]
+2026-02-08 14:38:58,057{GMT}	INFO	[jepsen worker 6] jepsen.util: 306	:info	:cas	[11 [4 0]]	:net-timeout
+2026-02-08 14:38:58,145{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[12 nil]
+2026-02-08 14:38:58,161{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[12 nil]
+2026-02-08 14:38:58,243{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[11 nil]	:net-timeout
+2026-02-08 14:38:58,433{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[12 nil]
+2026-02-08 14:38:58,515{GMT}	INFO	[jepsen worker 7] jepsen.util: 307	:info	:cas	[12 [2 4]]	:net-timeout
+2026-02-08 14:38:58,711{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:38:58,728{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[12 nil]
+2026-02-08 14:38:58,784{GMT}	INFO	[jepsen worker 6] jepsen.util: 316	:invoke	:cas	[12 [4 4]]
+2026-02-08 14:38:58,850{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:38:58,903{GMT}	INFO	[jepsen worker 5] jepsen.util: 345	:info	:cas	[12 [0 3]]	:net-timeout
+2026-02-08 14:38:58,988{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[12 nil]
+2026-02-08 14:38:59,075{GMT}	INFO	[jepsen worker 5] jepsen.util: 355	:invoke	:write	[12 1]
+2026-02-08 14:38:59,154{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:38:59,167{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:38:59,437{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:38:59,447{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[12 nil]
+2026-02-08 14:38:59,473{GMT}	INFO	[jepsen worker 7] jepsen.util: 317	:invoke	:cas	[12 [2 0]]
+2026-02-08 14:38:59,740{GMT}	INFO	[jepsen worker 8] jepsen.util: 228	:invoke	:cas	[12 [3 4]]
+2026-02-08 14:38:59,740{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:38:59,796{GMT}	INFO	[jepsen worker 6] jepsen.util: 316	:info	:cas	[12 [4 4]]	:net-timeout
+2026-02-08 14:38:59,854{GMT}	INFO	[jepsen worker 6] jepsen.util: 326	:invoke	:cas	[12 [1 2]]
+2026-02-08 14:38:59,992{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:39:00,089{GMT}	INFO	[jepsen worker 5] jepsen.util: 355	:info	:write	[12 1]	:net-timeout
+2026-02-08 14:39:00,228{GMT}	INFO	[jepsen worker 9] jepsen.util: 209	:invoke	:cas	[12 [0 4]]
+2026-02-08 14:39:00,249{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:invoke	:read	[12 nil]
+2026-02-08 14:39:00,454{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:39:00,476{GMT}	INFO	[jepsen worker 7] jepsen.util: 317	:info	:cas	[12 [2 0]]	:net-timeout
+2026-02-08 14:39:00,487{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:invoke	:read	[12 nil]
+2026-02-08 14:39:00,601{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:invoke	:read	[12 nil]
+2026-02-08 14:39:00,743{GMT}	INFO	[jepsen worker 8] jepsen.util: 228	:info	:cas	[12 [3 4]]	:net-timeout
+2026-02-08 14:39:00,859{GMT}	INFO	[jepsen worker 6] jepsen.util: 326	:info	:cas	[12 [1 2]]	:net-timeout
+2026-02-08 14:39:00,940{GMT}	INFO	[jepsen worker 5] jepsen.util: 365	:invoke	:write	[12 4]
+2026-02-08 14:39:00,948{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:invoke	:read	[12 nil]
+2026-02-08 14:39:00,969{GMT}	INFO	[jepsen worker 6] jepsen.util: 336	:invoke	:cas	[12 [3 1]]
+2026-02-08 14:39:01,232{GMT}	INFO	[jepsen worker 9] jepsen.util: 209	:info	:cas	[12 [0 4]]	:net-timeout
+2026-02-08 14:39:01,259{GMT}	INFO	[jepsen worker 0] jepsen.util: 0	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:39:01,302{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:invoke	:read	[13 nil]
+2026-02-08 14:39:01,494{GMT}	INFO	[jepsen worker 1] jepsen.util: 1	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:39:01,548{GMT}	INFO	[jepsen worker 7] jepsen.util: 327	:invoke	:cas	[13 [2 1]]
+2026-02-08 14:39:01,604{GMT}	INFO	[jepsen worker 2] jepsen.util: 2	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:39:01,944{GMT}	INFO	[jepsen worker 5] jepsen.util: 365	:info	:write	[12 4]	:net-timeout
+2026-02-08 14:39:01,950{GMT}	INFO	[jepsen worker 3] jepsen.util: 3	:fail	:read	[12 nil]	:net-timeout
+2026-02-08 14:39:01,972{GMT}	INFO	[jepsen worker 6] jepsen.util: 336	:info	:cas	[12 [3 1]]	:net-timeout
+2026-02-08 14:39:02,306{GMT}	INFO	[jepsen worker 4] jepsen.util: 4	:fail	:read	[13 nil]	:net-timeout
+2026-02-08 14:39:02,551{GMT}	INFO	[jepsen worker 7] jepsen.util: 327	:info	:cas	[13 [2 1]]	:net-timeout
+2026-02-08 14:39:02,636{GMT}	INFO	[jepsen test runner] jepsen.core: Run complete, writing
+2026-02-08 14:39:03,229{GMT}	INFO	[jepsen node n1] maelstrom.db: Tearing down n1
+2026-02-08 14:39:03,229{GMT}	INFO	[jepsen node n0] maelstrom.db: Tearing down n0
+2026-02-08 14:39:03,232{GMT}	INFO	[jepsen node n4] maelstrom.db: Tearing down n4
+2026-02-08 14:39:03,232{GMT}	INFO	[jepsen node n2] maelstrom.db: Tearing down n2
+2026-02-08 14:39:03,233{GMT}	INFO	[jepsen node n3] maelstrom.db: Tearing down n3
+2026-02-08 14:39:03,325{GMT}	INFO	[jepsen node n0] maelstrom.net: Shutting down Maelstrom network
+2026-02-08 14:39:03,338{GMT}	WARN	[jepsen test runner] jepsen.core: Test crashed!
+clojure.lang.ExceptionInfo: Node n4 crashed with exit status 1. Before crashing, it wrote to STDOUT:
+
+{"dest": "c0", "src": "n4", "body": {"msg_id": 1, "in_reply_to": 1, "type": "init_ok"}}
+{"dest": "c14", "src": "n4", "body": {"msg_id": 2, "in_reply_to": 1, "type": "read_ok", "value": null}}
+{"dest": "c16", "src": "n4", "body": {"msg_id": 3, "in_reply_to": 1, "type": "error", "code": 20, "text": "key does not exist"}}
+{"dest": "c14", "src": "n4", "body": {"msg_id": 4, "in_reply_to": 2, "type": "read_ok", "value": null}}
+{"dest": "c16", "src": "n4", "body": {"msg_id": 5, "in_reply_to": 2, "type": "error", "code": 20, "text": "key does not exist"}}
+
+And to STDERR:
+
+DEBUG:root:received {"id":0,"src":"c0","dest":"n4","body":{"type":"init","node_id":"n4","node_ids":["n0","n1","n2","n3","n4"],"msg_id":1}}
+INFO:root:initializing node n4
+INFO:root:nodes in cluster: {'n2', 'n3', 'n1', 'n4', 'n0'}
+DEBUG:root:sending {"dest": "c0", "src": "n4", "body": {"msg_id": 1, "in_reply_to": 1, "type": "init_ok"}}
+DEBUG:root:received {"id":18,"src":"c14","dest":"n4","body":{"key":0,"type":"read","msg_id":1}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c14", "src": "n4", "body": {"msg_id": 2, "in_reply_to": 1, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":28,"src":"c16","dest":"n4","body":{"key":0,"from":1,"to":0,"type":"cas","msg_id":1}}
+INFO:root:cas on key 0: expected 1, current None, new 0
+DEBUG:root:sending {"dest": "c16", "src": "n4", "body": {"msg_id": 3, "in_reply_to": 1, "type": "error", "code": 20, "text": "key does not exist"}}
+DEBUG:root:received {"id":40,"src":"c14","dest":"n4","body":{"key":0,"type":"read","msg_id":2}}
+INFO:root:reading key 0 with value None
+DEBUG:root:sending {"dest": "c14", "src": "n4", "body": {"msg_id": 4, "in_reply_to": 2, "type": "read_ok", "value": null}}
+DEBUG:root:received {"id":48,"src":"c16","dest":"n4","body":{"key":0,"from":4,"to":0,"type":"cas","msg_id":2}}
+INFO:root:cas on key 0: expected 4, current None, new 0
+DEBUG:root:sending {"dest": "c16", "src": "n4", "body": {"msg_id": 5, "in_reply_to": 2, "type": "error", "code": 20, "text": "key does not exist"}}
+DEBUG:root:received {"id":59,"src":"c16","dest":"n4","body":{"key":0,"value":1,"type":"write","msg_id":3}}
+INFO:root:writing key 0 with value 1
+Traceback (most recent call last):
+  File "/home/mutante/Programming/University/Cybersecurity/IntrusionTolerance/Guião1/echo.py", line 33, in <module>
+    broadcast({"type": "replicate", "key": msg.body.key, "value": msg.body.value}, nodes, msg.body.node_id)
+                                                                                          ^^^^^^^^^^^^^^^^
+AttributeError: 'types.SimpleNamespace' object has no attribute 'node_id'
+
+Full STDERR logs are available in /home/mutante/Programming/University/Cybersecurity/IntrusionTolerance/maelstrom/store/lin-kv/20260208T143800.385Z/node-logs/n4.log
+	at slingshot.support$stack_trace.invoke(support.clj:201)
+	at maelstrom.process$stop_node_BANG_.invokeStatic(process.clj:239)
+	at maelstrom.process$stop_node_BANG_.invoke(process.clj:217)
+	at maelstrom.db$db$reify__16612.teardown_BANG_(db.clj:75)
+	at jepsen.db$fn__11629$G__11610__11633.invoke(db.clj:12)
+	at jepsen.db$fn__11629$G__11609__11638.invoke(db.clj:12)
+	at clojure.core$partial$fn__5927.invoke(core.clj:2642)
+	at jepsen.control$on_nodes$fn__9552.invoke(control.clj:319)
+	at clojure.lang.AFn.applyToHelper(AFn.java:154)
+	at clojure.lang.AFn.applyTo(AFn.java:144)
+	at clojure.core$apply.invokeStatic(core.clj:667)
+	at clojure.core$with_bindings_STAR_.invokeStatic(core.clj:1990)
+	at clojure.core$with_bindings_STAR_.doInvoke(core.clj:1990)
+	at clojure.lang.RestFn.applyTo(RestFn.java:145)
+	at clojure.core$apply.invokeStatic(core.clj:671)
+	at clojure.core$bound_fn_STAR_$fn__5837.doInvoke(core.clj:2020)
+	at clojure.lang.RestFn.invoke(RestFn.java:411)
+	at dom_top.core$real_pmap_helper$build_thread__730$fn__731.invoke(core.clj:163)
+	at clojure.lang.AFn.applyToHelper(AFn.java:152)
+	at clojure.lang.AFn.applyTo(AFn.java:144)
+	at clojure.core$apply.invokeStatic(core.clj:667)
+	at clojure.core$with_bindings_STAR_.invokeStatic(core.clj:1990)
+	at clojure.core$with_bindings_STAR_.doInvoke(core.clj:1990)
+	at clojure.lang.RestFn.invoke(RestFn.java:428)
+	at clojure.lang.AFn.applyToHelper(AFn.java:156)
+	at clojure.lang.RestFn.applyTo(RestFn.java:135)
+	at clojure.core$apply.invokeStatic(core.clj:671)
+	at clojure.core$bound_fn_STAR_$fn__5837.doInvoke(core.clj:2020)
+	at clojure.lang.RestFn.invoke(RestFn.java:400)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.base/java.lang.Thread.run(Thread.java:1583)

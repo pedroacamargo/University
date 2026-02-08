@@ -1,0 +1,671 @@
+<html><head><style>.ops        { position: absolute; }
+.op         { position: absolute; padding: 2px; border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); transition: all 0.3s cubic-bezier(.25,.8,.25,1); overflow: hidden; }
+.op.invoke  { background: #eeeeee; }
+.op.ok      { background: #6DB6FE; }
+.op.info    { background: #FFAA26; }
+.op.fail    { background: #FEB5DA; }
+.op:target  { box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); }
+</style></head><body><div><a href="/">jepsen</a> / <a href="/files/lin-kv">lin-kv</a> / <a href="/files/lin-kv/20260208T141955.018Z">20260208T141955.018Z</a> / <a href="/files/lin-kv/20260208T141955.018Z/">independent</a> / <a href="/files/lin-kv/20260208T141955.018Z/independent/4">4</a></div><h1>lin-kv key 4</h1><div class="ops"><a href="#i5"><div class="op ok" id="i5" style="width:100;left:0;top:0;height:16" title="Dur: 3 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:19:55.376Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 5
+ :value 2}">8 write 2</div></a><a href="#i19"><div class="op ok" id="i19" style="width:100;left:106;top:32;height:16" title="Dur: 3 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:19:56.626Z
+
+Op:
+{:process 9
+ :type :ok
+ :f :write
+ :index 19
+ :value 4}">9 write 4</div></a><a href="#i27"><div class="op fail" id="i27" style="width:100;left:0;top:64;height:16" title="Dur: 3 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:19:57.742Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 27
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [1 4]}">8 cas [1 4]</div></a><a href="#i37"><div class="op fail" id="i37" style="width:100;left:0;top:96;height:16" title="Dur: 3 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:19:59.267Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 37
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 0]}">8 cas [0 0]</div></a><a href="#i41"><div class="op fail" id="i41" style="width:100;left:106;top:128;height:16" title="Dur: 2 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:19:59.811Z
+
+Op:
+{:process 9
+ :type :fail
+ :f :cas
+ :index 41
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 0]}">9 cas [0 0]</div></a><a href="#i43"><div class="op fail" id="i43" style="width:100;left:0;top:160;height:16" title="Dur: 2 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:19:59.823Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 43
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [2 3]}">8 cas [2 3]</div></a><a href="#i49"><div class="op fail" id="i49" style="width:100;left:0;top:192;height:16" title="Dur: 2 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:00.301Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 49
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [2 2]}">8 cas [2 2]</div></a><a href="#i57"><div class="op ok" id="i57" style="width:100;left:0;top:224;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:01.422Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 57
+ :value 1}">8 write 1</div></a><a href="#i69"><div class="op fail" id="i69" style="width:100;left:0;top:256;height:16" title="Dur: 3 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:02.847Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 69
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [2 4]}">8 cas [2 4]</div></a><a href="#i71"><div class="op fail" id="i71" style="width:100;left:0;top:288;height:16" title="Dur: 2 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:03.192Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 71
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [4 0]}">8 cas [4 0]</div></a><a href="#i73"><div class="op ok" id="i73" style="width:100;left:0;top:320;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:03.374Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :cas
+ :index 73
+ :value [1 3]}">8 cas [1 3]</div></a><a href="#i87"><div class="op fail" id="i87" style="width:100;left:0;top:352;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:04.317Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 87
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [2 1]}">8 cas [2 1]</div></a><a href="#i91"><div class="op fail" id="i91" style="width:100;left:0;top:384;height:16" title="Dur: 2 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:04.990Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 91
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 4]}">8 cas [0 4]</div></a><a href="#i115"><div class="op fail" id="i115" style="width:100;left:0;top:416;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:07.040Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 115
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [4 3]}">8 cas [4 3]</div></a><a href="#i123"><div class="op ok" id="i123" style="width:100;left:0;top:448;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:07.542Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 123
+ :value 3}">8 write 3</div></a><a href="#i127"><div class="op ok" id="i127" style="width:100;left:0;top:480;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:08.036Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :cas
+ :index 127
+ :value [3 2]}">8 cas [3 2]</div></a><a href="#i137"><div class="op fail" id="i137" style="width:100;left:0;top:512;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:08.775Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 137
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [1 0]}">8 cas [1 0]</div></a><a href="#i143"><div class="op ok" id="i143" style="width:100;left:0;top:544;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:09.562Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :cas
+ :index 143
+ :value [2 0]}">8 cas [2 0]</div></a><a href="#i157"><div class="op ok" id="i157" style="width:100;left:0;top:576;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:11.003Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 157
+ :value 4}">8 write 4</div></a><a href="#i159"><div class="op fail" id="i159" style="width:100;left:0;top:608;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:11.298Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 159
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [2 3]}">8 cas [2 3]</div></a><a href="#i163"><div class="op fail" id="i163" style="width:100;left:0;top:640;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:11.737Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 163
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [1 4]}">8 cas [1 4]</div></a><a href="#i217"><div class="op ok" id="i217" style="width:100;left:106;top:672;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:17.258Z
+
+Op:
+{:process 9
+ :type :ok
+ :f :write
+ :index 217
+ :value 1}">9 write 1</div></a><a href="#i219"><div class="op fail" id="i219" style="width:100;left:0;top:704;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:17.373Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 219
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [4 3]}">8 cas [4 3]</div></a><a href="#i225"><div class="op ok" id="i225" style="width:100;left:0;top:736;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:17.974Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 225
+ :value 2}">8 write 2</div></a><a href="#i229"><div class="op fail" id="i229" style="width:100;left:0;top:768;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:18.626Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 229
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [1 0]}">8 cas [1 0]</div></a><a href="#i233"><div class="op ok" id="i233" style="width:100;left:0;top:800;height:16" title="Dur: 2 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:18.855Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :cas
+ :index 233
+ :value [2 2]}">8 cas [2 2]</div></a><a href="#i241"><div class="op fail" id="i241" style="width:100;left:0;top:832;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:19.832Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 241
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 0]}">8 cas [0 0]</div></a><a href="#i243"><div class="op ok" id="i243" style="width:100;left:0;top:864;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:19.990Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 243
+ :value 1}">8 write 1</div></a><a href="#i257"><div class="op fail" id="i257" style="width:100;left:0;top:896;height:16" title="Dur: 2 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:21.503Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 257
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [2 4]}">8 cas [2 4]</div></a><a href="#i263"><div class="op ok" id="i263" style="width:100;left:0;top:928;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:22.262Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 263
+ :value 4}">8 write 4</div></a><a href="#i271"><div class="op fail" id="i271" style="width:100;left:0;top:960;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:23.253Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 271
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [1 1]}">8 cas [1 1]</div></a><a href="#i273"><div class="op ok" id="i273" style="width:100;left:0;top:992;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:23.387Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 273
+ :value 0}">8 write 0</div></a><a href="#i275"><div class="op fail" id="i275" style="width:100;left:0;top:1024;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:23.451Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 275
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [4 2]}">8 cas [4 2]</div></a><a href="#i285"><div class="op fail" id="i285" style="width:100;left:0;top:1056;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:24.518Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 285
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [2 4]}">8 cas [2 4]</div></a><a href="#i289"><div class="op ok" id="i289" style="width:100;left:0;top:1088;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:24.951Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 289
+ :value 2}">8 write 2</div></a><a href="#i293"><div class="op fail" id="i293" style="width:100;left:0;top:1120;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:25.596Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 293
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [4 0]}">8 cas [4 0]</div></a><a href="#i299"><div class="op fail" id="i299" style="width:100;left:0;top:1152;height:16" title="Dur: 2 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:25.820Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 299
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 2]}">8 cas [0 2]</div></a><a href="#i309"><div class="op fail" id="i309" style="width:100;left:0;top:1184;height:16" title="Dur: 2 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:26.470Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 309
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 1]}">8 cas [0 1]</div></a><a href="#i317"><div class="op fail" id="i317" style="width:100;left:0;top:1216;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:26.744Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 317
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [4 2]}">8 cas [4 2]</div></a><a href="#i325"><div class="op fail" id="i325" style="width:100;left:0;top:1248;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:27.352Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 325
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [4 1]}">8 cas [4 1]</div></a><a href="#i341"><div class="op fail" id="i341" style="width:100;left:0;top:1280;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:28.466Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 341
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 3]}">8 cas [0 3]</div></a><a href="#i357"><div class="op fail" id="i357" style="width:100;left:0;top:1312;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:29.751Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 357
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [1 2]}">8 cas [1 2]</div></a><a href="#i369"><div class="op fail" id="i369" style="width:100;left:0;top:1344;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:30.637Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 369
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 4]}">8 cas [0 4]</div></a><a href="#i381"><div class="op ok" id="i381" style="width:100;left:0;top:1376;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:31.783Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 381
+ :value 1}">8 write 1</div></a><a href="#i387"><div class="op fail" id="i387" style="width:100;left:0;top:1408;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:32.478Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 387
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [4 1]}">8 cas [4 1]</div></a><a href="#i403"><div class="op ok" id="i403" style="width:100;left:0;top:1440;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:33.886Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 403
+ :value 1}">8 write 1</div></a><a href="#i411"><div class="op fail" id="i411" style="width:100;left:0;top:1472;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:34.950Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 411
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 1]}">8 cas [0 1]</div></a><a href="#i421"><div class="op fail" id="i421" style="width:100;left:0;top:1504;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:36.287Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 421
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [2 4]}">8 cas [2 4]</div></a><a href="#i435"><div class="op fail" id="i435" style="width:100;left:0;top:1536;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:37.393Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 435
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [2 3]}">8 cas [2 3]</div></a><a href="#i481"><div class="op ok" id="i481" style="width:100;left:106;top:1568;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:40.937Z
+
+Op:
+{:process 9
+ :type :ok
+ :f :write
+ :index 481
+ :value 2}">9 write 2</div></a><a href="#i487"><div class="op ok" id="i487" style="width:100;left:0;top:1600;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:41.439Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 487
+ :value 4}">8 write 4</div></a><a href="#i497"><div class="op fail" id="i497" style="width:100;left:0;top:1632;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:42.764Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 497
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 2]}">8 cas [0 2]</div></a><a href="#i499"><div class="op fail" id="i499" style="width:100;left:0;top:1664;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:42.976Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 499
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 1]}">8 cas [0 1]</div></a><a href="#i501"><div class="op ok" id="i501" style="width:100;left:0;top:1696;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:43.326Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 501
+ :value 3}">8 write 3</div></a><a href="#i503"><div class="op fail" id="i503" style="width:100;left:106;top:1728;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:43.476Z
+
+Op:
+{:process 9
+ :type :fail
+ :f :cas
+ :index 503
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [2 4]}">9 cas [2 4]</div></a><a href="#i509"><div class="op fail" id="i509" style="width:100;left:0;top:1760;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:44.577Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 509
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 1]}">8 cas [0 1]</div></a><a href="#i511"><div class="op fail" id="i511" style="width:100;left:0;top:1792;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:44.667Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 511
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [0 1]}">8 cas [0 1]</div></a><a href="#i527"><div class="op fail" id="i527" style="width:100;left:0;top:1824;height:16" title="Dur: 2 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:46.334Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 527
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [1 1]}">8 cas [1 1]</div></a><a href="#i531"><div class="op ok" id="i531" style="width:100;left:0;top:1856;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:46.822Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :cas
+ :index 531
+ :value [3 2]}">8 cas [3 2]</div></a><a href="#i539"><div class="op ok" id="i539" style="width:100;left:0;top:1888;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:47.703Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :cas
+ :index 539
+ :value [2 1]}">8 cas [2 1]</div></a><a href="#i547"><div class="op fail" id="i547" style="width:100;left:106;top:1920;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:48.741Z
+
+Op:
+{:process 9
+ :type :fail
+ :f :cas
+ :index 547
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [4 1]}">9 cas [4 1]</div></a><a href="#i553"><div class="op fail" id="i553" style="width:100;left:0;top:1952;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:49.361Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 553
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [3 1]}">8 cas [3 1]</div></a><a href="#i563"><div class="op fail" id="i563" style="width:100;left:0;top:1984;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:50.154Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 563
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [4 4]}">8 cas [4 4]</div></a><a href="#i571"><div class="op ok" id="i571" style="width:100;left:0;top:2016;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:50.865Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 571
+ :value 1}">8 write 1</div></a><a href="#i587"><div class="op ok" id="i587" style="width:100;left:0;top:2048;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:52.475Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 587
+ :value 2}">8 write 2</div></a><a href="#i599"><div class="op ok" id="i599" style="width:100;left:0;top:2080;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:53.527Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :cas
+ :index 599
+ :value [2 0]}">8 cas [2 0]</div></a><a href="#i603"><div class="op fail" id="i603" style="width:100;left:0;top:2112;height:16" title="Dur: 1 ms
+Err: [:precondition-failed &quot;value does not match expected&quot;]
+Wall-clock Time: 2026-02-08T14:20:53.761Z
+
+Op:
+{:process 8
+ :type :fail
+ :f :cas
+ :index 603
+ :error [:precondition-failed &quot;value does not match expected&quot;]
+ :value [1 2]}">8 cas [1 2]</div></a><a href="#i613"><div class="op ok" id="i613" style="width:100;left:106;top:2144;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:54.818Z
+
+Op:
+{:process 9
+ :type :ok
+ :f :write
+ :index 613
+ :value 0}">9 write 0</div></a><a href="#i617"><div class="op ok" id="i617" style="width:100;left:0;top:2176;height:16" title="Dur: 1 ms
+Err: nil
+Wall-clock Time: 2026-02-08T14:20:54.993Z
+
+Op:
+{:process 8
+ :type :ok
+ :f :write
+ :index 617
+ :value 4}">8 write 4</div></a></div></body></html>
