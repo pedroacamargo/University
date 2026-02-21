@@ -5,7 +5,7 @@
   },
   "cells": [
     {
-      "id": "MJUe",
+      "id": "Hbol",
       "code_hash": "aced1cafdfd97510d191818c3bda94af",
       "outputs": [
         {
@@ -18,21 +18,8 @@
       "console": []
     },
     {
-      "id": "vblA",
-      "code_hash": "e181efcf155eef21719f37511de1f32f",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"></span>"
-          }
-        }
-      ],
-      "console": []
-    },
-    {
-      "id": "Hbol",
-      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "id": "MJUe",
+      "code_hash": "ef6d4d57170444b98a90e6c8b2e1d161",
       "outputs": [
         {
           "type": "data",
@@ -42,6 +29,111 @@
         }
       ],
       "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "ee9d6599d1c6fdb16ee092cde9325457",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Supg",
+      "code_hash": "a2a413a82ad21e0791be2759b7c42a9d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"funcoes-auxiliares\">Fun\u00e7\u00f5es Auxiliares</h2>\n<span class=\"paragraph\">De forma a seguir o modo TAE (tweaked authentication encryption), precisamos de fun\u00e7\u00f5es de pad e unpad para extrair o \u03c4 do final do ciphertext.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "oIZi",
+      "code_hash": "09ed8a3085e1f6de9bf154441ba74a34",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "QBEE",
+      "code_hash": "044497ecd6f47c0f3696847001c49c76",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"implementacao-do-aes-128\">Implementa\u00e7\u00e3o do AES-128</h2>\n<span class=\"paragraph\">Como iremos utilizar AES-128, precisamos de uma fun\u00e7\u00e3o para cifrar um bloco de 16 bytes. A fun\u00e7\u00e3o <code>aes128_encrypt_block</code> recebe uma chave de 16 bytes e um bloco de 16 bytes, e retorna o bloco cifrado usando AES-128 no modo ECB.</span>\n<span class=\"paragraph\">O mode ECB n\u00e3o \u00e9 seguro, mas \u00e9 adequado para nossa implementa\u00e7\u00e3o de uma cifra de bloco ajust\u00e1vel (tweakable block cipher) onde cada bloco \u00e9 cifrado independentemente, pois cada bloco \u00e9 cifrado com um tweak diferente, o que evita os problemas de seguran\u00e7a associados ao modo ECB tradicional.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "kvKY",
+      "code_hash": "31bb87a64e1f4675d5ccdb270e850eae",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Random AES-128 Key: 3ccf3f25d81cc2c5c3d64e4b1c35f17d\nCiphertext: f41efb990d35773249262efb07acf615\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "dcjJ",
+      "code_hash": "ed1bfcfb8596d433f462d5a0dd5b61c6",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"tweakable-block-cipher\">Tweakable Block Cipher</h2>\n<span class=\"paragraph\">Temos que TPBC \u00e9 uma cifra de bloco ajust\u00e1vel que permite cifrar blocos de dados usando um tweak al\u00e9m da chave. O tweak \u00e9 um valor adicional que pode ser usado para modificar o comportamento da cifra sem alterar a chave.</span>\n<span class=\"paragraph\">Assim, <code>TPBC(key, tweak, block)</code> \u00e9 uma fun\u00e7\u00e3o que recebe uma chave, um tweak e um bloco de dados, e retorna o bloco cifrado usando AES-128 com o tweak aplicado.</span>\n<marimo-tex class=\"arithmatex\">||[\n\\mathrm{TPBC}(key, tweak, block) = \\mathrm{AES\\text{-}128}(key \\oplus tweak\\_mask, \\; block)\n||]</marimo-tex><marimo-tex class=\"arithmatex\">||[\ntweak\\_mask = \\mathrm{AES\\text{-}128}(0^{128}, \\; pad(w))\n||]</marimo-tex><span class=\"paragraph\">Com o tweak mask podemos derivar a chave de cifragem para cada bloco, garantindo que blocos iguais cifrados com tweaks diferentes resultem em ciphertexts diferentes, aumentando a seguran\u00e7a da cifra.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "XiDD",
+      "code_hash": "fc576680e0bfff5ec006aff43357955e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "TPBC Output: 87b3df61d056a0ae54c3d9903255ece5b6a77c498f35743c86fa81b3c76dd40145778f810840\nDecrypted Plaintext: Hello, World! How are you doing today?\n",
+          "mimetype": "text/plain"
+        }
+      ]
     }
   ]
 }
