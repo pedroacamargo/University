@@ -409,18 +409,7 @@ def _(mo):
 
 
 @app.cell
-def _(
-    Agente,
-    Ed25519PublicKey,
-    InvalidSignature,
-    TPBCPrg,
-    hashlib,
-    hkdf_derive,
-    hmac,
-    os,
-    pub_bytes,
-    verify_bundle,
-):
+def _(Agente, hashlib, hkdf_derive, hmac, pub_bytes, verify_bundle):
     def handshake(agente: Agente, remote_bundle: dict) -> dict:
         # verificar autenticidade do bundle do outro agente (certificado)
         verify_bundle(remote_bundle)
@@ -443,6 +432,32 @@ def _(
         }
 
 
+    return (handshake,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Canal Seguro
+
+    Assim que o handshake é concluído, Alice e Bob podem usar o canal seguro para trocar mensagens cifradas e autenticadas usando o TPBCPrg. O método `enviar` cifra a mensagem e gera uma assinatura, enquanto o método `receber` verifica a assinatura e decifra a mensagem, garantindo confidencialidade, autenticidade e integridade das mensagens trocadas.
+    """)
+    return
+
+
+@app.cell
+def _(
+    Agente,
+    Ed25519PublicKey,
+    InvalidSignature,
+    TPBCPrg,
+    handshake,
+    hashlib,
+    hkdf_derive,
+    hmac,
+    os,
+    pub_bytes,
+):
     class CanalSeguro:
         def __init__(self, agente: Agente, bundle_remoto: dict):
             # Verificar e acordar chave
@@ -458,14 +473,8 @@ def _(
             print(f"  Confirmação     : {self.confirmacao.hex()[:32]}...")
 
         def verificar_confirmacao(self, confirmacao_remota: bytes):
-            """
-            Verifica que o outro agente calculou o mesmo segredo.
-            Se não coincidir, há um possível ataque man-in-the-middle.
-            """
             outro_pub = Ed25519PublicKey.from_public_bytes(self.bundle_outro["sign_pub"])
 
-            # A confirmação remota é calculada do ponto de vista do outro agente
-            # (as chaves estão na ordem inversa)
             confirm_key = hkdf_derive(
                 self.agente.dh(self.bundle_outro["dh_pub"]),
                 info=b"canal-confirm", length=32
@@ -479,9 +488,8 @@ def _(
             if not hmac.compare_digest(esperada, confirmacao_remota):
                 raise ValueError(
                     "CONFIRMAÇÃO DE CHAVE FALHOU!\n"
-                    "As chaves de sessão não coincidem — possível ataque man-in-the-middle."
                 )
-            print(f"[{self.agente.name}] ✓ Confirmação de chave verificada — canal seguro!")
+            print(f"[{self.agente.name}]: Confirmação de chave verificada")
 
         def enviar(self, mensagem: str) -> dict:
             """Cifra, assina e envia uma mensagem."""
@@ -489,7 +497,7 @@ def _(
             tpbc_program = TPBCPrg(self.chave_enc, mensagem.encode(), nonce)
             _, ct, tag = tpbc_program.encrypt()
 
-            # Assinar (nonce + ciphertext + tag) — garante não-repúdio
+            # assinar (nonce + ciphertext + tag)
             payload = nonce + ct + tag
             sig     = self.agente.sign_message(payload)
 
@@ -502,15 +510,13 @@ def _(
             }
 
         def receber(self, msg: dict) -> str:
-            """Verifica assinatura, decifra e retorna a mensagem."""
-
             outro_pub = Ed25519PublicKey.from_public_bytes(self.bundle_outro["sign_pub"])
             payload   = msg["nonce"] + msg["ciphertext"] + msg["tag"]
 
             try:
                 outro_pub.verify(msg["assinatura"], payload)
             except InvalidSignature:
-                raise ValueError("Assinatura inválida — mensagem adulterada ou forjada!")
+                raise ValueError("Assinatura inválida")
 
             tpbc_program = TPBCPrg(self.chave_enc, msg["ciphertext"], msg["nonce"])
             texto = tpbc_program.decrypt(self.chave_enc, msg["nonce"], msg["ciphertext"], msg["tag"])
@@ -518,6 +524,19 @@ def _(
             return texto.decode()
 
 
+    return (CanalSeguro,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    # Testes
+    """)
+    return
+
+
+@app.cell
+def _(Agente, CanalSeguro):
     print("\n── Geração de identidades ──")
     alice = Agente("Alice")
     bob   = Agente("Bob")

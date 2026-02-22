@@ -228,7 +228,59 @@
     },
     {
       "id": "dNNR",
-      "code_hash": "48a7181144e27b326b85b94e5404643e",
+      "code_hash": "d21e7707486433a4da36068401095341",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "tyqI",
+      "code_hash": "10eb77d9640c926f2ff92f7173dd3038",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"canal-seguro\">Canal Seguro</h2>\n<span class=\"paragraph\">Assim que o handshake \u00e9 conclu\u00eddo, Alice e Bob podem usar o canal seguro para trocar mensagens cifradas e autenticadas usando o TPBCPrg. O m\u00e9todo <code>enviar</code> cifra a mensagem e gera uma assinatura, enquanto o m\u00e9todo <code>receber</code> verifica a assinatura e decifra a mensagem, garantindo confidencialidade, autenticidade e integridade das mensagens trocadas.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lOMi",
+      "code_hash": "af3ab4e472ed4327635b7a8fc2d7b3d7",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SJmH",
+      "code_hash": "983cf72c22e944321f66692513cc6014",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"testes\">Testes</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "UzpL",
+      "code_hash": "a4e0f95bcc674a04614c42e8ae99a537",
       "outputs": [
         {
           "type": "data",
@@ -241,7 +293,7 @@
         {
           "type": "stream",
           "name": "stdout",
-          "text": "\n\u2500\u2500 Gera\u00e7\u00e3o de identidades \u2500\u2500\n[Alice] Chaves geradas.\n  key_sign_pub : ec8774df4fb2ab145a57ac476a5add34b57c2115429c0226abc012df7645b67d\n  key_dh_pub   : 6ec8b86b4c897dbc20b259d546f7715ea4ac80f52c570c07a3faad0bd6383f78\n[Bob] Chaves geradas.\n  key_sign_pub : 5f31f76d020994f64af33fd40469170e2904fba1d7a7ca30d00abc23f4dc594f\n  key_dh_pub   : f25d2479783f49fb7dbb1679d9daaa04aab7a614d92bcca42674659fc3c31545\n\n\u2500\u2500 Acordo de chaves \u2500\u2500\n[Alice] Acordo de chaves com 'Bob' conclu\u00eddo.\n  Chave de sess\u00e3o : 918a7a8e6aef1ebde562ce5fb46b8160\n  Confirma\u00e7\u00e3o     : 78db400373b1cfbcba7299c92a524254...\n[Bob] Acordo de chaves com 'Alice' conclu\u00eddo.\n  Chave de sess\u00e3o : 918a7a8e6aef1ebde562ce5fb46b8160\n  Confirma\u00e7\u00e3o     : e299b8e165a92a813cc24e0abc405361...\n\n\u2500\u2500 Confirma\u00e7\u00e3o de chave \u2500\u2500\n[Alice] \u2713 Confirma\u00e7\u00e3o de chave verificada \u2014 canal seguro!\n[Bob] \u2713 Confirma\u00e7\u00e3o de chave verificada \u2014 canal seguro!\n\n\u2500\u2500 Mensagens \u2500\u2500\n\n  Alice \u2192 Bob\n  Original  : Ol\u00e1 Bob! Mensagem secreta n\u00famero 1.\n  Cifrado   : a657a80f6be7f1c0e1447562abba4aa60b48a860...\n  Decifrado : Ol\u00e1 Bob! Mensagem secreta n\u00famero 1.\n  \u2713 ok\n\n  Bob \u2192 Alice\n  Original  : Ol\u00e1 Alice! Recebi. Canal seguro a funcionar.\n  Cifrado   : b35777fe7a39191a3d20cbbbd2b4c08e067f1013...\n  Decifrado : Ol\u00e1 Alice! Recebi. Canal seguro a funcionar.\n  \u2713 ok\n\n  Alice \u2192 Bob\n  Original  : Perfeito! At\u00e9 j\u00e1.\n  Cifrado   : bb74ae8a2f5efa30e331e5113d4d5daa2e08b9...\n  Decifrado : Perfeito! At\u00e9 j\u00e1.\n  \u2713 ok\n",
+          "text": "\n\u2500\u2500 Gera\u00e7\u00e3o de identidades \u2500\u2500\n[Alice] Chaves geradas.\n  key_sign_pub : 33d1bb752fea5b20c19c2eaa1560916318fd4ffda55f75d42d3fed096b8082f5\n  key_dh_pub   : af05247df2fdd2ba2b03171c24335f77879320381f9c5264579b61337009d442\n[Bob] Chaves geradas.\n  key_sign_pub : f33aa51a6688679d632d918e3c1464e9658e95f21980c034ce080e8af2ef8d00\n  key_dh_pub   : c0ec02ba173cff8d9e82ce752166968691de802b5c26510be0fbfecf5999415a\n\n\u2500\u2500 Acordo de chaves \u2500\u2500\n[Alice] Acordo de chaves com 'Bob' conclu\u00eddo.\n  Chave de sess\u00e3o : 75bf742022d2b934321e95f07118a879\n  Confirma\u00e7\u00e3o     : 10dc5560e2701296e05e699efd7a57bc...\n[Bob] Acordo de chaves com 'Alice' conclu\u00eddo.\n  Chave de sess\u00e3o : 75bf742022d2b934321e95f07118a879\n  Confirma\u00e7\u00e3o     : d33d6abb44d6c31eed32cf2d1cec8a9c...\n\n\u2500\u2500 Confirma\u00e7\u00e3o de chave \u2500\u2500\n[Alice] \u2713 Confirma\u00e7\u00e3o de chave verificada \u2014 canal seguro!\n[Bob] \u2713 Confirma\u00e7\u00e3o de chave verificada \u2014 canal seguro!\n\n\u2500\u2500 Mensagens \u2500\u2500\n\n  Alice \u2192 Bob\n  Original  : Ol\u00e1 Bob! Mensagem secreta n\u00famero 1.\n  Cifrado   : e09a909d7a7093f6a5fc7af6145e8d0fb7051ebb...\n  Decifrado : Ol\u00e1 Bob! Mensagem secreta n\u00famero 1.\n  \u2713 ok\n\n  Bob \u2192 Alice\n  Original  : Ol\u00e1 Alice! Recebi. Canal seguro a funcionar.\n  Cifrado   : f0c51d7612c2a95e9eac0ca4118b5606f871c2d0...\n  Decifrado : Ol\u00e1 Alice! Recebi. Canal seguro a funcionar.\n  \u2713 ok\n\n  Alice \u2192 Bob\n  Original  : Perfeito! At\u00e9 j\u00e1.\n  Cifrado   : b0415bf6b7ec523cba50ca3d5ad634f79fef0b...\n  Decifrado : Perfeito! At\u00e9 j\u00e1.\n  \u2713 ok\n",
           "mimetype": "text/plain"
         }
       ]
