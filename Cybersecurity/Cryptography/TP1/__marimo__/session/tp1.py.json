@@ -19,7 +19,7 @@
     },
     {
       "id": "MJUe",
-      "code_hash": "ef6d4d57170444b98a90e6c8b2e1d161",
+      "code_hash": "e5bb112cb8fdd019ef62e9390e8ed39e",
       "outputs": [
         {
           "type": "data",
@@ -44,7 +44,7 @@
       "console": []
     },
     {
-      "id": "Supg",
+      "id": "bkHC",
       "code_hash": "a2a413a82ad21e0791be2759b7c42a9d",
       "outputs": [
         {
@@ -57,7 +57,7 @@
       "console": []
     },
     {
-      "id": "oIZi",
+      "id": "lEQa",
       "code_hash": "09ed8a3085e1f6de9bf154441ba74a34",
       "outputs": [
         {
@@ -70,8 +70,8 @@
       "console": []
     },
     {
-      "id": "QBEE",
-      "code_hash": "044497ecd6f47c0f3696847001c49c76",
+      "id": "PKri",
+      "code_hash": "a43882f96adfef13ffe1c3ae3eff69aa",
       "outputs": [
         {
           "type": "data",
@@ -83,7 +83,7 @@
       "console": []
     },
     {
-      "id": "kvKY",
+      "id": "Xref",
       "code_hash": "31bb87a64e1f4675d5ccdb270e850eae",
       "outputs": [
         {
@@ -97,13 +97,13 @@
         {
           "type": "stream",
           "name": "stdout",
-          "text": "Random AES-128 Key: 3ccf3f25d81cc2c5c3d64e4b1c35f17d\nCiphertext: f41efb990d35773249262efb07acf615\n",
+          "text": "Random AES-128 Key: 40a960880566b2054073a35f71a962b2\nCiphertext: f7c5e2c5bcbd206a285bfcdc8831b9b3\n",
           "mimetype": "text/plain"
         }
       ]
     },
     {
-      "id": "dcjJ",
+      "id": "SFPL",
       "code_hash": "ed1bfcfb8596d433f462d5a0dd5b61c6",
       "outputs": [
         {
@@ -116,8 +116,34 @@
       "console": []
     },
     {
-      "id": "XiDD",
-      "code_hash": "fc576680e0bfff5ec006aff43357955e",
+      "id": "BYtC",
+      "code_hash": "db147bed83c4a9c9f81a4a3223af6621",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "EAjB",
+      "code_hash": "9708e667b43b45bd3c335acad5acdfba",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"cifrar-e-decifrar-usando-tpbc\">Cifrar e decifrar usando TPBC</h2>\n<span class=\"paragraph\">A classe abaixo implementa o modo TAE (tweaked authentication encryption) usando a cifra de bloco ajust\u00e1vel (TPBC) que implementamos anteriormente. O m\u00e9todo <code>encrypt</code> cifra o plaintext e gera um tag de autentica\u00e7\u00e3o, enquanto o m\u00e9todo <code>decrypt_m</code> decifra o ciphertext e verifica a autenticidade usando o tag.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "kacN",
+      "code_hash": "a656823c96f61b9144818333eb901f7b",
       "outputs": [
         {
           "type": "data",
@@ -130,7 +156,92 @@
         {
           "type": "stream",
           "name": "stdout",
-          "text": "TPBC Output: 87b3df61d056a0ae54c3d9903255ece5b6a77c498f35743c86fa81b3c76dd40145778f810840\nDecrypted Plaintext: Hello, World! How are you doing today?\n",
+          "text": "TPBC Output: 9f8b65a8a2ba823559f6ecbf26330d62185123f8a552e5f229514884a74f5bc439fe6a4419c1\nTag: ec3e06fd138ab23ae35ca730819a19af\nDecrypted Plaintext: Hello, World! How are you doing today?\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "TAjy",
+      "code_hash": "9ed55d312b05c25294195617cc305412",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"canal-privado-de-informacao-assincrona-com-acordo-de-chaves\">Canal privado de informa\u00e7\u00e3o ass\u00edncrona com acordo de chaves</h2>\n<ul>\n<li>Criar Alice e Bob, cada um com uma chave X25519 e uma chave Ed25519 para autentica\u00e7\u00e3o.</li>\n<li>Alice e Bob concordam num secret comum usando X25519 key exchange, com um Handshake autenticado usando as chaves.</li>\n<li>Confirmar a chave acordada usando Ed25519 para assinar um desafio (nonce) enviado por cada parte.</li>\n<li>Alice e Bob usam a chave acordada para cifrar mensagens usando o TPBCPrg implementado anteriormente, garantindo confidencialidade e autenticidade das mensagens trocadas.</li>\n</ul>\n<h2 id=\"criacao-dos-agentes\">Cria\u00e7\u00e3o dos agentes</h2>\n<span class=\"paragraph\"><code>key_sign</code> - Ed25519 para assinar mensagens (prova identidade)</span>\n<span class=\"paragraph\"><code>key_dh</code> - X25519 para acordo de chaves com outro agente</span>\n<span class=\"paragraph\"><code>cert</code> - Assinar a pr\u00f3pria chave DH p\u00fablica prova que ambas as chaves pertencem ao mesmo agente (certificado de auto-assinatura)</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "mhpV",
+      "code_hash": "e71ce90e289b6258a1a3b3429c2c5f36",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZFyT",
+      "code_hash": "5ac0898319cdc7ea12d8a2f3602452de",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"verificacao-da-autenticidade\">Verifica\u00e7\u00e3o da autenticidade</h2>\n<span class=\"paragraph\">A fun\u00e7\u00e3o <code>verify_bundle</code> recebe um bundle de um agente (que inclui a chave de assinatura p\u00fablica, a chave DH p\u00fablica e o certificado) e verifica se a chave DH p\u00fablica foi assinada corretamente pela chave de assinatura p\u00fablica.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PwEE",
+      "code_hash": "54601332e6df7d46e59af9596e68c994",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Sxrr",
+      "code_hash": "c6171aa9d2f0e091af4d091c1791da52",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"alice-e-bob-realizam-o-handshake-para-acordar-a-chave-de-sessao\">Alice e Bob realizam o handshake para acordar a chave de sess\u00e3o</h3>\n<span class=\"paragraph\">Realiza o acordo de chaves X25519 com o agente remoto e deriva as chaves de sess\u00e3o.</span>\n<span class=\"paragraph\">Retorna um dicion\u00e1rio com:</span>\n<ul>\n<li>chave_enc   : chave para cifrar mensagens (16 bytes, AES-128)</li>\n<li>confirmacao : HMAC que prova que o mesmo segredo foi calculado</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dNNR",
+      "code_hash": "48a7181144e27b326b85b94e5404643e",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\n\u2500\u2500 Gera\u00e7\u00e3o de identidades \u2500\u2500\n[Alice] Chaves geradas.\n  key_sign_pub : ec8774df4fb2ab145a57ac476a5add34b57c2115429c0226abc012df7645b67d\n  key_dh_pub   : 6ec8b86b4c897dbc20b259d546f7715ea4ac80f52c570c07a3faad0bd6383f78\n[Bob] Chaves geradas.\n  key_sign_pub : 5f31f76d020994f64af33fd40469170e2904fba1d7a7ca30d00abc23f4dc594f\n  key_dh_pub   : f25d2479783f49fb7dbb1679d9daaa04aab7a614d92bcca42674659fc3c31545\n\n\u2500\u2500 Acordo de chaves \u2500\u2500\n[Alice] Acordo de chaves com 'Bob' conclu\u00eddo.\n  Chave de sess\u00e3o : 918a7a8e6aef1ebde562ce5fb46b8160\n  Confirma\u00e7\u00e3o     : 78db400373b1cfbcba7299c92a524254...\n[Bob] Acordo de chaves com 'Alice' conclu\u00eddo.\n  Chave de sess\u00e3o : 918a7a8e6aef1ebde562ce5fb46b8160\n  Confirma\u00e7\u00e3o     : e299b8e165a92a813cc24e0abc405361...\n\n\u2500\u2500 Confirma\u00e7\u00e3o de chave \u2500\u2500\n[Alice] \u2713 Confirma\u00e7\u00e3o de chave verificada \u2014 canal seguro!\n[Bob] \u2713 Confirma\u00e7\u00e3o de chave verificada \u2014 canal seguro!\n\n\u2500\u2500 Mensagens \u2500\u2500\n\n  Alice \u2192 Bob\n  Original  : Ol\u00e1 Bob! Mensagem secreta n\u00famero 1.\n  Cifrado   : a657a80f6be7f1c0e1447562abba4aa60b48a860...\n  Decifrado : Ol\u00e1 Bob! Mensagem secreta n\u00famero 1.\n  \u2713 ok\n\n  Bob \u2192 Alice\n  Original  : Ol\u00e1 Alice! Recebi. Canal seguro a funcionar.\n  Cifrado   : b35777fe7a39191a3d20cbbbd2b4c08e067f1013...\n  Decifrado : Ol\u00e1 Alice! Recebi. Canal seguro a funcionar.\n  \u2713 ok\n\n  Alice \u2192 Bob\n  Original  : Perfeito! At\u00e9 j\u00e1.\n  Cifrado   : bb74ae8a2f5efa30e331e5113d4d5daa2e08b9...\n  Decifrado : Perfeito! At\u00e9 j\u00e1.\n  \u2713 ok\n",
           "mimetype": "text/plain"
         }
       ]

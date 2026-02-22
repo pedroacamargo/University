@@ -25,12 +25,34 @@ def _(mo):
 def imports():
     import marimo as mo
     import hmac
-    import cryptography as crypto
+    import hashlib
     from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
     from cryptography.hazmat.backends import default_backend
+    from cryptography.hazmat.primitives.asymmetric.x25519 import X25519PrivateKey, X25519PublicKey
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey, Ed25519PublicKey
+    from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+    from cryptography.hazmat.primitives import hashes, serialization
+    from cryptography.exceptions import InvalidSignature
     import os
 
-    return Cipher, algorithms, default_backend, hmac, mo, modes, os
+    return (
+        Cipher,
+        Ed25519PrivateKey,
+        Ed25519PublicKey,
+        HKDF,
+        InvalidSignature,
+        X25519PrivateKey,
+        X25519PublicKey,
+        algorithms,
+        default_backend,
+        hashes,
+        hashlib,
+        hmac,
+        mo,
+        modes,
+        os,
+        serialization,
+    )
 
 
 @app.cell
@@ -146,17 +168,7 @@ def _(mo):
 
 
 @app.cell
-def _(
-    BLOCK_SIZE,
-    KEY_SIZE,
-    aes128_decrypt_block,
-    aes128_encrypt_block,
-    hmac,
-    nonce,
-    pad,
-    plaintext,
-    random_key,
-):
+def _(BLOCK_SIZE, KEY_SIZE, aes128_decrypt_block, aes128_encrypt_block):
     # Ciframos o tweak para obter o tweak mask, que é usado para modificar a chave de cifragem.
     def tweak_mask(tweak: bytes) -> bytes:
         t = (tweak + b'\x00' * BLOCK_SIZE)[:BLOCK_SIZE]
@@ -175,6 +187,31 @@ def _(
         return aes128_decrypt_block(tweaked_key, block)
 
 
+    return tpbc, tpbc_inv
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Cifrar e decifrar usando TPBC
+
+    A classe abaixo implementa o modo TAE (tweaked authentication encryption) usando a cifra de bloco ajustável (TPBC) que implementamos anteriormente. O método `encrypt` cifra o plaintext e gera um tag de autenticação, enquanto o método `decrypt_m` decifra o ciphertext e verifica a autenticidade usando o tag.
+    """)
+    return
+
+
+@app.cell
+def _(
+    BLOCK_SIZE,
+    KEY_SIZE,
+    hmac,
+    nonce,
+    pad,
+    plaintext,
+    random_key,
+    tpbc,
+    tpbc_inv,
+):
     class TPBCPrg:
         def __init__(self, key: bytes, plaintext: bytes, nonce: bytes):
             assert len(key)  == KEY_SIZE
@@ -182,7 +219,7 @@ def _(
             self.key    = key
             self.plaintext = plaintext
             self.nonce = nonce
-            self.buf    = b'' # buffer de bytes gerados
+            self.buf    = b''
 
         # Gerar o tweak para um bloco específico usando o nonce e o índice do bloco (contador)
         def make_tweak(self, block_index: int) -> bytes:
@@ -192,10 +229,10 @@ def _(
             padded, tau = pad(self.plaintext)
             n_blocks = len(padded) // BLOCK_SIZE
             m = n_blocks - 1
-    
+
             ciphertext_blocks = []
             parity = b'\x00' * BLOCK_SIZE
-    
+
             # cifrar blocos P0 -> P{m-1} com tweaks distintos
             for i in range(m):
                 p_i   = padded[i * BLOCK_SIZE:(i + 1) * BLOCK_SIZE]
@@ -204,7 +241,7 @@ def _(
                 ciphertext_blocks.append(c_i)
                 # acumular paridade do plaintext
                 parity = bytes(a ^ b for a, b in zip(parity, p_i))
-    
+
             # cifrar último bloco Pm com máscara
             p_m     = padded[m * BLOCK_SIZE:(m + 1) * BLOCK_SIZE]
             w_star  = self.make_tweak(tau)       # tweak especial com τ
@@ -216,34 +253,28 @@ def _(
             # tag é TPBC sobre paridade do plaintext com tweak de autenticação
             w_auth  = self.make_tweak(len(self.plaintext))
             tag     = tpbc(self.key, w_auth, parity)
-    
+
             ciphertext = b''.join(ciphertext_blocks)
-            # Truncar ciphertext ao tamanho original do plaintext
-            ciphertext = ciphertext[:len(plaintext)]
-    
+            ciphertext = ciphertext[:len(self.plaintext)]
+
             return nonce, ciphertext, tag
 
-        def decrypt_m(self, key: bytes, nonce: bytes, ciphertext: bytes, tag: bytes) -> bytes:    
+        def decrypt(self, key: bytes, nonce: bytes, ciphertext: bytes, tag: bytes) -> bytes:    
             padded_ct, tau = pad(ciphertext)
             n_blocks       = len(padded_ct) // BLOCK_SIZE
             m              = n_blocks - 1
-        
+
             plaintext_blocks = []
             parity = b'\x00' * BLOCK_SIZE
-        
+
             for i in range(m):
                 c_i   = padded_ct[i * BLOCK_SIZE:(i + 1) * BLOCK_SIZE]
                 tweak = self.make_tweak(i)
-                # TPBC é uma permutação; para decifrar blocos completos usa-se
-                # a sua inversa — mas como usamos TPBC directamente (não CBC),
-                # decifrar = aplicar o TPBC com a mesma chave (é uma permutação)
-                # Para blocos normais: P_i = TPBC^{-1}(k, w_i, C_i)
-                # A inversa do TPBC é AES^{-1} com a mesma tweaked key.
                 p_i   = tpbc_inv(self.key, tweak, c_i)
                 plaintext_blocks.append(p_i)
                 parity = bytes(a ^ b for a, b in zip(parity, p_i))
-        
-        
+
+
             c_m    = padded_ct[m * BLOCK_SIZE:(m + 1) * BLOCK_SIZE]
             w_star = self.make_tweak(tau)
             mask   = tpbc(self.key, w_star, tau.to_bytes(BLOCK_SIZE, 'big'))
@@ -253,26 +284,276 @@ def _(
                 p_m = p_m[:tau] + b'\x00' * (BLOCK_SIZE - tau)
             plaintext_blocks.append(p_m)
             parity = bytes(a ^ b for a, b in zip(parity, p_m))
-        
+
             # --- Verificar tag ---
             w_auth       = self.make_tweak(len(ciphertext))
             expected_tag = tpbc(self.key, w_auth, parity)
-        
+
             if not hmac.compare_digest(expected_tag, tag):
                 raise ValueError("Autenticação falhou: tag inválido.")
-        
+
             plaintext = b''.join(plaintext_blocks)
             return plaintext[:len(ciphertext)]
 
-
-
-
-    # Exemplo de uso do TPBCPrg
     tpbc_prg = TPBCPrg(random_key, plaintext, nonce)
     nonce_ciphertext, output, tag = tpbc_prg.encrypt()
     print(f"TPBC Output: {output.hex()}")
-    plaintext_decrypted = tpbc_prg.decrypt_m(random_key, nonce_ciphertext, output, tag)
+    print(f"Tag: {tag.hex()}")
+    plaintext_decrypted = tpbc_prg.decrypt(random_key, nonce_ciphertext, output, tag)
     print(f"Decrypted Plaintext: {plaintext_decrypted.decode()}")
+    return (TPBCPrg,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Canal privado de informação assíncrona com acordo de chaves
+
+    - Criar Alice e Bob, cada um com uma chave X25519 e uma chave Ed25519 para autenticação.
+    - Alice e Bob concordam num secret comum usando X25519 key exchange, com um Handshake autenticado usando as chaves.
+    - Confirmar a chave acordada usando Ed25519 para assinar um desafio (nonce) enviado por cada parte.
+    - Alice e Bob usam a chave acordada para cifrar mensagens usando o TPBCPrg implementado anteriormente, garantindo confidencialidade e autenticidade das mensagens trocadas.
+
+
+    ## Criação dos agentes
+
+    `key_sign` - Ed25519 para assinar mensagens (prova identidade)
+
+    `key_dh` - X25519 para acordo de chaves com outro agente
+
+    `cert` - Assinar a própria chave DH pública prova que ambas as chaves pertencem ao mesmo agente (certificado de auto-assinatura)
+    """)
+    return
+
+
+@app.cell
+def _(
+    Ed25519PrivateKey,
+    HKDF,
+    X25519PrivateKey,
+    X25519PublicKey,
+    hashes,
+    serialization,
+):
+    def pub_bytes(key) -> bytes:
+        return key.public_bytes(encoding=serialization.Encoding.Raw, format=serialization.PublicFormat.Raw)
+
+    def hkdf_derive(secret: bytes, info: bytes, length: int = 16) -> bytes:
+        return HKDF(algorithm=hashes.SHA256(), length=length, salt=None, info=info).derive(secret)
+
+    class Agente:
+        def __init__(self, name: str):
+            self.name       = name
+            self.key_sign = Ed25519PrivateKey.generate()
+            self.key_dh   = X25519PrivateKey.generate()
+            self.cert = self.key_sign.sign(pub_bytes(self.key_dh.public_key()))
+
+            print(f"[{name}] Chaves geradas.")
+            print(f"  key_sign_pub : {pub_bytes(self.key_sign.public_key()).hex()}")
+            print(f"  key_dh_pub   : {pub_bytes(self.key_dh.public_key()).hex()}")
+
+        def get_bundle(self) -> dict:
+            return {
+                "name"     : self.name,
+                "sign_pub" : pub_bytes(self.key_sign.public_key()),
+                "dh_pub"   : pub_bytes(self.key_dh.public_key()),
+                "cert"     : self.cert,
+            }
+
+        def sign_message(self, dados: bytes) -> bytes:
+            return self.key_sign.sign(dados)
+
+        def dh(self, dh_pub_remoto: bytes) -> bytes:
+            pub = X25519PublicKey.from_public_bytes(dh_pub_remoto)
+            return self.key_dh.exchange(pub)
+
+    #alice = Agente("Alice")
+    #bob   = Agente("Bob")
+    return Agente, hkdf_derive, pub_bytes
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Verificação da autenticidade
+
+    A função `verify_bundle` recebe um bundle de um agente (que inclui a chave de assinatura pública, a chave DH pública e o certificado) e verifica se a chave DH pública foi assinada corretamente pela chave de assinatura pública.
+    """)
+    return
+
+
+@app.cell
+def _(Ed25519PublicKey, InvalidSignature):
+    def verify_bundle(bundle: dict):
+        sign_pub = Ed25519PublicKey.from_public_bytes(bundle["sign_pub"])
+        try:
+            sign_pub.verify(bundle["cert"], bundle["dh_pub"])
+        except InvalidSignature:
+            raise ValueError(f"Bundle de '{bundle['nome']}' tem certificado inválido!")
+
+    return (verify_bundle,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ### Alice e Bob realizam o handshake para acordar a chave de sessão
+
+    Realiza o acordo de chaves X25519 com o agente remoto e deriva as chaves de sessão.
+
+    Retorna um dicionário com:
+    - chave_enc   : chave para cifrar mensagens (16 bytes, AES-128)
+    - confirmacao : HMAC que prova que o mesmo segredo foi calculado
+    """)
+    return
+
+
+@app.cell
+def _(
+    Agente,
+    Ed25519PublicKey,
+    InvalidSignature,
+    TPBCPrg,
+    hashlib,
+    hkdf_derive,
+    hmac,
+    os,
+    pub_bytes,
+    verify_bundle,
+):
+    def handshake(agente: Agente, remote_bundle: dict) -> dict:
+        # verificar autenticidade do bundle do outro agente (certificado)
+        verify_bundle(remote_bundle)
+
+        # calcular segredo partilhado X25519
+        segredo = agente.dh(remote_bundle["dh_pub"])
+
+        chave_enc = hkdf_derive(segredo, info=b"canal-enc", length=16)
+
+        confirm_key  = hkdf_derive(segredo, info=b"canal-confirm", length=32)
+        confirmacao  = hmac.new(
+            confirm_key,
+            b"confirmar:" + pub_bytes(agente.key_dh.public_key()) + remote_bundle["dh_pub"],
+            hashlib.sha256
+        ).digest()
+
+        return {
+            "chave_enc"   : chave_enc,
+            "confirmacao" : confirmacao,
+        }
+
+
+    class CanalSeguro:
+        def __init__(self, agente: Agente, bundle_remoto: dict):
+            # Verificar e acordar chave
+            resultado = handshake(agente, bundle_remoto)
+
+            self.agente       = agente
+            self.bundle_outro = bundle_remoto
+            self.chave_enc    = resultado["chave_enc"]
+            self.confirmacao  = resultado["confirmacao"]
+
+            print(f"[{agente.name}] Acordo de chaves com '{bundle_remoto['name']}' concluído.")
+            print(f"  Chave de sessão : {self.chave_enc.hex()}")
+            print(f"  Confirmação     : {self.confirmacao.hex()[:32]}...")
+
+        def verificar_confirmacao(self, confirmacao_remota: bytes):
+            """
+            Verifica que o outro agente calculou o mesmo segredo.
+            Se não coincidir, há um possível ataque man-in-the-middle.
+            """
+            outro_pub = Ed25519PublicKey.from_public_bytes(self.bundle_outro["sign_pub"])
+
+            # A confirmação remota é calculada do ponto de vista do outro agente
+            # (as chaves estão na ordem inversa)
+            confirm_key = hkdf_derive(
+                self.agente.dh(self.bundle_outro["dh_pub"]),
+                info=b"canal-confirm", length=32
+            )
+            esperada = hmac.new(
+                confirm_key,
+                b"confirmar:" + self.bundle_outro["dh_pub"] + pub_bytes(self.agente.key_dh.public_key()),
+                hashlib.sha256
+            ).digest()
+
+            if not hmac.compare_digest(esperada, confirmacao_remota):
+                raise ValueError(
+                    "CONFIRMAÇÃO DE CHAVE FALHOU!\n"
+                    "As chaves de sessão não coincidem — possível ataque man-in-the-middle."
+                )
+            print(f"[{self.agente.name}] ✓ Confirmação de chave verificada — canal seguro!")
+
+        def enviar(self, mensagem: str) -> dict:
+            """Cifra, assina e envia uma mensagem."""
+            nonce = os.urandom(8)
+            tpbc_program = TPBCPrg(self.chave_enc, mensagem.encode(), nonce)
+            _, ct, tag = tpbc_program.encrypt()
+
+            # Assinar (nonce + ciphertext + tag) — garante não-repúdio
+            payload = nonce + ct + tag
+            sig     = self.agente.sign_message(payload)
+
+            return {
+                "de"         : self.agente.name,
+                "nonce"      : nonce,
+                "ciphertext" : ct,
+                "tag"        : tag,
+                "assinatura" : sig,
+            }
+
+        def receber(self, msg: dict) -> str:
+            """Verifica assinatura, decifra e retorna a mensagem."""
+
+            outro_pub = Ed25519PublicKey.from_public_bytes(self.bundle_outro["sign_pub"])
+            payload   = msg["nonce"] + msg["ciphertext"] + msg["tag"]
+
+            try:
+                outro_pub.verify(msg["assinatura"], payload)
+            except InvalidSignature:
+                raise ValueError("Assinatura inválida — mensagem adulterada ou forjada!")
+
+            tpbc_program = TPBCPrg(self.chave_enc, msg["ciphertext"], msg["nonce"])
+            texto = tpbc_program.decrypt(self.chave_enc, msg["nonce"], msg["ciphertext"], msg["tag"])
+        
+            return texto.decode()
+
+
+    print("\n── Geração de identidades ──")
+    alice = Agente("Alice")
+    bob   = Agente("Bob")
+
+    # ── 2. Partilhar chaves públicas ──────────────────────
+    bundle_alice = alice.get_bundle()
+    bundle_bob   = bob.get_bundle()
+
+    # ── 3. Acordo de chaves e abertura do canal ───────────
+    print("\n── Acordo de chaves ──")
+    canal_alice = CanalSeguro(alice, bundle_bob)
+    canal_bob   = CanalSeguro(bob,   bundle_alice)
+
+    # ── 4. Confirmação da chave acordada ──────────────────
+    print("\n── Confirmação de chave ──")
+    canal_alice.verificar_confirmacao(canal_bob.confirmacao)
+    canal_bob.verificar_confirmacao(canal_alice.confirmacao)
+
+
+    # ── 5. Troca de mensagens ─────────────────────────────
+    print("\n── Mensagens ──")
+    mensagens = [
+        (canal_alice, canal_bob,  "Olá Bob! Mensagem secreta número 1."),
+        (canal_bob,   canal_alice,"Olá Alice! Recebi. Canal seguro a funcionar."),
+        (canal_alice, canal_bob,  "Perfeito! Até já."),
+    ]
+
+    for emissor, receptor, texto in mensagens:
+        msg      = emissor.enviar(texto)
+        recebido = receptor.receber(msg)
+        print(f"\n  {emissor.agente.name} → {receptor.agente.name}")
+        print(f"  Original  : {texto}")
+        print(f"  Cifrado   : {msg['ciphertext'].hex()[:40]}...")
+        print(f"  Decifrado : {recebido}")
+        assert recebido == texto
+        print("  ✓ ok")
     return
 
 
